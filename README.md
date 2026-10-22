@@ -8,7 +8,7 @@
 
 [![CI](https://github.com/NJ-Burrito/nj-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/NJ-Burrito/nj-skills/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Font: Thmanyah, own licence](https://img.shields.io/badge/font-Thmanyah%20%E2%80%94%20own%20licence-1f2937.svg)](https://ask.thmanyah.com/hc/en-001/articles/45993930027281-Thmanyah-Font-for-Everyone)
+[![Font: Thmanyah, own licence](https://img.shields.io/badge/font-Thmanyah%20%E2%80%94%20own%20licence-1f2937.svg)](https://font.thmanyah.com)
 [![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757.svg)](.claude-plugin/marketplace.json)
 [![Skills](https://img.shields.io/badge/skills-43-7c3aed.svg)](#whats-inside)
 [![Arabic and English](https://img.shields.io/badge/Arabic%20%2B%20English-first--class-0d9488.svg)](nj-plugin/skills/arabic-english-proofreading)
