@@ -21,10 +21,10 @@
 
 ### Pick how you want it. All free. 👇
 
-| 🧩 Plugin | 🧰 Kit installer | 📂 Copy a skill |
-|:---:|:---:|:---:|
-| For **Claude Code** | Skills + hooks + house style on a new machine | For any agent that reads `SKILL.md` |
-| [Install ↓](#plugin) | [Install ↓](#kit) | [Browse ↓](#whats-inside) |
+| 🧩 Plugin | 🧰 Kit installer | 📂 Copy a skill | 🔤 NJ-Font |
+|:---:|:---:|:---:|:---:|
+| For **Claude Code** | Skills + hooks + house style on a new machine | For any agent that reads `SKILL.md` | A typeface by the creator |
+| [Install ↓](#plugin) | [Install ↓](#kit) | [Browse ↓](#whats-inside) | [Coming soon ↓](#nj-font) |
 
 </div>
 
@@ -114,6 +114,10 @@ Skills land in `~/.claude/skills/` by default. `--scope project` puts them in on
 ### 🧰 Bundled with the kit ([`nj-kit/bundled`](nj-kit/bundled))
 
 nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-motion-deck · nj-laya · nj-pinterest · srs-verifier · safe-delete · pdf-typography, plus third-party design skills (brandkit, design-taste-frontend, high-end-visual-design, minimalist-ui, redesign-existing-projects, hyperframes-studio, general-video) and graphify. Credits in [THIRD_PARTY.md](THIRD_PARTY.md).
+
+## 🔤 NJ-Font
+
+🚧 **Coming soon.** A typeface by Nader Alzghoul, to live in [`NJ-Font/`](NJ-Font). Star the repo to hear when it ships.
 
 ## Is it safe?
 
