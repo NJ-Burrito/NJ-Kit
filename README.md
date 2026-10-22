@@ -136,7 +136,7 @@ mkdir -p ~/.local/share/fonts && cp NJ-Font/ttf/*.ttf ~/.local/share/fonts/ && f
 git clone https://github.com/NJ-Burrito/nj-skills
 cd nj-skills
 $dir = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"; New-Item -ItemType Directory -Force $dir | Out-Null
-Get-ChildItem NJ-Font	tf\*.ttf | ForEach-Object {
+Get-ChildItem NJ-Font\ttf\*.ttf | ForEach-Object {
   Copy-Item $_ $dir
   New-ItemProperty "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "$($_.BaseName) (TrueType)" -Value "$dir\$($_.Name)" -Force | Out-Null
 }
