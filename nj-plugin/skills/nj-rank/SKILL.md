@@ -1,6 +1,6 @@
 ---
 name: nj-rank
-description: Register finished work, keep its evidence paths, and file it to Jira as Done Tasks assigned to the user; close the user's own open Tasks. Triggers: rank my work, log this task, log this work, file my work to Jira, close my open tasks, سجّل العمل, ارفع المهام إلى جيرا, أغلق مهامي المفتوحة, رتّب أعمالي.
+description: 'Register finished work, keep its evidence paths, and file it to Jira as Done Tasks assigned to the user; close the user''s own open Tasks. Triggers: rank my work, log this task, log this work, file my work to Jira, close my open tasks, سجّل العمل, ارفع المهام إلى جيرا, أغلق مهامي المفتوحة, رتّب أعمالي.'
 ---
 
 # nj-rank
