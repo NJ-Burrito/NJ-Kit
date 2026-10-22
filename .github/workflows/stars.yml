@@ -1,0 +1,25 @@
+name: Star count
+on:
+  watch:
+    types: [started]
+  schedule:
+    - cron: "17 3 * * *"   # daily backup: catches un-stars, which fire no event
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: { group: stars, cancel-in-progress: true }
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write the live star count into the README badge
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          n=$(gh api "repos/${{ github.repository }}" -q .stargazers_count)
+          sed -i -E "s#img.shields.io/badge/stars-[0-9]+-#img.shields.io/badge/stars-${n}-#" README.md
+          git diff --quiet && { echo "unchanged ($n)"; exit 0; }
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git commit -am "README: stars → ${n} [skip ci]"
+          git push
