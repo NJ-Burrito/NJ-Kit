@@ -5,7 +5,7 @@ description: 'Animated slide decks with Remotion: references → triage → styl
 
 # Motion decks with Remotion
 
-The method that produced the project QA deck and the KAC Recurrence Map deck v4
+The method that produced a client QA deck and the KAC Recurrence Map deck v4
 (24–25 Sept 2026). **the owner rated deck-v3's look −3/10** (2026-09-25) — an earlier
 version of this file called that look "super beautiful and perfect"; it was wrong,
 and the line is gone. **The look for any deck comes from that deck's own

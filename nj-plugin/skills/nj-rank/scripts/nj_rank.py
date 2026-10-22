@@ -742,7 +742,7 @@ def file_items(root, jira, only=None, dry_run=False, retry_failed=False, run=def
         if rec["status"] not in wanted or (only and rec["n"] not in only):
             continue
         if rec["project"].strip().upper() != "PROJ":  # only PROJ work is tasked (the owner, 2026-10-19)
-            results["skipped-non-PROJ"] += 1
+            results["skipped-non-proj"] += 1
             print(f"#{rec['n']} skipped (not PROJ, no Jira Task): {rec['title']}")
             continue
         if dry_run:

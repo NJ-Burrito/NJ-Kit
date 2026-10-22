@@ -5,7 +5,7 @@ Open this when implementing or checking exact geometry: canvas, shape sizes, con
 ## The house standard — measured, not chosen
 
 The design language is read off the reference chart the client's own side drew,
-`PROJ-tests/cosmetic_import_invoice_workflow_people_only (4).svg`. Every number
+`<project>/cosmetic_import_invoice_workflow_people_only (4).svg`. Every number
 here was measured in that file. Do not re-decide any of them.
 
 ### Canvas
@@ -18,7 +18,7 @@ here was measured in that file. Do not re-decide any of them.
 | Text direction | **right → left** — `direction="rtl"` on every `<text>` |
 | Typeface | Cairo. The reference used Segoe UI; the document's face wins |
 
-**Cairo here is PROJ's own already-established document face, recorded, not a
+**Cairo here is the client's own already-established document face, recorded, not a
 recommendation.** Cairo is banned house-wide for ENSERA and every other
 project (`~/.claude/CLAUDE.md`: "never propose it, never fall back to it, in
 any project or deliverable") — if this skill is ever pointed at a non-PROJ
@@ -97,7 +97,7 @@ are not what the renderer draws any more.
 | End by approval | `#D6E1A0` | `#3F680F` | نهاية بالاعتماد |
 
 **The legend names a box by what it is in the document, not by what BPMN calls
-the node** (PROJ client, 2026-09-09). A desk **is a stage** — «مرحلة الموظف»,
+the node** (the client, 2026-09-09). A desk **is a stage** — «مرحلة الموظف»,
 «مرحلة مقدم الطلب» — and «مهمة» is reserved for what the holder of a stage does
 inside it without moving the request: a comment, an attachment, a concealment, a
 recommendation. Those live in the stage's own data dictionary, never on the

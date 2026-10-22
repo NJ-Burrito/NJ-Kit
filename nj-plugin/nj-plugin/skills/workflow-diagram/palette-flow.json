@@ -1,9 +1,0 @@
-{"roles":{
- "staff":     {"fill":"#ADCBBE","line":"#065A44","ink":"#023A2B"},
- "applicant": {"fill":"#F3F0E9","line":"#67655E","ink":"#383732"},
- "rework":    {"fill":"#F3B3A2","line":"#853311","ink":"#571F08"},
- "payment":   {"fill":"#F4E7B2","line":"#8B5A05","ink":"#4E3102"},
- "system":    {"fill":"#B3E4FA","line":"#0F648F","ink":"#053B56"},
- "stop":      {"fill":"#FFC9D2","line":"#AF1F31","ink":"#6F101C"},
- "ok":        {"fill":"#D6E1A0","line":"#3F680F","ink":"#243E05"}},
- "wires":{"main":"#44433F","main-pale":"#939392","return":"#8A4A12","return-pale":"#AC8C80","stop":"#AF1F31","stop-pale":"#C38185","gate":"#7C7B75","caption":"#3F3E3A","region-line":"#DCD6C6"}}

@@ -66,10 +66,10 @@ Build and run id (`lib/build.ts`) sit on evidence, `run-meta.json` and `filed-re
 ## 3c. Output inspection at the signing desk (2026-10-12, lessons 8–9)
 - **Signing (single statement; other skills cite this section, never restate it): The signing step itself is never a defect or blocker; a reproducible signing failure (5xx with an error body, e.g. SIGN_HERE not found in PDF) is a process-blocker Bug, routed to the operations owner (the owner, 2026-10-15).** Do not stop at the step itself; a failure Bug carries serial type, timestamp, endpoint, HTTP status and the one-line error body (masked), plus screenshots (main + Sanad popup), console errors and exact time.
 - Inspect the output: «عرض المخرج» in the back-office request view (approved requests), and «معاينة المخرج» at the open signing desk. Screenshot it, check names, dates, numbers and Arabic wording, and file only what the output shows.
-- Check the known not-a-bug list (`nj-jira/references/PROJ.md`) before every draft.
+- Check the known not-a-bug list (your project's known-not-a-bug list) before every draft.
 
 ## 3d. Model-change watch (Phase 4, 2026-10-12)
-After every Flowable export (`export.py`, `flowable_facts.py`, `diff.py`, then `watch.py`, in `PROJ-tests/reference/flowable`), `CHANGES-since-last.md` lists each service whose BPMN changed, its suite folder and the command `npm run recheck -- --service "<card>"`. Recheck those services on staging before the next batch. A model with no suite folder is listed; the service has to be added first. Nothing is filed from the change list alone: a `broken` or `new` row goes through §3b review, and the §4a Bug-or-design check runs first.
+After every Flowable export (`export.py`, `flowable_facts.py`, `diff.py`, then `watch.py`, in `<project>/reference/flowable`), `CHANGES-since-last.md` lists each service whose BPMN changed, its suite folder and the command `npm run recheck -- --service "<card>"`. Recheck those services on staging before the next batch. A model with no suite folder is listed; the service has to be added first. Nothing is filed from the change list alone: a `broken` or `new` row goes through §3b review, and the §4a Bug-or-design check runs first.
 
 ## 4. Closing the batch
 1. `npm run jira:track`; `npm run sweep-chrome` (0 orphans of yours; peers' are named, not killed); `relay.py sweep` per project CLAUDE.md.
@@ -79,7 +79,7 @@ After every Flowable export (`export.py`, `flowable_facts.py`, `diff.py`, then `
 5. **Report and email (lessons 17–18):** the report step reads the current rule file, not a copy in the builder; a Sonnet worker greps the output for retired rules (e.g. «QA only») and the Lead decides on any hit before handing it over. Email text is pasted into Outlook: plain text, no markdown bold or tables; Arabic, signed «المالك»; a 3-line summary, one line per service, «ما يلزم» last.
 
 ## 5. Test oracles and self-healing (the owner 2026-10-18; canonical here, other skills point to it)
-Sources, cite as `[id]`/`[KB#id]` like the files do: `QA-handover/self-healing-tests.md` (H/G rules, metrics), `QA Engineer/research/PROJ-e2e-baseline/oracle-integrity.md` (R rules). Read-only inputs.
+Sources, cite as `[id]`/`[KB#id]` like the files do: `QA-handover/self-healing-tests.md` (H/G rules, metrics), `QA Engineer/research/project-e2e-baseline/oracle-integrity.md` (R rules). Read-only inputs.
 
 **The one sentence.** Never change an expected value to match what the system does. If actual differs from expected the result is a **defect** (expected is right), a **question** (nobody knows which is right) or an **expectation fix with a cited source** (the rule changed); the last one needs a person.
 
@@ -119,22 +119,22 @@ Sources, cite as `[id]`/`[KB#id]` like the files do: `QA-handover/self-healing-t
 | time_to_repair | minutes from failure to merged fix |
 | reject_rate | HEAL-REJECTED / attempts |
 
-**Observe-only window: 2026-10-18 -> 2026-11-15 (4 weeks).** In both suites a reporter hook (`heal-reporter.ts` in PROJ-tests `tests/PROJ/_shared/`; `reporter/heal.ts` in Automation Tests) writes a `proposed` record to `heal-log.jsonl` (PROJ-tests `artifacts/`, Automation Tests `reports/`) on a locator-class failure and the test STILL FAILS. Reporters cannot change a result. No apply mode exists in code; `HEAL_MODE=observe` (default) or `off`. `noHeal` (rejected record, never proposed): login, Send, fee/payment, «التوقيع الرقمي», negative tests, assertion steps, tag `@noHeal` or annotation `noHeal`. Weekly: a human reviews proposals against the trace, applies accepted ones in source and appends `accepted`/`false-heal`. On 2026-11-15 read `heal.report`; whether any auto-apply is justified (non-critical, non-filing only) is the owner's decision. Until then the 46 unasserted scenarios (R1) are closed before any green is trusted.
+**Observe-only window: 2026-10-18 -> 2026-11-15 (4 weeks).** In both suites a reporter hook (`heal-reporter.ts` in project-tests `tests/PROJ/_shared/`; `reporter/heal.ts` in Automation Tests) writes a `proposed` record to `heal-log.jsonl` (project-tests `artifacts/`, Automation Tests `reports/`) on a locator-class failure and the test STILL FAILS. Reporters cannot change a result. No apply mode exists in code; `HEAL_MODE=observe` (default) or `off`. `noHeal` (rejected record, never proposed): login, Send, fee/payment, «التوقيع الرقمي», negative tests, assertion steps, tag `@noHeal` or annotation `noHeal`. Weekly: a human reviews proposals against the trace, applies accepted ones in source and appends `accepted`/`false-heal`. On 2026-11-15 read `heal.report`; whether any auto-apply is justified (non-critical, non-filing only) is the owner's decision. Until then the 46 unasserted scenarios (R1) are closed before any green is trusted.
 
 ## ADHD output (all stages)
 `references/adhd-standard.md`: the single checklist every report, PDF, HTML page, terminal line and AGENT/AI note follows.
 
 ## References
 - `references/adhd-standard.md`: the output standard
-- `references/PROJ.md`: PROJ run of 2026-10-11 (numbers, accounts classes, what each brief was, lessons)
-- Briefs of that day (templates for the worker prompts): `PROJ-tests/.agent-ops/briefs/jt-*-2026-10-11.md`
+- a project run log (numbers, accounts classes, what each brief was, lessons): keep your own
+- Briefs of that day (templates for the worker prompts): `<project>/.agent-ops/briefs/jt-*-2026-10-11.md`
 
 ## Screenshots: viewport only (the owner, 2026-10-18, global)
 
 ## Jira stage label (the owner, 2026-10-19)
 Every Bug/Task carries the fixed label `phase2-uat`; rule in `nj-jira/SKILL.md` § Jira stage label.
 
-Evidence method (the owner 2026-10-18): follow `nj-jira/references/bug-template.md` § Evidence rules (viewport + red ring + minimal mask, no .txt/.json, named shots); Suite helper `shotOf(page, target, path)` (`tests/PROJ/_shared/shot.ts` in PROJ-tests, `lib/shot.ts` in Automation Tests) does the scroll + in-viewport assert. Tools `nj-jira/scripts/evidence-shot.ts`, `ring-pdf.py`.
+Evidence method (the owner 2026-10-18): follow `nj-jira/references/bug-template.md` § Evidence rules (viewport + red ring + minimal mask, no .txt/.json, named shots); Suite helper `shotOf(page, target, path)` (`tests/PROJ/_shared/shot.ts` in project-tests, `lib/shot.ts` in Automation Tests) does the scroll + in-viewport assert. Tools `nj-jira/scripts/evidence-shot.ts`, `ring-pdf.py`.
 
 ## Ticket wording (the owner, 2026-10-20)
 Bug = five short blocks only (المشكلة / الخطوات / المتوقع / الفعلي / الدليل, each <= 3 lines), no `*Verdict:*` / `*Source:*` line, no [JIRA]/[ASSUMED] label (those stay in QA reports). Task = the owner's own work only, 2-3 labelled blocks, one line per Bug key, "Relates" links, no agent counts, no report attachments by default (canonical PROJ-2169; `nj-jira/SKILL.md` § Task wording). Layout only, no added review step.

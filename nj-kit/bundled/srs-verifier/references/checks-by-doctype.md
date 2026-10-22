@@ -38,7 +38,7 @@ choosing one.
 
 ### 1.2 Every value list vs the enum
 
-Search `com.ts.PROJ.<EnumName>.*`. Compare the count and the wording.
+Search `com.example.app.<EnumName>.*`. Compare the count and the wording.
 
 > **Example.** The document lists 6 «فئات المنشآت»; the enum has 7. One missing
 > value is a real defect, not a rounding. Separately: the document writes

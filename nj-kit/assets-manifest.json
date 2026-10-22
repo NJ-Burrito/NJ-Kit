@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "note": "Heavy optional parts that are not in the git tree. `python nj-kit/scripts/fetch_assets.py --list` shows them; `<name>` or `--all` downloads, verifies sha256 and puts them at `target` (relative to the repo root, or to --root).",
+  "release_base": "https://github.com/NJ-Burrito/NJ-Kit/releases/download/assets-v1",
+  "assets": [
+    {
+      "name": "graphify-package",
+      "kind": "wheel",
+      "what": "graphify Python package and per-platform skill files (third party; bundled/graphify keeps only skill.md)",
+      "url": "https://files.pythonhosted.org/packages/71/50/1466d495dbdfa532cb1d28d9cbc79df7c7adffbea8a5869eab0e66396f40/graphifyy-0.9.66-py3-none-any.whl",
+      "upstream": "https://pypi.org/project/graphifyy/0.9.66/",
+      "version": "0.9.66",
+      "sha256": "104f1e148ecde571c3a8253a7121bfff7966f6cf907720d1e274c31bbc4b8931",
+      "licence": "Apache-2.0 and MIT (upstream LICENSE files are inside the wheel)",
+      "extract_prefix": "graphify/",
+      "target": "nj-kit/bundled/graphify",
+      "needed_by": "graphify (the CLI itself installs with: uv tool install \"graphifyy[office]\")"
+    },
+    {
+      "name": "researcher-sources-db",
+      "kind": "file",
+      "what": "nj-researcher source registry (SQLite, 328 sources). Optional: `python scripts/sources.py seed --reset` rebuilds a registry from data/seed.tsv.",
+      "url": "https://github.com/NJ-Burrito/NJ-Kit/releases/download/assets-v1/sources.db",
+      "upstream": "none (own data, GitHub release asset)",
+      "version": "2026-10-22",
+      "sha256": "6dc6d828002a6200795dfcc9c10070443681cfb22b64085ea65bc5a4add6fc17",
+      "licence": "MIT (this repo)",
+      "target": "nj-kit/bundled/nj-researcher/data/sources.db",
+      "needed_by": "nj-researcher"
+    },
+    {
+      "name": "tashkeel-evidence-runs",
+      "kind": "zip",
+      "what": "Raw model-run evidence for the Arabic tashkeel KB (run1, run1-scored, run2, run3, run5, run6 JSON). Optional: only the analysis scripts in the same folder read them.",
+      "url": "https://github.com/NJ-Burrito/NJ-Kit/releases/download/assets-v1/tashkeel-evidence-runs.zip",
+      "upstream": "none (own data, GitHub release asset)",
+      "version": "2026-10-22",
+      "sha256": "fb9cea27d8654a3271925ccb9f12e35498e364a84474725c625699210d510dbd",
+      "licence": "MIT (this repo)",
+      "target": "nj-plugin/skills/nj-writer/reference/arabic-tashkeel/evidence",
+      "needed_by": "nj-writer (reference only)"
+    }
+  ]
+}

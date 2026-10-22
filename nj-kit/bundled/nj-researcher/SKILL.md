@@ -163,6 +163,7 @@ neutral one. Arabic PDFs are extracted with **poppler `pdftotext`** only.
 - Python via `uv` if a venv is ever needed; never `pip`.
 - DB at `data/sources.db` (override with `NJ_SOURCES_DB`). Rebuild:
   `python scripts/sources.py seed --reset`.
+  The kit ships `data/seed.tsv` only; `python nj-kit/scripts/fetch_assets.py researcher-sources-db` fetches the full registry (optional).
 - Deletions go to the recycle bin (`safe-delete`), never `rm -rf`.
 
 ## Files

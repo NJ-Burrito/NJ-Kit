@@ -5,7 +5,7 @@ description: 'Create an automation-tests folder (a portable, self-contained Play
 
 # nj-automation-suite: scaffold a suite like `Improvement Delivery/Automation Tests`
 
-Reference implementation = the PROJ suite. COPY its files (do not re-type them); this skill says which, what each must guarantee, and the gate that proves it. Project facts: `references/PROJ.md`. Layout and file list: `references/layout.md`. Reports/PDF detail: `references/outputs-pdf.md`. Docker detail: `references/docker.md`.
+Reference implementation = the reference suite. COPY its files (do not re-type them); this skill says which, what each must guarantee, and the gate that proves it. Project facts: your project profile. Layout and file list: `references/layout.md`. Reports/PDF detail: `references/outputs-pdf.md`. Docker detail: `references/docker.md`.
 
 ## Steps (each leaves a file)
 1. **Skeleton** -> `package.json` (scripts: test list typecheck stage menu selftest discover generate report strip-credentials jira:sync jira:test jira:add jira:track ui sweep-chrome), `tsconfig.json`, `playwright.config.ts` (`retries: 0`, workers from `<PREFIX>_WORKERS`, headed real Chrome), `.gitignore`, `.gitattributes`, `.dockerignore`. Pin exact versions (`@playwright/test`, `tsx`, `typescript`, `@types/node`). Gate: `npm i && npx tsc --noEmit` = 0.
@@ -39,14 +39,14 @@ Reference implementation = the PROJ suite. COPY its files (do not re-type them);
 Image-only compose (`image:` + `platform: linux/amd64`, `shm_size: 2gb`, `./reports:/suite/reports`, env names passed bare); real Google Chrome under Xvfb, `tini` as PID 1, `TZ`, Arabic fonts; no credentials in the image; wrappers `run.sh/run.ps1/run.cmd` load the `.tar` once (SHA-256 check) then run. Share = tar + sha256 + compose + README + wrapper, zipped as 7z without fonts. Details in `references/docker.md`.
 
 ## Standard suite parts (2026-10-12)
-Five capabilities every suite carries (reference: the PROJ suite):
+Five capabilities every suite carries (reference: the reference suite):
 1. **Masked page text** beside every screenshot (`lib/evidence.ts` `snap()` writes `<name>.txt`).
 2. **Build and run id** (`lib/build.ts`) on evidence, `run-meta.json` and `filed-requests.csv` (`build`, `run_id`).
 3. **Findings scanner** (`lib/findings/`, `tools/findings/scan-cli.ts`, `selftest/findings.selftest.ts`): rules in `rules.ts`; add a rule by appending, never by dropping hits silently. Gate: selftest 9 of 12 caught, 0 false positives.
 4. **Pre-filing review page** (`tools/review/`): nothing files without an approved key.
 5. **Per-build recheck** (`tools/recheck/`): unchanged / fixed / broken / new / unreachable; env-down is never fixed.
 
-Gate for a new suite: all five run offline on a fixture and the selftests pass. Machine paths stay out of suite code: `NJ_RANK_PREVIEW` and `NJ_RANK_SCRIPT` env vars locate the nj-rank combined page. Method source: the PROJ suite's `reports/factcheck-2026-10-12/method/{reverse-engineering.md,adopt-plan.md}`.
+Gate for a new suite: all five run offline on a fixture and the selftests pass. Machine paths stay out of suite code: `NJ_RANK_PREVIEW` and `NJ_RANK_SCRIPT` env vars locate the nj-rank combined page. Method source: the reference suite's `reports/factcheck-2026-10-12/method/{reverse-engineering.md,adopt-plan.md}`.
 
 ## Oracles and self-healing (2026-10-18)
 A suite ships the heal log (observe-only, no apply mode): `lib/heal-log.ts`, `reporter/heal.ts` in playwright.config reporters, `tools/heal-report.ts`, `selftest/heal-check.ts`; `HEAL_MODE=observe|off`; noHeal for login, Send, fee, signature, negative and assertion steps. The oracle rules R1-R8, heal rules H1-H7, guards G1-G9, verdicts and the window 2026-10-18 -> 2026-11-15 are in `nj-qa-pipeline` section 5 (canonical). Never change an expected value to match what the system does.
@@ -58,4 +58,4 @@ Every page, PDF, terminal line and note the suite writes: verdict + count chips 
 The suite's own selftest (`npm run selftest`, offline) is the gate; staging runs are single, no retry loops, "not verified" said plainly.
 
 ## Screenshots: viewport only (owner, 2026-10-18, global)
-Evidence screenshots are NORMAL viewport screenshots, never `fullPage:true`. Scroll the target into view and assert its bounding box lies inside the viewport before capturing — use the suite helper `shotOf(page, target, path)` (`tests/PROJ/_shared/shot.ts` in PROJ-tests, `lib/shot.ts` in Automation Tests). Canonical: `~/.claude/CLAUDE.md` § Standing facts.
+Evidence screenshots are NORMAL viewport screenshots, never `fullPage:true`. Scroll the target into view and assert its bounding box lies inside the viewport before capturing — use the suite helper `shotOf(page, target, path)` (`tests/PROJ/_shared/shot.ts` in project-tests, `lib/shot.ts` in Automation Tests). Canonical: `~/.claude/CLAUDE.md` § Standing facts.
