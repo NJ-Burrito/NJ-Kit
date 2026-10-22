@@ -1,6 +1,6 @@
 # Security
 
-**Report a vulnerability** privately through GitHub: *Security → Report a vulnerability* on this repo. Please do not open a public issue.
+**Report a vulnerability** to naderalzghoulbusiness@gmail.com or privately through GitHub: *Security → Report a vulnerability* on this repo. Please do not open a public issue.
 
 What this repo promises:
 

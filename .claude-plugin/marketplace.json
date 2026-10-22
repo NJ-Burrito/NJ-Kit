@@ -2,7 +2,8 @@
   "name": "nj-skills",
   "description": "Nader Alzghoul's Claude Code toolkit: a working method, agent governance and house skills.",
   "owner": {
-    "name": "Nader Alzghoul",
+    "name": "Nader Alzghoul (NJ-Burrito)",
+    "email": "naderalzghoulbusiness@gmail.com",
     "url": "https://github.com/NJ-Burrito"
   },
   "plugins": [
@@ -36,7 +37,12 @@
         "./skills/voice-clean",
         "./skills/website-fine-print",
         "./skills/workflow-diagram"
-      ]
+      ],
+      "author": {
+        "name": "Nader Alzghoul (NJ-Burrito)",
+        "email": "naderalzghoulbusiness@gmail.com",
+        "url": "https://github.com/NJ-Burrito"
+      }
     }
   ]
 }
