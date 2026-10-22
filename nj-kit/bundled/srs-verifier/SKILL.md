@@ -74,7 +74,7 @@ Do not begin auditing before you know which sources exist and which are
 missing. List them, with paths, at the top of your notes; the report's
 reservations section is built from that list.
 
-For a PROJ/project SRS specifically, that is: the service row in
+For a client SRS specifically, that is: the service row in
 `service-catalogue.csv` (or a `request-types` call) giving `OUTPUT_TYPE`,
 `CAN_PRINT_CERT`, `FEES`, `SLA`, `CUSTOMER_TYPES`, `CHANNELS`, `WALK_IN`,
 `DEPT_CODE`, `ATTACHMENTS` with `(req)`/`(opt)`; the process model

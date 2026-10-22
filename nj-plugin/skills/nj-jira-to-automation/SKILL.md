@@ -59,4 +59,4 @@ A generated check asserts the note's expected value from its cited source (ticke
 Verdict + chips first (`✅ n · ❌ n · محجوب n`), red first, one card per note, «الخطوة التالية» per item, the copyable one-note command on each card, detail collapsed. See `nj-qa-pipeline/references/adhd-standard.md`.
 
 ## References
-`references/check-shapes.md` (code skeleton for each shape) · `references/PROJ.md` (PROJ accounts classes, hooks, example services) · siblings: `nj-jira`, `nj-automation-suite`, `nj-qa-pipeline`.
+`references/check-shapes.md` (code skeleton for each shape) · your project profile (accounts classes, hooks, example services; not shipped) · siblings: `nj-jira`, `nj-automation-suite`, `nj-qa-pipeline`.

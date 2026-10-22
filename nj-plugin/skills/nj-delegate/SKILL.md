@@ -464,7 +464,7 @@ to the least expensive tier with demonstrated reliability for the class of work.
 **Gates are independent of the tier** — a cheaper tier never means a lighter
 gate. Which runtime serves each tier: `reference/runtime-map.md`, read only when
 a brief must name one. Skipping this procedure cost 15.8 % of the 2026-09-15
-worker day (audit: `<project>/PROJ-tests/artifacts/ops/model-routing-audit-2026-09-16.md`).
+worker day (audit: `<project>/artifacts/ops/model-routing-audit-2026-09-16.md`).
 
 ### (a) The ladder — take the first rung that answers the question
 
@@ -595,8 +595,8 @@ The brief names the skill path; the worker reads it **before its first edit**.
 | The workflow figure itself | `workflow-diagram` |
 | PDF from HTML, fonts, copy-paste fidelity | `pdf-typography` |
 | Arabic/English wording, proofreading before delivery | `arabic-english-proofreading` |
-| Browser automation, portal/back-office walks | the project's e2e skill (e.g. `PROJ-e2e`) |
-| Manuals, screenshots, narrated video | the project's manuals skill (e.g. `PROJ-manuals`) |
+| Browser automation, portal/back-office walks | the project's e2e skill (e.g. `project-e2e`) |
+| Manuals, screenshots, narrated video | the project's manuals skill (e.g. `project-manuals`) |
 | Deleting anything | `safe-delete` (recycle bin, never rm) |
 | Closing or resuming a session | `session-handoff` + §8 here |
 | A lesson learned mid-task | `nj-learn` |

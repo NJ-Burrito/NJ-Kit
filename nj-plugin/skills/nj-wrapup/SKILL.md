@@ -7,7 +7,7 @@ description: 'Close a work session or a tested service end to end: discover what
 
 Runs AFTER testing (results exist on disk); it tests nothing. It orchestrates sibling skills and points at them, never restates them:
 **nj-jira** (dedupe, `references/bug-template.md`, REST, §5 re-check, tracker) · **nj-rank** (work log -> Done Tasks) · **nj-qa-pipeline** (§3c signing and output inspection) · **nj-delegate** / **nj-supervise** (briefs) · **session-handoff**.
-Project commands, paths, people and wording live in a profile: `references/profile-PROJ.md` (the core names them as *hooks*: tracker writer, register hook, outputs hook, design lookup, known-not-a-bug list, assignee map).
+Project commands, paths, people and wording live in a profile: `references/profile-<project>.md` (write your own; the public kit ships none) (the core names them as *hooks*: tracker writer, register hook, outputs hook, design lookup, known-not-a-bug list, assignee map).
 
 **Gate vs habit.** A step marked `[SCRIPT]` has an exit code; everything else is `[HABIT]` and the report says so. Scripts (stdlib Python, `PYTHONUTF8=1`, each has `--selftest`; credentials from env `JIRA_BASE_URL`/`JIRA_USER`/`JIRA_PASS` or `--creds FILE`, never printed):
 

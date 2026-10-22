@@ -20,7 +20,7 @@ Who runs nj-rank, when, and how results come back. Governance: nj-governance-v4 
 
 ## Artefacts by path
 
-- Collection lanes write `PROJ-tests/work/<run>/lanes/<lane>.jsonl` and `<lane>.detail.md`.
+- Collection lanes write `<project>/work/<run>/lanes/<lane>.jsonl` and `<lane>.detail.md`.
 - The Sonnet worker runs `nj_rank.py import <lane>.jsonl` on those files and reports the count to the Lead. Nothing is passed in conversation.
 - Filing results live in the registry (`<root>\registry.jsonl`) and each item's `item.json`.
 
