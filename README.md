@@ -24,7 +24,8 @@
 > ### ⚡ In 10 seconds
 > 🧠 **What:** a free toolkit that gives Claude Code one working method and 43 skills.\
 > ✅ **Why:** every skill ends with a script that says **PASS** or **FAIL**. No "should work".\
-> 🚀 **Start:** 2 lines in Claude Code. [Go ↓](#plugin)\n> 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) in English and Arabic.
+> 🚀 **Start:** 2 lines in Claude Code. [Go ↓](#plugin)\
+> 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) in English and Arabic.
 
 ### Pick how you want it. All free. 👇
 
