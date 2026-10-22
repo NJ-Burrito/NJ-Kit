@@ -1,9 +1,5 @@
 # Third-party credits
 
-## Fonts
-
-No font files are included. `pdf-typography/scripts/fetch-fonts.mjs` downloads Cairo, Aref Ruqaa and JetBrains Mono (SIL OFL 1.1) from their upstream sources on your machine. Every font type is git-ignored.
-
 ## Libraries
 
 | Library | File | Licence |

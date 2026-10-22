@@ -4,4 +4,3 @@
 
 - First public release: the `nj-kit` plugin (23 skills) and the `nj-kit` installer with its bundled skills.
 - All credentials, private hosts and machine paths replaced by environment variables and placeholders.
-- No font files are shipped; open-licence fonts are fetched on install, every font type is git-ignored.
