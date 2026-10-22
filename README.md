@@ -20,58 +20,76 @@
 [![Portfolio](https://img.shields.io/badge/Portfolio-nj--burrito.github.io-0A66C2?logo=googlechrome&logoColor=white)](https://nj-burrito.github.io/)
 [![Stars](https://img.shields.io/badge/stars-1-white?style=social&logo=github)](https://github.com/NJ-Burrito/NJ-Kit/stargazers)
 
-**NJ-Kit is a free, open-source toolkit for Claude Code.** One working method (analyse → find the skill → plan → execute → review), a delegation model for teams of agents, and house skills for documents, QA, Jira, narration, audio and video. Every skill ends in a gate a script runs, not a promise.
+> ### ⚡ In 10 seconds
+> 🧠 **What:** a free toolkit that gives Claude Code one working method and 43 skills.\
+> ✅ **Why:** every skill ends with a script that says **PASS** or **FAIL**. No "should work".\
+> 🚀 **Start:** 2 lines in Claude Code. [Go ↓](#plugin)
 
 ### Pick how you want it. All free. 👇
 
 | 🧩 Plugin | 🧰 Kit installer | 📂 Copy a skill | 🔤 NJ-Font |
 |:---:|:---:|:---:|:---:|
-| For **Claude Code** | Skills + hooks + house style on a new machine | For any agent that reads `SKILL.md` | A typeface by the creator |
+| For **Claude Code** | Whole setup on a new machine | For any agent that reads `SKILL.md` | A typeface by the creator |
 | [Install ↓](#plugin) | [Install ↓](#kit) | [Browse ↓](#whats-inside) | [Install ↓](#nj-font) |
 
 </div>
 
+---
+
 <a id="plugin"></a>
 
-## 🧩 Plugin
+## 🧩 Plugin · ⏱️ 1 minute
 
-In Claude Code, type these two lines:
+**1.** In Claude Code, paste:
 
 ```
 /plugin marketplace add NJ-Burrito/NJ-Kit
 /plugin install nj-kit@nj-kit
 ```
 
-Then say: **"use nj-method"**. Claude Code gets the 23 plugin skills in one go.
+**2.** Say: **"use nj-method"** ✅ Done. You have 23 skills.
+
+---
 
 <a id="kit"></a>
 
-## 🧰 Kit installer
+## 🧰 Kit installer · ⏱️ 5 minutes
 
-Sets up the skills, hooks, MCP servers and house style on a fresh machine. Needs Python 3.10+ ([uv](https://docs.astral.sh/uv/) recommended).
+Needs: 🐍 Python 3.10+
 
 ```bash
 git clone https://github.com/NJ-Burrito/NJ-Kit
 cd NJ-Kit
-python nj-kit/scripts/install.py --check   # shows what it would do, changes nothing
-python nj-kit/scripts/install.py           # does it
+python nj-kit/scripts/install.py --check   # 👀 preview, changes nothing
+python nj-kit/scripts/install.py           # ✅ install
 ```
 
-Skills land in `~/.claude/skills/` by default. `--scope project` puts them in one repo instead. Details: [nj-kit/README.md](nj-kit/README.md).
+<details>
+<summary>📖 More: where skills go, options</summary>
 
-## 3 steps
+- Skills land in `~/.claude/skills/` (every repo on this machine).
+- `--scope project` puts them in one repo instead.
+- [uv](https://docs.astral.sh/uv/) is recommended for Python.
+- Full guide: [nj-kit/README.md](nj-kit/README.md)
 
-1️⃣ **Install** the plugin or the kit
+</details>
 
-2️⃣ **Ask** for the work as you normally would
+---
 
-3️⃣ **Read the gate line** — every skill reports PASS/FAIL from a script, not from the model's opinion
+## 🔁 How it works · 3 steps
+
+| 1️⃣ Install | 2️⃣ Ask | 3️⃣ Read the gate |
+|:---:|:---:|:---:|
+| Plugin or kit | Ask for work as usual | ✅ PASS or ❌ FAIL, from a script |
+
+---
 
 <a id="whats-inside"></a>
 
-## What's inside
+## 📦 What's inside · tap a row to open
 
-### 🧠 Method and agents
+<details>
+<summary>🧠 <b>Method and agents</b> · 9 skills · plan, delegate, hand off</summary>
 
 | Skill | What it does |
 |---|---|
@@ -85,7 +103,10 @@ Skills land in `~/.claude/skills/` by default. `--scope project` puts them in on
 | [devil](nj-plugin/skills/devil) | Ranked objections to a plan before you act on it |
 | [nj-security-review](nj-plugin/skills/nj-security-review) | Audit third-party skills, plugins and MCP servers before installing |
 
-### ✅ QA and Jira
+</details>
+
+<details>
+<summary>✅ <b>QA and Jira</b> · 5 skills · tickets, Bugs, automation</summary>
 
 | Skill | What it does |
 |---|---|
@@ -95,7 +116,10 @@ Skills land in `~/.claude/skills/` by default. `--scope project` puts them in on
 | [nj-automation-suite](nj-plugin/skills/nj-automation-suite) | Scaffold a portable, self-contained Playwright suite |
 | [nj-rank](nj-plugin/skills/nj-rank) | Register finished work with its evidence and file it as Done |
 
-### 📄 Documents and writing
+</details>
+
+<details>
+<summary>📄 <b>Documents and writing</b> · 6 skills · PDFs, proofreading, diagrams</summary>
 
 | Skill | What it does |
 |---|---|
@@ -106,7 +130,10 @@ Skills land in `~/.claude/skills/` by default. `--scope project` puts them in on
 | [impact-copy](nj-plugin/skills/impact-copy) | Impact-first, metric-driven copy |
 | [website-fine-print](nj-plugin/skills/website-fine-print) | Pre-ship site audit: privacy, hygiene, policy pages |
 
-### 🎬 Audio and video
+</details>
+
+<details>
+<summary>🎬 <b>Audio and video</b> · 3 skills · voice, music, film</summary>
 
 | Skill | What it does |
 |---|---|
@@ -114,9 +141,16 @@ Skills land in `~/.claude/skills/` by default. `--scope project` puts them in on
 | [bg-music](nj-plugin/skills/bg-music) | Licence-cleared music beds and SFX, with credit lines |
 | [nj-director](nj-plugin/skills/nj-director) | Plan the picture of a 30–90 s film: beat sheet, shots |
 
-### 🧰 Bundled with the kit ([`nj-kit/bundled`](nj-kit/bundled))
+</details>
 
-nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-motion-deck · nj-laya · nj-pinterest · srs-verifier · safe-delete · pdf-typography, plus third-party design skills (brandkit, design-taste-frontend, high-end-visual-design, minimalist-ui, redesign-existing-projects, hyperframes-studio, general-video) and graphify. Credits in [THIRD_PARTY.md](THIRD_PARTY.md).
+<details>
+<summary>🧰 <b>Bundled with the kit</b> · 20 more · research, design, decks</summary>
+
+nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-motion-deck · nj-laya · nj-pinterest · srs-verifier · safe-delete · pdf-typography, plus third-party design skills (brandkit, design-taste-frontend, high-end-visual-design, minimalist-ui, redesign-existing-projects, hyperframes-studio, general-video) and graphify. Folder: [`nj-kit/bundled`](nj-kit/bundled) · Credits: [THIRD_PARTY.md](THIRD_PARTY.md)
+
+</details>
+
+---
 
 <a id="nj-font"></a>
 
@@ -124,7 +158,8 @@ nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-motion-
 
 A typeface by Nader Alzghoul, installed from this repo in one go.
 
-**macOS / Linux:**
+<details>
+<summary>🍎 macOS / 🐧 Linux</summary>
 
 ```bash
 git clone https://github.com/NJ-Burrito/NJ-Kit
@@ -133,7 +168,10 @@ cp NJ-Font/ttf/*.ttf ~/Library/Fonts/                                           
 mkdir -p ~/.local/share/fonts && cp NJ-Font/ttf/*.ttf ~/.local/share/fonts/ && fc-cache -f   # Linux
 ```
 
-**Windows (PowerShell, no admin needed):**
+</details>
+
+<details>
+<summary>🪟 Windows (no admin needed)</summary>
 
 ```powershell
 git clone https://github.com/NJ-Burrito/NJ-Kit
@@ -145,37 +183,55 @@ Get-ChildItem NJ-Font\ttf\*.ttf | ForEach-Object {
 }
 ```
 
-**Web:**
+</details>
+
+<details>
+<summary>🌐 Web</summary>
 
 ```css
 @font-face { font-family: "NJ-Font"; src: url("NJ-Font/woff2/NJ-Font-Regular.woff2") format("woff2"); font-display: swap; }
 ```
 
-Fonts land in your user font folder, so no admin rights are needed. Restart open apps to see them. Details: [NJ-Font/README.md](NJ-Font/README.md).
+</details>
 
-## Is it safe?
+Fonts land in your user font folder. Restart open apps to see them. More: [NJ-Font/README.md](NJ-Font/README.md)
 
-🔒 No credentials in the repo: every key and URL is read from an environment variable or `~/.claude/secrets/`
+---
 
-🗑️ Deletions go to the recycle bin (`safe-delete`), never `rm -rf`
+## 🔒 Is it safe?
 
-🧪 Gates are scripts: a skill can't report PASS without the check running
+| | |
+|---|---|
+| 🔑 **No secrets** | Keys and URLs come from your environment or `~/.claude/secrets/` |
+| 🗑️ **Safe deletes** | To the recycle bin, never `rm -rf` |
+| 🧪 **Real gates** | A skill can't say PASS unless the check ran |
+| 🛡️ **Guard hook** | Sub-agents can't read secret paths |
 
-🛡️ A guard hook blocks reads of secret paths by sub-agents
+---
 
-## Questions
+## ❓ Questions · tap to open
 
-**Is it free?**
+<details><summary>💸 Is it free?</summary>
+
 Yes. MIT licence.
+</details>
 
-**Do I need all of it?**
+<details><summary>📂 Do I need all of it?</summary>
+
 No. Copy one skill folder into `~/.claude/skills/` and it works on its own.
+</details>
 
-**Arabic?**
+<details><summary>🌍 Arabic?</summary>
+
 Yes. Arabic and English are both first-class, RTL included.
+</details>
 
-**Paths?**
-Nothing is tied to one machine. Set `NJ_PLUGIN_ROOT`, `JIRA_BASE_URL`, `PORTAL_URL` and the other variables a skill names, or keep the defaults under your home folder.
+<details><summary>🗺️ Will paths work on my machine?</summary>
+
+Yes. Nothing is tied to one machine. Set `NJ_PLUGIN_ROOT`, `JIRA_BASE_URL`, `PORTAL_URL` and the other variables a skill names, or keep the defaults under your home folder.
+</details>
+
+---
 
 ## Creator and contributors
 
