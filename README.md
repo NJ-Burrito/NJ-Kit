@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/assets/hero.gif" alt="NJ-Kit: analyse, find the skill, plan, execute, gate, review. A script decides PASS or FAIL." width="640">
+
 # NJ-Kit
 
 ## A working method for Claude Code.
