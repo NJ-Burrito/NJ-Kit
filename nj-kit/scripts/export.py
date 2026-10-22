@@ -180,7 +180,7 @@ WHY = {
 # They live outside `SKILLS`, so `collect()` never sees them and nothing here
 # derives them; `manifest.json` → `project_skills` is the hand-maintained record
 # of where each one lives and why it exists, and `install.py` links them.
-# Added 2026-09-06 (PROJ-tests).
+# Added 2026-09-06 (project-tests).
 PROJECT_SKILLS = {
     # ENSERA (<ENSERA-root>/.claude/skills), 2026-09-16 -- the five
     # sector skills; they read the project's kb.py, so they cannot live outside it.
@@ -189,10 +189,10 @@ PROJECT_SKILLS = {
     "nj-marketing",
     "nj-programs",
     "nj-production",
-    "PROJ-e2e",
-    "PROJ-manuals",
+    "project-e2e",
+    "project-manuals",
     "project-srs",
-    "PROJ-automation-tests",
+    "project-automation-tests",
 }
 
 # Skills that are ours and must travel as files. Kept in step with what
@@ -200,7 +200,7 @@ PROJECT_SKILLS = {
 # reader, not the decision (the decision is "not in KNOWN_SOURCES"), and it had
 # drifted three skills behind by 2026-09-06.
 #
-# The last three live OUTSIDE `SKILLS`, in the PROJ-tests repository. They are
+# The last three live OUTSIDE `SKILLS`, in the project-tests repository. They are
 # listed here because they are ours by the same test — absent from
 # KNOWN_SOURCES — but they are exempt from bundling in both directions below,
 # because bundling one would freeze a copy of a file the repo tracks.

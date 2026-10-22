@@ -67,7 +67,7 @@ are kept from spawning by an agent definition without the `Agent` tool (`PENDING
 `helpers_spawned` comes from the spawn log `.agent-ops/spawns.jsonl` (`ts, parent, child_type, model, depth`; checked by `relay.py verify` with `delegation_legal`), not from the receipt.
 
 **Measured ratios that justify the ladder** (derived, see
-`<project>/PROJ-tests/artifacts/ops/model-routing-audit-2026-09-16.md` — per-run
+`<project>/artifacts/ops/model-routing-audit-2026-09-16.md` — per-run
 tokens there are estimated from tool calls, not counter-measured):
 ECONOMY ≈ 350 tok/tool-call, STANDARD ≈ 878, FRONTIER ≈ 2015. On 2026-09-15,
 14 of 22 FRONTIER runs (61 % of FRONTIER spend, 28 % of the day) were scoring,

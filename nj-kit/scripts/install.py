@@ -225,7 +225,7 @@ def link_project_skills(target: Path, check_only: bool) -> None:
     # User scope is the wrong home for these. A project skill describes one
     # portal, one pipeline, one document standard; linked into ~/.claude/skills
     # it would be active in every repo opened on this machine and would offer
-    # PROJ-tests' rules to a project that has none. The link belongs in the
+    # project-tests' rules to a project that has none. The link belongs in the
     # directory you actually open — `--scope project` from there.
     if target == USER_CLAUDE / "skills":
         say(None, "user scope — not linked here on purpose: these describe one repo and"
@@ -568,8 +568,8 @@ def tracks_project_skills(repo: Path) -> bool:
 
     If it does, the kit must not ignore that directory. The ignore line exists to
     keep a *private* toolkit out of somebody's commit; a repo that tracks its own
-    `.claude/skills` has made the opposite decision on purpose — PROJ-tests
-    carries PROJ-e2e, PROJ-manuals and project-srs because the tests depend on
+    `.claude/skills` has made the opposite decision on purpose — project-tests
+    carries project-e2e, project-manuals and project-srs because the tests depend on
     them. Adding the line there does not untrack anything, which is what makes it
     dangerous: git keeps the existing files and silently stops offering the next
     edit, so a skill change goes uncommitted and nobody is told.
@@ -683,11 +683,11 @@ def restore_memory(check_only: bool) -> None:
 
 def restore_plugin(check_only: bool) -> None:
     """Put the nj-kit plugin back at <NJ_PLUGIN_ROOT> (its marketplace path) when it is missing."""
-    src = KIT / "bundled" / "nj-plugin"
+    src = KIT.parent / "nj-plugin"  # the repo's own plugin tree (no second copy under bundled/)
     dst = Path(os.environ.get("NJ_PLUGIN_ROOT") or (Path.home() / "Desktop" / "nj-plugin"))
     print("\nnj-kit plugin (nj-method, nj-delegate, nj-agent-ops, nj-supervise, nj-writer)")
     if not src.exists():
-        say(None, "no bundled plugin")
+        say(None, "no plugin tree next to nj-kit/ (run install.py from a clone of the repo)")
         return
     if dst.exists():
         say(True, f"{dst} already present, left alone")

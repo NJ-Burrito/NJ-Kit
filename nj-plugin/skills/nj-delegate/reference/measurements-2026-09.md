@@ -14,7 +14,7 @@ same method. The director's own spend was flat (12.6M → 8.6M → 10.3M
 input-equivalent across 09-06/07/08). **Eleven workers ran instead of one, eight
 of them on Opus, several in rebuild-per-fix loops: worker spend went from 13 %
 of the day to 88 %.** Full evidence:
-`<project>/PROJ-tests/artifacts/ops/fable-usage-rca-2026-09-08.md` (other
+`<project>/artifacts/ops/fable-usage-rca-2026-09-08.md` (other
 projects keep their copy under their own `artifacts/ops/`).
 
 **In one line: director token discipline is worker-brief discipline. The
@@ -128,7 +128,7 @@ on — that signature shows long before the rate limit does.
 
 ## §14 Lessons of 2026-09-17 — measured
 
-One 22h session (`PROJ-tests/artifacts/ops/session-review-2026-09-17.md`)
+One 22h session (`<project>/artifacts/ops/session-review-2026-09-17.md`)
 measured: 96 redeliveries against 16 deliveries; `reannotate.ts` patched 9 times
 in a day; `deliver.py` rewritten 4 times; a director wake storm (≈12
 full-context wakes in 3 minutes) from agents that ended their turn on a

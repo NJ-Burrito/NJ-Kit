@@ -514,11 +514,11 @@ class TestLink(TestFiling):
         self.assertEqual(self.links[0]["inwardIssue"]["key"], "PROJ-6001")
         self.assertEqual(self.links[0]["outwardIssue"]["key"], "PROJ-1663")
 
-    def test_non_PROJ_item_is_skipped_without_jira_task(self):
+    def test_non_proj_item_is_skipped_without_jira_task(self):
         nr.register(self.root, dict(self.raw(), project="ENSERA"))
         run, _ = self.runner()
         result = nr.file_items(self.root, self.jira(), run=run, sevenzip="7z")
-        self.assertEqual(result, {"skipped-non-PROJ": 1})
+        self.assertEqual(result, {"skipped-non-proj": 1})
         self.assertFalse(any(e.startswith("POST /rest/api/2/issue") for e in self.events))
 
     def test_dry_run_never_links(self):

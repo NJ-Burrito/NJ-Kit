@@ -43,6 +43,6 @@ Evidence: S-096 («طلب اضافة حجم جديد») took 2h48, five Arabic r
 attempts and one English, about 1h10 lost to faults — a curtain never
 lifted, a book row never added, masked rows leaking, buttons pressed by the
 wrong locale's caption — that a rehearsal catches before any stills or video
-exist. Reference implementation: `PROJ-tests/src/manual/rehearse.ts`, wired
+exist. Reference implementation: `<project>/src/manual/rehearse.ts`, wired
 as `npm run manual:rehearse -- --flow <id> --locale <ar|en>` and `--rehearse`
 on the build.

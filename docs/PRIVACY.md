@@ -21,7 +21,7 @@ This list comes from reading the scripts in `nj-plugin/skills/`. Anything not li
 | `nj-agent-ops` (`relay.py`) | None | Writes a run ledger and result files in the project folder you run it in. Nothing leaves the machine. |
 | All other skills | None | Instructions and local scripts only (for example proofreading, PDF checks, ffmpeg voice cleaning). |
 
-The plugin has no install hooks: nothing runs when you install it. `nj-plugin/research/` and `nj-plugin/_archive/` are reference material kept in the repository; no skill calls them.
+The plugin has no install hooks: nothing runs when you install it. The repository keeps no project archives or research logs. Heavy optional parts (the graphify package, a researcher source registry, tashkeel evidence runs) are not in the tree: `nj-kit/scripts/fetch_assets.py` downloads them only when you ask, from PyPI or this repository's GitHub release, and checks a sha256 first.
 
 ## What stays on your machine
 

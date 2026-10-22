@@ -63,7 +63,7 @@ spawned (the Lead writes the «Interpreter:» opener itself), so none counts as 
 ## Jira Tasks and Bugs (owner, 2026-10-19; forward only — existing Tasks/Bugs are never edited for this)
 
 - **One Task per work type per service.** 144 notes tested on one service = ONE Task; notes tested + an SRS for the same service = TWO Tasks. Never one Task per note.
-- **Only PROJ work is tasked.** Work on other projects (nj-kit, skills, ENSERA, MOA, QA-Wrap, alaa …) gets no Jira Task.
+- **Only the primary project's work is tasked.** Work on other projects (nj-kit, skills, ENSERA, MOA, QA-Wrap, alaa …) gets no Jira Task.
 - **One fixed Jira label per SDLC stage** (2026-10-19, supersedes `<stage>-<SERVICE-SLUG>`): every new Bug/Task gets the current stage label, same for all services. **Now: `phase2-uat`.** Changes only when the owner names a new stage.
 - **Jira evidence uploads: only .png/.jpg/.jpeg, .mp4/.webm, .gif, .md and .pdf** (2026-10-19; .pdf added same day for official output letters). No .txt/.json/.log; the shared uploader refuses anything else.
 - **Bug description carries no field duplicates:** no Priority, Severity, Labels, Assignee, Related/linked tickets, Environment/build lines and no «Severity / priority» or «Related» sections — Jira already holds them in their own fields. Set them as fields/links only.

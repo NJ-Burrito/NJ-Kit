@@ -13,8 +13,8 @@
 | 2026-09-14 | env-2026-09-14 | rules | sonnet | rules | ok | - | n |
 | 2026-09-14 | docx-fix-2026-09-14 | docx-layout | opus | docx-layout | partial | 147 | y |
 | 2026-09-14 | docx-fix-2026-09-14 | opus-cap | haiku | opus-cap | ok | 11 | n |
-| 2026-09-19 | PROJ-manual-089 | worker | sonnet | economy |  | manual-fix | worker | title+rebuild |  |  |  |  |  |  | 0 | 0 | ~20 | ok | not-verified | delivered | unfiltered-list(accepted) | 0 |  | estimated | n | trade-product-license-after-classification: set flow.title.ar + document.serviceName, rebuilt AR/EN, gated, delivered |  |
-| 2026-09-19 | PROJ-manual-090 | worker | sonnet | economy |  | manual-fix | worker | rebuild+redeliver |  |  |  |  |  |  | 0 | 0 | ~15 | ok | verified | delivered | unfiltered-list(accepted) | 0 |  | estimated | n | PROJ-trust-mark: source title already correct, but delivered PDF/MP4 predated pdf.ts serviceName read and reannotate.ts mask fixes; rebuilt AR/EN (--reuse-recording --overwrite), gates 19/19, delivered, confirmed via pdftotext on delivered cover |  |
+| 2026-09-19 | proj-manual-089 | worker | sonnet | economy |  | manual-fix | worker | title+rebuild |  |  |  |  |  |  | 0 | 0 | ~20 | ok | not-verified | delivered | unfiltered-list(accepted) | 0 |  | estimated | n | trade-product-license-after-classification: set flow.title.ar + document.serviceName, rebuilt AR/EN, gated, delivered |  |
+| 2026-09-19 | proj-manual-090 | worker | sonnet | economy |  | manual-fix | worker | rebuild+redeliver |  |  |  |  |  |  | 0 | 0 | ~15 | ok | verified | delivered | unfiltered-list(accepted) | 0 |  | estimated | n | proj-trust-mark: source title already correct, but delivered PDF/MP4 predated pdf.ts serviceName read and reannotate.ts mask fixes; rebuilt AR/EN (--reuse-recording --overwrite), gates 19/19, delivered, confirmed via pdftotext on delivered cover |  |
 | 2026-09-14 | v4-rollout-b1 | interpreter | haiku | interpret | ok | 2 | n |
 | 2026-09-14 | v4-rollout-b1 | docx-fix | sonnet | docx-fix | partial | 53 | y |
 | 2026-09-14 | v4-rollout-b1 | pilot | sonnet | pilot | ok | 70 | n |
