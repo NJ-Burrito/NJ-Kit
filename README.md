@@ -95,7 +95,7 @@ Skills land in `~/.claude/skills/` by default. `--scope project` puts them in on
 
 | Skill | What it does |
 |---|---|
-| [pdf-typography](nj-plugin/skills/pdf-typography) | PDFs whose text stays real: embedded open-licence fonts, then audited |
+| [pdf-typography](nj-plugin/skills/pdf-typography) | PDFs whose text stays real: selectable, searchable, then audited |
 | [arabic-english-proofreading](nj-plugin/skills/arabic-english-proofreading) | Hamza, taa marbuta, bidi characters, mixed numerals, Latin punctuation in Arabic |
 | [workflow-diagram](nj-plugin/skills/workflow-diagram) | Workflow figures drawn from evidence, BPMN-correct |
 | [nj-writer](nj-plugin/skills/nj-writer) | Narration and script words, Arabic or English |
@@ -134,9 +134,6 @@ No. Copy one skill folder into `~/.claude/skills/` and it works on its own.
 
 **Arabic?**
 Yes. Arabic and English are both first-class, RTL included.
-
-**Which fonts ship?**
-None. The repo carries no font files. `pdf-typography` downloads the open-licence fonts it needs (Cairo, Aref Ruqaa, JetBrains Mono) with `node scripts/fetch-fonts.mjs`; commercial fonts go into `pdf-typography/fonts/licensed/` on your own machine and are git-ignored.
 
 **Paths?**
 Nothing is tied to one machine. Set `NJ_PLUGIN_ROOT`, `JIRA_BASE_URL`, `PORTAL_URL` and the other variables a skill names, or keep the defaults under your home folder.
