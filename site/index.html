@@ -41,7 +41,7 @@
 :root{
   --bg:#0e1311; --bg2:#121815; --surface:#161d1a; --raise:#1c2420;
   --line:rgba(214,232,222,.10); --line2:rgba(214,232,222,.20);
-  --text:#e6ece8; --mute:#9aa7a0; --faint:#6f7c75;
+  --text:#e6ece8; --mute:#9aa7a0; --faint:#87948d;
   --acc:#c2ea4e; --acc-text:#c2ea4e; --on-acc:#0e1311; --fail:#e8705a;
   --glow:rgba(194,234,78,.10);
   --r:4px; --ease:cubic-bezier(.16,1,.3,1);
@@ -53,7 +53,7 @@
   :root{
     --bg:#eef1ea; --bg2:#e6eae1; --surface:#f8faf5; --raise:#ffffff;
     --line:rgba(18,26,22,.10); --line2:rgba(18,26,22,.20);
-    --text:#121a16; --mute:#4e5a54; --faint:#6b766f;
+    --text:#121a16; --mute:#4e5a54; --faint:#58635d;
     --acc-text:#476600; --fail:#b63d27; --glow:rgba(120,160,20,.12);
   }
 }
@@ -76,10 +76,10 @@ html[lang=ar] h1,html[lang=ar] h2,html[lang=ar] h3{letter-spacing:0}
 h2{font-size:clamp(1.9rem,3.6vw,2.75rem);line-height:1.12}
 html[lang=ar] h2{line-height:1.35}
 .lede{color:var(--mute);max-width:60ch;margin:14px 0 0}
-section{padding:clamp(72px,10vw,128px) 0}
+section{padding:clamp(72px,10vw,128px) 0;scroll-margin-top:64px}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border-radius:var(--r);font:700 1rem/1 var(--sans);text-decoration:none;white-space:nowrap;border:1px solid transparent;cursor:pointer;transition:transform .5s var(--ease),background-color .3s var(--ease),border-color .3s var(--ease)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;gap:10px;padding:13px 18px;border-radius:var(--r);font:700 1rem/1 var(--sans);text-decoration:none;white-space:nowrap;border:1px solid transparent;cursor:pointer;transition:transform .5s var(--ease),background-color .3s var(--ease),border-color .3s var(--ease)}
 .btn:active{transform:translateY(1px) scale(.98)}
 .btn-acc{background:var(--acc);color:var(--on-acc)}
 .btn-acc .ic{transition:transform .5s var(--ease)}
@@ -90,21 +90,21 @@ section{padding:clamp(72px,10vw,128px) 0}
 /* nav */
 .nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;align-items:center;gap:28px;height:64px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:1.125rem}
+.brand{display:flex;align-items:center;min-height:44px;gap:10px;text-decoration:none;font-weight:700;font-size:1.125rem}
 .mark{width:26px;height:26px;border-radius:var(--r);background:var(--acc);color:var(--on-acc);display:grid;place-items:center}
 .mark .ic{width:17px;height:17px;stroke-width:3}
 .nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0}
-.nav ul a{text-decoration:none;color:var(--mute);font-size:.95rem;transition:color .3s var(--ease)}
+.nav ul a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;text-decoration:none;color:var(--mute);font-size:.95rem;transition:color .3s var(--ease)}
 .nav ul a:hover{color:var(--text)}
 .nav .end{margin-inline-start:auto;display:flex;gap:10px;align-items:center}
-.lang{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid var(--line2);color:var(--text);border-radius:var(--r);padding:9px 12px;font:700 .9rem/1 var(--sans);cursor:pointer}
+.lang{display:inline-flex;align-items:center;min-height:44px;min-width:44px;gap:8px;background:transparent;border:1px solid var(--line2);color:var(--text);border-radius:var(--r);padding:9px 12px;font:700 .9rem/1 var(--sans);cursor:pointer}
 .lang:hover{border-color:var(--text)}
 .nav .btn{padding:10px 14px;font-size:.92rem}
 @media (max-width:860px){.nav ul{display:none}}
 @media (max-width:420px){.nav .gh{display:none}}
 
 /* hero */
-.hero{padding:clamp(40px,7vw,88px) 0 clamp(64px,8vw,104px);position:relative}
+.hero{padding:clamp(40px,7vw,88px) 0 clamp(48px,7vw,88px);position:relative}
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
 .hero h1{font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02;letter-spacing:-.035em}
 html[lang=ar] .hero h1{line-height:1.25;letter-spacing:0}
@@ -159,7 +159,7 @@ html[dir=rtl] .step:last-child::before{background:linear-gradient(270deg,var(--l
 /* skills explorer */
 .explorer{margin-top:44px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg2)}
 .tabs{display:flex;gap:4px;padding:8px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:thin}
-.tab{flex:none;display:inline-flex;align-items:center;gap:9px;background:transparent;border:0;border-radius:var(--r);color:var(--mute);font:700 .95rem/1 var(--sans);padding:12px 14px;cursor:pointer;transition:background-color .3s var(--ease),color .3s var(--ease)}
+.tab{flex:none;display:inline-flex;align-items:center;min-height:44px;gap:9px;background:transparent;border:0;border-radius:var(--r);color:var(--mute);font:700 .95rem/1 var(--sans);padding:12px 14px;cursor:pointer;transition:background-color .3s var(--ease),color .3s var(--ease)}
 .tab:hover{color:var(--text)}
 .tab[aria-selected=true]{background:var(--raise);color:var(--text);box-shadow:inset 0 -2px 0 var(--acc)}
 .tab .n{font:400 .8rem/1 var(--mono);color:var(--faint)}
@@ -220,13 +220,13 @@ html[dir=rtl] .step:last-child::before{background:linear-gradient(270deg,var(--l
 .way p{margin:0;color:var(--mute)}
 .way p strong{color:var(--text)}
 .cmd{position:relative;direction:ltr;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:var(--r)}
-.cmd pre{margin:0;padding:18px 56px 18px 18px;overflow-x:auto;font:400 .92rem/1.7 var(--mono);color:var(--text)}
+.cmd pre{margin:0;padding:18px 60px 18px 18px;overflow-x:auto;font:400 .92rem/1.7 var(--mono);color:var(--text)}
 .cmd .c{color:var(--faint)}
-.copy{position:absolute;top:10px;right:10px;width:36px;height:36px;display:grid;place-items:center;border-radius:var(--r);border:1px solid var(--line2);background:var(--surface);color:var(--mute);cursor:pointer;transition:color .3s var(--ease),border-color .3s var(--ease)}
+.copy{position:absolute;top:6px;right:6px;width:44px;height:44px;display:grid;place-items:center;border-radius:var(--r);border:1px solid var(--line2);background:var(--surface);color:var(--mute);cursor:pointer;transition:color .3s var(--ease),border-color .3s var(--ease)}
 .copy:hover{color:var(--text);border-color:var(--text)}
 .copy.ok{color:var(--on-acc);background:var(--acc);border-color:var(--acc)}
 .copy .ic{width:17px;height:17px}
-.textlink{display:inline-flex;align-items:center;gap:8px;color:var(--acc-text);font-weight:700;text-decoration:none;margin-top:auto}
+.textlink{display:inline-flex;align-items:center;min-height:44px;gap:8px;color:var(--acc-text);font-weight:700;text-decoration:none;margin-top:auto}
 .textlink:hover{text-decoration:underline;text-underline-offset:4px}
 .textlink .ic{width:18px;height:18px}
 @media (max-width:860px){.ways{grid-template-columns:1fr}.way.main{grid-row:auto}}
@@ -265,8 +265,35 @@ footer{padding:40px 0 56px;border-top:1px solid var(--line);color:var(--mute);fo
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 32px}
 footer p{margin:0}
 footer nav{display:flex;gap:20px;flex-wrap:wrap}
-footer a{text-decoration:none;color:var(--text)}
+footer a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:var(--text)}
 footer a:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* TL;DR strip: what / why / start, one idea per card */
+.hero .tldr{grid-column:1/-1}
+@media (max-width:900px){.hero .tldr{order:1}.loop{order:2}}
+.tldr .cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tldr .cards li{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:22px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:start}
+.tldr .cards .ico{grid-row:span 2;width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line2);border-radius:var(--r);color:var(--acc-text)}
+.tldr .cards b{font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+html[lang=ar] .tldr .cards b{letter-spacing:0;font-size:.95rem}
+.tldr .cards p{margin:0;font-weight:700;font-size:1.1rem;line-height:1.4}
+.tldr .cards a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;color:var(--acc-text);text-underline-offset:4px}
+.jump{display:none;flex-wrap:wrap;gap:8px;list-style:none;margin:18px 0 0;padding:0}
+.jump a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line2);border-radius:var(--r);text-decoration:none;font-weight:700;font-size:.95rem}
+.jump a:hover{border-color:var(--text)}
+@media (max-width:860px){.tldr .cards{grid-template-columns:1fr}.jump{display:flex}}
+.more-opts{margin-top:4px;border-top:1px solid var(--line)}
+.more-opts summary{display:flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;color:var(--mute);font-weight:700;list-style:none}
+.more-opts summary::-webkit-details-marker{display:none}
+.more-opts summary .ic{transition:transform .5s var(--ease)}
+.more-opts[open] summary .ic{transform:rotate(180deg)}
+.more-opts ul{margin:4px 0 0;padding-inline-start:20px;color:var(--mute)}
+.more-opts li{margin:6px 0}
+/* the loop runs twice, then rests on the gate (no endless motion) */
+.loop.rest .orbit,.loop.rest .node .disc,.loop.rest .node use,.loop.rest .center{animation:none}
+.loop.rest .orbit{transform:rotate(240deg)}
+.loop.rest .node.gate .disc{fill:var(--acc);stroke:var(--acc)}
+.loop.rest .node.gate use{color:var(--on-acc)}
 
 /* reveal */
 .js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--i,0) * 70ms)}
@@ -373,6 +400,23 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
         </svg>
         <figcaption id="loopcap" class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"><span data-l="en">The method loop: analyse, find the skill, plan, execute, gate, review. The gate prints PASS or FAIL.</span><span data-l="ar">حلقة المنهج: حلّل، ابحث عن المهارة، خطّط، نفّذ، افحص، راجع. والفحص يطبع PASS أو FAIL.</span></figcaption>
       </figure>
+      <div class="tldr" role="region" aria-labelledby="tldr-h">
+      <h2 id="tldr-h" class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"><span data-l="en">In 10 seconds</span><span data-l="ar">في 10 ثوانٍ</span></h2>
+      <ul class="cards">
+        <li class="rv"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg></span><b><span data-l="en">What</span><span data-l="ar">ما هي</span></b><p><span data-l="en">A free method and 40 skills for Claude Code.</span><span data-l="ar">منهج مجاني و40 مهارة لـ <bdi dir="ltr">Claude Code</bdi>.</span></p></li>
+        <li class="rv" style="--i:1"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-circle-check-big"/></svg></span><b><span data-l="en">Why</span><span data-l="ar">لماذا</span></b><p><span data-l="en">A script prints PASS or FAIL. No "should work".</span><span data-l="ar">سكربت يطبع <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>، لا «يُفترض أن يعمل».</span></p></li>
+        <li class="rv" style="--i:2"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-plug"/></svg></span><b><span data-l="en">Start</span><span data-l="ar">ابدأ</span></b><p><span data-l="en">Paste 2 lines. <a href="#get">1 minute</a>.</span><span data-l="ar">الصق سطرين. <a href="#get">دقيقة واحدة</a>.</span></p></li>
+      </ul>
+      <nav aria-label="Jump to">
+        <ul class="jump">
+          <li><a href="#how"><span data-l="en">How it works</span><span data-l="ar">طريقة العمل</span></a></li>
+          <li><a href="#skills"><span data-l="en">Skills</span><span data-l="ar">المهارات</span></a></li>
+          <li><a href="#safe"><span data-l="en">Safety</span><span data-l="ar">الأمان</span></a></li>
+          <li><a href="#get"><span data-l="en">Get it</span><span data-l="ar">احصل عليها</span></a></li>
+          <li><a href="#questions"><span data-l="en">Questions</span><span data-l="ar">أسئلة</span></a></li>
+        </ul>
+      </nav>
+      </div>
     </div>
   </section>
 
@@ -390,14 +434,14 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
   <section id="skills">
     <div class="wrap">
       <h2 class="rv"><span data-l="en">What's inside.</span><span data-l="ar">ماذا في الداخل؟</span></h2>
-      <p class="lede rv"><span data-l="en">23 skills come with the plugin. The kit installer adds 20 more.</span><span data-l="ar">تضم الإضافة 23 مهارة، ويضيف مثبّت الحزمة 20 مهارة أخرى.</span></p>
+      <p class="lede rv"><span data-l="en">23 come with the plugin. The kit installer adds 17. Tap a group.</span><span data-l="ar">23 مع الإضافة، ويضيف مثبّت الحزمة 17. اختر مجموعة.</span></p>
       <div class="explorer rv">
         <div class="tabs" role="tablist" aria-label="Skill groups">
           <button class="tab" role="tab" id="tab-m" aria-controls="p-m" aria-selected="true"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg><span data-l="en">Method and agents</span><span data-l="ar">المنهج والوكلاء</span><span class="n">9</span></button>
           <button class="tab" role="tab" id="tab-q" aria-controls="p-q" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-list-checks"/></svg><span data-l="en">QA and Jira</span><span data-l="ar">ضمان الجودة و<bdi dir="ltr">Jira</bdi></span><span class="n">5</span></button>
           <button class="tab" role="tab" id="tab-d" aria-controls="p-d" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-file-text"/></svg><span data-l="en">Documents and writing</span><span data-l="ar">المستندات والكتابة</span><span class="n">6</span></button>
           <button class="tab" role="tab" id="tab-a" aria-controls="p-a" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-clapperboard"/></svg><span data-l="en">Audio and video</span><span data-l="ar">الصوت والفيديو</span><span class="n">3</span></button>
-          <button class="tab" role="tab" id="tab-b" aria-controls="p-b" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg><span data-l="en">Bundled with the kit</span><span data-l="ar">مرفقة مع الحزمة</span><span class="n">20</span></button>
+          <button class="tab" role="tab" id="tab-b" aria-controls="p-b" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg><span data-l="en">Bundled with the kit</span><span data-l="ar">مرفقة مع الحزمة</span><span class="n">17</span></button>
         </div>
         <div class="panel" role="tabpanel" id="p-m" aria-labelledby="tab-m">
           <ul class="skills">
@@ -455,7 +499,7 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
       <div class="bento">
         <article class="tile t1 rv">
           <h3><span data-l="en">One method for every request</span><span data-l="ar">منهج واحد لكل طلب</span></h3>
-          <p><span data-l="en">Claude looks up a tested skill before improvising, and reviews the result against what you asked.</span><span data-l="ar">يبحث Claude عن مهارة مُختبَرة قبل أن يرتجل، ثم يراجع النتيجة مقابل ما طلبته.</span></p>
+          <p><span data-l="en">A tested skill first. Then a check against your request.</span><span data-l="ar">مهارة مُختبَرة أولًا، ثم مراجعة مقابل طلبك.</span></p>
           <ol class="seq" data-l="en"><li>analyse</li><li>find the skill</li><li>plan</li><li>execute</li><li class="g">gate</li><li>review</li></ol>
           <ol class="seq" data-l="ar"><li>حلّل</li><li>ابحث عن المهارة</li><li>خطّط</li><li>نفّذ</li><li class="g">افحص</li><li>راجع</li></ol>
         </article>
@@ -482,7 +526,7 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
         <article class="tile t6 rv">
           <span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-monitor-cog"/></svg></span>
           <h3><span data-l="en">Not tied to one machine</span><span data-l="ar">غير مرتبطة بجهاز واحد</span></h3>
-          <p><span data-l="en">Set the variables a skill names, or keep the defaults under your home folder.</span><span data-l="ar">اضبط المتغيرات التي تذكرها المهارة، أو أبقِ الإعدادات الافتراضية داخل مجلدك الرئيسي.</span></p>
+          <p><span data-l="en">Set the variables a skill names, or keep the defaults.</span><span data-l="ar">اضبط المتغيرات التي تذكرها المهارة، أو أبقِ القيم الافتراضية.</span></p>
         </article>
       </div>
     </div>
@@ -519,8 +563,15 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
           <div class="cmd"><pre><code id="c-kit">git clone https://github.com/NJ-Burrito/NJ-Kit
 cd NJ-Kit
 python nj-kit/scripts/install.py --check   <span class="c"># preview, changes nothing</span>
-python nj-kit/scripts/install.py           <span class="c"># install</span></code></pre><button class="copy" type="button" data-copy="c-kit" aria-label="Copy"><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg></button></div>
-          <p><span data-l="en">Skills land in <code dir="ltr">~/.claude/skills/</code>. <code dir="ltr">--scope project</code> puts them in one repo instead.</span><span data-l="ar">تُثبَّت المهارات في <code dir="ltr">~/.claude/skills/</code>، والخيار <code dir="ltr">--scope project</code> يضعها في مستودع واحد بدلًا من ذلك.</span></p>
+python nj-kit/scripts/install.py           <span class="c"># install</span>
+python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit assets v1</span></code></pre><button class="copy" type="button" data-copy="c-kit" aria-label="Copy"><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg></button></div>
+          <details class="more-opts"><summary><span data-l="en">Where skills go, options</span><span data-l="ar">أين تُثبَّت المهارات، والخيارات</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+            <ul>
+              <li><span data-l="en">Skills land in <code dir="ltr">~/.claude/skills/</code>.</span><span data-l="ar">تُثبَّت المهارات في <code dir="ltr">~/.claude/skills/</code>.</span></li>
+              <li><span data-l="en"><code dir="ltr">--scope project</code> puts them in one repo.</span><span data-l="ar">الخيار <code dir="ltr">--scope project</code> يضعها في مستودع واحد.</span></li>
+              <li><span data-l="en"><code dir="ltr">fetch_assets.py</code> checks each file's sha256.</span><span data-l="ar">يتحقق <code dir="ltr">fetch_assets.py</code> من بصمة <bdi dir="ltr">sha256</bdi> لكل ملف.</span></li>
+            </ul>
+          </details>
         </article>
         <article class="way rv" style="--i:1">
           <div class="top"><h3><svg class="ic" aria-hidden="true"><use href="#i-folder-tree"/></svg><span data-l="en">Copy a skill</span><span data-l="ar">انسخ مهارة</span></h3></div>
@@ -529,7 +580,7 @@ python nj-kit/scripts/install.py           <span class="c"># install</span></cod
         </article>
         <article class="way rv" style="--i:2">
           <div class="top"><h3><svg class="ic" aria-hidden="true"><use href="#i-type"/></svg><span dir="ltr">NJ-Font</span></h3></div>
-          <p><span data-l="en">A typeface by Nader Alzghoul, installed from the same repo on Windows, macOS, Linux or the web.</span><span data-l="ar">خط من تصميم نادر الزغول، يُثبَّت من المستودع نفسه على <bdi dir="ltr">Windows</bdi> و<bdi dir="ltr">macOS</bdi> و<bdi dir="ltr">Linux</bdi> أو على الويب.</span></p>
+          <p><span data-l="en">A typeface by Nader Alzghoul. Windows, macOS, Linux or web.</span><span data-l="ar">خط من تصميم نادر الزغول. <bdi dir="ltr">Windows</bdi> و<bdi dir="ltr">macOS</bdi> و<bdi dir="ltr">Linux</bdi> والويب.</span></p>
           <a class="textlink" href="https://github.com/NJ-Burrito/NJ-Kit" rel="noopener"><span data-l="en">Get it on GitHub</span><span data-l="ar">احصل عليه من GitHub</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
         </article>
       </div>
@@ -542,7 +593,7 @@ python nj-kit/scripts/install.py           <span class="c"># install</span></cod
       <details><summary><span data-l="en">Is it free?</span><span data-l="ar">هل هي مجانية؟</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><span data-l="en">Yes. MIT licence.</span><span data-l="ar">نعم، برخصة <bdi dir="ltr">MIT</bdi>.</span></p></details>
       <details><summary><span data-l="en">Do I need all of it?</span><span data-l="ar">هل أحتاج إليها كلها؟</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><span data-l="en">No. Copy one skill folder into <code dir="ltr">~/.claude/skills/</code> and it works on its own.</span><span data-l="ar">لا. انسخ مجلد مهارة واحدة إلى <code dir="ltr">~/.claude/skills/</code> ويعمل وحده.</span></p></details>
       <details><summary><span data-l="en">Does it work in Arabic?</span><span data-l="ar">هل تعمل بالعربية؟</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><span data-l="en">Yes. Arabic and English are both first-class, right-to-left included.</span><span data-l="ar">نعم. العربية والإنجليزية بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار.</span></p></details>
-      <details><summary><span data-l="en">Will paths work on my machine?</span><span data-l="ar">هل تعمل المسارات على جهازي؟</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><span data-l="en">Yes. Nothing is tied to one machine. Set <code dir="ltr">NJ_PLUGIN_ROOT</code>, <code dir="ltr">JIRA_BASE_URL</code>, <code dir="ltr">PORTAL_URL</code> and the other variables a skill names, or keep the defaults under your home folder.</span><span data-l="ar">نعم، لا شيء مرتبط بجهاز واحد. اضبط <code dir="ltr">NJ_PLUGIN_ROOT</code> و<code dir="ltr">JIRA_BASE_URL</code> و<code dir="ltr">PORTAL_URL</code> وبقية المتغيرات التي تذكرها المهارة، أو أبقِ الإعدادات الافتراضية داخل مجلدك الرئيسي.</span></p></details>
+      <details><summary><span data-l="en">Will paths work on my machine?</span><span data-l="ar">هل تعمل المسارات على جهازي؟</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><span data-l="en">Yes. Set the variables a skill names, like <code dir="ltr">NJ_PLUGIN_ROOT</code>. Or keep the defaults.</span><span data-l="ar">نعم. اضبط المتغيرات التي تذكرها المهارة، مثل <code dir="ltr">NJ_PLUGIN_ROOT</code>، أو أبقِ القيم الافتراضية.</span></p></details>
     </div>
   </section>
 
@@ -615,6 +666,8 @@ python nj-kit/scripts/install.py           <span class="c"># install</span></cod
       if(navigator.clipboard){navigator.clipboard.writeText(txt).then(done,function(){})}
     });
   });
+
+  var loop=document.querySelector(".loop"); if(loop){setTimeout(function(){loop.classList.add("rest")},12000)}
 
   var els=[].slice.call(document.querySelectorAll(".rv"));
   if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add("in")});return}
