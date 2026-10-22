@@ -1,0 +1,18 @@
+{
+  "name": "nj-kit",
+  "version": "2.0.0",
+  "description": "Nader Alzghoul's own toolkit: the nj-method working rules, delegation and agent-ops, session handoff, and house skills for documents, design gates, audio and video hygiene.",
+  "author": {
+    "name": "Nader Alzghoul (NJ-Burrito)",
+    "email": "naderalzghoulbusiness@gmail.com",
+    "url": "https://github.com/NJ-Burrito"
+  },
+  "homepage": "https://nj-burrito.github.io/NJ-Kit/",
+  "repository": "https://github.com/NJ-Burrito/NJ-Kit",
+  "license": "MIT",
+  "keywords": ["skills", "workflow", "agents", "arabic", "bilingual", "qa", "handoff", "governance"],
+  "documentationUrl": "https://github.com/NJ-Burrito/NJ-Kit/blob/main/README.md",
+  "supportUrl": "https://github.com/NJ-Burrito/NJ-Kit/issues",
+  "privacyPolicyUrl": "https://github.com/NJ-Burrito/NJ-Kit/blob/main/docs/PRIVACY.md",
+  "termsOfServiceUrl": "https://github.com/NJ-Burrito/NJ-Kit/blob/main/LICENSE"
+}
