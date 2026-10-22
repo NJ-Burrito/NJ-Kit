@@ -138,6 +138,14 @@ Yes. Arabic and English are both first-class, RTL included.
 **Paths?**
 Nothing is tied to one machine. Set `NJ_PLUGIN_ROOT`, `JIRA_BASE_URL`, `PORTAL_URL` and the other variables a skill names, or keep the defaults under your home folder.
 
+## Creator and contributors
+
+| | Who | Contact |
+|---|---|---|
+| 🛠️ **Creator** | **Nader Alzghoul** ([@NJ-Burrito](https://github.com/NJ-Burrito)) | naderalzghoulbusiness@gmail.com · [LinkedIn](https://www.linkedin.com/in/nader-alzghoul) |
+
+Want to be listed here? See [CONTRIBUTING.md](CONTRIBUTING.md).
+
 <br>
 
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Changelog](CHANGELOG.md) · [Third-party credits](THIRD_PARTY.md)
