@@ -15,7 +15,7 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Nader%20Alzghoul-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nader-alzghoul)
 [![GitHub](https://img.shields.io/badge/GitHub-NJ--Burrito-181717?logo=github&logoColor=white)](https://github.com/NJ-Burrito)
 [![Portfolio](https://img.shields.io/badge/Portfolio-nj--burrito.github.io-0A66C2?logo=googlechrome&logoColor=white)](https://nj-burrito.github.io/)
-[![Stars](https://img.shields.io/github/stars/NJ-Burrito/nj-skills?style=social)](https://github.com/NJ-Burrito/nj-skills/stargazers)
+[![Stars](https://img.shields.io/badge/stars-1-white?style=social&logo=github)](https://github.com/NJ-Burrito/nj-skills/stargazers)
 
 **NJ Skills is a free, open-source toolkit for Claude Code.** One working method (analyse → find the skill → plan → execute → review), a delegation model for teams of agents, and house skills for documents, QA, Jira, narration, audio and video. Every skill ends in a gate a script runs, not a promise.
 
