@@ -119,15 +119,36 @@ nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-motion-
 
 ## 🔤 NJ-Font
 
-🚧 **Coming soon.** A typeface by Nader Alzghoul, to live in [`NJ-Font/`](NJ-Font). Star the repo to hear when it ships.
+A typeface by Nader Alzghoul, installed from this repo in one go. 🚧 Coming soon: star the repo to hear when it ships.
 
-When it lands, install it like this:
+**macOS / Linux:**
 
-1️⃣ Open [`NJ-Font/`](NJ-Font) and download the files from `ttf/`
+```bash
+git clone https://github.com/NJ-Burrito/nj-skills
+cd nj-skills
+cp NJ-Font/ttf/*.ttf ~/Library/Fonts/                                                  # macOS
+mkdir -p ~/.local/share/fonts && cp NJ-Font/ttf/*.ttf ~/.local/share/fonts/ && fc-cache -f   # Linux
+```
 
-2️⃣ **Windows:** right-click a file → *Install for all users* · **Mac:** double-click → *Install Font* · **Linux:** copy to `~/.local/share/fonts/`, then run `fc-cache -f`
+**Windows (PowerShell, no admin needed):**
 
-3️⃣ **Web:** use the files in `woff2/` with `@font-face`
+```powershell
+git clone https://github.com/NJ-Burrito/nj-skills
+cd nj-skills
+$dir = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"; New-Item -ItemType Directory -Force $dir | Out-Null
+Get-ChildItem NJ-Font	tf\*.ttf | ForEach-Object {
+  Copy-Item $_ $dir
+  New-ItemProperty "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "$($_.BaseName) (TrueType)" -Value "$dir\$($_.Name)" -Force | Out-Null
+}
+```
+
+**Web:**
+
+```css
+@font-face { font-family: "NJ-Font"; src: url("NJ-Font/woff2/NJ-Font-Regular.woff2") format("woff2"); font-display: swap; }
+```
+
+Fonts land in your user font folder, so no admin rights are needed. Restart open apps to see them. Details: [NJ-Font/README.md](NJ-Font/README.md).
 
 ## Is it safe?
 
