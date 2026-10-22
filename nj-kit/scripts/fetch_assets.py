@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch the heavy optional parts that are not in the git tree (stdlib only).
+"""Fetch NJ-Kit assets v1, the heavy parts kept out of the git tree (stdlib only).
 
   python nj-kit/scripts/fetch_assets.py --list
   python nj-kit/scripts/fetch_assets.py graphify-package
