@@ -255,33 +255,6 @@ tested by the critic before anyone looks at frames.
   terminators are start and end; the answer rides in a ring on the arrow, and a
   return never crosses the page.
 
-### The PROJ project (added 2026-09-06)
-
-Decisions that until today lived only inside the three repo-resident skills.
-They are in `manifest.json` → `house_style.PROJ` so a machine without
-`PROJ-tests` still knows them:
-
-- **`PROJ_HEADED=1` on every portal, harvest, recorder and smoke run, always.**
-  The tools already launch `headless: false`; without the flag they add
-  `--window-position=-3000,-3000` and park the window off-screen. It means "let
-  me watch it", not "make it headed" — and the client asked to watch.
-- **`MSYS_NO_PATHCONV=1` for any argument that is a portal route**, or Git Bash
-  rewrites `/equipment/services/…` into a Windows path before the tool sees it.
-- **`${PORTAL_URL}` only.** Staging is the deployment, not a sandbox: filing
-  costs a real request, a fee and a queue wait, and a wrong staff-side press
-  costs the request itself with nothing to undo it.
-- **Deliverables are named in Arabic, after their kind** — «<الاسم> - SRS»,
-  «- دليل المستخدم», «- دليل الموظف» — every file inside repeating the folder's
-  name, because a PDF is mailed away from its folder. **Short on purpose:**
-  MAX_PATH is 260 and a full cover title in both folder and filename reached
-  231. Identity stays English; only what a reader opens is Arabic.
-- **Cairo for every PDF**, declared once in `.pdf-typography.json`, no
-  per-document override. **One A4 landscape sheet** for the workflow figure
-  inside an otherwise A4-portrait document — a client ruling.
-- **Back-office facts bind on «رمز الطلب»**, exact match from `rules.json` →
-  `requestTypes`, re-verified after the record opens. Never on an Arabic name
-  fragment: one harvested a different directorate's service in full, and nothing
-  in the output said so.
 
 ### Transcribing a video (added 2026-09-07)
 
@@ -401,8 +374,8 @@ found none.
 **Not carried, redo by hand:** the Claude login; claude.ai connectors (
 Claude Docs), claude.ai artifacts and cloud sessions; the `TAISCE_TOKEN`
 environment variable (taisce MCP); the OpenRouter key (voice pipeline); the GROQ
-key. Keys and tokens are never in the kit by design. PROJ staging credentials
-are in the PROJ repo's CLAUDE.md.
+key. Keys and tokens are never in the kit by design. Project credentials
+live in each project's own CLAUDE.md or env file.
 
 **Restore commands** (PowerShell, after extracting the zip to `<NJ_KIT_ROOT>`):
 
@@ -444,17 +417,16 @@ and `pdf-typography` needs its font vault refilled with
 
 ### Skills that belong to the repo — linked, never copied
 
-Some skills are not portable and should not be: `PROJ-e2e`, `PROJ-manuals`,
-`project-srs` and `PROJ-automation-tests` describe one portal, one pipeline and one document standard, they
-are tracked by `PROJ-tests`, and the repo — not this kit — is their authority.
-They are listed in `manifest.json` → `project_skills` and **`install.py` links
+Some skills are not portable and should not be: project skills describe one portal, one pipeline and one document standard, they
+are tracked by their own repository, and that repo — not this kit — is their authority.
+They are listed in `manifest.json` → `project_skills` (empty in the public kit) and **`install.py` links
 them**, from `<working directory>/.claude/skills/<name>` to the repo's own copy:
 
 ```bash
 # what install.py does, and what to do by hand if you are wiring one up
 powershell -NoProfile -Command "New-Item -ItemType Junction \
-  -Path '<project-root>/.claude/skills/PROJ-e2e' \
-  -Target '<project-root>/PROJ-tests/.claude/skills/PROJ-e2e'"
+  -Path '<project-root>/.claude/skills/project-e2e' \
+  -Target '<project-root>/project-tests/.claude/skills/project-e2e'"
 # elsewhere: ln -s <repo>/.claude/skills/<name> <cwd>/.claude/skills/<name>
 ```
 
@@ -464,7 +436,7 @@ Three things this exists to prevent:
   reviewer reads the other, and nothing announces the divergence.
 - **Claude Code loads `.claude/skills` from the working directory, not from a
   subdirectory of it.** Opened at the PROJ root, the three skills inside
-  `PROJ-tests` never loaded at all. The junctions created 2026-09-06 are what
+  `project-tests` never loaded at all. The junctions created 2026-09-06 are what
   make them load from either directory.
 - **`mklink` is the wrong tool under Git Bash** — MSYS rewrites the arguments of
   `cmd //c mklink /J` before cmd sees them, and it fails on valid paths.
@@ -494,7 +466,7 @@ binary; install it with `irm https://astral.sh/uv/install.ps1 | iex`.
 
 - 2026-10-16: new skill `nj-knowledge-book` (sourced, gated knowledge book: page kinds, teaching gate, quote-bound verification, blind audit, Arabic twin, PDF with outline, `plan`, council stage; 86-assertion selftest) from the QA Engineer repo, built through a 5-POV devil council over 3 rounds. nj-evidence now ships `scripts/kb.py` + `rules.py` (run in place, `kb/kb.json` required) and lost the "build a knowledge base" trigger to it. pdf-typography `renderPdf` gained `outline` (bookmarks). Manifest: skill_notes for both, tooling optional pymupdf.
 
-- 2026-10-09: project skill `PROJ-automation-tests` (pipeline of the Automation Tests suite) listed in manifest `project_skills`, export.py OURS, and junctioned into `<project-root>/.claude/skills`.
+- 2026-10-09: project skill `project-automation-tests` (pipeline of the Automation Tests suite) listed in manifest `project_skills`, export.py OURS, and junctioned into `<project-root>/.claude/skills`.
 
 - 2026-10-04 (later): nj-kit plugin 1.3.5 — worker-rules R18, never rewrite the owner's working tree (no reset --hard / stash / checkout -- .), after a worker wiped an uncommitted CLAUDE.md. `<NJ_PLUGIN_ROOT>` is back and is the bundled source again.
 

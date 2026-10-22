@@ -70,7 +70,7 @@ previous film lost its end card (decision 108).
 
 Fix: the end-card strings written verbatim into the treatment, plus an assertion
 handed to the director that fails the build if wordmark, sub-line, URL and
-project line are not all in the final frame. Rev 3 ends: *"QA Wrap. Proof you
+the studio line are not all in the final frame. Rev 3 ends: *"QA Wrap. Proof you
 never had to write. Get it free."* — claim, proof, ask, twelve words.
 
 ## Step 6 — cuts, with costs

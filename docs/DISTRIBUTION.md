@@ -52,5 +52,5 @@ Only the maintainer submits: open https://claude.ai/directory/manage and follow 
 ## Open points
 
 - `claude plugin validate --strict` could not be run by the build agent (no `claude` command on its shell). The Lead or the maintainer runs it before submitting.
-- The plugin folder holds about 465 files, including bundled CC0 audio in `bg-music`. Whether the directory's size limits accept that is not verified.
-- Six Jira skills are in the pack. They are generic REST users, but their reference files name a PROJ project; check `nj-plugin/skills/nj-jira/references/PROJ.md` is something you want public before submitting.
+- The plugin folder holds about 160 files, including bundled CC0 audio in `bg-music`. Whether the directory's size limits accept that is not verified.
+- Six Jira skills are in the pack. They are generic REST users; project-specific profiles (hosts, accounts, ticket keys) are not shipped, you write your own.

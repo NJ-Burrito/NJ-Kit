@@ -53,7 +53,7 @@ adopting Laya anywhere; do not re-argue it, encode it.
     `unclassified` residue, and only after 30+ real failures exist.
 14. Pin the checkpoint (`revision`) and name it (English/multilingual) in every result.
 
-## PROJ worked example (harvest → script → run → triage)
+## Worked example: a Playwright suite (harvest → script → run → triage)
 
 - **Harvest**: Playwright `codegen` or an aria snapshot (`browser_snapshot` / accessibility
   tree) — role + accessible name per element. Read-only, no Laya.
@@ -63,10 +63,10 @@ adopting Laya anywhere; do not re-argue it, encode it.
 - **Triage a failure**: `python scripts/pw_triage.py --report <path>` classifies into
   `locator-changed | timeout-env | auth-session | assertion | unclassified` by regex over
   Playwright's JSON reporter output or `error-context.md` files. Only the `unclassified`
-  bucket is a Laya candidate (rule 13), and only once ≥30 real failures exist — PROJ had zero
-  as of the 2026-09-24 probe (`artifacts/ops/laya-PROJ-probe-2026-09-24.md`).
-- **Self-healing that acts**: rejected outright (rule 1) — PROJ specs file real requests
-  against a live government portal behind reCAPTCHA, and 719 swallowed `.catch(() => {})`
+  bucket is a Laya candidate (rule 13), and only once ≥30 real failures exist — the reference suite had zero
+  as of the 2026-09-24 probe.
+- **Self-healing that acts**: rejected outright (rule 1) — specs that file real requests
+  against a live portal behind reCAPTCHA, and 719 swallowed `.catch(() => {})`
   mean a wrong click can pass silently.
 
 ## Scripts

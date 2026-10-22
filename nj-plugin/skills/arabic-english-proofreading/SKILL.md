@@ -107,7 +107,7 @@ not. Amiri round-trips whole words; some widely used UI faces do not.
 
 Read `references/arabic-checks.md` for the Arabic rules that need judgement —
 hamza forms, ة/ه, ى/ي, agreement, and the formal-register conventions that
-ministry and PROJ documents are held to. Read it whenever the text under
+ministry and client documents are held to. Read it whenever the text under
 review contains Arabic; the rules are specific and not worth reconstructing
 from memory.
 

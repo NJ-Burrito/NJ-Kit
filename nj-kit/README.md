@@ -1,7 +1,7 @@
 # nj-kit — transfer this to another project or machine
 
 The owner Alzghoul's Claude Code toolkit: 52 skills — 45 re-fetched from public
-repos, 7 of his own — plus 3 that belong to the `PROJ-tests` repository and are
+repos, 7 of his own — plus 3 that belong to the `project-tests` repository and are
 linked rather than carried. With them, the working method, the MCP
 servers, and the house decisions that make the output come out the same.
 

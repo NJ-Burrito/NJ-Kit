@@ -103,7 +103,7 @@ script that refuses the violation.
    routing test is unchanged: writing to a written spec is not FRONTIER, nor is a
    review (scoring is STANDARD; FRONTIER reads only the disputed cells as its own
    short run), nor is authoring, Arabic included.
-5. Measured (`PROJ-tests/artifacts/ops/model-routing-audit-2026-09-16.md`;
+5. Measured (`<project>/artifacts/ops/model-routing-audit-2026-09-16.md`;
    the owner: *lowest-cost tier that is good enough + effort*): on 2026-09-15,
    **14 of 22 FRONTIER runs — 61 % of FRONTIER spend, 28 % of the whole day —
    were scoring, verification, authoring or apply-a-known-rule stages a lower
