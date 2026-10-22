@@ -24,7 +24,7 @@
 | 🧩 Plugin | 🧰 Kit installer | 📂 Copy a skill | 🔤 NJ-Font |
 |:---:|:---:|:---:|:---:|
 | For **Claude Code** | Skills + hooks + house style on a new machine | For any agent that reads `SKILL.md` | A typeface by the creator |
-| [Install ↓](#plugin) | [Install ↓](#kit) | [Browse ↓](#whats-inside) | [Coming soon ↓](#nj-font) |
+| [Install ↓](#plugin) | [Install ↓](#kit) | [Browse ↓](#whats-inside) | [Install ↓](#nj-font) |
 
 </div>
 
