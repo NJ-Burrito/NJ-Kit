@@ -1,12 +1,12 @@
 <div align="center">
 
-# NJ Skills
+# NJ-Kit
 
 ## A working method for Claude Code.
 
 ## Skills that check their own work.
 
-[![CI](https://github.com/NJ-Burrito/nj-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/NJ-Burrito/nj-skills/actions/workflows/ci.yml)
+[![CI](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml/badge.svg)](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Font: Thmanyah, own licence](https://img.shields.io/badge/font-Thmanyah%20%E2%80%94%20own%20licence-1f2937.svg)](https://font.thmanyah.com)
 [![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757.svg)](.claude-plugin/marketplace.json)
@@ -16,9 +16,9 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Nader%20Alzghoul-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nader-alzghoul)
 [![GitHub](https://img.shields.io/badge/GitHub-NJ--Burrito-181717?logo=github&logoColor=white)](https://github.com/NJ-Burrito)
 [![Portfolio](https://img.shields.io/badge/Portfolio-nj--burrito.github.io-0A66C2?logo=googlechrome&logoColor=white)](https://nj-burrito.github.io/)
-[![Stars](https://img.shields.io/badge/stars-1-white?style=social&logo=github)](https://github.com/NJ-Burrito/nj-skills/stargazers)
+[![Stars](https://img.shields.io/badge/stars-1-white?style=social&logo=github)](https://github.com/NJ-Burrito/NJ-Kit/stargazers)
 
-**NJ Skills is a free, open-source toolkit for Claude Code.** One working method (analyse → find the skill → plan → execute → review), a delegation model for teams of agents, and house skills for documents, QA, Jira, narration, audio and video. Every skill ends in a gate a script runs, not a promise.
+**NJ-Kit is a free, open-source toolkit for Claude Code.** One working method (analyse → find the skill → plan → execute → review), a delegation model for teams of agents, and house skills for documents, QA, Jira, narration, audio and video. Every skill ends in a gate a script runs, not a promise.
 
 ### Pick how you want it. All free. 👇
 
@@ -36,8 +36,8 @@
 In Claude Code, type these two lines:
 
 ```
-/plugin marketplace add NJ-Burrito/nj-skills
-/plugin install nj-kit@nj-skills
+/plugin marketplace add NJ-Burrito/NJ-Kit
+/plugin install nj-kit@nj-kit
 ```
 
 Then say: **"use nj-method"**. Claude Code gets the 23 plugin skills in one go.
@@ -49,8 +49,8 @@ Then say: **"use nj-method"**. Claude Code gets the 23 plugin skills in one go.
 Sets up the skills, hooks, MCP servers and house style on a fresh machine. Needs Python 3.10+ ([uv](https://docs.astral.sh/uv/) recommended).
 
 ```bash
-git clone https://github.com/NJ-Burrito/nj-skills
-cd nj-skills
+git clone https://github.com/NJ-Burrito/NJ-Kit
+cd NJ-Kit
 python nj-kit/scripts/install.py --check   # shows what it would do, changes nothing
 python nj-kit/scripts/install.py           # does it
 ```
@@ -125,8 +125,8 @@ A typeface by Nader Alzghoul, installed from this repo in one go. 🚧 Coming so
 **macOS / Linux:**
 
 ```bash
-git clone https://github.com/NJ-Burrito/nj-skills
-cd nj-skills
+git clone https://github.com/NJ-Burrito/NJ-Kit
+cd NJ-Kit
 cp NJ-Font/ttf/*.ttf ~/Library/Fonts/                                                  # macOS
 mkdir -p ~/.local/share/fonts && cp NJ-Font/ttf/*.ttf ~/.local/share/fonts/ && fc-cache -f   # Linux
 ```
@@ -134,8 +134,8 @@ mkdir -p ~/.local/share/fonts && cp NJ-Font/ttf/*.ttf ~/.local/share/fonts/ && f
 **Windows (PowerShell, no admin needed):**
 
 ```powershell
-git clone https://github.com/NJ-Burrito/nj-skills
-cd nj-skills
+git clone https://github.com/NJ-Burrito/NJ-Kit
+cd NJ-Kit
 $dir = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"; New-Item -ItemType Directory -Force $dir | Out-Null
 Get-ChildItem NJ-Font\ttf\*.ttf | ForEach-Object {
   Copy-Item $_ $dir
