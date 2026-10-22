@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1040, height=600" />
+<title>NJ-Kit: how it works (animated)</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:"NJK Display";src:url("../../../site/fonts/display-bold.woff2") format("woff2");font-weight:700;font-display:block}
+@font-face{font-family:"NJK Sans";src:url("../../../site/fonts/sans-regular.woff2") format("woff2");font-weight:400;font-display:block}
+@font-face{font-family:"NJK Sans";src:url("../../../site/fonts/sans-bold.woff2") format("woff2");font-weight:700;font-display:block}
+:root{--bg:#0e1311;--bg2:#121815;--surface:#161d1a;--raise:#1c2420;--line:rgba(214,232,222,.10);--line2:rgba(214,232,222,.20);--text:#e6ece8;--mute:#9aa7a0;--faint:#89948e;--acc:#c2ea4e;--fail:#e8705a;--on:#0e1311}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1040px;height:600px;overflow:hidden;background:var(--bg)}
+#stage{position:relative;width:1040px;height:600px;overflow:hidden;background:var(--bg);color:var(--text);font-family:"NJK Sans",sans-serif}
+#light{position:absolute;left:-160px;top:40px;width:760px;height:760px;border-radius:50%;background:radial-gradient(closest-side,rgba(194,234,78,.10),rgba(194,234,78,.03) 55%,transparent)}
+#bar{position:absolute;left:0;right:0;bottom:0;height:5px;background:var(--acc)}
+#head{position:absolute;left:48px;top:30px;right:48px;display:flex;justify-content:space-between;align-items:center}
+.kick{font-weight:700;font-size:15px;letter-spacing:.22em;color:var(--mute)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:22px;letter-spacing:-.02em}
+.mark{width:30px;height:30px;border-radius:4px;background:var(--acc);display:grid;place-items:center}
+.mark svg{width:20px;height:20px;color:var(--on);stroke-width:3}
+#ask{position:absolute;left:48px;top:76px;width:944px;height:70px;border:1px solid var(--line2);border-radius:4px;background:var(--surface);display:flex;align-items:center;gap:16px;padding:0 20px;box-shadow:0 12px 28px rgba(0,0,0,.35)}
+.you{font-weight:700;font-size:15px;letter-spacing:.16em;color:var(--acc);border:1px solid var(--acc);border-radius:4px;padding:5px 9px}
+#typed{display:block;overflow:hidden;white-space:nowrap;width:0;font-size:26px;font-weight:700}
+#caret{width:3px;height:30px;background:var(--acc);margin-left:-12px}
+#tiles{position:absolute;left:48px;top:178px;width:944px;display:flex;gap:11px}
+.tile{position:relative;width:148px;height:168px;border:1px solid var(--line2);border-radius:4px;background:var(--surface);padding:16px 14px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.tile .num{font-weight:700;font-size:13px;letter-spacing:.18em;color:var(--faint)}
+.tile svg.ic{display:block;width:34px;height:34px;margin:14px 0 12px;color:var(--text);stroke-width:1.75}
+.tile .lb{font-weight:700;font-size:20px;line-height:1.1}
+.tile .nt{margin-top:6px;font-size:14px;line-height:1.25;color:var(--mute)}
+.tile .glow,.tile .bad{position:absolute;inset:-1px;border-radius:4px;opacity:0;pointer-events:none}
+.tile .glow{border:2px solid var(--acc);background:linear-gradient(180deg,rgba(194,234,78,.10),rgba(194,234,78,0) 70%)}
+.tile .bad{border:2px solid var(--fail);background:linear-gradient(180deg,rgba(232,112,90,.12),rgba(232,112,90,0) 70%)}
+#track{position:absolute;left:122px;top:372px;width:796px;height:2px;background:var(--line2)}
+#fill{position:absolute;left:0;top:0;width:796px;height:2px;background:var(--acc);transform-origin:0 50%}
+#tok{position:absolute;left:115px;top:366px;width:14px;height:14px;border-radius:50%;background:var(--acc);box-shadow:0 0 18px rgba(194,234,78,.8);opacity:0}
+#con{position:absolute;left:48px;top:398px;width:944px;height:160px;border:1px solid var(--line2);border-radius:4px;background:#0a0e0c;padding:16px 22px;box-shadow:inset 0 2px 12px rgba(0,0,0,.6)}
+#con .row{display:flex;gap:14px;align-items:baseline;font-size:21px;line-height:31px;opacity:0}
+#con .tag{font-weight:700;letter-spacing:.06em;min-width:66px}
+#con .p{color:var(--faint)}
+#con .f{color:var(--fail)}
+#con .ok{color:var(--acc)}
+#con .m{color:var(--mute)}
+#verdict{position:absolute;right:22px;bottom:16px;font:700 54px "NJK Display";letter-spacing:.04em;color:var(--acc);opacity:0}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!--ICONS: Lucide icons, ISC licence (lucide.dev)-->
+<symbol id="i-scan-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /><circle cx="12" cy="12" r="1" /><path d="M18.944 12.33a1 1 0 0 0 0-.66 7.5 7.5 0 0 0-13.888 0 1 1 0 0 0 0 .66 7.5 7.5 0 0 0 13.888 0" /></symbol>
+<symbol id="i-book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></symbol>
+<symbol id="i-list-checks" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5h8" /><path d="M13 12h8" /><path d="M13 19h8" /><path d="m3 17 2 2 4-4" /><path d="m3 7 2 2 4-4" /></symbol>
+<symbol id="i-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8" /><path d="m4 17 6-6-6-6" /></symbol>
+<symbol id="i-circle-check-big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335" /><path d="m9 11 3 3L22 4" /></symbol>
+<symbol id="i-refresh-cw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+<!--/ICONS-->
+</svg>
+<div id="stage" data-composition-id="njkit-hero" data-start="0" data-duration="9" data-fps="25" data-width="1040" data-height="600">
+  <div id="light"></div>
+  <div id="head"><span class="kick">HOW IT WORKS</span><span class="brand"><span class="mark"><svg aria-hidden="true" fill="none"><use href="#i-check"/></svg></span>NJ-Kit</span></div>
+  <div id="ask"><span class="you">YOU</span><span id="typed">Turn this spec into a PDF.</span><span id="caret"></span></div>
+  <div id="tiles">
+    <div class="tile" id="t0"><div class="glow"></div><span class="num">01</span><svg class="ic" fill="none"><use href="#i-scan-eye"/></svg><div class="lb">Analyse</div><div class="nt">Name what done means</div></div>
+    <div class="tile" id="t1"><div class="glow"></div><span class="num">02</span><svg class="ic" fill="none"><use href="#i-book-open"/></svg><div class="lb">Find the skill</div><div class="nt">pdf-typography</div></div>
+    <div class="tile" id="t2"><div class="glow"></div><span class="num">03</span><svg class="ic" fill="none"><use href="#i-list-checks"/></svg><div class="lb">Plan</div><div class="nt">Steps with checkpoints</div></div>
+    <div class="tile" id="t3"><div class="glow"></div><span class="num">04</span><svg class="ic" fill="none"><use href="#i-terminal"/></svg><div class="lb">Execute</div><div class="nt">Build the PDF</div></div>
+    <div class="tile" id="t4"><div class="glow"></div><div class="bad"></div><span class="num">05</span><svg class="ic" fill="none"><use href="#i-circle-check-big"/></svg><div class="lb">Gate</div><div class="nt">A script decides</div></div>
+    <div class="tile" id="t5"><div class="glow"></div><span class="num">06</span><svg class="ic" fill="none"><use href="#i-refresh-cw"/></svg><div class="lb">Review</div><div class="nt">Against the ask</div></div>
+  </div>
+  <div id="track"><div id="fill"></div></div>
+  <div id="tok"></div>
+  <div id="con">
+    <div class="row" id="r0"><span class="tag p">$</span><span class="m">python gate.py out/spec.pdf</span></div>
+    <div class="row" id="r1"><span class="tag f">FAIL</span><span>text is not selectable</span></div>
+    <div class="row" id="r2"><span class="tag p">fix</span><span class="m">embed the font, run the gate again</span></div>
+    <div class="row" id="r3"><span class="tag ok">PASS</span><span>every check</span></div>
+    <div id="verdict">PASS</div>
+  </div>
+  <div id="bar"></div>
+</div>
+<script>
+  const ID = "njkit-hero", D = 9;
+  const tl = gsap.timeline({ paused: true });
+  const X = (i) => 115 + i * 159;             // token x over tile i (tile pitch 159 px)
+  const T = [1.4, 2.0, 2.6, 3.2, 3.8, 6.4];   // when each step lights
+  const RESET = 7.9, SET = 8.8;
+  gsap.set("#fill", { scaleX: 0 });
+  tl.set("#fill", { scaleX: 0 }, 0);
+  // light drift, out and back
+  // the ask is typed, the caret blinks
+  tl.fromTo("#typed", { width: 0 }, { width: 318, duration: 0.95, ease: "steps(26)" }, 0.2);
+  for (let k = 0; k < 8; k++) tl.to("#caret", { opacity: k % 2 ? 1 : 0, duration: 0.01 }, 1.3 + k * 0.5);
+  // the token walks the steps, the line fills behind it
+  tl.to("#tok", { opacity: 1, duration: 0.2 }, T[0] - 0.2);
+  T.forEach((t, i) => {
+    if (i > 0) {
+      tl.to("#tok", { x: X(i) - 115, duration: 0.4, ease: "power2.inOut" }, t - 0.4);
+      tl.to("#fill", { scaleX: i / 5, duration: 0.4, ease: "power2.inOut" }, t - 0.4);
+    }
+    const s = "#t" + i;
+    tl.to(s + " .glow", { opacity: 1, duration: 0.18 }, t);
+    tl.to(s, { y: -6, duration: 0.25, ease: "back.out(2)" }, t);
+    tl.to(s + " svg.ic", { color: "#c2ea4e", duration: 0.18 }, t);
+  });
+  // the gate runs: FAIL first, a bounded fix, then PASS
+  tl.to("#r0", { opacity: 1, duration: 0.15 }, 4.0);
+  tl.to("#r1", { opacity: 1, duration: 0.15 }, 4.6);
+  tl.to("#t4 .bad", { opacity: 1, duration: 0.12 }, 4.6);
+  tl.to("#t4 .glow", { opacity: 0, duration: 0.12 }, 4.6);
+  tl.to("#t4 svg.ic", { color: "#e8705a", duration: 0.12 }, 4.6);
+  tl.to("#t4", { x: -5, duration: 0.05, yoyo: true, repeat: 5, ease: "none" }, 4.62);
+  tl.to("#r2", { opacity: 1, duration: 0.15 }, 5.2);
+  tl.to("#r3", { opacity: 1, duration: 0.15 }, 5.8);
+  tl.to("#t4 .bad", { opacity: 0, duration: 0.15 }, 5.8);
+  tl.to("#t4 .glow", { opacity: 1, duration: 0.15 }, 5.8);
+  tl.to("#t4 svg.ic", { color: "#c2ea4e", duration: 0.15 }, 5.8);
+  tl.fromTo("#verdict", { opacity: 0, scale: 0.8, transformOrigin: "100% 100%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.5)", immediateRender: false }, 5.85);
+  // reset: everything fades back to frame 0, then snaps to the exact start values
+  tl.to(["#typed", "#con .row", "#verdict", "#fill", "#tok", ".tile .glow"], { opacity: 0, duration: 0.6, ease: "power1.inOut" }, RESET);
+  tl.to(".tile", { y: 0, duration: 0.6, ease: "power2.inOut" }, RESET);
+  tl.to(".tile svg.ic", { color: "#e6ece8", duration: 0.6 }, RESET);
+  tl.set("#typed", { width: 0, opacity: 1 }, SET);
+  tl.set("#fill", { scaleX: 0, opacity: 1 }, SET);
+  tl.set("#tok", { x: 0 }, SET);
+  tl.set("#verdict", { scale: 0.8 }, SET);
+  window.__timelines = window.__timelines || {};
+  window.__timelines[ID] = tl;
+</script>
+</body>
+</html>
