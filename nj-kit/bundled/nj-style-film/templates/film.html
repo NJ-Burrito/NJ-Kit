@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width={{W}}, height={{H}}" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Thmanyah Sans"; font-weight: 500; src: url("assets/thmanyahsans-Medium.woff2") format("woff2"); }
+      @font-face { font-family: "Thmanyah Sans"; font-weight: 700; src: url("assets/thmanyahsans-Bold.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: {{W}}px; height: {{H}}px; overflow: hidden; background: #050506; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Thmanyah Sans", sans-serif; }
+
+      /* ONE film, two frames. Every scene is a words box and a 960x900 prop box;
+         the aspect only says where the two boxes sit and how big the type is. */
+      body.v { --wl: 60px; --wt: 235px; --ww: 960px; --wh: 350px; --pl: 60px; --pt: 610px;
+               --sl: 60px; --st: 520px; --sw: 960px; --sh: 800px; --fs: 84px; --hero: 120px; --punch: 108px; --end: 1; }
+      body.h { --wl: 90px; --wt: 140px; --ww: 780px; --wh: 800px; --pl: 900px; --pt: 90px;
+               --sl: 360px; --st: 140px; --sw: 1200px; --sh: 800px; --fs: 72px; --hero: 104px; --punch: 92px; --end: 0.84; }
+
+      .scene { position: absolute; left: 0; top: 0; width: {{W}}px; height: {{H}}px; overflow: hidden; }
+      .cream { background: #FBF6EE; color: #15171A; }
+      .black { background: #050506; color: #FFFFFF; }
+      .abs { position: absolute; }
+      .rib { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+      .rib path { fill: none; stroke: #B9B5AE; stroke-width: 120px; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+      .words { position: absolute; left: var(--wl); top: var(--wt); width: var(--ww); height: var(--wh); }
+      .words.solo { left: var(--sl); top: var(--st); width: var(--sw); height: var(--sh); }
+      .prop { position: absolute; left: var(--pl); top: var(--pt); width: 960px; height: 900px; }
+
+      .phrase { position: absolute; left: 0; top: 50%; width: 100%; transform: translateY(-50%); display: flex; flex-wrap: wrap;
+        justify-content: center; align-items: baseline; column-gap: 22px; row-gap: 4px; line-height: 1.05;
+        letter-spacing: -0.03em; font-weight: 500; font-size: var(--fs); }
+      .w { display: inline-block; white-space: nowrap; }
+      .w.hero { font-weight: 700; font-size: var(--hero); color: #E5533A; }
+      .w.punch { font-weight: 700; font-size: var(--punch); }
+      .phrase.small .w.hero { font-size: calc(var(--hero) * 0.82); }
+      .black .w { text-shadow: 0 0 30px rgba(255, 255, 255, 0.4); }
+      .black .w.hero { text-shadow: 0 0 38px rgba(229, 83, 58, 0.75); }
+      /* Light-ground fix (prefilm-fix-0921, choreography.md #2): a cut-out hero on a
+         ground whose luminance is above 0.8 sits on a dark-paper backing shape,
+         marked data-hero-backing, larger than the hero, so a paper-white sticker
+         stroke has something to separate against. Navy/teal per Lead's decision;
+         size/position set per scene. On dark or saturated grounds, do not add this. */
+      .hero-backing { position: absolute; background: #0B1F2A; border-radius: 28px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); }
+
+      .card { position: absolute; left: 0; top: 0; width: 960px; height: 900px; border-radius: 28px; overflow: hidden; background: #0f1216; }
+      .card.pop { left: 213px; width: 534px; }
+      .black .card { box-shadow: 0 0 140px rgba(255, 255, 255, 0.13), 0 0 0 2px rgba(255, 255, 255, 0.08); }
+      .cream .card { box-shadow: 0 30px 60px rgba(21, 23, 26, 0.3); border-radius: 20px; }
+      .card img { position: absolute; left: 0; top: 0; width: 100%; display: block; }
+      .pin { position: absolute; left: 456px; top: -24px; width: 48px; height: 48px; border-radius: 50%; background: #D8402B;
+        box-shadow: inset -8px -8px 0 rgba(0, 0, 0, 0.18), 0 10px 14px rgba(21, 23, 26, 0.35); }
+      .ring { position: absolute; border: 6px solid #E5533A; border-radius: 16px; box-shadow: 0 0 44px rgba(229, 83, 58, 0.65); }
+      .cur { position: absolute; left: 0; top: 0; width: 72px; height: 88px; }
+      .wipe { position: absolute; left: 50%; top: 50%; width: 4600px; height: 4600px; margin: -2300px 0 0 -2300px; border-radius: 50%; }
+      .endcol { position: absolute; left: 50%; top: 50%; width: 960px; height: 1120px; margin: -560px 0 0 -480px; transform: scale(var(--end)); }
+      .endcol .phrase { top: auto; transform: none; }
+      .end { position: absolute; left: 0; width: 960px; text-align: center; letter-spacing: -0.01em; }
+    </style>
+  </head>
+  <body class="{{ASPECT}}">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="56.5" data-width="{{W}}" data-height="{{H}}">
+
+      <!-- 1  New to QA Wrap? Here is all of it. -->
+      <section id="s1" class="clip scene cream" data-start="0" data-duration="3.5" data-track-index="1">
+        <svg class="rib" viewBox="0 0 100 100" preserveAspectRatio="none" data-layout-allow-overflow><path id="s1rib" d="M -8 82 C 30 78, 45 30, 108 22" /></svg>
+        <div id="s1w" class="words solo">
+          <img id="s1mark" class="abs" src="assets/mark.svg" alt="" style="left:50%;top:40px;width:190px;height:190px;margin-left:-95px" />
+        </div>
+        <div id="s1wipe" class="wipe" style="background:#050506" data-layout-allow-overflow></div>
+      </section>
+
+      <!-- 2  It lives in your browser. Wake it up, name your test, and press Start. -->
+      <section id="s2" class="clip scene black" data-start="3.5" data-duration="5.15" data-track-index="1">
+        <div id="s2w" class="words"></div>
+        <div id="s2p" class="prop">
+          <div id="s2card" class="card pop"><img src="assets/c01-popup-asleep.png" alt="" /><img id="s2b" src="assets/c02-popup-named.png" alt="" /><img id="s2c" src="assets/c03-popup-live.png" alt="" /></div>
+          <svg id="s2cur" class="cur" viewBox="0 0 90 110"><path d="M6 4 L6 86 L28 66 L44 104 L60 97 L44 60 L74 60 Z" fill="#FFFFFF" stroke="#15171A" stroke-width="6" stroke-linejoin="round" /></svg>
+        </div>
+        <div id="s2wipe" class="wipe" style="background:#FBF6EE" data-layout-allow-overflow></div>
+      </section>
+
+      <!-- 3  Now just test. Every click, request and error is kept, in order. -->
+      <section id="s3" class="clip scene cream" data-start="8.65" data-duration="6.03" data-track-index="1">
+        <svg class="rib" viewBox="0 0 100 100" preserveAspectRatio="none" data-layout-allow-overflow><path d="M -8 20 C 40 30, 60 70, 108 78" /></svg>
+        <div id="s3w" class="words"></div>
+        <div id="s3p" class="prop">
+          <div id="s3card" class="card"><img src="assets/page-works.png" alt="" /></div>
+          <div id="s3card2" class="card"><img id="s3tl" src="assets/c12-report-timeline.png" alt="" /></div>
+          <div class="pin"></div>
+          <svg id="s3cur" class="cur" viewBox="0 0 90 110"><path d="M6 4 L6 86 L28 66 L44 104 L60 97 L44 60 L74 60 Z" fill="#FFFFFF" stroke="#15171A" stroke-width="6" stroke-linejoin="round" /></svg>
+        </div>
+        <div id="s3wipe" class="wipe" style="background:#050506" data-layout-allow-overflow></div>
+      </section>
+
+      <!-- 4  Press Stop. The report shows what broke, and the step that broke it. -->
+      <section id="s4" class="clip scene black" data-start="14.68" data-duration="5.41" data-track-index="1">
+        <div id="s4w" class="words"></div>
+        <div id="s4p" class="prop">
+          <div id="s4card" class="card pop"><img src="assets/c03-popup-live.png" alt="" /></div>
+          <div id="s4card2" class="card"><img src="assets/c12-report-broke.png" alt="" style="top:-200px" /></div>
+          <svg id="s4cur" class="cur" viewBox="0 0 90 110"><path d="M6 4 L6 86 L28 66 L44 104 L60 97 L44 60 L74 60 Z" fill="#FFFFFF" stroke="#15171A" stroke-width="6" stroke-linejoin="round" /></svg>
+        </div>
+        <div id="s4wipe" class="wipe" style="background:#FBF6EE" data-layout-allow-overflow></div>
+      </section>
+
+      <!-- 5  Nineteen tools wait in the same popup. -->
+      <section id="s5" class="clip scene cream" data-start="20.09" data-duration="3.23" data-track-index="1">
+        <svg class="rib" viewBox="0 0 100 100" preserveAspectRatio="none" data-layout-allow-overflow><path d="M 108 18 C 60 40, 70 80, -8 88" /></svg>
+        <div id="s5w" class="words"></div>
+        <div id="s5p" class="prop">
+          <div id="s5card" class="card"><img id="s5wall" src="assets/t-wall-full.png" alt="" /></div>
+          <div class="pin"></div>
+        </div>
+        <div id="s5wipe" class="wipe" style="background:#050506" data-layout-allow-overflow></div>
+      </section>
+
+      <!-- 6  Check accessibility. Check page speed. Check every link. -->
+      <section id="s6" class="clip scene black" data-start="23.32" data-duration="5.61" data-track-index="1">
+        <div id="s6w" class="words"></div>
+        <div id="s6p" class="prop"><div id="s6card" class="card"><img id="s6wall" src="assets/t-wall-full.png" alt="" /></div></div>
+        <div id="s6wipe" class="wipe" style="background:#FBF6EE" data-layout-allow-overflow></div>
+      </section>
+
+      <!-- 7  One tool breaks a request on purpose, to show how the page copes. -->
+      <section id="s7" class="clip scene cream" data-start="28.93" data-duration="4.77" data-track-index="1">
+        <svg class="rib" viewBox="0 0 100 100" preserveAspectRatio="none" data-layout-allow-overflow><path d="M -8 30 C 50 20, 40 90, 108 70" /></svg>
+        <div id="s7w" class="words"></div>
+        <div id="s7p" class="prop">
+          <div id="s7card" class="card"><img src="assets/t-wall-full.png" alt="" style="top:-5896px" /></div>
+          <div id="s7card2" class="card"><img src="assets/page-broken.png" alt="" /></div>
+          <div class="pin"></div>
+        </div>
+        <div id="s7wipe" class="wipe" style="background:#050506" data-layout-allow-overflow></div>
+      </section>
+
+      <!-- 8  Cover real data before it is ever recorded. -->
+      <section id="s8" class="clip scene black" data-start="33.7" data-duration="3.72" data-track-index="1">
+        <div id="s8w" class="words"></div>
+        <div id="s8p" class="prop">
+          <div id="s8card" class="card"><img src="assets/t-wall-full.png" alt="" style="top:-1700px" /></div>
+          <div id="s8card2" class="card"><img src="assets/page-mask-aim.png" alt="" /><img id="s8m" src="assets/page-masked.png" alt="" /></div>
+        </div>
+        <div id="s8wipe" class="wipe" style="background:#FBF6EE" data-layout-allow-overflow></div>
+      </section>
+
+      <!-- 9  Copy a locator with one click, for your automation. -->
+      <section id="s9" class="clip scene cream" data-start="37.42" data-duration="3.69" data-track-index="1">
+        <svg class="rib" viewBox="0 0 100 100" preserveAspectRatio="none" data-layout-allow-overflow><path d="M 20 -8 C 10 50, 90 60, 80 108" /></svg>
+        <div id="s9w" class="words"></div>
+        <div id="s9p" class="prop">
+          <div id="s9card" class="card"><img src="assets/t-wall-full.png" alt="" style="top:-4700px" /></div>
+          <div id="s9card2" class="card"><img src="assets/page-glow.png" alt="" /><img id="s9c" src="assets/page-copied.png" alt="" /></div>
+          <div class="pin"></div>
+        </div>
+        <div id="s9wipe" class="wipe" style="background:#050506" data-layout-allow-overflow></div>
+      </section>
+
+      <!-- 10  Then file it: a Jira ticket, or one file for your AI agent. -->
+      <section id="s10" class="clip scene black" data-start="41.11" data-duration="5.49" data-track-index="1">
+        <div id="s10w" class="words"></div>
+        <div id="s10p" class="prop">
+          <div id="s10card" class="card"><img src="assets/c12-report-file.png" alt="" style="top:-200px" /></div>
+          <div id="s10card2" class="card"><img id="s10brief" src="assets/c13-agent-brief.png" alt="" /></div>
+        </div>
+        <div id="s10wipe" class="wipe" style="background:#FBF6EE" data-layout-allow-overflow></div>
+      </section>
+
+      <!-- 11  No account to make. Your work stays on your computer. -->
+      <section id="s11" class="clip scene cream" data-start="46.6" data-duration="4.06" data-track-index="1">
+        <div id="s11w" class="words"></div>
+        <div id="s11p" class="prop">
+          <div id="s11ring" class="abs" style="left:70px;top:40px;width:820px;height:820px;border-radius:50%;border:8px dashed #B9B5AE"></div>
+          <div id="s11f1" class="abs" style="left:320px;top:380px;width:70px;height:88px;border-radius:12px;background:#FBF6EE;border:6px solid #15171A"></div>
+          <div id="s11f2" class="abs" style="left:445px;top:380px;width:70px;height:88px;border-radius:12px;background:#FBF6EE;border:6px solid #15171A"></div>
+          <div id="s11f3" class="abs" style="left:570px;top:380px;width:70px;height:88px;border-radius:12px;background:#FBF6EE;border:6px solid #15171A"></div>
+          <div id="s11lap" class="abs" style="left:180px;top:300px;width:600px;height:420px">
+            <div class="abs" style="left:0;top:0;width:600px;height:380px;border-radius:26px;background:#15171A"></div>
+            <svg class="abs" style="left:220px;top:110px" width="160" height="160" viewBox="0 0 64 64"><g transform="translate(-2 1)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path stroke="#FFFFFF" d="M45.01 37.98 A17 17 0 1 0 34.97 46.26" /><path stroke="#E5533A" d="M36 36L42.5 44L55 20" /></g></svg>
+            <div class="abs" style="left:-60px;top:384px;width:720px;height:36px;border-radius:6px 6px 22px 22px;background:#15171A"></div>
+          </div>
+        </div>
+        <div id="s11wipe" class="wipe" style="background:#050506" data-layout-allow-overflow></div>
+      </section>
+
+      <!-- 12  QA Wrap. Test once. Keep everything. — the end card, five lines on the last frame -->
+      <section id="s12" class="clip scene black" data-start="50.66" data-duration="5.84" data-track-index="1">
+        <div id="s12col" class="endcol">
+          <svg id="s12mark" class="abs" style="left:370px;top:20px" width="220" height="220" viewBox="0 0 64 64"><g transform="translate(-2 1)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path stroke="#FFFFFF" d="M45.01 37.98 A17 17 0 1 0 34.97 46.26" /><path stroke="#E5533A" d="M36 36L42.5 44L55 20" /></g></svg>
+          <div id="s12w" class="abs" style="left:0;top:0;width:960px;height:1120px"></div>
+          <div id="s12ask" class="end" style="top:850px;font-size:44px;font-weight:500;color:#D9DCE0">Free. No account. Nothing leaves your machine.</div>
+          <div id="s12url" class="end" style="top:950px;font-size:58px;font-weight:700;color:#FFFFFF">example.com/qa-wrap</div>
+          <div id="s12taq" class="end" style="top:1060px;font-size:36px;font-weight:500;color:#AEB4BB">Made by project Software</div>
+        </div>
+      </section>
+
+      <audio id="mix" src="assets/mix.m4a" data-start="0" data-duration="56.5" data-track-index="10" data-volume="1"></audio>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const $ = (id) => document.getElementById(id);
+      const sfx = () => {}; /* a sound cue: mix.py reads these calls out of this file */
+      const W = /*WORDS*/[];
+
+      /* A phrase is n spoken words in one box; it clears when the next phrase starts, unless keep. */
+      function say(line, host, phrases) {
+        const words = W.filter((w) => w[0] === line);
+        let i = 0;
+        phrases.forEach((p) => {
+          const box = document.createElement("div");
+          box.className = "phrase" + (p.small ? " small" : "");
+          if (p.y != null) box.style.top = p.y + "px";
+          host.appendChild(box);
+          words.slice(i, i + p.n).forEach((w, j) => {
+            const s = document.createElement("span");
+            const hero = (p.hero || []).includes(j), punch = (p.punch || []).includes(j);
+            s.className = "w" + (hero ? " hero" : "") + (punch ? " punch" : "");
+            if (p.size) s.style.fontSize = p.size + "px";
+            s.textContent = w[1];
+            s.setAttribute("data-layout-allow-overlap", "");
+            box.appendChild(s);
+            tl.fromTo(s, { opacity: 0, scale: 0.86, y: 18, filter: "blur(12px)" },
+              { opacity: 1, scale: 1, y: 0, filter: "blur(0px)", duration: 0.22, ease: hero || punch ? "back.out(2.2)" : "power3.out" }, w[2]);
+          });
+          i += p.n;
+          if (!p.keep && words[i]) tl.to(box, { opacity: 0, duration: 0.15 }, words[i][2] - 0.2);
+        });
+      }
+      const pop = (el, t, from) => tl.fromTo(el, Object.assign({ opacity: 0, scale: 0.9, y: 60 }, from || {}), { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "power3.out" }, t);
+      const wipe = (el, t) => tl.fromTo(el, { scale: 0 }, { scale: 1, duration: 0.34, ease: "power2.inOut" }, t);
+      const show = (el, t) => tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.16 }, t);
+      const drift = (el, t, d) => tl.to(el, { y: -18, duration: d, ease: "none" }, t);
+      function ring(host, x, y, w, h, t, until) {
+        const r = document.createElement("div");
+        r.className = "ring";
+        r.style.cssText = "left:" + x + "px;top:" + y + "px;width:" + w + "px;height:" + h + "px";
+        r.setAttribute("data-layout-allow-overlap", "");
+        host.appendChild(r);
+        tl.fromTo(r, { opacity: 0, scale: 1.18 }, { opacity: 1, scale: 1, duration: 0.26, ease: "power3.out" }, t);
+        if (until) tl.to(r, { opacity: 0, duration: 0.15 }, until);
+      }
+      const click = (cur, x, y, t) => {
+        tl.to(cur, { x: x, y: y, duration: 0.5, ease: "power2.inOut" }, t - 0.55);
+        tl.to(cur, { scale: 0.8, duration: 0.08, yoyo: true, repeat: 1 }, t);
+      };
+
+      /* 1 */
+      say(1, $("s1w"), [{ n: 4, hero: [2, 3] }, { n: 5, punch: [2], keep: true }]);
+      gsap.set($("s1rib"), { strokeDasharray: 5000, strokeDashoffset: 5000 });
+      tl.to($("s1rib"), { strokeDashoffset: 0, duration: 0.8, ease: "power2.out" }, 0.05); sfx(0.05, "swish", -4);
+      tl.fromTo($("s1mark"), { opacity: 0, scale: 0.4, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.8)" }, 0.7); sfx(0.76, "reveal", -3);
+      sfx(2.43, "tick");
+      wipe($("s1wipe"), 3.17); sfx(3.15, "swish");
+
+      /* 2 */
+      say(2, $("s2w"), [{ n: 5, punch: [4] }, { n: 3, hero: [0] }, { n: 3, hero: [0] }, { n: 3, hero: [2], keep: true }]);
+      pop($("s2card"), 3.54); sfx(3.56, "reveal", -4);
+      gsap.set($("s2cur"), { x: 820, y: 760 });
+      click($("s2cur"), 619, 234, 5.32); show($("s2b"), 5.4); sfx(5.32, "tick", 3); sfx(5.42, "success", -6);
+      ring($("s2p"), 222, 398, 516, 78, 6.37, 7.6); sfx(6.37, "tick");
+      click($("s2cur"), 448, 508, 8.02); show($("s2c"), 8.1); sfx(8.02, "tick", 3); sfx(8.1, "success", -4);
+      drift($("s2card"), 4.0, 4.6);
+      wipe($("s2wipe"), 8.32); sfx(8.3, "swish");
+
+      /* 3 */
+      say(3, $("s3w"), [{ n: 3, punch: [2] }, { n: 2, hero: [1] }, { n: 5, hero: [2] }, { n: 2, punch: [1], keep: true }]);
+      pop($("s3card"), 8.69); sfx(8.7, "reveal", -5);
+      gsap.set($("s3cur"), { x: 800, y: 800 });
+      click($("s3cur"), 480, 600, 9.47); sfx(9.47, "tick", 3);
+      tl.to($("s3cur"), { opacity: 0, duration: 0.15 }, 10.2);
+      pop($("s3card2"), 10.3, { y: 0, scale: 0.94 }); sfx(10.3, "reveal", -4);
+      tl.fromTo($("s3tl"), { y: -150 }, { y: -340, duration: 3.9, ease: "power1.inOut" }, 10.4);
+      sfx(10.87, "tick"); sfx(11.4, "tick"); sfx(12.27, "tick", 2); sfx(13.73, "tick");
+      wipe($("s3wipe"), 14.35); sfx(14.33, "swish");
+
+      /* 4 */
+      say(4, $("s4w"), [{ n: 2, hero: [1] }, { n: 5, hero: [4] }, { n: 6, punch: [2], keep: true }]);
+      pop($("s4card"), 14.7);
+      gsap.set($("s4cur"), { x: 820, y: 780 });
+      click($("s4cur"), 448, 428, 15.17); sfx(15.17, "tick", 3);
+      tl.to([$("s4cur"), $("s4card")], { opacity: 0, duration: 0.15 }, 15.85);
+      pop($("s4card2"), 15.95, { y: 0, scale: 0.94 }); sfx(15.95, "reveal", -3);
+      ring($("s4p"), 10, 96, 940, 250, 17.61, 18.6); sfx(17.61, "sting", -4);
+      ring($("s4p"), 16, 176, 440, 160, 18.67); sfx(18.67, "tick", 2);
+      drift($("s4card2"), 16.4, 3.6);
+      wipe($("s4wipe"), 19.76); sfx(19.74, "swish");
+
+      /* 5 */
+      say(5, $("s5w"), [{ n: 7, hero: [0, 1], keep: true }]);
+      pop($("s5card"), 20.1); sfx(20.13, "reveal", -3);
+      tl.fromTo($("s5wall"), { y: -760 }, { y: -5600, duration: 2.75, ease: "power1.inOut" }, 20.35); sfx(20.4, "swish", -6); sfx(21.6, "swish", -8);
+      wipe($("s5wipe"), 22.99); sfx(22.97, "swish");
+
+      /* 6 */
+      say(6, $("s6w"), [{ n: 2, hero: [1], small: true }, { n: 3, hero: [1, 2] }, { n: 3, hero: [2], keep: true }]);
+      gsap.set($("s6wall"), { y: -2360 });
+      pop($("s6card"), 23.34);
+      ring($("s6p"), 18, 84, 452, 462, 23.74, 25.6); sfx(23.74, "tick", 3); sfx(23.9, "success", -8);
+      ring($("s6p"), 470, 84, 472, 462, 25.78, 27.0); sfx(25.78, "tick", 3); sfx(25.94, "success", -8);
+      tl.to($("s6wall"), { y: -2780, duration: 0.5, ease: "power2.inOut" }, 27.0); sfx(27.0, "swish", -8);
+      ring($("s6p"), 18, 150, 452, 452, 28.17); sfx(28.17, "tick", 3); sfx(28.3, "success", -8);
+      wipe($("s6wipe"), 28.6); sfx(28.58, "swish");
+
+      /* 7 */
+      say(7, $("s7w"), [{ n: 7, hero: [2] }, { n: 6, punch: [5], keep: true }]);
+      pop($("s7card"), 28.95);
+      ring($("s7p"), 18, 96, 452, 462, 29.62, 31.4); sfx(29.62, "sting", -5);
+      tl.to($("s7card"), { opacity: 0, duration: 0.15 }, 31.45);
+      pop($("s7card2"), 31.5, { y: 0, scale: 0.94 }); sfx(31.5, "reveal", -4);
+      ring($("s7p"), 130, 748, 560, 64, 32.97); sfx(32.97, "sting", -3);
+      wipe($("s7wipe"), 33.37); sfx(33.35, "swish");
+
+      /* 8 */
+      say(8, $("s8w"), [{ n: 3, hero: [0] }, { n: 5, punch: [3], keep: true }]);
+      pop($("s8card"), 33.72);
+      ring($("s8p"), 470, 176, 472, 470, 33.9, 34.8); sfx(33.9, "tick", 3);
+      tl.to($("s8card"), { opacity: 0, duration: 0.15 }, 34.85);
+      pop($("s8card2"), 34.9, { y: 0, scale: 0.94 }); sfx(34.9, "reveal", -4);
+      show($("s8m"), 36.0); sfx(36.0, "sting", -3);
+      ring($("s8p"), 322, 186, 220, 56, 36.36); sfx(36.36, "tick", 2);
+      wipe($("s8wipe"), 37.09); sfx(37.07, "swish");
+
+      /* 9 */
+      say(9, $("s9w"), [{ n: 6, hero: [2] }, { n: 3, punch: [2], keep: true }]);
+      pop($("s9card"), 37.44);
+      ring($("s9p"), 18, 200, 452, 470, 37.95, 38.55); sfx(37.95, "tick", 3);
+      tl.to($("s9card"), { opacity: 0, duration: 0.15 }, 38.55);
+      pop($("s9card2"), 38.6, { y: 0, scale: 0.94 }); sfx(38.6, "reveal", -4);
+      show($("s9c"), 39.12); sfx(39.09, "tick", 3); sfx(39.2, "success", -3);
+      wipe($("s9wipe"), 40.78); sfx(40.76, "swish");
+
+      /* 10 */
+      say(10, $("s10w"), [{ n: 3, punch: [1] }, { n: 3, hero: [1, 2] }, { n: 7, hero: [5, 6], keep: true }]);
+      pop($("s10card"), 41.2); sfx(41.2, "reveal", -4);
+      ring($("s10p"), 8, 106, 720, 60, 42.87, 43.8); sfx(42.87, "tick", 3);
+      tl.to($("s10card"), { opacity: 0, duration: 0.15 }, 43.85);
+      pop($("s10card2"), 43.9, { y: 0, scale: 0.94 }); sfx(43.9, "reveal", -4);
+      tl.fromTo($("s10brief"), { y: -200 }, { y: -260, duration: 1.4, ease: "none" }, 44.0);
+      ring($("s10p"), 8, 56, 944, 64, 45.53); sfx(45.53, "success", -3);
+      wipe($("s10wipe"), 46.27); sfx(46.25, "swish");
+
+      /* 11 */
+      say(11, $("s11w"), [{ n: 4, punch: [0, 1] }, { n: 6, hero: [4, 5], keep: true }]);
+      pop($("s11lap"), 46.64); sfx(46.64, "reveal", -4);
+      tl.fromTo($("s11ring"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 46.7);
+      [["s11f1", -170, 47.3], ["s11f2", 0, 47.45], ["s11f3", 170, 47.6]].forEach((f) => {
+        tl.fromTo($(f[0]), { opacity: 0, y: 0, x: 0 }, { opacity: 1, y: -290, x: f[1], duration: 0.6, ease: "power2.out" }, f[2]);
+        tl.to($(f[0]), { y: 0, x: 0, duration: 0.7, ease: "bounce.out" }, 48.9);
+        tl.to($(f[0]), { opacity: 0, duration: 0.2 }, 49.65);
+      });
+      sfx(47.3, "tick"); sfx(47.45, "tick"); sfx(47.6, "tick");
+      tl.to($("s11ring"), { borderColor: "#E5533A", scale: 1.04, duration: 0.15, yoyo: true, repeat: 1 }, 48.9); sfx(48.9, "sting", -4);
+      tl.to($("s11lap"), { scale: 1.05, duration: 1.0, ease: "none" }, 49.3);
+      wipe($("s11wipe"), 50.33); sfx(50.31, "swish");
+
+      /* 12 */
+      say(12, $("s12w"), [{ n: 2, y: 270, size: 150, punch: [0, 1], keep: true }, { n: 2, y: 500, keep: true }, { n: 2, y: 620, size: 110, hero: [0, 1], keep: true }]);
+      tl.fromTo($("s12mark"), { opacity: 0, scale: 0.4, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.8)" }, 50.7); sfx(50.7, "logo");
+      sfx(53.73, "success", -2);
+      [["s12ask", 54.5], ["s12url", 54.85], ["s12taq", 55.2]].forEach((e) => tl.fromTo($(e[0]), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, e[1]));
+      sfx(54.5, "tick"); sfx(54.85, "tick"); sfx(55.2, "tick");
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

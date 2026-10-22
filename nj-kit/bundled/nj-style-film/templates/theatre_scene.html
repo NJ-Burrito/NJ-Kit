@@ -1,0 +1,63 @@
+<!doctype html>
+<!--
+  theatre_scene.html — FILM side. Loads @theatre/core ONLY (no studio: studio
+  never ships in a render). Copy into hf/assets/ and, at that copy step,
+  replace the `{}` in the `#theatre-state` script tag below with the real
+  state JSON exported from theatre_author.html — inlined, never fetched
+  (fetch is blocked under `file://` and forbidden at render by SKILL.md).
+  Position is driven by the film's own GSAP timeline via a proxy tween, so
+  seeking the HyperFrames timeline seeks this sheet too — no independent
+  clock, no non-determinism.
+
+  Wire-up in index.html:
+    <section class="clip scene" data-duration="4">
+      <iframe src="assets/theatre_scene.html"></iframe>
+    </section>
+  and drive it from the parent timeline (GSAP default adapter):
+    tl.to({p: 0}, {p: 1, ease: "none", duration: 4,
+      onUpdate: function () { frame.contentWindow.postMessage({seq: this.targets()[0].p}, "*"); }});
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<style>html,body{margin:0;background:transparent;overflow:hidden}</style>
+</head>
+<body>
+<div id="stage" style="width:1920px;height:1080px"></div>
+<script type="application/json" id="theatre-state">{}</script>
+<script type="module">
+import {getProject} from "./theatre-core.local.js"; // local file only, never a CDN
+
+const params = new URLSearchParams(location.search);
+
+// Inlined, never loaded over the network: blocked under file:// and
+// forbidden at render by SKILL.md. The copy step that stages this file into hf/assets/
+// replaces the `{}` above with the full project-state object Studio exports
+// (definitionVersion, revisionHistory, sheetsById) -- do not nest it under a
+// project-name key.
+const state = JSON.parse(document.getElementById("theatre-state").textContent);
+const project = getProject("film", {state});
+const sheetName = params.get("sheet") || Object.keys(state.sheetsById || {})[0] || "scene";
+const sheet = project.sheet(sheetName);
+
+// Seek-safe: no ticker, no play(). Position is set ONLY from outside, in the
+// sheet's OWN units (seconds, per Theatre's sequence editor), not a 0..1
+// fraction: measured that `sheet.sequence.length` does not reliably reflect
+// the exported state's declared length, so the proxy tween must carry the
+// real scene duration itself and drive raw positions.
+const sceneSeconds = Number(params.get("duration")) || sheet.sequence.length || 1;
+
+function setPosition(p) {
+  sheet.sequence.position = Math.max(0, Math.min(1, p)) * sceneSeconds;
+}
+setPosition(0);
+
+window.addEventListener("message", (ev) => {
+  if (ev.data && typeof ev.data.seq === "number") setPosition(ev.data.seq);
+});
+
+// deterministic-render hook some HyperFrames adapters look for
+window.__theatreSetPosition = setPosition;
+</script>
+</body>
+</html>

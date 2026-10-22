@@ -1,0 +1,43 @@
+<!doctype html>
+<!--
+  theatre_author.html — AUTHORING side, LOCAL USE ONLY, never shipped in a
+  render and never zipped with the skill (Studio is AGPL-3.0; keeping it out
+  of the film and out of the portable skill zip avoids distributing it).
+  Loads core + studio so a person drags keyframes/curves in the browser.
+  When the sheet looks right: Studio panel -> "Copy to clipboard" (project
+  state) -> paste into <project>/theatre_state.json. That JSON is the
+  checkpoint file theatre_scene.html reads. Delete/close this page afterward.
+
+  Needs local files (npm install once, never hot-linked at render):
+    node_modules/@theatre/core/dist/index.js   -> theatre-core.local.js
+    node_modules/@theatre/studio/dist/index.js -> theatre-studio.local.js
+-->
+<html>
+<head><meta charset="utf-8">
+<style>html,body{margin:0;background:#111;color:#eee;font:14px monospace}</style>
+</head>
+<body>
+<div id="stage" style="width:1920px;height:1080px;transform:scale(.4);transform-origin:top left"></div>
+<script type="module">
+import {getProject} from "./theatre-core.local.js";
+import studio from "./theatre-studio.local.js";
+
+studio.initialize(); // dev-only authoring surface; NOT loaded by theatre_scene.html
+
+const project = getProject("film");
+const sheet = project.sheet("scene");
+
+// Replace with the real object being animated (a DOM node driven via
+// studio.transaction, or a Theatre "object" bound to CSS/SVG attrs through
+// the same rAF loop the docs show). Kept minimal on purpose: this page's
+// only job is to produce theatre_state.json, not to author the final look.
+const obj = sheet.object("prop", {x: 0, y: 0, rotate: 0});
+obj.onValuesChange((v) => {
+  const el = document.getElementById("stage");
+  el.style.transform += ` translate(${v.x}px, ${v.y}px) rotate(${v.rotate}deg)`;
+});
+
+console.log("Author here, then Studio -> project panel -> export state, save as theatre_state.json");
+</script>
+</body>
+</html>

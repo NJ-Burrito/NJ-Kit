@@ -1,0 +1,31 @@
+{
+  "status": "shipped, not yet run (2026-10-16)",
+  "protocol": "each query 3x on Haiku, Sonnet and Opus with the full skill list loaded; split 'train' tunes the description, 'validation' is scored once. >2 validation misroutes after description fixes -> fold this skill into nj-evidence as reference/book.md.",
+  "queries": [
+    {"q": "Build me a study guide for the AWS Solutions Architect and Developer certifications, with a PDF", "expect": "nj-knowledge-book", "split": "train"},
+    {"q": "my manager wants everything about our test tools for the new hires, as a handbook", "expect": "nj-knowledge-book", "split": "train"},
+    {"q": "make a knowledge base on the ISTQB certifications with a report and practice questions", "expect": "nj-knowledge-book", "split": "train"},
+    {"q": "I'm a fresh QA engineer, give me a mentor path and a book that makes me exam-ready", "expect": "nj-knowledge-book", "split": "train"},
+    {"q": "ابني لي دليل دراسة لشهادات الأمن السيبراني مع ملف PDF", "expect": "nj-knowledge-book", "split": "train"},
+    {"q": "كتاب معرفة عن متطلبات SFDA للأجهزة الطبية بالعربي والإنجليزي", "expect": "nj-knowledge-book", "split": "validation"},
+    {"q": "write a sourced handbook on EU MDR obligations, one page per obligation, cite everything", "expect": "nj-knowledge-book", "split": "validation"},
+    {"q": "turn these 12 Kubernetes certifications into a prep book with mock exams", "expect": "nj-knowledge-book", "split": "validation"},
+    {"q": "continue the knowledge book, the session died during the Arabic twin", "expect": "nj-knowledge-book", "split": "train"},
+    {"q": "add three more tools to the QA knowledge base and rebuild both PDFs", "expect": "nj-knowledge-book", "split": "validation"},
+    {"q": "where did this number come from?", "expect": "nj-evidence", "split": "train"},
+    {"q": "set up fact gating in this repo", "expect": "nj-evidence", "split": "train"},
+    {"q": "build a fact database for the ENSERA claims, no pages", "expect": "nj-evidence", "split": "validation"},
+    {"q": "research the EU MDR transition timeline", "expect": "nj-researcher", "split": "train"},
+    {"q": "is this source reliable?", "expect": "nj-researcher", "split": "validation"},
+    {"q": "write the user manual for our app", "expect": "doc-coauthoring", "split": "train"},
+    {"q": "turn this HTML into a PDF with Thmanyah", "expect": "pdf-typography", "split": "train"},
+    {"q": "proofread this Arabic page", "expect": "arabic-english-proofreading", "split": "validation"},
+    {"q": "write one explainer document on how our CI works", "expect": "doc-coauthoring", "split": "validation"},
+    {"q": "remember this: the ISTQB site rate-limits fast fetches", "expect": "nj-learn", "split": "train"}
+  ],
+  "task_evals": [
+    {"name": "toy domain end to end", "cmd": "python scripts/selftest.py", "expect_exit": 0},
+    {"name": "no twin: --pair must not run", "cmd": "python scripts/selftest.py --case no-twin", "expect_exit": 0},
+    {"name": "paywalled source stays draft and page says not confirmed", "cmd": "python scripts/selftest.py --case paywalled", "expect_exit": 0}
+  ]
+}

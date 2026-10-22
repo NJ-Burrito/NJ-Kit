@@ -1,0 +1,36 @@
+{
+  "name": "nj-kit",
+  "description": "Nader Alzghoul's portable toolkit: skills, governance and house style",
+  "owner": {
+    "name": "Nader Alzghoul",
+    "url": "https://github.com/NJ-Burrito"
+  },
+  "plugins": [
+    {
+      "name": "nj-kit",
+      "source": "./",
+      "description": "Nader Alzghoul's own toolkit: the nj-method working rules, delegation and agent-ops, session handoff, and the house skills for documents, design gates, audio and video hygiene.",
+      "version": "1.3.4",
+      "strict": false,
+      "skills": [
+        "./skills/arabic-english-proofreading",
+        "./skills/bg-music",
+        "./skills/devil",
+        "./skills/impact-copy",
+        "./skills/nj-agent-ops",
+        "./skills/nj-delegate",
+        "./skills/nj-director",
+        "./skills/nj-learn",
+        "./skills/nj-method",
+        "./skills/nj-security-review",
+        "./skills/nj-supervise",
+        "./skills/nj-writer",
+        "./skills/pdf-typography",
+        "./skills/session-handoff",
+        "./skills/voice-clean",
+        "./skills/website-fine-print",
+        "./skills/workflow-diagram"
+      ]
+    }
+  ]
+}

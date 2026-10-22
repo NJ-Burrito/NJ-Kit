@@ -1,0 +1,15 @@
+{
+  "name": "scene-remotion",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "render": "remotion render src/index.ts SceneComposition ../hf/assets/scene.webm --codec=vp8 --pixel-format=yuva420p --image-format=png"
+  },
+  "dependencies": {
+    "remotion": "4.0.526",
+    "@remotion/cli": "4.0.526",
+    "@remotion/tailwind-v4": "4.0.526",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}

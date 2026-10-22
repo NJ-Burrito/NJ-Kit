@@ -1,0 +1,74 @@
+{
+ "id": "qa-wrap-reel-commercial",
+ "kind": "trailer",
+ "bpm": 120,
+ "fps": 30,
+ "bars": 29,
+ "seconds": 56.6,
+ "sampleRate": 48000,
+ "seed": 20260920,
+ "bed": {
+  "gainDb": -5,
+  "targetLufs": -26.9,
+  "sections": [
+   {
+    "name": "intro",
+    "fromBar": 1,
+    "toBar": 3,
+    "note": "pluck + 8th hats under the hook, no low end"
+   },
+   {
+    "name": "drive",
+    "fromBar": 3,
+    "toBar": 26,
+    "note": "kick + bass + 16th hats"
+   },
+   {
+    "name": "lift",
+    "fromBar": 26,
+    "toBar": 27,
+    "note": "plucks up an octave into the end card"
+   },
+   {
+    "name": "out",
+    "fromBar": 27,
+    "toBar": 30,
+    "note": "single hit, ring out under the end card"
+   }
+  ],
+  "swells": [
+   {
+    "endSec": 50.6,
+    "dur": 1,
+    "gain": 0.45,
+    "note": "reverse swell into the lift"
+   }
+  ],
+  "outPlan": {
+   "kickThroughBar": 26,
+   "singleHitBar": 27,
+   "ringOut": true
+  },
+  "padGain": 0.126,
+  "padSections": [
+   "preroll",
+   "intro",
+   "drive",
+   "lift",
+   "out"
+  ],
+  "padNote": "the sustained band-limited chord, voiced two and three octaves above the plucks so it lives in 1-4 kHz - the band a voice rest sounds empty in - without touching the 20-200 Hz anti-engine band."
+ },
+ "rests": [],
+ "master": {
+  "integratedLufs": -14,
+  "maxShortTermLufs": -9,
+  "truePeakDbtp": -1,
+  "truePeakDbtp916": -1.5,
+  "codec": "aac",
+  "profile": "aac_low",
+  "sampleRate": 48000,
+  "channels": 2,
+  "bitrate": "320k"
+ }
+}
