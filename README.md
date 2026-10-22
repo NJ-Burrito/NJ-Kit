@@ -115,9 +115,19 @@ Skills land in `~/.claude/skills/` by default. `--scope project` puts them in on
 
 nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-motion-deck · nj-laya · nj-pinterest · srs-verifier · safe-delete · pdf-typography, plus third-party design skills (brandkit, design-taste-frontend, high-end-visual-design, minimalist-ui, redesign-existing-projects, hyperframes-studio, general-video) and graphify. Credits in [THIRD_PARTY.md](THIRD_PARTY.md).
 
+<a id="nj-font"></a>
+
 ## 🔤 NJ-Font
 
 🚧 **Coming soon.** A typeface by Nader Alzghoul, to live in [`NJ-Font/`](NJ-Font). Star the repo to hear when it ships.
+
+When it lands, install it like this:
+
+1️⃣ Open [`NJ-Font/`](NJ-Font) and download the files from `ttf/`
+
+2️⃣ **Windows:** right-click a file → *Install for all users* · **Mac:** double-click → *Install Font* · **Linux:** copy to `~/.local/share/fonts/`, then run `fc-cache -f`
+
+3️⃣ **Web:** use the files in `woff2/` with `@font-face`
 
 ## Is it safe?
 
