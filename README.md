@@ -14,6 +14,7 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](nj-kit/scripts/install.py)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Nader%20Alzghoul-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nader-alzghoul)
 [![GitHub](https://img.shields.io/badge/GitHub-NJ--Burrito-181717?logo=github&logoColor=white)](https://github.com/NJ-Burrito)
+[![Portfolio](https://img.shields.io/badge/Portfolio-nj--burrito.github.io-0A66C2?logo=googlechrome&logoColor=white)](https://nj-burrito.github.io/)
 [![Stars](https://img.shields.io/github/stars/NJ-Burrito/nj-skills?style=social)](https://github.com/NJ-Burrito/nj-skills/stargazers)
 
 **NJ Skills is a free, open-source toolkit for Claude Code.** One working method (analyse → find the skill → plan → execute → review), a delegation model for teams of agents, and house skills for documents, QA, Jira, narration, audio and video. Every skill ends in a gate a script runs, not a promise.
@@ -142,7 +143,7 @@ Nothing is tied to one machine. Set `NJ_PLUGIN_ROOT`, `JIRA_BASE_URL`, `PORTAL_U
 
 | | Who | Contact |
 |---|---|---|
-| 🛠️ **Creator** | **Nader Alzghoul** ([@NJ-Burrito](https://github.com/NJ-Burrito)) | naderalzghoulbusiness@gmail.com · [LinkedIn](https://www.linkedin.com/in/nader-alzghoul) |
+| 🛠️ **Creator** | **Nader Alzghoul** ([@NJ-Burrito](https://github.com/NJ-Burrito)) | naderalzghoulbusiness@gmail.com · [Portfolio](https://nj-burrito.github.io/) · [LinkedIn](https://www.linkedin.com/in/nader-alzghoul) |
 
 Want to be listed here? See [CONTRIBUTING.md](CONTRIBUTING.md).
 
