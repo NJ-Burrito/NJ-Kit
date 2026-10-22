@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/hero.gif" alt="NJ-Kit: analyse, find the skill, plan, execute, gate, review. A script decides PASS or FAIL." width="640">
+<a href="https://nj-burrito.github.io/NJ-Kit/"><img src="docs/assets/banner.png" alt="NJ-Kit: a working method for Claude Code. 43 skills, each ending in a PASS or FAIL gate." width="100%"></a>
 
 # NJ-Kit
 
@@ -8,6 +8,7 @@
 
 ## Skills that check their own work.
 
+[![Website](https://img.shields.io/badge/website-nj--burrito.github.io%2FNJ--Kit-c2ea4e?labelColor=0e1311)](https://nj-burrito.github.io/NJ-Kit/)
 [![CI](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml/badge.svg)](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Font: Thmanyah, own licence](https://img.shields.io/badge/font-Thmanyah%20%E2%80%94%20own%20licence-1f2937.svg)](https://font.thmanyah.com)
@@ -23,7 +24,7 @@
 > ### ⚡ In 10 seconds
 > 🧠 **What:** a free toolkit that gives Claude Code one working method and 43 skills.\
 > ✅ **Why:** every skill ends with a script that says **PASS** or **FAIL**. No "should work".\
-> 🚀 **Start:** 2 lines in Claude Code. [Go ↓](#plugin)
+> 🚀 **Start:** 2 lines in Claude Code. [Go ↓](#plugin)\n> 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) in English and Arabic.
 
 ### Pick how you want it. All free. 👇
 
@@ -77,6 +78,8 @@ python nj-kit/scripts/install.py           # ✅ install
 ---
 
 ## 🔁 How it works · 3 steps
+
+<div align="center"><img src="docs/assets/hero.gif" alt="NJ-Kit: analyse, find the skill, plan, execute, gate, review. A script decides PASS or FAIL." width="560"></div>
 
 | 1️⃣ Install | 2️⃣ Ask | 3️⃣ Read the gate |
 |:---:|:---:|:---:|

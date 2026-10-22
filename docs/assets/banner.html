@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NJ-Kit banner source (1280x640)</title>
+<!-- Source of docs/assets/banner.png. Rendered at 1280x640 with Chrome; fonts are the site's Thmanyah woff2. -->
+<style>
+@font-face{font-family:"NJK Display";src:url("../../site/fonts/display-bold.woff2") format("woff2");font-weight:700}
+@font-face{font-family:"NJK Sans";src:url("../../site/fonts/sans-regular.woff2") format("woff2");font-weight:400}
+@font-face{font-family:"NJK Sans";src:url("../../site/fonts/sans-bold.woff2") format("woff2");font-weight:700}
+:root{--bg:#0e1311;--surface:#161d1a;--line:rgba(214,232,222,.10);--line2:rgba(214,232,222,.20);--text:#e6ece8;--mute:#9aa7a0;--acc:#c2ea4e;--on:#0e1311}
+html,body{margin:0;background:var(--bg)}
+.b{width:1280px;height:640px;position:relative;overflow:hidden;background:radial-gradient(60% 80% at 82% 50%,rgba(194,234,78,.10),transparent 70%),var(--bg);color:var(--text);font-family:"NJK Sans",sans-serif;display:grid;grid-template-columns:1fr 470px;align-items:center;padding:0 72px 0 88px;box-sizing:border-box}
+.b::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:var(--acc)}
+.brand{display:flex;align-items:center;gap:22px}
+.mark{width:84px;height:84px;border-radius:8px;background:var(--acc);display:grid;place-items:center}
+.mark svg{width:56px;height:56px;color:var(--on);stroke-width:3}
+.name{font-weight:700;font-size:112px;line-height:1;letter-spacing:-.04em}
+h1{margin:34px 0 0;font-weight:700;font-size:46px;line-height:1.15;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--acc)}
+.ar{margin:14px 0 0;font-size:34px;color:var(--mute);direction:rtl;text-align:left;unicode-bidi:plaintext}
+.chips{display:flex;gap:10px;margin-top:38px}
+.chips span{border:1px solid var(--line2);border-radius:4px;padding:10px 14px;font-size:21px;font-weight:700;color:var(--text)}
+.chips span.g{background:var(--acc);border-color:var(--acc);color:var(--on)}
+svg.loop{width:470px;height:auto;overflow:visible}
+.ring{fill:none;stroke:var(--line2);stroke-width:1.5}.ring2{fill:none;stroke:var(--line);stroke-dasharray:3 7}
+.disc{fill:var(--surface);stroke:var(--line2);stroke-width:1.5}
+.node use{color:var(--text);stroke-width:1.75}
+.gate .disc{fill:var(--acc);stroke:var(--acc)}.gate use{color:var(--on)}
+.lbl{font:700 19px "NJK Sans";fill:var(--mute);text-anchor:middle}
+.pass{font:700 70px "NJK Display";fill:var(--acc);text-anchor:middle;letter-spacing:.04em}
+.halo{fill:var(--acc);opacity:.22}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!--ICONS: Lucide icons, ISC licence (lucide.dev)-->
+<symbol id="i-scan-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /><circle cx="12" cy="12" r="1" /><path d="M18.944 12.33a1 1 0 0 0 0-.66 7.5 7.5 0 0 0-13.888 0 1 1 0 0 0 0 .66 7.5 7.5 0 0 0 13.888 0" /></symbol>
+<symbol id="i-book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></symbol>
+<symbol id="i-list-checks" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5h8" /><path d="M13 12h8" /><path d="M13 19h8" /><path d="m3 17 2 2 4-4" /><path d="m3 7 2 2 4-4" /></symbol>
+<symbol id="i-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8" /><path d="m4 17 6-6-6-6" /></symbol>
+<symbol id="i-circle-check-big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335" /><path d="m9 11 3 3L22 4" /></symbol>
+<symbol id="i-refresh-cw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></symbol>
+<symbol id="i-plug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5" /><path d="M15 8V2" /><path d="M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z" /><path d="M9 8V2" /></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" /></symbol>
+<symbol id="i-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></symbol>
+<symbol id="i-folder-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2.5a1 1 0 0 1-.8-.4l-.9-1.2A1 1 0 0 0 15 3h-2a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z" /><path d="M20 21a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-2.9a1 1 0 0 1-.88-.55l-.42-.85a1 1 0 0 0-.92-.6H13a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z" /><path d="M3 5a2 2 0 0 0 2 2h3" /><path d="M3 3v13a2 2 0 0 0 2 2h3" /></symbol>
+<symbol id="i-monitor-cog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v4" /><path d="m14.305 7.53.923-.382" /><path d="m15.228 4.852-.923-.383" /><path d="m16.852 3.228-.383-.924" /><path d="m16.852 8.772-.383.923" /><path d="m19.148 3.228.383-.924" /><path d="m19.53 9.696-.382-.924" /><path d="m20.772 4.852.924-.383" /><path d="m20.772 7.148.924.383" /><path d="M22 13v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" /><path d="M8 21h8" /><circle cx="18" cy="6" r="3" /></symbol>
+<symbol id="i-key-round" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" /><circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /></symbol>
+<symbol id="i-trash-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10 11v6" /><path d="M14 11v6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" /><path d="M3 6h18" /><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z" /></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol>
+<symbol id="i-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+<symbol id="i-message-square" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="i-clapperboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+<symbol id="i-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+<symbol id="i-type" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16"/><path d="M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2"/><path d="M9 20h6"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+<!--/ICONS-->
+</svg>
+<div class="b" id="banner">
+  <div>
+    <div class="brand"><span class="mark"><svg aria-hidden="true" fill="none"><use href="#i-check"/></svg></span><span class="name">NJ-Kit</span></div>
+    <h1>A working method for <em>Claude&nbsp;Code.</em></h1>
+    <p class="ar">منهج عمل واحد لـ Claude Code</p>
+    <div class="chips"><span>43 skills</span><span class="g">PASS / FAIL gates</span><span>EN + AR</span><span>MIT</span></div>
+  </div>
+  <svg class="loop" viewBox="0 0 520 530" aria-hidden="true">
+    <circle class="ring" cx="260" cy="260" r="180"/><circle class="ring2" cx="260" cy="260" r="112"/>
+    <circle class="halo" cx="104.1" cy="350" r="44"/>
+    <g class="node"><circle class="disc" cx="260" cy="80" r="32"/><use href="#i-scan-eye" x="246" y="66" width="28" height="28"/></g>
+    <g class="node"><circle class="disc" cx="415.9" cy="170" r="32"/><use href="#i-book-open" x="401.9" y="156" width="28" height="28"/></g>
+    <g class="node"><circle class="disc" cx="415.9" cy="350" r="32"/><use href="#i-list-checks" x="401.9" y="336" width="28" height="28"/></g>
+    <g class="node"><circle class="disc" cx="260" cy="440" r="32"/><use href="#i-terminal" x="246" y="426" width="28" height="28"/></g>
+    <g class="node gate"><circle class="disc" cx="104.1" cy="350" r="32"/><use href="#i-circle-check-big" x="90.1" y="336" width="28" height="28"/></g>
+    <g class="node"><circle class="disc" cx="104.1" cy="170" r="32"/><use href="#i-refresh-cw" x="90.1" y="156" width="28" height="28"/></g>
+    <text class="lbl" x="260" y="30">analyse</text><text class="lbl" x="466" y="128">find the skill</text><text class="lbl" x="466" y="404">plan</text>
+    <text class="lbl" x="260" y="502">execute</text><text class="lbl" x="54" y="404">gate</text><text class="lbl" x="54" y="128">review</text>
+    <text class="pass" x="260" y="284">PASS</text>
+  </svg>
+</div>
+</body>
+</html>
