@@ -122,7 +122,7 @@ nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-motion-
 
 ## 🔤 NJ-Font
 
-A typeface by Nader Alzghoul, installed from this repo in one go. 🚧 Coming soon: star the repo to hear when it ships.
+A typeface by Nader Alzghoul, installed from this repo in one go.
 
 **macOS / Linux:**
 
