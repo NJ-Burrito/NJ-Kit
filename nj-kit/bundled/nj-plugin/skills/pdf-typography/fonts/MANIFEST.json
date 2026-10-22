@@ -1,0 +1,61 @@
+[
+  {
+    "family": "Cairo",
+    "script": "ar",
+    "role": "ui",
+    "weights": [
+      200,
+      300,
+      400,
+      500,
+      600,
+      700,
+      800,
+      900
+    ],
+    "licence": "OFL-1.1",
+    "note": "The house face for every document. Arabic and Latin drawn together in one family, eight weights — so a mixed line needs no fallback and no second family has to be kept in step.",
+    "files": [
+      {
+        "weight": 200,
+        "style": "normal",
+        "file": "ar/Cairo-200.ttf"
+      },
+      {
+        "weight": 300,
+        "style": "normal",
+        "file": "ar/Cairo-300.ttf"
+      },
+      {
+        "weight": 400,
+        "style": "normal",
+        "file": "ar/Cairo-400.ttf"
+      },
+      {
+        "weight": 500,
+        "style": "normal",
+        "file": "ar/Cairo-500.ttf"
+      },
+      {
+        "weight": 600,
+        "style": "normal",
+        "file": "ar/Cairo-600.ttf"
+      },
+      {
+        "weight": 700,
+        "style": "normal",
+        "file": "ar/Cairo-700.ttf"
+      },
+      {
+        "weight": 800,
+        "style": "normal",
+        "file": "ar/Cairo-800.ttf"
+      },
+      {
+        "weight": 900,
+        "style": "normal",
+        "file": "ar/Cairo-900.ttf"
+      }
+    ]
+  }
+]

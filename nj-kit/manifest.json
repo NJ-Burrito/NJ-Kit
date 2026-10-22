@@ -1,0 +1,787 @@
+{
+  "name": "nj-kit",
+  "owner": "Nader Alzghoul",
+  "updated": "2026-10-16",
+  "note": "Regenerate the skills block with scripts/export.py; the rest is hand-maintained. 2026-09-19 rework: plugin bodies trimmed (website-fine-print, workflow-diagram, pdf-typography, nj-delegate, nj-agent-ops, nj-director) with bulk moved to per-skill references/ that load on demand. Five zero-invocation skills archived to nj-plugin/_archive/ and dropped from marketplace.json (srs-verifier, design-gate, script-your-tools, scout, 10x) - restore by moving the folder back and re-adding its marketplace.json line. Duplicate user-level copies of devil and pdf-typography were recycled; the nj-kit plugin is now the single authoritative source for both. Evidence and the decision table: Desktop/_skills-backup/{decisions,content-audit}.md; rollback tarballs alongside them.",
+  "privacy": {
+    "why": "Eight people share one Claude account. These keep this machine's work off the shared account without changing anything for anyone else — they are user-scope, so they travel with the person, not the team.",
+    "user_settings": {
+      "disableRemoteControl": true,
+      "remoteControlAtStartup": false,
+      "crossSessionInbound": "refuse",
+      "isolatePeerMachines": true,
+      "autoUploadSessions": false,
+      "syncClaudeAiSkills": false,
+      "syncClaudeAiPlugins": false
+    }
+  },
+  "house_style": {
+    "font": "Thmanyah only, everywhere (owner, 18 Sept 2026; widened 27 Sept 2026): the Thmanyah families (serif display, serif text, sans) are the only typefaces, in every project, deliverable and export, and in the public-store QA Wrap extension (licence risk raised once; the owner decided).",
+    "font_banned": "Cairo — never proposed, never a fallback, in any project (owner, 2026-09-18)",
+    "font_weights": [
+      300,
+      400,
+      500,
+      700,
+      900
+    ],
+    "font_source": "The kit ships NO font files. Optional: set NJ_HOUSE_FONT_SOURCE (export.py) or NJ_HOUSE_FONT_DIR (install.py) to a folder of Thmanyah cuts you are licensed to use; install.py then installs them per-user so every renderer finds them by family name ('thmanyah serif display' / 'thmanyah serif text' / 'thmanyah sans'). Get the family from the publisher under its own licence (font.thmanyah.com).",
+    "pdf_extractor": "poppler (pdftotext) — never pymupdf or pdfium for Arabic",
+    "documents": "A4, Arabic/English bilingual, tagged PDFs, text must survive copy",
+    "why": "Thamanya Serif replaced Cairo as the house face on 2026-09-18 and Cairo is banned. Historical note kept because it still explains an old fault: Cairo was once believed to corrupt Arabic on extraction; that was the audit tool, not the font — see pdf-typography. Entries below that still say Cairo (workflow_figure, PROJ) record how those deliverables were built before the switch.",
+    "arabic_pdf_guard": "The stock anthropics/skills@pdf skill defaults to pypdf/pdfplumber, which lose Arabic words silently (0/9 and 6/9 vs poppler's 9/9). A guard note is patched into its SKILL.md locally and must be re-added after any re-fetch; CLAUDE.md carries the rule durably.",
+    "film": {
+      "captions": "Captions are the spoken words, verbatim, chunked, on screen while they are said. Separate card copy that paraphrases the voice reads as the caption talking about something else.",
+      "picture": "The picture must show what the voice names at the moment it names it. A feature spoken over a different panel is a fault, not a stylistic choice.",
+      "voice": "One TTS request per line — never split a line into fragments with different DSP flags and splice them (still true, still forbidden). For voice.py's Gemini-TTS engine, expressiveness is carried by the WRITING and a per-line natural-language DIRECTION string the model actually reads — see nj-writer/NARRATION.md §2 'Reconciling nj-kit's existing rule'. Flags still take '=': --rate=-6%, never --rate -6%. (Narration rule moved to NARRATION.md, 2026-09-21; this line is the pointer, kept for history.)",
+      "masters": "Normalise every master to -14 LUFS integrated and -1 dBTP. Verify with ffmpeg ebur128, and with silencedetect for gaps.",
+      "no_warnings_in_frame": "No product warnings in frame — grant notes, storage notes, amber cards. Only the story's deliberate failure may look like an error.",
+      "tutorials": "Tutorials live on their own page, never stacked inside settings.",
+      "why": "Every line is a rejection the owner made after a full render, and a render costs an hour of workers. Put them in the film bible's acceptance list and have the critic test each one before the director looks at frames.",
+      "no_unmasked_frame": "The page-side mask script signals completion itself: its last act sets an invisible `data-PROJ-masked` attribute on <html> (re-set on every navigation as it re-applies). The recorder opens no capture window before waiting on that attribute (5 s timeout = loud step failure), stores maskReadyAt per step, and the composer starts each segment there, so the wait is never in the video and no pre-mask frame can be shown. A curtain is only a thin safety lifted by the same signal — never by fonts.ready or requestAnimationFrame, which blanked a whole recording on 2026-09-16. A frame scanner (raw-frame blankness, text-vs-dots in masked regions, blank composed frames, silent gaps) gates the build. The owner's design, 2026-09-16 12:15: cheaper and deterministic.",
+      "ffmpeg_zero_cut": "Never pass a zero-length cut as `-t 0` to ffmpeg: on webm it decodes to EOF and silently pads 16–24 s of frozen picture into the video — this was the real source of the 'silent gaps' complaint (2026-09-16).",
+      "closing_still": "Every tutorial video ends on a still of a finished request's status (masked, service name hidden), narrated; the document prints the same figure and never a table of end states or any mention of environment failures.",
+      "theme": "dark mode only for QA Wrap films and presentations (owner, 2026-09-17: \"the light version — dark mode is way better\")"
+    },
+    "extension_testing": {
+      "headed_one_at_a_time": "Run the browser-extension suites headed, one suite at a time; the stress suite runs alone. Parallel headed runs fight over the profile and the window focus, and the failures they produce are not the product's.",
+      "classic_script_scope": "Pages that load several classic (non-module) scripts share one global scope. A top-level const declared in two of them throws 'Identifier has already been declared' and the whole page dies. Scope helpers per file (IIFE) or declare once — unit tests do not catch it, only a behavioural page-render check does.",
+      "activetab_grant": "A real activeTab grant IS obtainable under Playwright: dispatch the manifest's own keyboard shortcut through CDP Input.dispatchKeyEvent, which fires chrome.commands.onCommand. Dead routes, all measured: action.openPopup, the CDP Extensions domain, chrome.test, and both --auto-select-* flags.",
+      "why": "Three weeks of harness time went into these three lines; each one was first diagnosed as a product bug."
+    },
+    "workflow_figure": {
+      "one_sheet": "The SRS workflow figure is ALWAYS one A4 landscape sheet. Type size, band count and the gap between stages trade against each other, so they are searched together and scored on the printed point size — never settled one at a time, and never scaled down after the fact. A figure that cannot fit is split or the sheet grows; shrinking type is how a diagram ends up saying less than the paragraph beside it.",
+      "font_family": "Cairo only, and the font-family list ENDS at `sans-serif`. A named system fallback (Segoe UI) turns a missing glyph into a silently embedded system font instead of a visible failure. Captions may therefore use only glyphs Cairo has: it has no «←»/«→», so write «إلى» — the arrowhead already carries the direction.",
+      "font_loading": "Load the faces with `<link>`, never `@import` inside `page.setContent()` — `@import` never fetches there, so every measurement was silently taken in a fallback face and reported clean for weeks. Assert `document.fonts.check()` before measuring anything.",
+      "metrics": "Cairo advance width is not a per-character average: «رفض» runs 0.62 of the type size per character and «تعبئة نموذج الطلب (4 أقسام)» runs 0.34. Use the upper-bound model `size*(0.42*len+1.2)` — over-reserving costs air, under-reserving costs a collision. An Arabic line's glyph box is 1.82x the type size, not the line spacing.",
+      "shapes": "Stages are rounded rectangles; questions are diamonds, and only if the label actually asks one; a start and every ending is a STADIUM (rx = h/2) at the heaviest outline on the sheet, carrying a ✓ / ✕ / head — ISO 5807 gives the terminator a symbol of its own, and drawing it as a rectangle in a different colour rests the whole «did it finish or was it stopped» question on a pale green against a pale red. A decision's answer rides beside its own line with a white casing, never on top of another. A return is its own lane and never shares a corridor.",
+      "why": "Every line is a shipped fault, not a preference: a figure scaled down until it said less than its own caption; a PDF audit reporting SegoeUI embedded on the figure page only; weeks of 'clean' measurements taken in a fallback face because @import never fetched; captions drawn on top of each other because one average width under-reserved every short label. The full symptom-first catalogue is in workflow-diagram/SKILL.md — added 2026-09-06 along with the fit-by-search, measure-the-face and shape-vocabulary sections. Extended 2026-09-07 after a three-source audit of «طلب تسجيل منتج غذائي» measured the figure against the raw Flowable model and a fresh site walk: two of its endings existed nowhere but the figure, every desk read «مجموعة مرشحة» while the model assigns one of them round-robin to an individual, the service's hardest precondition («رقم كتاب تسجيل المنشأة» and its «تحقق») was in no source at all, and the first `--from 1` after the service was walked silently deleted half the model because `harvest()` chose one evidence file over the other. The new rules — walk as evidence, no invented ends, subtitles from the assignment, verify gates, the timer as an element, the caption dictionary and the two gates `caption-check.mjs` and the walk half of `flow-fidelity.mjs` — are all in workflow-diagram/SKILL.md. Extended again 2026-09-08 by a visual-design pass researched from primary sources: the palette was replaced (it measured CIEDE2000 0.35 apart under a protanopia simulation — a third of a just-noticeable difference), connectors gained three semantic classes crossed with a walked/unwalked channel, terminators became stadiums with glyphs, human and system tasks gained BPMN's own task-type markers, captions gained a halo, and the applicant's steps gained a common-region band. All of it is in workflow-diagram/SKILL.md § «Design rules», rule by rule with its source.",
+      "evidence": "A figure is drawn from a **site walk** first, the process model second, a template last, and each element carries which. Union the walk and the model — never choose between their files — let the walk's caption win verbatim, and draw a model element no walk reached with a lighter dashed outline and its own legend row. One caption dictionary maps each model flow name to the button's own wording, and a gate fails any other form. A verify widget with no `formcontrolname` is a field with a synthetic name; a boundary timer is its own shape; a desk's subtitle is its assignment, not its lane.",
+      "design": "2026-09-08. The figure's design language is researched, not remembered, and every rule in workflow-diagram/SKILL.md § «Design rules» carries its source (ISO 5807, BPMN Method & Style, Camunda, WCAG 2.2 SC 1.4.1/1.4.3/1.4.11, Okabe-Ito, Paul Tol SRON/EPS/TN/09-002, Palettailor, ISO 128-2, Imhof, NN/g on common region, W3C alreq). Four rules bind everything drawn: (1) colour is NEVER the only channel — a terminator is a stadium with a ✓ or a ✕, a system step carries a cog and a human task a head, and every class of line differs in weight AND dash AND colour; (2) contrast is computed, never eyeballed — title ink ≥ 7:1 on its own fill, outline ≥ 4.5:1 on it and ≥ 3:1 on paper; (3) role fills are anchored on Tol's `light` scheme because pale tints carry no category at all for a colour-blind reader — the reference chart's measured CIEDE2000 0.35 under a protanopia simulation, against 7.12 now; (4) three line weights, no more, thick-to-thin exactly 2:1, arrowheads left in SVG's default `strokeWidth` marker units so each head is proportional to its own line. Whether a path has been WALKED is a second channel crossed with the three classes — the class's own hue at a pale that still holds 3:1, thin, fine dash — never a fourth class, or a service whose refusals are all undemonstrated loses its refusals to grey.",
+      "grouping": "Who does a step is the colour of its box; WHERE THE PORTAL STOPS AND THE INSTITUTION STARTS is a boundary, and a boundary is drawn — a run of two or more consecutive applicant columns stands in a tinted band, one per grid row. Common region (Palmer, via NN/g) outranks proximity and similarity, and it is the only grouping cue available on a sheet whose columns are shared by every grid row and whose whitespace is already spent.",
+      "key": "The key registers from the drawing — a role only if a box is painted in it, a line class only if an edge is drawn in it — and shows each line class as A PIECE OF THE LINE, at its own weight, dash and head, with each role chip carrying that role's own badge. Colour chips cannot say «dashed, and lighter». The key is furniture that GROWS: whatever measures how many rows it takes must count the line rows too, or it under-measures and the key runs off the sheet. tools/srs/legend-sample.ts draws the whole thing on its own page from a synthetic flow, so the specimen cannot drift from what a real chart prints."
+    },
+    "delegation": {
+      "governance": {
+        "version": "nj-governance-v4",
+        "date": "2026-10-16",
+        "canonical": "nj-delegate/SKILL.md section 0 (v4). v3 text archived in nj-plugin/_archive/v3-before-v4-2026-10-16.",
+        "introduces": [
+          "every clause is machine-enforced or marked a habit, and never claims an enforcement it lacks",
+          "graded evidence [V]/[A]/[U] in every brief, with a worker CHALLENGE right and a LEAD_DEFECT class",
+          "worker count = the number of disjoint write-sets, claimed at runtime (relay.py claim)",
+          "verifier-first routing: a free verifier makes cascade mandatory, else one routed pass with a written reason",
+          "the brief is a contract of at most 25 lines (FOCUS, ENTRY_SMOKE, RESUME and a CHANGED receipt line since 2026-09-29); standing rules read by path",
+          "telemetry refused at WRITE time; relay.py verify audits the corpus and the KPIs",
+          "reference-class forecasting (relay.py estimate) that refuses below n=5 rather than guessing",
+          "section 0.0: when one context holds the task, use no governance at all"
+        ],
+        "gate": "nj-delegate/scripts/check_governance.py (--selftest) + nj-agent-ops relay.py tests (test_v3, test_v4)",
+        "owner_exception": "Run once / the owner verifies manually lives in his CLAUDE.md files as a named Owner exception scoped to human/model re-checking. It is not core policy and never cancels a deterministic correctness, safety or integrity gate.",
+        "rollback": "<NJ_PLUGIN_ROOT>/_archive/v2-before-v3-2026-09-22/",
+        "not_yet_proven": "v3 has never governed real client delivery; four habits need judgement and cannot be gated; forecast calibration is at n=2 against its own n>=5 floor.",
+        "summary": "NJ Governance v4 (2026-10-16): the Lead (Opus) briefs Sonnet leads (~/.claude/agents/sonnet-lead.md), a Sonnet lead briefs Haiku helpers (haiku-helper.md) in one foreground batch when the brief declares ITEMS=n (HELPERS_REQUIRED = 0 if n<6 else min(4, ceil(n/6))); helpers never spawn, depth max 2, up to 20 concurrent. Agents sleep until triggered and report once (receipt + <=25 lines). Hooks enforce it: nj_spawn.py logs every spawn (parent, child, depth), nj_guard.py denies remote pushes and merges to subagents and secrets reads to helpers. Gates: relay.py slots claim/release, relay.py verify over spawn logs, check_governance.py, tests test_v3/test_v4. Canonical: nj-delegate SKILL.md section 0 (v4)."
+      },
+      "rule": "NJ Governance v4 (2026-10-16): the Lead (Opus) briefs Sonnet leads (~/.claude/agents/sonnet-lead.md), a Sonnet lead briefs Haiku helpers (haiku-helper.md) in one foreground batch when the brief declares ITEMS=n (HELPERS_REQUIRED = 0 if n<6 else min(4, ceil(n/6))); helpers never spawn, depth max 2, up to 20 concurrent. Agents sleep until triggered and report once (receipt + <=25 lines). Hooks enforce it: nj_spawn.py logs every spawn (parent, child, depth), nj_guard.py denies remote pushes and merges to subagents and secrets reads to helpers. Gates: relay.py slots claim/release, relay.py verify over spawn logs, check_governance.py, tests test_v3/test_v4. Canonical: nj-delegate SKILL.md section 0 (v4). Tier policy unchanged: DETERMINISTIC / FREE-LOCAL / ECONOMY / STANDARD / FRONTIER, cheapest reliable first.",
+      "model_choice": {
+        "note": "Tier names are the policy; which runtime serves a tier is workspace mapping, kept out of the policy in nj-delegate/reference/runtime-map.md (2026-09-16).",
+        "DETERMINISTIC": "No model - scripts, CLI, tests, parsers, static analysis, checksums, focused greps/counts, diff/stat, schema checks, duplicate detection, log preprocessing, failed-test extraction, mechanical validation.",
+        "FREE-LOCAL": "Only classes a local/free runtime has demonstrably handled reliably here; never a first trial on delivery-critical work. No such runtime is installed on this machine.",
+        "ECONOMY": "Extraction, summarisation, discovery, bounded routine reasoning, low-risk test generation, listings, renames, copies, exports, mechanical checklist updates.",
+        "STANDARD": "Implementation to a spec, debugging, focused investigation, normal review and scoring, authoring from a model or a spec (Arabic included).",
+        "FRONTIER": "Ambiguity, architecture, hard root cause, security, production- or data-sensitive change, complex orchestration, high-risk adjudication. Never chosen for importance, client visibility, language or the fact that code is edited; no per-batch ceiling since 2026-09-17; the brief names the reasoning capability required."
+      },
+      "graphify_first": "The repo graph lives at <project-root>/graphify-out/ (built 2026-09-06 over PROJ-tests code, the 15 old SRS docx, templates, PDFs). Answer 'where is X / what calls Y / which service has Z' with `graphify query` before grepping; rebuild with `/graphify . --update` after large changes.",
+      "agent_prompts": "An agent starts with none of the conversation, so the prompt carries the absolute paths, the exact commands, the constraints and the standing rules that would otherwise be broken silently — staging only, deletions to the recycle bin, do not touch the videos, PYTHONUTF8=1 — and it must demand a COMPLETE FACTUAL REPORT, because the director relays that report and never re-derives it. The director relays failures and skipped items faithfully and does the review itself.",
+      "why": "Measured worker explosions and rebuild loops dominated cost, so the policy minimises total compute rather than director tokens alone: deterministic work and existing evidence first, minimum-sufficient delegation, and the strongest tier reserved for actual judgement. 2026-09-16 (the owner: lowest-cost tier that is good enough + effort) the policy was made vendor-neutral - five capability tiers, no provider or model names in the core policy, the tier->runtime map moved to an on-demand reference - and tool-call budgeting was replaced by token/context control, because the 2026-09-16 evidence showed workers under the call cap running 2-3x over budget on wide reads, three authorings at ~180k, a bulk copy at 6.7x, and an always-on interpreter costing ~45k tokens x ~30 messages a day. Routing evidence: on 2026-09-15, 14 of 22 FRONTIER runs (61 percent of FRONTIER spend, 28 percent of the whole day, estimated tokens) were scoring, verification, authoring or apply-a-known-rule stages a cheaper tier would have done at the same rework and partial rates. Classify by the reasoning the stage requires; two downgrades (a review that is mostly scoring is STANDARD and FRONTIER reads only the disputed cells; authoring from a model or a spec is STANDARD even in Arabic); two upgrades (failed twice for the same cause - escalate the cause as its own short run, not the task; client output with no gate - and writing the gate is cheaper than raising the tier), never an upgrade for an environment failure; every brief names an EFFORT level set by the stage, not the tier. Evidence: PROJ/PROJ-tests/artifacts/ops/model-routing-audit-2026-09-16.md and fable-usage-rca-2026-09-08.md.",
+      "set": "NJ Governance v4, live 2026-10-16; nj-delegate section 0 is the one canonical statement.",
+      "modes": "nj-delegate is the single source of truth for worker count: minimum-sufficient for the critical path, set per batch by FIT - Lead context headroom, machine/rate capacity, and the quality the stage needs (owner, 2026-09-16 18:55) - never by a fixed quota. Measured capacity facts on this machine (two concurrent recorders; five open-ended FRONTIER loops exhaust the 5-hour window in ~50 min) are inputs to that judgement, not caps. Eco = the user's ceiling of one; Max = the user's named N. Zero stays valid in every mode.",
+      "agent_ops": {
+        "rule": "nj-agent-ops is optional script mode. It inherits the nj-delegate count rule (no cap of its own), relays worker results through <project>/.agent-ops/results/<run-id>/, batches feedback, carries the per-run measurement schema (runtime, tier, task class, role, cached/uncached input, output, reasoning tokens, model calls, tool calls, workers, retries, duration, separate execution/verification/final status, defects, escalations, cost with an actual-or-estimated basis), and keeps one ECONOMY interpreter per session, spawned only on a trigger (long message, mixed Arabic/English, or a change to a running brief; the owner 2026-09-29; standing 09-18 -> 09-29, conditional 09-16 -> 09-18 are history), never polled, and writes one calibration row per task with `relay.py batch`. Since 2026-09-16 19:40 (the owner) the error/attempt cap is budget and progress, not a count: a worker continues while its budget is under 80 %, each attempt is a different cause-classified fix and the evidence moved; it stops with QUESTION when evidence repeats; two questions then skip. Since 2026-09-16 20:15 (the owner) the director manages only (no probes/edits/gates itself) and workers report once at the end, stopping early only for a QUESTION.",
+        "why": "File relay and batch feedback reduce context and API churn. The interpreter was permanent per user message (owner, 2026-09-15); measurement on 2026-09-16 put it at ~45k tokens per message over ~30 messages a day, much of it restating short unambiguous English, so it was made CONDITIONAL rather than removed - the mechanism has proven value on mixed-language, long, informal or ambiguous messages, and the same test now applies to any other standing per-stage helper call. Section 3 of nj-agent-ops carries nj-delegate section 3 verbatim: the director runs the classify/downgrade/upgrade/effort procedure per stage and pastes the budget line (Tier: X because <reasoning type>; effort: Y; budget: uncached input <= N, output <= M, model calls <= K, files read <= F; tool_calls <= T runaway cap only) into every brief; after each batch any run over 1.5x its class budget gets a one-line CAUSE note in the ledger and the next same-class brief is tightened."
+      },
+      "budgets": "Budgets are tokens and context, never tool calls (revised 2026-09-16: workers stayed under the call cap and still ran 2-3x over budget on wide reads). Every brief carries: uncached input, output, model calls, files/context read; tool_calls is a runaway cap only. Derived class budgets (from 2026-09-15 medians, estimated not counter-measured): FRONTIER 150k uncached input / 25 files, STANDARD 65k / 15, ECONOMY 12k / 8. Where a counter is unavailable a labelled proxy may be used and is never reported as a measurement. An overrun never auto-terminates valuable work: stop, name the cause (context too wide / duplicate reads / environment rework / capability) and fix that cause - only 'capability' justifies a higher tier, in writing. Context economy is a standing rule for every mode: targeted search, symbols, exact line ranges, diff hunks, failed tests only, unique error signatures; no full-file read when a section suffices, no broad repo read by default, no two workers rediscovering the same structure, evidence extracted once and reused by path.",
+      "retry": "Cause-based retry: classify every failure (CAPABILITY_LIMIT / CONTEXT_DEFECT / IMPLEMENTATION_DEFECT / TOOL_FAILURE / ENVIRONMENT_FAILURE / TEST_FAILURE / AMBIGUOUS_REQUIREMENT / AUTHORIZATION_BLOCKER) and fix that cause. Never the same prompt again, never an automatic tier escalation (only CAPABILITY_LIMIT, in writing), never another worker because the first failed. Attempt cap is budget and progress, not a count (2026-09-16 19:40): continue while under 80 % budget, each attempt a different fix, evidence moved; else QUESTION n/2; two questions per batch, then skip and mark.",
+      "reporting": "A worker report is a receipt of at most 25 lines on six headings - STATUS / FINDING / EVIDENCE / FILES-SYMBOLS / RISK / NEXT ACTION - plus a CHANGED list from git status, and the stage detail file (named in the brief's RESUME line) holds everything else (owner, 2026-09-29, D2: one rule in every file). No raw logs or full files in the receipt. The old hard 150-word cap was dropped on 2026-09-16 because it truncated findings; the 25-line receipt works because the detail file carries the rest.",
+      "high_rework": "Browser, recording and environment-sensitive workflows (2026-09-16: twelve recording attempts lost to four silently failing helpers): no auto-upgrade of tier, deterministic preprocessing, input and environment validation before any model work, preparation separated from reasoning, successful intermediate artefacts preserved, retry from the failure point when safe, successful steps never repeated, rework rate measured independently. Procedure on demand in nj-delegate/reference/high-rework.md.",
+      "experiments": "An optimisation is proved against a baseline of the same task class in the ledger, and accepted only if it reduces cost, context, frontier attention, duplicate work or model calls without materially reducing correctness, testing, review, evidence or safety. Total input tokens alone is not the metric; estimated figures are labelled estimated and never mixed with actual.",
+      "session_lessons_2026_09_17": {
+        "rule": "A worker never ends its turn while its own background work (a recorder, a monitor) is still running - foreground waits only. Every worker launch gets a ledger row, no exceptions. The director reads `date` before quoting a deadline, never relays a generalisation without its count, never sweeps without one positive sample, and asks once (not twice, not by guessing) when a new instruction contradicts the last one on the same point. A recurring fault class becomes a one-file registry entry, not a repeated patch to shared code; shared pipeline code has one owner at a time and is checked against a stored baseline before it ships.",
+        "why": "One 22h PROJ user-manual session (PROJ-tests/artifacts/ops/session-review-2026-09-17.md) measured 96 redeliveries against 16 deliveries, one shared file patched 9 times in a day, a ~12-wake director storm in 3 minutes from agents ending turns on background monitors, and ~1M tokens spent interpreting messages under ten words. None of it was a reasoning failure - the review's own conclusion is 'not recommended: more workers, a stronger model, looser gates.' It was unwritten director discipline and mask/staging logic living in ad hoc patches instead of a registry. Full numbers and the fix plan (P1-P8, W1/W2/W3) are in the session review; the rules above are what generalises past this one project."
+      },
+      "director": "Runtime mapping is a workspace fact, not policy: see nj-delegate/reference/runtime-map.md (Lead and tier->runtime table, chosen at the top of a session and never switched mid-session).",
+      "dispatch": "the owner, 2026-09-29 (D3): a worker that builds or edits runs in the FOREGROUND, so he can watch it and his messages cannot kill or derail it mid-phase; read-only research and reading may run in the background. Every brief carries a FOCUS line either way: a mid-run message that does not start AMEND: is not a task (worker-rules R10). Why: in UI round 2 an owner 'progress?' message derailed a background stage into answering and returning with no files, and another killed a running tool call silently.",
+      "brief_fields_2026_09_29": "The brief template and check_governance.py REQUIRED_BRIEF_FIELDS gained FOCUS, ENTRY_SMOKE (one check through the real caller or entry point, R14), RESUME (the stage detail file / progress log a resumed run continues from) and a gated CHANGED line in RECEIPT; worker-rules gained R13-R17 (leave nothing running, test through the real caller, a green gate proves it looked, numbers computed never typed, every claim points at a tool result). Each was paid for in QA Wrap UI round 2 (prompt audit work/prompt-audit-0929)."
+    },
+    "PROJ": {
+      "headed": "PROJ_HEADED=1 on every portal, harvest, recorder and smoke run — always, on this project. The tools already launch `headless: false`; without the flag they add `--window-position=-3000,-3000` and the window is parked off-screen. The flag is not \"make it headed\", it is \"let me watch it\", and the client asked to watch.",
+      "git_bash": "MSYS_NO_PATHCONV=1 on any command whose argument is a portal route — anything starting with `/` — or Git Bash rewrites /equipment/services/… into a Windows path before the tool ever sees it.",
+      "target": "${PORTAL_URL} only. Staging is the deployment, not a sandbox: filing costs a real request, a fee and a queue wait, and a wrong staff-side press costs the request itself with nothing to undo it. Never point a run at production.",
+      "deliverable_names": "Every deliverable states its kind in its own Arabic name, so a folder of them reads without opening anything: «<الاسم> - SRS», «<الاسم> - دليل المستخدم», «<الاسم> - دليل الموظف». Every file inside repeats the folder's name, because a PDF is mailed and filed away from its folder. Names are short on purpose — MAX_PATH is 260 and a full cover title carried by both a folder and a filename reached 231. Identity stays English: the flow id is the argument, the key and the checkpoint name; only what a reader opens is Arabic.",
+      "pdf": "Cairo, one family for every document this project prints, declared once in `.pdf-typography.json` at the repo root with no per-document override. The house face, not a per-document choice.",
+      "workflow_figure": "«مخطط سير العمل» is exactly ONE figure on ONE A4 landscape sheet inside an otherwise A4-portrait document — a client ruling, not a layout preference. How the sheet is reached is in house_style.workflow_figure.",
+      "back_office_binding": "A service is bound to its back-office record by «رمز الطلب» from `rules.json` → `requestTypes`, exact match, and the record proves itself again after it opens. Never by an Arabic name fragment: a fragment harvested another directorate's service in full and nothing in the output said so.",
+      "why": "These are the decisions the three PROJ project skills already enforce, recorded here because the skills live in a repository this kit does not carry. A new machine that clones PROJ-tests inherits them from the skills; a new machine that does not still has to know that runs are watched, that only staging is touched, and that a deliverable is named in Arabic after its kind. Added 2026-09-06."
+    },
+    "video_transcription": {
+      "rule": "Transcribe a video from its own frames, never from a scrape of the page it sits on. Measured 2026-09-07 on an Instagram reel: a web fetch returned 17 of 20 on-screen items, in the wrong order, with the source's own red x marks silently dropped - which inverted the meaning of three of them - and reported one item as unreadable. A 3x lanczos crop of the same region made all twenty legible. A pre-transcribed list is a draft, not a source.",
+      "tools": "yt-dlp --dump-json for provenance and yt-dlp -f best for the file; no login needed for a public reel and none is used. ffmpeg select='gt(scene,N)' to find out whether there are any cuts at all - a talking-head reel returns zero at both 0.2 and 0.05, which is the signal that the final frame accumulates the whole list. Then fps=1 and fps=4 stills.",
+      "timing": "Time an item's appearance by masked difference against the FINAL frame, not by argmax of the frame-to-frame difference. The mask is the caption glyphs themselves (near-white cores plus black outlines); the first sample where the difference collapses is the landing moment, and the result must come out monotonic across all items - that monotonicity is the check that the row geometry was right. argmax fails wherever the speaker's head or hand crosses the row band: it put two items 3 and 7 seconds early on the measured reel.",
+      "audio": "Local speech-to-text is available since 2026-10-01: faster-whisper (small, CPU int8) via `uv run --with faster-whisper --with \"av>=15,<16\" python tr.py in.wav out.txt` (av pin: unpinned resolves to 19 and crashes; av<15 has no Windows wheel). The audio is still never sent anywhere - not to Groq/OpenAI, not through agent-reach transcribe. Where a reel burns in word-by-word captions, sample that strip at each item's landing time and montage it - it corroborates the list and disambiguates abbreviations. See house_style.social_media.",
+      "cleanup": "The download and every frame are recycled with safe-delete when the transcript is written. Nothing is uploaded, and the transcript file - not the video - is the checkpoint the next stage reads."
+    },
+    "handoff": {
+      "rule": "Before a session ends write handoff.md at the project root with the sections '# goals / ## current state / ## files in flight / ## changed / ## failed attempts / ## next step', then /clear, open a fresh session, read handoff.md and pick up exactly where it left off. Rule from the owner, 8 Sept 2026, for every project; method in the session-handoff skill; the file is overwritten at each handoff, never appended.",
+      "why": "2026-09-08 — long sessions kept compacting and losing the exact point of work; a file survives /clear, a summary does not"
+    },
+    "output_style": "Concise and plain (owner, rewritten 2026-09-29): answer first, full sentences in plain words, short by choosing what to include, detail in a file whose path the reply names, no word or line counts. Caveman stays installed and is used only when the owner asks for it.",
+    "python_packages": "uv, never pip: `uv pip install <pkg>` / `uv run <script>` / `uvx <tool>` (owner, 2026-09-17).",
+    "copy_style": {
+      "rule": "impact-first, metric-driven: **anchor** | outcome with one true, sourced number",
+      "skill": "impact-copy",
+      "since": "2026-09-17",
+      "why": "the owner, 17 Sept 2026, reviewing the brag commercial: executive readers skim; the metric right after the bold anchor lands in under two seconds. Numbers are never invented; each has a source line in the working file. Applies to captions, text cards, feature lists, summaries, pitch text."
+    },
+    "run_once_no_self_verification": "the owner, 2026-09-17: no self-verification unless he asks (he checks outputs manually); every stage runs once — one harvest, one record, one screenshot pass, one e2e, one build, one fix per fault; no retries after a fix; on failure report the line and stop. Exception (2026-09-29): when the pipeline itself is new or changed, one private rehearsal plus the owner's approval of the plan before a full render. Reports say 'not verified'. Clarified 2026-09-17 (session review, 96 redeliveries vs 16 deliveries): this turns off a PERSON re-checking output by hand, not a pipeline's own machine gates (leak assertion, delivered-copy check, a build's own refusal on bad input) — those run every time as part of doing the work once, same as delivery already does.",
+    "visual_gate": "Every visual deliverable is generated against a tokens file and then rendered and checked by a machine gate before anyone sees it (ENSERA: brand/tokens.json + brand/DESIGN.md + scripts/visual_gate.mjs). Playwright is driven from the CLI for this, not MCP: a one-shot render-and-judge does not need a tool schema and an accessibility tree in context, and the CLI path needs no interactive auth. The gate fails on horizontal overflow, elements past the viewport, a declared font that did not load, Arabic set in a face with no Arabic coverage, contrast below WCAG AA, and colours outside the tokens. Origin: Instagram reel DchdDmDj37s (noobs prompt / pros hand over a design system / legends give the agent eyes), 2026-09-17. Three gate bugs were found and fixed on first use and are worth not repeating: document.fonts.check defaults to weight 400 (a page loading only 500/700 reads as missing), contrast over a gradient is not computable from one colour (guessing white fails every dark panel), and webfonts need document.fonts.ready rather than a sleep.",
+    "skill_descriptions": "<=40 words per skill description, standing rule since the 2026-09-18 audit. Descriptions are the ONLY always-on token cost - loaded in every session before any work - so they are the one place where trimming pays every time. A description's job is ROUTING, so every distinctive trigger phrase stays and only the prose around it goes. Over-trimming does not save tokens, it stops the skill from ever being found, which is the expensive failure.",
+    "arabic_triggers_protected": "Every Arabic trigger phrase is protected in any description trim: تدقيق, مراجعة لغوية, «تدقيق الوثيقة», «راجع الوثيقة», «هل الوثيقة مطابقة», «مخطط سير العمل», «إجراء», «شكل التصميم», «التصميم مش مظبوط», نظف الصوت, معالجة الصوت, موسيقى خلفية, «دليل المستخدم», «دليل الموظف». Arabic and English are both first-class, so an Arabic trigger is never what gets cut for length - a skill that stops answering to the phrase the owner actually types is unreachable.",
+    "third_party_skills": "A third-party skill is KEPT OR REMOVED, NEVER REWRITTEN IN PLACE. install.py re-fetches it from its upstream repo, so an in-place edit is either overwritten on the next machine or freezes a fork that stops getting upstream fixes. One exception, and it is data rather than an edit: the description, re-applied from description-overrides.json by scripts/apply-descriptions.py. A third-party skill that is 80% out of scope is removed, and the 20% worth keeping is folded into one of ours as a short section. Ours may be rewritten freely - they are where 'on our needs only' is actually implementable.",
+    "font_vault": "pdf-typography's vault is filled by hand, not by fetch-fonts.mjs — that script only knows Google families and the Google roster (fonts/MANIFEST.json) is now empty. Copy the OTFs you are licensed to use into fonts/licensed/, convert with `uv run --with fonttools --with cu2qu python scripts/otf-to-ttf.py fonts/licensed/*.otf --replace` (Chrome writes CFF outlines as anonymous Type 3 procedures, so an .otf never embeds properly), then rename to the vault contract `<Family>-<weight>.ttf` — e.g. 'Thmanyah Serif Text-400.ttf'. Anything that does not match that pattern is skipped in silence. Verified 2026-09-23: `node scripts/selftest.mjs` PASSED, Type0 subsets, Arabic words copy out whole — which Cairo never did.",
+    "font_licence": "Font files are never part of this kit. The publisher's licence governs use; embedding in documents you create is allowed, redistributing or publishing the font files is not.",
+    "font_coverage_gaps": "No arrows U+2190-2193, no ticks U+2713/2714, no ≈, no Latin Extended-A, no emoji — draw arrows/ticks as SVG.",
+    "social_media": {
+      "rule": "BINDING. For every social-media interaction (reading a reel, post, profile, thread, video, subreddit, feed), start with Agent Reach: run `agent-reach doctor` to see which channel works, then use that channel. Logged-out only - the owner has no accounts and no session is ever logged in.",
+      "never": "Never use `agent-reach transcribe` (it sends audio to Groq/OpenAI; audio stays local). Never install its browser-cookie3 extra, never configure keys, never run the doctor's suggested installs without a decision.",
+      "instagram": "Exception, measured 2026-10-01: Agent Reach's Instagram channel needs a logged-in Chrome (OpenCLI) and is unusable here. Instagram = logged-out yt-dlp (installed by Agent Reach) for video + info.json, ffmpeg for frames and 16 kHz audio, and local faster-whisper for the transcript: `uv run --with faster-whisper --with \"av>=15,<16\" python tr.py reel.wav out.txt`. Pin av>=15,<16: unpinned av resolves to 19 and crashes faster-whisper; av<15 has no Windows wheel. Full recipe: ENSERA documentation/10-Instagram-Reels-Review/agent-reach-install.md.",
+      "why": "the owner, 2026-10-01: one entry point for social media so no session improvises scrapers. Installed and proven on an Instagram reel the same day (video, metadata, local transcript, frames)."
+    },
+    "footage_cut": "Cutting recorded footage: (1) faster-whisper transcript, local (see video_transcription.audio); (2) Claude reads the transcript and writes a cut list (keep/drop ranges); (3) auto-editor for silence and dead air, ffmpeg for the exact range cuts. Audio never leaves the machine. Tools: tooling.optional auto-editor, ffmpeg.",
+    "tts_engine": "Narration engine (owner, 2026-10-01): Gemini 3.1 Flash TTS via OpenRouter is the ONLY voice-generation engine. Every other TTS or voice-cloning tool (Supertonic, Piper, Chatterbox, Kokoro, OmniVoice/VoiceStudio, edge-tts, OpenAI `speech`) was removed from the laptop on 2026-10-01 and is not to be proposed or reinstalled. Expressiveness is carried by the writing and a per-line direction string. Writing rules stay in nj-writer/NARRATION.md only; an engine choice is not a writing rule. Voice and styles (2026-10-01): Kore with a registered style; registry <NJ_PLUGIN_ROOT>/skills/nj-writer/voice-styles.json, rules NARRATION.md §11, gate scripts/voice_style_gate.py (fails on missing/unregistered style, edited direction, wpm outside band, tempo above 1.7, visible text that looks like the TTS text pasted in (over 50% marked; the source's own marks allowed), split shadda, control character in tts_text); first use in any project runs voice_style.py list. Arabic tashkeel KB (2026-10-01): nj-writer/reference/arabic-tashkeel, measured on Kore. HARD RULE (owner, 2026-10-03): google/gemini-3.1-flash-tts-preview is the ONLY model any voice pipeline calls — no transcriber/ASR, no LLM judge, no other model (cost); each line voiced once, no verify/re-voice; the owner checks by ear. tashkeel_verify.py (gemini-3.6-flash) removed permanently.",
+    "web_scan": "Scanning a live web app we own: OWASP ZAP baseline first (docker, start Docker Desktop then quit it); Strix after that on Claude only, STRIX_TELEMETRY=0 always, owned or authorised targets only, no key exists yet so none has run. Never scan a target we do not own. Findings are leads, not verdicts: reproduce before reporting. See nj-security-review 'Scanning a live web app we own'.",
+    "image_to_video": "NONE on this laptop (CPU only, no GPU; Wan-class image-to-video models are not viable and were not installed, ENSERA documentation/10-Instagram-Reels-Review/alternatives-video.md). Animate stills with HyperFrames or Remotion (Ken Burns, parallax layers, motion graphics). Hosted image-to-video is out under the free-besides-Claude-tokens rule.",
+    "models": "the owner 2026-10-10: Lead = Opus 5.5 at effort medium; workers = Sonnet 5.5 and Haiku 5.5, the Lead decides per stage which model and effort (Haiku: mechanical/bounded work and the interpreter; Sonnet: diagnosis, fixes, authoring, live runs). relay.py route --start haiku|sonnet learns effort; a failed verifier escalates one tier once (haiku -> sonnet -> opus). Supersedes 'Sonnet 5.5, never lower' (2026-10-02). Model ids: nj-delegate/reference/runtime-map.md.",
+    "adhd_output": "ALL outputs are ADHD-friendly (owner, 2026-10-11), in every pipeline and skill: verdict + count chips first (e.g. 3 fail · 5 pass · 2 blocked), red first, one idea per card, short headings, <=2-line paragraphs, colour + icon + word for every state, detail collapsed by default, a «الخطوة التالية» next-step line per item, sticky TOC on long HTML, section tabs + page numbers in PDF, line length ~70ch. Full checklist: nj-qa-pipeline/references/adhd-standard.md.",
+    "qa_pipeline": "Jira/QA work runs by nj-qa-pipeline (2026-10-11): nj-jira reads/files/re-checks/tracks, nj-jira-to-automation turns notes into one test per note, nj-automation-suite scaffolds the portable suite (lib/paths.ts, reports, PDF, Docker). Harvest = open Bugs only (To Do/In Progress/In QA), service-only, no link depth, latest dated statement wins. Credentials never printed or stored in a skill. Thmanyah fonts never ship in a shared image/archive/7z (licence). Customs checks run on QA only.",
+    "trigger_only_agents": "HARD RULE (owner, 2026-10-14): agents sleep by default, wake only on a parent's brief or a child's completion, report once upward (receipt + <=25 lines), parent reviews then assigns or delivers; Lead Opus -> Sonnet service lead -> Haiku helpers (foreground batch, helpers never spawn). Why: no wake storms, clear review chain. Canonical: nj-delegate SKILL.md s0.3a."
+  },
+  "libraries": {
+    "root": "<ENSERA-root>/library",
+    "env_var": "NJ_LIBRARY",
+    "index": "INDEX.json + index.sqlite (FTS5)",
+    "per_kind": {
+      "image": "images/<top>/<category>/",
+      "sfx": "sfx/<category>/",
+      "music": "music/<mood>/",
+      "style": "styles/<name>/",
+      "font": "fonts/thmanyah/otf/"
+    },
+    "commands": {
+      "intake": "library.py intake --file ... --kind ... --category ... --what ... --detail ... --source-url ... --licence ... --licence-url ... --commercial-ok",
+      "find": "library.py find <query> [--kind --category --tag --licence-ok --cutout-only --tone --no-text --id --alias --json]",
+      "verify": "library.py verify",
+      "stats": "library.py stats",
+      "sync": "library.py sync",
+      "plan_check": "library.py plan-check <ASSET-PLAN.md> --lang ar|en",
+      "credits": "library/scripts/credits.py <id>... [--release] [--confirm-living-model \"<film id>: <why>\"]"
+    },
+    "licence_policy": "every record carries licence, licence_url, source_url, retrieved, commercial_ok, provenance_check; CC-BY family requires attribution_text; Public Domain Mark forces provenance_check=pending. A living-model cut-out (MrCutout.com, the owner 2026-09-21) carries living-model/site-licence/no-redistribution tags, never committed or zipped, and credits.py --release refuses it without --confirm-living-model.",
+    "counts": "551 old-location files retired 2026-09-21: indexed=454, mirrored=88 (style sheets/demo + legacy provenance docs), obsolete=9 (superseded scripts, regenerable bed renders) -- see artifacts/ops/library-cutover-2026-09-21.md",
+    "updated": "2026-09-21",
+    "why": "the owner 2026-09-21: one library outside production/, real names, categories, a fast index, so material is chosen for the project's idea instead of whatever is on disk (reel 2's fault). Cutover run (library-cutover-0921) retired production/library, production/music-library, production/styles, production/inbox, bg-music/assets and nj-style-film/assets/sfx once every file was proven indexed, mirrored, or obsolete."
+  },
+  "tooling": {
+    "required": [
+      {
+        "cmd": "pdftotext",
+        "why": "the only extractor that reads Arabic correctly",
+        "install": "winget install XpdfReader.XpdfTools  (or poppler)"
+      },
+      {
+        "cmd": "pandoc",
+        "why": "reads the .docx sources",
+        "install": "winget install JohnMacFarlane.Pandoc"
+      },
+      {
+        "cmd": "node",
+        "why": "renderers and the skills CLI"
+      },
+      {
+        "cmd": "python",
+        "why": "the audit and scan scripts"
+      },
+      {
+        "cmd": "ffmpeg",
+        "why": "the film pipeline — cut, zoompan camera, the side-chained music bed, de-breathing (silenceremove + agate + deesser), and the ebur128/silencedetect verification. The build here is a GPLv3 binary (gyan.dev full build, --enable-gpl --enable-version3): it is a PRODUCER-SIDE tool only and is never shipped inside a product, or the product inherits GPLv3.",
+        "install": "winget install Gyan.FFmpeg"
+      }
+    ],
+    "optional": [
+      {
+        "cmd": "ffmpeg",
+        "why": "nj-style-film cuts a reference video into contact sheets (ffprobe for the duration) and the film pipeline extracts narration audio with it. Version matters: ffmpeg 8 removed -vsync, which is what broke the watch skill's frame step on 2026-09-20; ref_sheets.py uses -fps_mode vfr.",
+        "install": "winget install Gyan.FFmpeg"
+      },
+      {
+        "cmd": "yt-dlp",
+        "why": "nj-style-film, only when the style reference is a URL rather than a local file. A local file is always preferred and needs none of this.",
+        "install": "winget install yt-dlp.yt-dlp"
+      },
+      {
+        "cmd": "manim",
+        "why": "nj-style-film, only for a scene tagged [engine: manim] — a diagram that explains (nodes, flows, axes) placed by relative logic instead of hand-set coordinates. Manim Community 0.21.0, MIT, CPU-only: 2.5 s of 1080p60 alpha WebM in 18 s on the i5-1334U (2026-09-21). Arabic must go through MarkupText, never Text — see nj-style-film/reference/motion-engines.md.",
+        "install": "uv tool install manim"
+      },
+      {
+        "cmd": "duckdb",
+        "why": "reads .xlsx directly with INSTALL excel",
+        "install": "winget install DuckDB.cli"
+      },
+      {
+        "cmd": "playwright",
+        "why": "frame capture for films and every extension suite, driving REAL Chrome (`channel: 'chrome'`), not bundled Chromium: extensions, MV3 service workers and the CDP route that produces a genuine activeTab grant behave differently under Chromium, and portal sign-ins are behind reCAPTCHA. Usually a project devDependency rather than a global, so `which playwright` failing here is normal — check `npx playwright --version` inside the repo.",
+        "install": "npm i -D @playwright/test && npx playwright install chrome"
+      },
+      {
+        "cmd": "pyftsubset",
+        "why": "fontTools' CLI — subsets and audits the Cairo faces that pdf-typography embeds, i.e. the tool that says whether a PDF's text will survive being copied out. `pip install fonttools` puts it on PATH.",
+        "install": "uv pip install fonttools"
+      },
+      {
+        "cmd": "graphify",
+        "why": "Builds and queries the repository knowledge graph at <project-root>/graphify-out (PROJ-tests code, the 15 old SRS .docx, templates, PDFs). `graphify query` answers \"where is X / what calls Y / which service has Z\" before anyone greps — see house_style.delegation.graphify_first — and `/graphify . --update` rebuilds it after large changes. Installed 2026-09-06 as `uv tool install \"graphifyy[office]\"`: the PyPI name has the double y, the [office] extra is what lets it read .docx and .xlsx, and the binary lands in ~/.local/bin (v0.9.55 here). `graphify install` — which appends to CLAUDE.md and registers Claude PreToolUse and git post-commit hooks — has NEVER been run here and must not be run without a fresh read of its install.py; see SECURITY-REVIEW-2026-09-06.md.",
+        "install": "uv tool install \"graphifyy[office]\""
+      },
+      {
+        "cmd": "hyperframes",
+        "why": "Composition check/render behind the brag launch-video skill (added 2026-09-16). Not installed globally on purpose: `npx hyperframes` fetches 0.8.43 on demand, so `which hyperframes` failing is normal. Only brag calls it; the house film pipeline stays Playwright + ffmpeg + Gemini 3.1 Flash TTS via OpenRouter until brag is proven on one QA Wrap film.",
+        "install": "npx hyperframes --version  (no install; npx resolves it)"
+      },
+      {
+        "cmd": "laya",
+        "why": "Laya (ConvAI Innovations, Apache-2.0, 421M ModernBERT encoder): a decision model, not a generator. Answers typed choice / score / yes-no questions over text in ~3 s per item on CPU; no images, no prose, 512-1024 token input. Installed 2026-09-24 for QA-finding triage (owner routing was sound, 11/11; its zero-shot severity ranking inverted F2 vs F10 and is advisory only). Venv: ~/.local/nj-tools/laya-venv; weights cached by Hugging Face on first run. Not an analyst: The owner (24 Sept) keeps analysis and severity calls with Claude; use Laya only for bulk classification on request.",
+        "install": "uv venv ~/.local/nj-tools/laya-venv --python 3.12 && uv pip install --python ~/.local/nj-tools/laya-venv/Scripts/python.exe laya"
+      },
+      {
+        "cmd": "agent-reach",
+        "why": "Agent Reach v1.5.0 (Panniantong/Agent-Reach, commit a19a171, MIT): the first tool for every social-media read (Instagram, X, YouTube, TikTok, Reddit, RSS, web) - see house_style.social_media. Installed 2026-10-01 after a static security grep (0 blocking findings). It wraps yt-dlp and installs it. `agent-reach doctor` lists which channels work logged-out. Never use its `transcribe` (sends audio to Groq/OpenAI). Never install the browser-cookie3 extra or configure keys. Install notes and the Instagram recipe: ENSERA documentation/10-Instagram-Reels-Review/agent-reach-install.md.",
+        "install": "git clone --depth 1 https://github.com/Panniantong/Agent-Reach.git %TEMP%/ar/Agent-Reach; uv tool install --constraint %TEMP%/ar/Agent-Reach/constraints.txt %TEMP%/ar/Agent-Reach"
+      },
+      {
+        "cmd": "auto-editor",
+        "why": "Footage cut: removes silence/dead air from a recording after Claude's cut list. v29 is a thin wrapper that downloads its native binary from github.com/WyattBlue/auto-editor/releases on first run; needs ffmpeg on PATH. Smoke: 12 s -> 7.2 s. Reasoning: ENSERA documentation/10-Instagram-Reels-Review/alternatives-video.md; commands: install-alternatives.md.",
+        "install": "uv tool install auto-editor==29.3.1"
+      },
+      {
+        "cmd": "strix",
+        "why": "Agentic web-app pentest (strix-agent 1.6.2, Apache-2.0). STRIX_TELEMETRY=0 ALWAYS (PostHog telemetry is on by default); Claude only (STRIX_LLM=anthropic/<current sonnet id>); owned targets only; bundled strix-tui.exe not reviewed; no Anthropic key exists yet, so only --help was run. See house_style.web_scan; reasoning: ENSERA documentation/10-Instagram-Reels-Review/alternatives-security.md.",
+        "install": "uv tool install strix-agent==1.6.2"
+      },
+      {
+        "cmd": "docker (zaproxy image)",
+        "why": "OWASP ZAP baseline scan of a site we own: `docker run --rm -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t <owned-url> -J zap.json -r zap.html`. Image 3.71 GB, official, not source-reviewed. Docker Desktop must be started first and quit after (no leftovers). See house_style.web_scan.",
+        "install": "docker pull ghcr.io/zaproxy/zaproxy:stable"
+      },
+      {
+        "cmd": "mmdc",
+        "why": "Mermaid CLI (@mermaid-js/mermaid-cli 12.0.0, MIT): renders .mmd written from code to SVG/PNG/PDF for architecture, sequence, ER and state diagrams, in Thmanyah and the brand palette via workflow-diagram/mermaid/. Uses Puppeteer's bundled Chrome. Not for the workflow figure, which keeps its own builder. Arabic labels render joined; mixed-script labels follow bidi order, check them. Smoke: ENSERA documentation/10-Instagram-Reels-Review/mermaid/mermaid.md.",
+        "install": "npm i -g @mermaid-js/mermaid-cli@12.0.0"
+      },
+      {
+        "cmd": "pymupdf",
+        "why": "nj-knowledge-book check_report.py reads the PDF outline (bookmarks) with it; without it that check prints SKIP and the gate exits 3 (INCOMPLETE), never PASS. fontTools (pyftsubset's package) drives its glyph-gap check the same way.",
+        "install": "uv pip install pymupdf fonttools"
+      }
+    ],
+    "python_env": {
+      "PYTHONUTF8": "1",
+      "why": "Windows defaults to cp1252, which cannot read or print a single Arabic character. Several third-party scripts crash without this. Every python call in this toolkit — export.py, audit.py, scan.py, trash.py, the film builder — is run with PYTHONUTF8=1 set, not hoped for.",
+      "stdout_utf8_in_script": "Every Python script that PRINTS A PATH must reconfigure its own stdout: `sys.stdout.reconfigure(encoding='utf-8')` (and stderr). PYTHONUTF8=1 does not cover a script launched by a tool that hands it an inherited cp1252 console. Patched 2026-09-06 into pdf-typography/scripts/check-pdf.py and safe-delete/scripts/trash.py, both of which crashed printing an Arabic path — and check-pdf's crash was MASKING its real finding, a system font embedded in the PDF. A crash on output is not a cosmetic bug when the output is the audit.",
+      "stdout_utf8_patch_travels": "Both patched skills are OURS (neither is in KNOWN_SOURCES in scripts/export.py), so the fix ships in bundled/ and nothing has to be re-applied after `npx skills add/update`. Contrast house_style.arabic_pdf_guard, which patches the third-party anthropics/skills@pdf and MUST be re-added after every re-fetch."
+    },
+    "uv": {
+      "required": true,
+      "why": "the owner 2026-09-17: Python packages and scripts run through uv, never pip - `uv pip install`, `uv run`, `uvx <tool>`; faster, reproducible, no global site-packages drift. Installed: uv 0.12.9 at ~/.local/bin/uv.",
+      "install": "powershell -c \"irm https://astral.sh/uv/install.ps1 | iex\""
+    }
+  },
+  "mcp_servers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@0.0.82",
+        "--browser",
+        "chrome",
+        "--user-data-dir",
+        "~/.claude/playwright-mcp-profile",
+        "--viewport-size",
+        "1440x900"
+      ],
+      "why": "real Chrome and a persistent profile: portal sign-ins are behind reCAPTCHA and should survive between sessions"
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ],
+      "why": "current library documentation"
+    }
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "command": "bash \"~/.claude/hooks/nj-kit-sync.sh\"",
+        "scope": "user",
+        "why": "keeps this manifest, the bundled skills and nj-kit.zip current after every turn; runs export.py --if-changed so it costs nothing when nothing moved"
+      },
+      {
+        "command": "sid=$(python -c \"import sys,json;print(json.load(sys.stdin).get('session_id',''))\"); \"~/.local/bin/taisce.cmd\" release -SessionId \"$sid\" 2>/dev/null || true",
+        "scope": "user",
+        "why": "releases this session's taisce memory-stack lease at Stop so the local MCP server can shut down when no session needs it."
+      }
+    ],
+    "SessionStart": [
+      {
+        "command": "\"C:\\Program Files\\nodejs\\node.exe\" \"~/.claude/.claude-manager/session-start-tap.js\"",
+        "scope": "user",
+        "why": "Claude Manager (external tool) records session starts for its dashboard; not installed by this kit."
+      },
+      {
+        "command": "sid=$(python -c \"import sys,json;print(json.load(sys.stdin).get('session_id',''))\"); \"~/.local/bin/taisce.cmd\" touch -SessionId \"$sid\" 2>/dev/null || true",
+        "scope": "user",
+        "why": "tells the taisce memory stack this session is alive so its idle shutdown does not fire mid-session."
+      }
+    ],
+    "PreToolUse": [
+      {
+        "command": "sid=$(python -c \"import sys,json;print(json.load(sys.stdin).get('session_id',''))\"); \"~/.local/bin/taisce.cmd\" ensure -SessionId \"$sid\" 2>/dev/null || true",
+        "scope": "user",
+        "why": "starts the taisce memory MCP server on demand before a tool call needs it."
+      },
+      {
+        "command": "PYTHONUTF8=1 python \"~/.claude/hooks/nj_spawn.py\" pre-agent",
+        "scope": "user",
+        "why": "v4: records who is spawning an agent so SubagentStart can log the parent (governance_v4.hooks)."
+      },
+      {
+        "command": "PYTHONUTF8=1 python \"~/.claude/hooks/nj_guard.py\"",
+        "scope": "user",
+        "why": "v4: denies subagent remote pushes/merges and helper secrets access (governance_v4.hooks)."
+      }
+    ],
+    "SubagentStart": [
+      {
+        "command": "PYTHONUTF8=1 python \"~/.claude/hooks/nj_spawn.py\" start",
+        "scope": "user",
+        "why": "v4: appends the spawn row (parent, child type, model, depth) to the spawn logs."
+      }
+    ],
+    "statusLine": [
+      {
+        "command": "\"C:\\Program Files\\nodejs\\node.exe\" \"~/.claude/.claude-manager/statusline-tap.js\"",
+        "scope": "user",
+        "why": "Claude Manager (external tool) reads the status line payload for its dashboard; not installed by this kit."
+      }
+    ]
+  },
+  "skills": {
+    "third_party": [
+      {
+        "skill": "apple-design",
+        "source": "emilkowalski/skills",
+        "why": "Apple's approach to interface design and fluid, physical motion, for the web. Use for gesture-driven UI, spring animations, drag/swipe/sheet interactions, momen"
+      },
+      {
+        "skill": "caveman",
+        "source": "juliusbrussee/caveman",
+        "why": "Ultra-compressed communication mode that cuts output tokens while keeping technical accuracy. Levels: lite, full, ultra and the wenyan variants. Use for /cavema"
+      },
+      {
+        "skill": "chrome-extension-development",
+        "source": "mindrally/skills",
+        "why": "Expert guidelines for Chrome extension development with Manifest V3, covering security, performance, and best practices. Use when building browser extensions, c"
+      },
+      {
+        "skill": "doc-coauthoring",
+        "source": "anthropics/skills",
+        "why": "Structured workflow for co-authoring documentation — docs, proposals, technical specs, decision docs. Use when the user mentions writing docs, creating proposal"
+      },
+      {
+        "skill": "hyperframes",
+        "source": "heygen-com/hyperframes",
+        "why": "Mandatory entry point: read first for any video, animation or motion-graphic request — promo, explainer, captioned clip, title card, overlay, slideshow, interac"
+      },
+      {
+        "skill": "hyperframes-animation",
+        "source": "heygen-com/hyperframes",
+        "why": "All HyperFrames animation: atomic motion rules, multi-phase scene blueprints, transitions, 24 named text effects, choreography audits, and the seven runtime ada"
+      },
+      {
+        "skill": "hyperframes-audio",
+        "source": "heygen-com/hyperframes",
+        "why": "Mixing audio already placed in a HyperFrames composition: fade-in/out, crossfade, track gain or volume, ducking, voiceover carve, effects (EQ, compressor, limit"
+      },
+      {
+        "skill": "hyperframes-cli",
+        "source": "heygen-com/hyperframes",
+        "why": "The HyperFrames CLI loop: init, add, catalog, capture, lint, check, snapshot, compare, preview, play, present, beats, keyframes, single or batch render, publish"
+      },
+      {
+        "skill": "hyperframes-core",
+        "source": "heygen-com/hyperframes",
+        "why": "The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class=\"clip\"`, tracks, sub-"
+      },
+      {
+        "skill": "hyperframes-creative",
+        "source": "heygen-com/hyperframes",
+        "why": "Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, au"
+      },
+      {
+        "skill": "hyperframes-keyframes",
+        "source": "heygen-com/hyperframes",
+        "why": "HyperFrames punch-in, punch-out, zoom, reframe, Ken Burns, camera move, visual match/whip handoff, or other seek-safe 2D/3D keyframes; GSAP, CSS keyframes, Anim"
+      },
+      {
+        "skill": "hyperframes-registry",
+        "source": "heygen-com/hyperframes",
+        "why": "Search, install and wire HyperFrames registry blocks and components. Use BEFORE hand-building any named visual — CRT scanlines, glitch, chromatic aberration, fi"
+      },
+      {
+        "skill": "mcp-builder",
+        "source": "anthropics/skills",
+        "why": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when b"
+      },
+      {
+        "skill": "media-use",
+        "source": "heygen-com/hyperframes",
+        "why": "Every media need for HyperFrames: resolve BGM, SFX, image, icon, brand logo, voice, colour grade or LUT into a frozen file; generate via TTS/music/image models;"
+      },
+      {
+        "skill": "no-ai-slop",
+        "source": "petergyang/no-ai-slop",
+        "why": "Edit drafts into sharper, more human writing while preserving the writer's voice, or detect AI-slop patterns without rewriting. Use when a draft should be clear"
+      },
+      {
+        "skill": "pitch-deck",
+        "source": "anthropics/financial-services",
+        "why": "Populating an investment-banking pitch-deck template from source data — the client's «pitch». Template population only, not decks from scratch."
+      },
+      {
+        "skill": "playwright-best-practices",
+        "source": "currents-dev/playwright-best-practices-skill",
+        "why": "Writing or fixing Playwright tests: flakiness, debugging failures, Page Object Model, CI/CD, API mocking, auth/OAuth, accessibility (axe-core), fixtures, tags a"
+      },
+      {
+        "skill": "prompt-engineering-patterns",
+        "source": "wshobson/agents",
+        "why": "Use when asked to optimise a prompt, improve prompt performance, design a prompt template, write better prompts, debug prompt issues, use chain-of-thought, stru"
+      },
+      {
+        "skill": "refactor",
+        "source": "github/awesome-copilot",
+        "why": "'Surgical code refactoring to improve maintainability without changing behavior. Covers extracting functions, renaming variables, breaking down god functions, i"
+      },
+      {
+        "skill": "simple-issue-description",
+        "source": "every-app/open-seo",
+        "why": "Turn a rough bug report, feature request, support note or pull request into a short plain-language issue about the problem and desired behaviour. Use to simplif"
+      },
+      {
+        "skill": "test-fixing",
+        "source": "mhattingpete/claude-skills-marketplace",
+        "why": "Run tests and systematically fix all failing tests using smart error grouping. Use when user asks to fix failing tests, mentions test failures, runs test suite "
+      },
+      {
+        "skill": "web-design-guidelines",
+        "source": "nexu-io/open-design",
+        "why": "Review UI code for Web Interface Guidelines compliance by the Vercel engineering team. Covers layout, typography, color, motion, and accessibility for product U"
+      }
+    ],
+    "ours": [
+      {
+        "skill": "brandkit",
+        "from": "local",
+        "why": "Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems, identity decks, and visual-world presentations. Trained fo"
+      },
+      {
+        "skill": "design-taste-frontend",
+        "from": "local",
+        "why": "Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that d"
+      },
+      {
+        "skill": "general-video",
+        "from": "local",
+        "why": "Author or edit a custom HyperFrames composition when no specialized workflow fits, or when BRIEF.md sets flow: companion. Use for longer or multi-scene pieces, "
+      },
+      {
+        "skill": "graphify",
+        "from": "local",
+        "why": "Use for any question about a codebase, its architecture, file relationships, or project content — especially when graphify-out/ exists, where the question shoul"
+      },
+      {
+        "skill": "high-end-visual-design",
+        "from": "local",
+        "why": "Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. "
+      },
+      {
+        "skill": "hyperframes-studio",
+        "from": "local",
+        "why": "Use when building or editing a HyperFrames project that people open in Studio: how the timeline should be laid out so it reads well (one caption track, one elem"
+      },
+      {
+        "skill": "minimalist-ui",
+        "from": "local",
+        "why": "Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels. No gradients, no heavy shadows."
+      },
+      {
+        "skill": "nj-evidence",
+        "from": "local",
+        "why": "Stand up or query a gated, script-verified knowledge base — a KB of facts plus a rules layer derived only from verified facts, each rule citing the entry ids it"
+      },
+      {
+        "skill": "nj-knowledge-book",
+        "from": "local",
+        "why": "Builds a sourced, gated knowledge book on one domain: research checkpoints, a verified fact DB (nj-evidence), numbered pages that cite only verified entries, pr"
+      },
+      {
+        "skill": "nj-laya",
+        "from": "local",
+        "why": "Decide whether a local, token-free classifier (Laya) applies before reaching for it — for routing a free-text choice, triaging a Playwright/test failure, or pic"
+      },
+      {
+        "skill": "nj-motion-deck",
+        "from": "local",
+        "why": "'Animated slide decks with Remotion: references → triage → style pick → devil rounds → build. One motion clip per slide in an autoplay PPTX, plus a real-text PD"
+      },
+      {
+        "skill": "nj-pinterest",
+        "from": "local",
+        "why": "'Browse Pinterest as the owner, headed, on his own signed-in profile, to gather motion/design reference images and metadata under his verbal HQ permission (personal"
+      },
+      {
+        "skill": "nj-researcher",
+        "from": "local",
+        "why": "Research a subject BEFORE the plan step, and produce a sourced checkpoint file the plan reads. Use when asked to research a topic, find sources or evidence, che"
+      },
+      {
+        "skill": "nj-style-film",
+        "from": "local",
+        "why": "'Builds a narrated kinetic-typography film in a visual style taken from supplied references: per-project intake form, Style DNA, storyboard on the voice clock, "
+      },
+      {
+        "skill": "pdf-typography",
+        "from": "local",
+        "why": "'PDFs whose text stays real: selectable and searchable. Self-hosted open-licence fonts as base64 @font-face, printed by headless Chrome, then audited. Use for P"
+      },
+      {
+        "skill": "redesign-existing-projects",
+        "from": "local",
+        "why": "Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and applies high-end design standards without bre"
+      },
+      {
+        "skill": "safe-delete",
+        "from": "local",
+        "why": "'Delete files and folders to the operating system''s recycle bin instead of destroying them, so anything removed can be restored. Use for every deletion: rm, Re"
+      },
+      {
+        "skill": "srs-verifier",
+        "from": "local",
+        "why": "'Audit a document against the system it describes (SRS, requirements, user or staff manual «دليل المستخدم»، «دليل الموظف», README, API reference, release notes)"
+      }
+    ]
+  },
+  "project_skills": {
+    "rule": "Linked, never copied. A skill that belongs to one repository stays in that repository and is reached from a working directory above it through a link — a directory junction on Windows (`New-Item -ItemType Junction`), a symlink elsewhere. A copy drifts from the tracked original the moment either side is edited, and the repository, not this kit, is the authority for these.",
+    "why_here": "They are ours and they are deliberately NOT in bundled/. scripts/export.py scans exactly one directory — the one the kit sits in, ~/.claude/skills — so a repo-resident skill is invisible to the roster it collects and to the Stop hook's change test (newest_content). This block is the record that they exist, where they live, and what each is for. It is hand-maintained; nothing derives it.",
+    "checkout": "<project-root>/PROJ-tests",
+    "link_into": "<project-root>/.claude/skills — three junctions created 2026-09-06. Claude Code reads .claude/skills from the working directory, not from a subdirectory of it: opened at the PROJ root, the three skills inside PROJ-tests never auto-loaded. The junctions are what make them load from either directory.",
+    "git": "PROJ-tests TRACKS .claude/skills — `git ls-files .claude/skills` lists them — so install.py must not add the kit's `.claude/skills/` line to that repo's .gitignore. That line exists to keep a private toolkit out of a commit; these three are a team convention the repo carries on purpose, and ignoring them would make the next `git add` silently drop the skills the tests depend on.",
+    "install": "scripts/install.py LINKS them when the recorded repo path exists under the install target's root (or at `checkout`), and says so and skips when it does not. It never copies them and never fetches them — there is no registry to fetch from. It also refuses to link into user scope (~/.claude/skills): a skill describing one portal, active in every repo opened on this machine, is worse than one that is missing. `--scope project`, run from the directory you actually open.",
+    "skills": [
+      {
+        "skill": "PROJ-e2e",
+        "repo": "PROJ-tests",
+        "path": ".claude/skills/PROJ-e2e",
+        "link": "linked, never copied",
+        "why": "Playwright end-to-end testing of the PROJ e-services portal and its back office. It carries the three things this portal punishes you for not knowing: the Angular/PrimeNG selector strategy — bind to the `formcontrolname` on the `taq-*` wrapper read off the live DOM, because a label or an aria-label also matches a decorative copy (`[aria-label=\"dropdown trigger\"]` matched the navbar's hidden language switcher and cost four builds); the reCAPTCHA double-press its sign-in needs, since the portal does not inject grecaptcha until the first submit, so the first press posts with no token; and the staff-side never-press-by-position guard — at the الدفع desk the first button in the workflow bar is «إلغاء», and `handOffByKeyboard()` reads the caption and refuses إلغاء/رفض/حذف/إرجاع/Cancel/Reject/Delete/Return, alef-folded since 2026-09-06. ${PORTAL_URL} only: a wrong staff-side press destroys a filed request and nothing undoes it. Since 2026-10-02 it also carries references/service-e2e-spec.md: the per-service staged Playwright TS spec (<slug>.e2e.spec.ts beside the manuals in Improvement Delivery) that the owner runs with VS Code's play button — one test per stage, header block, suite helper with Likely-cause reporting, retries 0, one real proof run. It exists because .cmd launchers and unproven specs 'did not work when I press run'; the VS Code Playwright extension 1.1.19 enables only the first config file and the first not-yet-saved project, so the services project must stay first in the one config."
+      },
+      {
+        "skill": "PROJ-manuals",
+        "repo": "PROJ-tests",
+        "path": ".claude/skills/PROJ-manuals",
+        "link": "linked, never copied",
+        "why": "The bilingual (Arabic/English) manual pipeline: one flow definition drives the portal and produces annotated screenshots, a narrated MP4 in the language of the edition, and a PDF, through four stages and one ledger so a wording fix never costs a re-record. Cairo for every printed page; deliverables named in Arabic after their kind — «<الاسم> - دليل المستخدم», «<الاسم> - دليل الموظف» — with every file inside repeating the folder's name, because a PDF is mailed away from its folder; names kept short because a full cover title in both the folder and the filename reached 231 of Windows' 260-character limit; and concealment rules so no real national ID, name, licence, serial or deployment tag is legible in a frame. 2026-10-02: work-process.md step 6 now outputs the staged e2e spec, the e2e passes before any TTS is paid for (narration saver), step 10 places the spec, and a 'known faults - do not reintroduce' list (no scroll-after-step rules, per-lane files, run_in_background builds, no backslashes via heredoc) guards the pipeline."
+      },
+      {
+        "skill": "project-srs",
+        "repo": "PROJ-tests",
+        "path": ".claude/skills/project-srs",
+        "link": "linked, never copied",
+        "why": "The project «وثيقة متطلبات الخدمة الإلكترونية» pipeline — a service's SRS built from harvested evidence rather than from memory. Four checkpoints, each a file the next stage reads (01-harvest.json → 02-evidence.json → 03-document.json → the PDF), so the expensive stage is the one you almost never repeat; one evidence source per section with the source recorded beside the fact, and a gate behind every rule. Chapter 2's private facts come from the back-office record alone, bound by «رمز الطلب» from rules.json → requestTypes and never by an Arabic name fragment — «اتلاف» opens a food-directorate service and harvests it in full. One A4 landscape sheet for «مخطط سير العمل», Cairo, and «لا يوجد» is a failed gate, not a section. Output is the PDF only — 2026-09-22, the owner: no DOCX is ever produced; the DOCX build path (`build-docx.ts`, `srs:docx`, `references/docx.md`) was removed. Reading a client's delivered `.docx` as evidence (`read-docx.ts`, `old-srs.ts`) is unaffected."
+      },
+      {
+        "skill": "PROJ-automation-tests",
+        "repo": "PROJ-tests",
+        "path": ".claude/skills/PROJ-automation-tests",
+        "link": "linked, never copied",
+        "why": "The ten-stage pipeline of the self-contained PROJ Automation Tests suite (Improvement Delivery/Automation Tests, shared with developers): discover, generate, data fixes in apply-spec-fixes/reapply-data scripts, the Jira fetch (jira.config.json, depth 3, credentials only from env or the git-ignored jira.local.json), analysis into jiraCheck/jiraSkipped so every note is covered, non-filing then ONE filing run, triage of every red stage into TEST / PORTAL-KNOWN / PORTAL-NEW / LIB / STAGING with README-service.md and lib-defect-N.md, lib fixes by one owner, the report page, the Thmanyah-only Jira notes PDF (build.ts + gates.ts), and the launcher hand-off. Added 2026-10-09 because workers rediscovered this split every run. Staging only; the VS Code Playwright first-config rule applies."
+      }
+    ],
+    "ensera": {
+      "checkout": "<ENSERA-root>",
+      "skills_dir": "<ENSERA-root>/.claude/skills",
+      "added": "2026-09-16",
+      "why": "Five sector skills for the Ensera company work (research, design, marketing, programs, production). Each is bound to the project's scripts/kb.py knowledge base and kb/ensera.db, so a copy elsewhere would point at a database that does not exist. Loaded automatically when Claude Code opens at the ENSERA root; no junction needed.",
+      "skills": {
+        "nj-research": "AI & Robotics research intelligence; top-100 source list; research sector of the KB",
+        "nj-design": "identity, palettes, logo, stamps, company character; design sector",
+        "nj-marketing": "pitch and presence on LinkedIn/social/universities/expos; marketing sector",
+        "nj-programs": "events, conferences, deadlines, participation plans; programs sector",
+        "nj-production": "video/post/article/expo production pipeline on brag + hyperframes; production sector"
+      },
+      "kb": "scripts/kb.py (SQLite; verify gate = tier-1/2 source or two independent hosts) and scripts/kb_update.py (deterministic freshness pass; uses certifi because this machine's Python has no CA bundle)"
+    }
+  },
+  "synced_content_mtime": 1792420538.581,
+  "maintenance": {
+    "rule": "The roster, MCP servers and hooks re-sync themselves. What does NOT: house_style, tooling, project_skills, and every 'why' note. Whoever creates or changes a skill updates those in the same turn — a manifest that lists a skill without saying why it is there is a list, not a toolkit.",
+    "learning_loop": "nj-learn captures lessons and routes them to whichever file will be read next time; bookkeeping is delegated to tlc-spec-driven/scripts/lessons.py with --root ~/.claude, rather than duplicating its recurrence and promotion logic.",
+    "security": "nj-security-review audits third-party skills for injection, concealment, bypass, self-installing hooks and exfiltration. install.py runs it --changed after fetching. The built-in /security-review is the other half: it reviews your own branch diff.",
+    "direction": "Execution is delegated: see house_style.delegation. The manifest is maintained by the director, but the stages that produce it are run by workers at the tier their reasoning requires, and the director relays their reports.",
+    "project_skills": "A skill that belongs to one repository stays in that repository and is reached by a LINK, never a copy — `New-Item -ItemType Junction` on Windows, `os.symlink` elsewhere. Copies drift and the repo is the authority. Record it under the top-level `project_skills`, add its name to OURS in scripts/export.py with the note that it lives outside SKILLS, and never gitignore a `.claude/skills` the repo already tracks. Four exist (PROJ-automation-tests added 2026-10-09): PROJ-e2e, PROJ-manuals, PROJ-automation-tests and project-srs, all in PROJ-tests.",
+    "skill_audit": "Adding a skill means arguing it against skill_audit.kept_and_why: the roster is sized to the recurring jobs listed there, and a skill that serves none of them is a description charged in every session for nothing. Trimming a description means holding house_style.skill_descriptions and house_style.arabic_triggers_protected. Trimming a THIRD-PARTY description means editing description-overrides.json, never the skill (house_style.third_party_skills)."
+  },
+  "standing_instructions": {
+    "file": "~/.claude/CLAUDE.md",
+    "why": "makes nj-method the default for every session in every project, and carries the few facts that are cheap to state and expensive to rediscover (poppler for Arabic, PYTHONUTF8, Thmanyah only and Cairo banned). install.py must copy this or a new machine follows none of it. Since 2026-10-16 its delegation section describes NJ Governance v4 (sonnet-lead / haiku-helper tree); the agents, hooks and env that enforce it ship in governance_v4."
+  },
+  "declined": {
+    "why": "Considered and turned down 2026-09-03. Recorded so they are not proposed again.",
+    "items": {
+      "claude-subconscious (letta-ai)": "sends every transcript to a third-party Letta agent, against the privacy setup; its own README calls it a non-production demo",
+      "claude.md5 / jbarbier CLAUDE.md": "would conflict with ~/.claude/CLAUDE.md, which holds the standing instructions",
+      "headroom (roman-ryzenadvanced)": "repo not publicly reachable",
+      "claude-squad (smtg-ai)": "requires tmux; not native on Windows"
+    }
+  },
+  "security": {
+    "last_review": "2026-09-07",
+    "report": "SECURITY-REVIEW-2026-09-06.md (every installed skill folder: source, scripts, egress, credentials, install-time actions, injection patterns, verdict). Dated addenda appended since: 2026-09-07 website-fine-print re-rate, 2026-09-07 refactor new install, 2026-09-07 claude-security reviewed PASS and then INSTALLED on the owner's word (see manifest.plugins), 2026-09-07 session-handoff new skill, SAFE.",
+    "awaiting_consent_note": "Empty as of 2026-09-07: claude-security, the only item that had been waiting, was installed on the owner's request. Keep the block's rule - anything that changes the harness waits for the owner, not a worker."
+  },
+  "skill_notes": {
+    "why": "Hand-written reasons for skills whose auto-derived description does not explain why they are here. export.py never rewrites this block.",
+    "website-fine-print": "Grew twice on 2026-09-07 from two more reels. Reel 3 (research/52) added the three privacy-policy content rows and five judgement-only legal questions; reel 4 (research/53) added a security surface and a category the vocabulary did not have: \"not observable from the front end at all\", which is different from MANUAL because MANUAL means a person reads what was already fetched and this means the right thing was never fetched. Three surfaces now, kept apart in the report because a stale copyright year and a missing privacy policy must never sound alike.",
+    "refactor": "github/awesome-copilot (MIT), installed to user scope 2026-09-07 after a security review (SECURITY-REVIEW-2026-09-06.md, the 2026-09-07 row): one SKILL.md, 16 843 bytes, zero scripts, zero hooks, zero network, zero credential reads, zero install-time action, and audit.py clean on all ten categories, run before and after install. Verdict SAFE. It is here because 'refactor this' had no house answer and the alternative was improvising one per session. What it actually supplies: the five-phase safe process (prepare with tests in place -> identify one smell -> change small, test, commit -> verify behaviour and performance -> clean up), ten named smells with before/after diffs, and a seventeen-row table of Fowler operations to name a move with instead of describing it. TWO THINGS TO KNOW BEFORE FOLLOWING IT. (1) Its examples are TypeScript and class-shaped - interfaces, abstract Validator chains, builder patterns. Take the operations, not the idioms; on QA Wrap's classic-JS MV3 extension the Strategy and Chain-of-Responsibility sections are wrong tools, and its 'introduce type safety' section does not apply at all. (2) Its 'When NOT to refactor' list is the load-bearing half and is the easiest part to skim past - code that works and will not change again, critical code without tests, and 'just because' are all rejections. Applied honestly it deletes most of a refactor backlog before any editing starts, which is the point. THE HOUSE ADDITION IT DOES NOT KNOW, and which cost real time on QA Wrap 2026-09-07: an MV3 extension has constraints the skill never mentions, and every one of them turns a textbook-correct extraction into a shipped bug. The service worker's boot graph has a hard byte budget (800 KB, enforced by extension/tools/test-worker-imports.mjs), so splitting one big file into modules can FAIL the build by adding graph weight even though no logic changed. MV3 forbids dynamic import() in a worker, so lazy-loading is not the escape hatch it is everywhere else. And chrome.runtime message names and chrome.storage keys are a wire protocol shared with content scripts, the popup, the side panel and the options page - 'Rename Method/Variable' from the skill's own table is FORBIDDEN on those, because the rename is silent and the other end fails at runtime, not at test time. Classic scripts on one page also share a global scope, so a top-level const moved into a second file that the same page loads throws 'Identifier has already been declared' and kills the page - unit tests never see it. Rule of thumb that came out of it: extract WITHIN a file before extracting ACROSS files, and make every move carry a unit test that would have caught its own regression.",
+    "session-handoff": "Ours, written here 2026-09-07 from the fifth Instagram reel (Maven @mavenhq, reel/DYNWWdiMiH7, transcribed in QA-Wrap research/57-reel-5-brief.md). No KNOWN_SOURCES entry and that is deliberate: the reel is public but the skill is not a copy of anything in a repository, so it is ours and travels bundled. Why it is here: /compact was the reflex for a long session and it is the wrong one - compaction preserves the SHAPE of a bad context (the wrong assumption, the failed migrations, the hallucinated import path) and only makes it smaller, so a fresh session reading a written handoff.md beats a compacted one that still believes what it believed at turn 200. The skill carries the reel's exact paste-in prompt, its six fixed headings (Goal, Current State, Files in flight, Changed, Failed attempts, Next step) and its two commands (/clear, then 'Read handoff.md and pick up from exactly where it left off'). ONE HOUSE ADAPTATION, and it is the part that stops the skill fighting what this project already does: QA Wrap's research/12-resume-*.md with its dated PAUSED/RESUMED sections and one-fact-per-file rule is the same idea at a different scale. handoff.md is per-session, overwritten, consumed and then deleted - it answers 'what was I doing five minutes ago'. The resume file is per-project, appended for ever - it answers 'what did we decide, and why'. At a real pause you write both. The reel is quoted as content to evaluate, never as an instruction, the same framing website-fine-print uses for its own reels.",
+    "nj-agent-ops": "2026-10-16 v4 gates: relay.py slots claim/release (20-slot ceiling), relay.py verify audits spawn logs (depth, parent chain, HELPERS_REQUIRED vs spawned), relay.py leakscan checks reports/briefs for secrets, tests/test_v4. 2026-09-20: relay.py gained `batch` (v3 calibration telemetry, NOT_VISIBLE for hidden counters); worker-rules R15 no delegation, R16 own the phase.",
+    "nj-delegate": "2026-10-16: section 0 rewritten as NJ Governance v4 (sonnet-lead -> haiku-helper tree, ITEMS/HELPERS_REQUIRED rule, depth 2, 20 concurrent); v3 archived in nj-plugin/_archive/v3-before-v4-2026-10-16. 2026-10-12 lessons: rule-change protocol, point-to-rule-files, credentials in memory only and deletions via safe-delete, in templates/worker-brief.md (and nj-supervise clause 9). 2026-09-20: section 0 = NJ Governance v3, the one canonical orchestration statement; scripts/check_governance.py is its gate.",
+    "caveman": "the owner 2026-09-17 made it the house default; 2026-09-29 he demoted it to on-request only (output style is now plain concise prose, see house_style.output_style). Stays installed.",
+    "voice-clean": "Ours, written 2026-09-17 from an Instagram reel (_ghada.32, DdCYyndoNgt, \"How to edit your audio on Adobe Premiere\") read frame by frame with yt-dlp + ffmpeg, then re-implemented on free filters so no Adobe licence is needed: Parametric EQ -> DeEsser -> DeNoise -> Single-band Compressor (-3.8 dB, 4:1, 5 ms, 100 ms) -> Amplify +6 dB -> Hard Limiter (-4 dBFS, 7 ms look-ahead) becomes highpass/equalizer/afftdn/deesser/acompressor/loudnorm/alimiter. Two deliberate departures from the reel: loudness normalisation replaces the fixed +6 dB boost (a measurement instead of a guess), and the ceiling is -1.5 dBTP instead of -4 dB. The script gates its own run — off target by >1 LU or over the ceiling exits 2. Verified once on the reel's own audio: +3.2 dBTP clipped input -> -16.0 LUFS, -2.2 dBTP.",
+    "bg-music": "Ours, written 2026-09-17 alongside voice-clean. Source of the mood taxonomy: an Instagram reel (viewcci, DdXP2FTOhfj) that sorts short-form sounds by what the video does — informational / challenge / motivational / deep — rather than by genre. The reel's own track list is commercial masters (Arctic Monkeys, Arcade Fire, Girlfriends, Ty's Music, Einaudi artwork) and NONE were downloaded: picking a sound inside Instagram/TikTok is covered by the platform's licence, the same audio inside a rendered MP4 or on a client channel is not. The skill fetches music of the same shape from Openverse (no API key; indexes Jamendo, Freesound, ccMixter, Wikimedia), refuses NC and ND licences because client work is commercial and every edit is a derivative, and writes library.json + ATTRIBUTION.md so a published track is traceable to a licence and a credit line — the KB's traceability rule applied to audio. House levels: bed -23 LUFS, voice -16 LUFS. 2026-09-18: bg-music now SHIPS a bundled licence-cleared asset library, rescued from the removed `brag` skill because the clearance was the expensive part - assets/sfx/ from Kenney.nl (CC0), assets/sfx/keyboard/ with 32 keypresses from Keyboard Soundpack #1 by unicae_games (also CC0), and assets/music/ beds by ende.app under the licence in music/README.md, which is the authority for that attribution and is kept unedited. assets/music/cues/ carries per-track beat and section presets so a cut locks to a bed without a beat detector, and assets/sfx/sfx-analysis.md rates each file for high-frequency risk. assets/PROVENANCE.md records all of it. CC0 needs no credit; the ende.app music does.",
+    "nj-learn": "Ours. 2026-09-18: nj-learn now owns scripts/lessons.py, recovered from tlc-spec-driven before the audit removed that skill. WHY IT WAS WORTH RESCUING: the store it reads and writes, ~/.claude/.specs/lessons.json, is real accumulated history on this machine and is untouched by the move. Deleting the only script that speaks to it would have orphaned the data while leaving nj-learn's duty - write the lesson where it will be read - with no store to write it to.",
+    "description-overrides.json": "The trimmed third-party descriptions as DATA: per skill, the trimmed text, its word count and the upstream count, plus a _note saying why the file exists. It exists because install.py fetches those skills from upstream repos that still carry the long originals, so a hand edit is correct on this machine and gone on the next - which defeats the point of the kit, that a new machine produces the same output. Added 2026-09-18.",
+    "scripts/apply-descriptions.py": "Applies description-overrides.json. Idempotent; --check reports drift and writes nothing; --skills <dir> for a project-scope install. It touches only the description: field (bodies belong upstream), replaces the field's whole line range so a block scalar cannot leave stray prose behind, and reports rather than creates a skill that is not installed. WIRED INTO install.py on 2026-09-18 (apply_description_overrides, called straight after install_skills) so a fresh install applies the trims instead of silently reverting to upstream's long descriptions. Deliberately NON-FATAL: a description 40 words too long is a token cost, not a broken install, so a missing overrides file or a crash in the applier is reported and stepped over. Run it after any skill update too - --check is the cheap way to learn whether an upstream refresh undid the trim.",
+    "nj-supervise": "Exists because effort metrics (tokens/calls/rows vs batch median) were tried and dropped: gameable per Goodhart, and meaningless at n=2-4 with 10x unit spread. What survived is artefact-based — mtime liveness against an explicit stall bound, a written file list for scope, sibling deviation in BOTH directions (zero is only the loudest case), and a director section, because all worker-side rules together still did not touch the director's own estimating failure. Moved into the nj-kit plugin (<NJ_PLUGIN_ROOT>/skills/nj-supervise, marketplace 1.1.1) on 2026-09-29 (owner, D4): it was the only governance skill outside the plugin although nj-delegate and CLAUDE.md lean on it; the personal copy went to the recycle bin after the plugin copy was installed. Its own brief skeleton was replaced by a pointer to nj-delegate/templates/worker-brief.md, because two skeletons had drifted apart.",
+    "nj-evidence": "Ours, 2026-09-22, ported out of ENSERA (`.agent-ops/briefs/mkb-0922g.md` lane K) where the owner named the method. Two stdlib-only scripts, kb.py (a gated fact store: verified needs a tier-1/2 primary source or two independent hosts, a retrieval date, a verifier who is not the author) and rules.py (short binding/advisory rule packs, each rule citing the kb.py entry ids it rests on, `rules.py check` failing the build if a citation goes missing or unverified). No KNOWN_SOURCES entry: nothing public, ours, bundled. Works in a repo with no KB yet — kb.py init creates the schema; the rules layer is optional. Why the gate is code and not prose: a rule can outlive its evidence, absence gets guessed instead of recorded as a gap, and a model re-checking its own claim is the same judgement asked twice, not a second one — the ENSERA run this was pulled from caught three wrong numbers and two wrong-source citations this way, none by re-reading prose. Does not carry ENSERA's KB or rule content — the skill is the method, ENSERA is only its worked example. 2026-10-16: the two scripts now ship in the skill (scripts/kb.py, rules.py; until then the SKILL said 'copy them' but none were bundled) and run in place with kb/kb.json (db, sectors, primary_hosts — required, no QA defaults). verify needs --quote found in a raw file fetch.py registered for one of the entry's own sources (sha-checked, >= 40 chars, numbers in order); add-batch / verify-batch added. Trigger 'build a knowledge base' moved to nj-knowledge-book.",
+    "nj-style-film": "Exists because the first style film (QA Wrap collage cut, 2026-09-20) lost more to wandering than to work: three estimates, a photo hunt that found nothing, an unrelated fix done mid-film, and a second render because a finished one was judged by its empty log. Standing prose rules were already in force and did not prevent any of it (research/136, objection 2), so what can be checked is checked by scripts/gate.py: the previous stage file exists and has the template shape, every storyboard cue sits inside its scene window, the pace line is computed not remembered, a style judged NOT IN HTML stops before a storyboard is spent on it, and an existing MP4 refuses a re-render. templates/PROJECT.md is the per-project intake with a written fallback for every optional slot, so a missing input is never a reason to go looking. It writes hf/BRIEF.md straight after init because the HyperFrames router asks no brief questions once that file exists. Since 20 Sept 2026 it also carries the house finish the owner asked for after the first reel: lines placed on real takes with a 0.35 s rest (no dead air), a generated music bed (scripts/bed.py, no licence to clear), SFX written as sfx(t, name) calls beside the tweens and mixed by scripts/mix.py to -14 LUFS, a whole-product narration by default, and two aspects from one film.html (templates/film.html + build.py): a commercial ships 9x16 and 16x9, a 20 s feature short ships 16x9 only. Needs numpy and scipy for bed.py and mix.py (uv pip install). STATUS: run three times on two styles; check passed first time on both aspects of the third run. 2026-10-01: Stage 5b adds a scored critique of the stills (all >= 8, one fix pass, inside the single run) and a director's-brief skeleton, ideas from @0xMovez's X article.",
+    "nj-jira": "2026-10-20: Bug = 5 short blocks; Task wording = PROJ-1234 layout (SKILL § Task wording). no *Verdict:* / *Source:* line in any ticket (bug-template block removed; [JIRA]/[ASSUMED] stay in QA reports only). 2026-10-18: batch label <stage>-<SERVICE-SLUG> on every Bug/Task (SKILL section + bug-template Labels line). Same DROPPED / NO SYSTEM CHANGE rule in notes.md, verdicts and the Bug template header. 2026-10-12 lessons: pre-filing gate, cross-service pattern check and systemic = one Bug (§4a); JQL text-search sanitising (rest-recipes); portal facts and signer rule (PROJ.md); evidence must show the defect (bug-template). 2026-10-12: findings scan, review gate and per-build recheck added (suite §3b/§4b/standard parts). 2026-10-11: written from the PROJ day (11 Bugs filed, QA re-check, tracker). Generic Jira REST v2 recipes + the harvest/dedupe/customs rules; PROJ host, assignee, Story keys and transition ids live only in references/PROJ.md; credentials are never in the skill.",
+    "nj-jira-to-automation": "2026-10-18: expectations come from the cited note source, never from current behaviour; heal proposals only, check still fails; rules in nj-qa-pipeline section 5. 2026-10-12: findings scan, review gate and per-build recheck added (suite §3b/§4b/standard parts). 2026-10-11: ticket -> notes.md -> latest-ticket.json -> jira-checks.ts (jiraCheck / jiraSkipped / noteEnv) -> generated per-note spec; filed-request notes are «محجوب» unless PROJ_RESUME_TICKET. Depends on a suite shaped by nj-automation-suite.",
+    "nj-automation-suite": "2026-10-18: ships the observe-only heal log (heal-log, reporter, report, selftest); rules point to nj-qa-pipeline section 5. 2026-10-12: findings scan, review gate and per-build recheck added (suite §3b/§4b/standard parts). 2026-10-11: scaffold recipe that POINTS at the PROJ reference suite instead of duplicating its code (no scripts/ on purpose). Portability via lib/paths.ts, run-report PDF with Thmanyah TrueType only, image-only Docker share, sweep-chrome, sign-in lock.",
+    "nj-qa-pipeline": "2026-10-18 (heal-observe): section 5 'Test oracles and self-healing' = canonical R1-R8, H1-H7, G1-G9, verdicts incl. OBSERVED/HEALED/HEAL-REJECTED, metrics, observe-only window 2026-10-18 -> 2026-11-15 (no apply mode, HEAL_MODE observe|off). 2026-10-18: dropped / no-action notes are never called untestable - labelled DROPPED or NO SYSTEM CHANGE with ticket/comment/author/date/quote, still checked, Bug header «مكان النقاش وما قيل» (§1b). 2026-10-12 lessons (references/lessons-2026-10-12.md): verdict rules, no clock holds, output inspection at the signing desk, report and email rules. 2026-10-12: findings scan, review gate and per-build recheck added (suite §3b/§4b/standard parts). 2026-10-11: umbrella over the three skills above; holds the orchestration rules proven that day (background workers + AMEND, one agent per service, route shares i%N==K, 503 pause, Lead decides) and the ADHD output standard.",
+    "nj-rank": "2026-10-20: Task body = registered description only (PROJ-1234 layout), jira_keys become Relates links, evidence not attached unless attach_evidence. create_task refuses a body with *Verdict:*/*Source:* (refuse_verdict_source, 47 tests). 2026-10-18: register --label / item field label sent as Jira labels on create (no default). 2026-10-12 lessons: Pitfalls section (JQL text search link, 7-Zip -spf2, unit tests never open a browser, no machine paths). 2026-10-12: written for the NJ-Rank backfill. Registers finished work (service or segment), keeps evidence paths, files each item to Jira as a Done Task assigned to the user (create, attach, transition, read-back, then 7z ultra with a t-test), and closes the user's own open Tasks. Stdlib only; credentials come from env, NJ_RANK_SECRETS or ~/.claude/secrets/jira.json and are never stored. Bugs are never transitioned. Source lives in nj-plugin/skills/nj-rank, like nj-jira. 2026-10-16: close-mine skips labels untestable/wrapup and --protect keys (trace.json or registry), refuses --apply without protection; link subcommand + file --link-to (Relates). 37 tests.",
+    "nj-wrapup": "2026-10-16 v2 (devil + 5-POV council, 3 dry-run trials x2, plugin 1.8.0): rebuilt from v1 after trials showed it would have filed all 8 later Not-Bugs of the 2026-10-12 run, filed PROJ-1234 five times, mis-counted the blocker, and spawned ~20 agents for a 16-ticket close-out. v2 = router by session type (notes test / re-check / multi-service run / non-testing / blocked env / zero-defect) + size ceilings (A<6 Lead only; 6-15 one filer; >=16 <=4 lanes by root cause) + gates as scripts with exit codes: discover.py, gates.py (6 cited gate cells per row, root-cause claims), reconcile.py (counts, GET read-back, Not-Bug refusal), render.py (AR/EN email, QA message, rank titles from trace only; leak lint; --work-summary). Risky rows held to one end-of-run question; PROJ hooks live in references/profile-PROJ.md. Research + votes: <NJ_PLUGIN_ROOT>/research/nj-wrapup-2026-10-16/.",
+    "nj-knowledge-book": "Ours, 2026-10-16, distilled from <QA-Engineer-root> (21 ISTQB certifications + 11 tools, 37 pages EN+AR, 1,049 verified entries, 384/389-page PDFs) and hardened by a 5-POV devil council over 3 rounds (scores r1 6/5/6/6/5 -> r2 7x5 -> r3 7/6/7/6/6.5; r3 broke ~70 inputs, every blocking break fixed as a selftest assertion, 86 total). The book layer on top of nj-evidence: page kinds with built-in templates, teaching gate (objectives, banks, keys apart, calc evaluated), quote-bound verification, blind audit before authoring, Arabic twin pair gate with en-sha stamps, report with outline/TOC page numbers/Method page, plan command for topology, council stage. Scripts run in place, never copied into projects. Why: the QA run's gates passed while verification was a status flip (1,057 verifies in 29 min), 162 entries passed under an alias, the PDFs had no bookmarks and nothing gated teaching."
+  },
+  "plugins": {
+    "why": "Plugins are not skills: they register hooks and ship agents, so they change the harness rather than adding a file to a folder. Each one here was named by the owner, reviewed, and installed on his word. export.py does not touch this block.",
+    "items": {
+      "claude-security@claude-plugins-official": "Anthropic's own in-session vulnerability scanner. Installed to user scope 2026-09-07 with `claude plugin marketplace add anthropics/claude-plugins-official` then `claude plugin install claude-security@claude-plugins-official`. WHY: (1) the owner asked for it by name. (2) It was reviewed as PASS on 2026-09-07 (SECURITY-REVIEW-2026-09-06.md, the claude-security addendum): zero network egress anywhere in the package, git invoked through argument lists and never a shell string, no credential paths read, no eval/exec, no obfuscation, `disable-model-invocation: true` so it runs only when a person names it. (3) The one thing that made it the owner's call rather than a worker's is the hooks - three of them, a banner on UserPromptExpansion and a metrics counter on Bash PostToolUse/PostToolUseFailure, narrowed by an `if` to its own scripts - and they run hooks.py, whose imports are stdlib only and which sends nothing anywhere. Stdlib-only, no egress, and still session-wide: that is why it waited for a word. WHAT WAS NOT DONE: its SKILL.md nudges the model to recommend auto permission mode once per job. That nudge was not acted on. No permission mode was changed, and the only settings.json keys the install touched are `extraKnownMarketplaces` and `enabledPlugins`. It does not replace nj-security-review (which asks whether somebody else's skill will act against you) or the built-in /security-review (which asks about the pending diff); this one asks where the vulnerabilities are in a whole repository. Listed in KNOWN_SOURCES so a new machine re-fetches it.",
+      "remotion@remotion": "Official Remotion skill pack (remotion-dev/claude-code-plugin, v4.0.526, MIT): 12 skills for code-driven motion graphics in React — create, best-practices, markup/animation, captions, multimedia, maps, studio, render, interactivity, saas, docs, upgrade. Installed to user scope 2026-09-21 on the owner's word (`claude plugin marketplace add remotion-dev/claude-code-plugin` then `claude plugin install remotion@remotion`). WHY: a second video lane next to HyperFrames — React/TSX compositions rendered with its own CLI, which is what Remotion is for; HyperFrames stays the default for HTML compositions. REVIEWED 2026-09-21 (pattern scan, not a full nj-security-review): 162 markdown files, docs only — no scripts, no hooks, no eval, no network calls, no credential paths read. The only credential names present are documentation examples for OPTIONAL paid third-party services (REMOTION_MAPBOX_TOKEN, REMOTION_MAPTILER_KEY, ELEVENLABS_API_KEY) in the maps and voiceover pages; those are NOT used here — the free-tools rule stands, so maps and hosted TTS lanes are off. INSTALL NOTE: `plugin install` clones over SSH and this machine has no GitHub key; it fails with 'Permission denied (publickey)'. Worked around with a temporary `git config --global url.\"https://github.com/\".insteadOf git@github.com:`, reverted immediately after. Skills listed in KNOWN_SOURCES so a new machine re-fetches instead of bundling 162 files.",
+      "nj-kit@nj-kit": "the owner's own plugin, installed from a DIRECTORY marketplace (known_marketplaces.json: nj-kit -> <NJ_PLUGIN_ROOT>); sessions load the cache copy under ~/.claude/plugins/cache/nj-kit/nj-kit/<version>, never the source, so every edit to <NJ_PLUGIN_ROOT> needs a version bump in .claude-plugin/marketplace.json and a refresh (`claude plugin marketplace update nj-kit`, then `claude plugin update nj-kit@nj-kit`). Version 1.1.1 (2026-09-29): prompt-audit changes (brief FOCUS/ENTRY_SMOKE/RESUME/CHANGED, worker-rules R10 AMEND: and R13-R17, runtime map with model ids and prices, foreground dispatch for writing workers, receipt <= 25 lines + detail file) and nj-supervise moved in from ~/.claude/skills (D4). Skills: arabic-english-proofreading, bg-music, devil, impact-copy, nj-agent-ops, nj-delegate, nj-director, nj-learn, nj-method, nj-security-review, nj-supervise, nj-writer, pdf-typography, session-handoff, voice-clean, website-fine-print, workflow-diagram. Archived (not listed, restorable from nj-plugin/_archive): srs-verifier, design-gate, script-your-tools, scout, 10x."
+    }
+  },
+  "skill_audit": {
+    "date": "2026-09-18",
+    "ask": "the owner: resize the kit to our scope only, not dynamic and not generic, so it cuts token cost and betters the results.",
+    "contract": "nj-kit/SKILL-AUDIT-2026-09-18.md. The work is recorded in TRIM-OURS-2026-09-18.md, TRIM-THIRD-PARTY-2026-09-18.md and KIT-SYNC-2026-09-18.md.",
+    "what_the_cost_is": "Skill DESCRIPTIONS are the only always-on cost: every installed skill's description is loaded in every session before any work happens. Bodies (164k words) cost only when a skill is invoked, reference files (670k) only when opened, assets (~48 MB) never. Deleting bytes was never the job; deleting descriptions and genericness was.",
+    "measured": {
+      "description_words_before": 5463,
+      "description_words_after": 1675,
+      "skills_before": 80,
+      "skills_after": 53,
+      "basis": "actual - PYTHONUTF8=1 python word splits on the parsed YAML description of every installed skill, not estimated."
+    },
+    "bodies_trimmed": "Ours only, four skills: nj-delegate 5,929 -> 4,588; nj-agent-ops 2,117 -> 1,677; nj-method 1,435 -> 1,104; impact-copy 691 -> 655. Every measured fact and gate line kept verbatim - those were the expensive things to learn. What went is generality.",
+    "reversible": "EVERY ONE OF THE 27 IS REINSTALLABLE FROM THE `source` ALREADY RECORDED IN THIS MANIFEST (skills.third_party carried owner/repo@skill for each one, and git history still holds those rows): `npx skills add <owner>/<repo>` or scripts/install.py brings it straight back. That is what makes the cut reversible, and it is the reason the audit cut hard rather than carefully. The folders also went to the recycle bin via safe-delete, so a restore needs no network.",
+    "removed_count": 27,
+    "removed": {
+      "seo-audit": "SEO: no project is a marketing site; never invoked. Nine of these cost ~135 description words in every session.",
+      "seo-coach": "SEO: no project is a marketing site; never invoked. Nine of these cost ~135 description words in every session.",
+      "seo-project-setup": "SEO: no project is a marketing site; never invoked. Nine of these cost ~135 description words in every session.",
+      "keyword-research": "SEO: no project is a marketing site; never invoked. Nine of these cost ~135 description words in every session.",
+      "keyword-clustering": "SEO: no project is a marketing site; never invoked. Nine of these cost ~135 description words in every session.",
+      "local-seo": "SEO: no project is a marketing site; never invoked. Nine of these cost ~135 description words in every session.",
+      "link-prospecting": "SEO: no project is a marketing site; never invoked. Nine of these cost ~135 description words in every session.",
+      "competitive-landscape": "SEO: no project is a marketing site; never invoked. Nine of these cost ~135 description words in every session.",
+      "competitor-analysis": "SEO: no project is a marketing site; never invoked. Nine of these cost ~135 description words in every session.",
+      "remotion-best-practices": "Competing film framework: 36k reference words for Remotion, which the house pipeline does not use (Playwright + ffmpeg + Gemini TTS via OpenRouter, hyperframes for motion).",
+      "graphify": "166k reference words, the largest load in the set, never used in any project; its vendored install.py appends to CLAUDE.md and registers hooks.",
+      "tlc-spec-driven": "18.9k reference words, never used. Its scripts/lessons.py was worth keeping and now lives in nj-learn.",
+      "task-observer": "25.7k reference words, never used, and its description demanded invocation before the first tool call of every session.",
+      "design-taste-frontend": "Design duplicate (12.9k words): eleven design skills collapse to apple-design, ui-ux-pro-max and our own design-gate.",
+      "high-end-visual-design": "Design duplicate: covered by apple-design + ui-ux-pro-max + design-gate.",
+      "redesign-existing-projects": "Design duplicate: covered by apple-design + ui-ux-pro-max + design-gate.",
+      "minimalist-ui": "Design duplicate: covered by apple-design + ui-ux-pro-max + design-gate.",
+      "theme-factory": "Design duplicate: ui-ux-pro-max carries the palettes, design-gate the tokens.",
+      "brandkit": "Design duplicate: identity work runs on ui-ux-pro-max + design-gate.",
+      "image-to-code": "Design duplicate, never used: screenshot-to-markup is not a recurring house job.",
+      "framer-motion-animator": "Design duplicate: motion lives in the hyperframes set and apple-design.",
+      "professional-proofreader": "Duplicated by ours: arabic-english-proofreading is the house one and catches Arabic faults this one does not.",
+      "find-skills": "Meta, not work: skill-creator covers authoring.",
+      "skill-inspector": "Meta, not work: nj-security-review covers auditing a skill.",
+      "cco": "Meta, not work: context economy is nj-delegate / nj-agent-ops policy here.",
+      "i-have-adhd": "Meta, not work.",
+      "brag": "Rejected in practice: four renders, four rejections. The house film pipeline is the tool. Its CC0 audio was moved to bg-music/assets/ with assets/PROVENANCE.md BEFORE removal, because the licence clearance was the part worth keeping."
+    },
+    "kept_and_why": "See SKILL-AUDIT-2026-09-18.md sections 5 and 6. The recurring jobs the roster is now sized to: a Chrome extension and its QA tooling; Playwright automation; Arabic and bilingual SRS, manuals and ministry submissions; PDFs whose text survives copy-paste; films and commercials through the house pipeline; identity, UI and design review; delegation and session ops. Nothing else has appeared in any project."
+  },
+  "governance_v4": {
+    "why": "v4 turns the trigger-only hierarchy (the owner 2026-10-14) into enforced tooling: typed agents, spawn/guard hooks, and runtime limits. A new machine needs all of it or v4 is prose only. export.py bundles agents and hooks; install.py copies them (backup, idempotent) and merges env.",
+    "agents": [
+      {
+        "path": "~/.claude/agents/sonnet-lead.md",
+        "why": "defines the Sonnet service lead the Lead delegates every build/fix to: owns one phase, single writer, briefs haiku-helpers, commits only, reports once."
+      },
+      {
+        "path": "~/.claude/agents/haiku-helper.md",
+        "why": "defines the Haiku helper for mechanical bounded work: no Agent tool so it cannot spawn, cannot push or merge, no secrets reads, reports once."
+      }
+    ],
+    "hooks": [
+      {
+        "path": "~/.claude/hooks/nj_spawn.py",
+        "why": "logs every subagent spawn with parent, child type, model and depth to ~/.claude/logs/spawn-log.jsonl and <project>/.agent-ops/spawns.jsonl, because hook input carries no parent/depth; relay.py verify audits depth and hierarchy from it."
+      },
+      {
+        "path": "~/.claude/hooks/nj_guard.py",
+        "why": "PreToolUse guard that makes two v4 rules mechanical: subagents may not push or merge (the Lead merges) and haiku helpers may not touch credential paths."
+      }
+    ],
+    "env": [
+      {
+        "name": "CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH",
+        "value": "2",
+        "why": "caps nesting at Lead -> Sonnet lead -> Haiku helper; a helper that tries to spawn is refused by the runtime."
+      },
+      {
+        "name": "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS",
+        "value": "20",
+        "why": "matches the 20-slot ceiling relay.py slots enforces, so the runtime and the ledger agree."
+      }
+    ]
+  }
+}

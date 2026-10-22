@@ -1,0 +1,75 @@
+{
+  "name": "example-project",
+  "doc_type": "requirements-spec",
+  "notes": "Copy this next to the documents it serves — never into the skill. One profile per project. Keys are optional; supply what the domain has. Paths are relative to `root`, or to this file if `root` is absent, and may be globs.",
+
+  "root": "..",
+
+  "evidence_ladder": {
+    "1_definition_of_record": {
+      "path": "catalogue/service-catalogue.csv",
+      "settles": "outputs, fees, SLA, audience, channels, attachments, owning unit"
+    },
+    "2_executing_artefact": {
+      "path": "models/*.bpmn20.xml",
+      "settles": "stages, roles, action keys, timers, notifications, terminal states"
+    },
+    "3_enforced_behaviour": {
+      "path": "messages/*/messages_ar.txt",
+      "settles": "mandatory-field error codes, allowed values, message wording verbatim"
+    },
+    "4_live_surface": {
+      "note": "the running application at a pinned build — see live_ui below"
+    },
+    "5_corroborating": {
+      "path": "harvest/**/*.json",
+      "settles": "prior revisions, UAT tickets, harvested UI glossary. Corroborating only"
+    }
+  },
+
+  "live_ui": {
+    "base_url": "https://staging.example.gov/portal",
+    "credentials_at": "config/example/*.json",
+    "_comment": "The scanner prints base_url and the credentials *location*. It never opens either. Nothing reads a secret."
+  },
+
+  "documents": {
+    "under_audit": "docs/**/*.pdf",
+    "reports_to": "artifacts/verification"
+  },
+
+  "id_patterns": {
+    "requirement": "FR-\\d{1,4}",
+    "non_functional": "NFR-\\d{1,4}",
+    "business_rule": "BR-\\d{1,4}",
+    "user_story": "US-\\d{1,4}",
+    "acceptance": "AC-\\d{1,4}",
+    "error_code": "ERROR_\\d+"
+  },
+  "sequential_ids": ["requirement", "business_rule", "user_story"],
+  "cross_ref_patterns": ["(?:FR|NFR|BR|US|AC)-\\d{1,4}"],
+
+  "optionality_markers": {
+    "optional": ["optional", "not required", "اختياري", "غير اجباري", "غير إجباري"],
+    "mandatory": ["mandatory", "required", "اجباري", "إجباري", "حقل إجباري"]
+  },
+
+  "promise_markers": [
+    "notification", "notify", "sms", "email", "certificate", "output", "deadline", "sla",
+    "إشعار", "رسالة نصية", "بريد إلكتروني", "مخرج", "شهادة", "مهلة", "خلال"
+  ],
+
+  "vague_terms": [
+    "as needed", "as appropriate", "promptly", "regularly", "sufficient", "user-friendly",
+    "حسب الحاجة", "بشكل مناسب", "دوريا", "عند الضرورة", "حسب الأصول"
+  ],
+
+  "testable_verbs": [
+    "shall", "must", "displays", "rejects", "sends", "returns", "prevents", "validates",
+    "يجب", "يعرض", "يرفض", "يرسل", "يمنع", "ينقل", "يتحقق", "يوزع", "يلغي", "يتيح"
+  ],
+
+  "required_table_columns": [
+    "field name", "type", "input", "editable", "integration source", "default value", "constraints"
+  ]
+}

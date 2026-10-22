@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>نموذج ضبط الطباعة</title>
+<!--
+  A document that exercises everything the skill claims: Arabic body text, a
+  Latin phrase and a long number on the same line, a table that needs its
+  columns sized, a real list, and a lead-in that must not part from its table.
+
+  It carries no @font-face of its own — render-pdf.mjs injects those, which is
+  the point. Its own stylesheet is only the identity: colour and scale.
+-->
+<style>
+  :root { --ink:#12315B; --rule:#D8E0EA; --quiet:#6B7280; }
+  body { color: var(--ink); font-size: 11pt; line-height: 1.85; }
+  h1 { font-size: 20pt; margin: 0 0 4px; }
+  h2 { font-size: 14pt; margin: 22px 0 6px; padding-bottom: 6px; border-bottom: 2px solid var(--ink); }
+  .sub { color: var(--quiet); margin: 0 0 18px; }
+  th, td { border: 1px solid var(--rule); padding: 7px 9px; }
+  th { background: #F1F5FA; text-align: start; font-weight: 600; }
+  tbody tr:nth-child(even) td { background: #FBFCFE; }
+  .latin { font-size: 10.5pt; }
+</style>
+</head>
+<body>
+
+<h1>نموذج ضبط الطباعة</h1>
+<p class="sub">صفحة اختبار لخطوط المستندات ومحاذاتها</p>
+
+<h2>نص عربي متصل</h2>
+<p>يشرح هذا الدليل كيفية تسجيل الدخول إلى بوابة الأعمال الخاصة بالمؤسسة.
+ويغطي كل حقل من حقول استمارة تسجيل الدخول، إضافة إلى خيار الدخول باستخدام
+الهوية الرقمية. الغرض من هذه الصفحة أن تُطبع ثم يُنسخ منها نص ويُلصق في مكان
+آخر، للتأكد من أن الحروف تعود كما كُتبت.</p>
+
+<h2>سطر يجمع العربية واللاتينية والأرقام</h2>
+<p>رقم الطلب <bdi dir="ltr">78202600026</bdi> ضمن مديرية التدقيق والمتابعة —
+<bdi dir="ltr">SRS v1.2</bdi>، ومعرّف الوثيقة
+<bdi dir="ltr">PROJ-UM-LG-001-AR</bdi>.</p>
+
+<h2>جدول</h2>
+<p class="lead-in">المرفقات المطلوبة عند اختيار «مستورد»:</p>
+<table>
+  <colgroup>
+    <col style="width:34%"><col style="width:22%"><col style="width:18%"><col style="width:26%">
+  </colgroup>
+  <thead>
+    <tr><th>اسم الوثيقة</th><th>الصيغ المقبولة</th><th>الحجم الأقصى</th><th>ملاحظات</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>شهادة التسجيل التجاري</td><td class="latin">pdf, jpg, png</td><td>10 ميجابايت</td><td>سارية المفعول</td></tr>
+    <tr><td>وكالة الشركة الأم</td><td class="latin">pdf</td><td>10 ميجابايت</td><td>مصدّقة حسب الأصول</td></tr>
+    <tr><td>قائمة المنتجات</td><td class="latin">xlsx, pdf</td><td>25 ميجابايت</td><td>لا يوجد</td></tr>
+  </tbody>
+</table>
+
+<h2>قائمة</h2>
+<ul>
+  <li>تُقدَّم الطلبات إلكترونياً فقط عبر بوابة الأعمال.</li>
+  <li>يُدفع الرسم بعد التدقيق، لا قبله.</li>
+  <li>تُسلَّم الوثائق الأصلية ورقياً عند الطلب.</li>
+</ul>
+
+</body>
+</html>

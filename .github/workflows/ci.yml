@@ -1,0 +1,16 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Python compiles
+        run: python -m compileall -q nj-plugin nj-kit > /dev/null
+      - name: JSON parses
+        run: find . -name "*.json" -not -path "./.git/*" -print0 | xargs -0 -n1 python -m json.tool > /dev/null
+      - name: No secrets or machine paths
+        run: |
+          if grep -rInE "C:[\/]+Users[\/]+[A-Za-z]+[\/]+Desktop|\bghp_[A-Za-z0-9]{20}|github_pat_|\bsk-(or-|ant-|proj-)?[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{30}|-----BEGIN [A-Z ]*PRIVATE KEY" --exclude-dir=.git --exclude=ci.yml .; then echo "::error::secret or machine path found"; exit 1; fi

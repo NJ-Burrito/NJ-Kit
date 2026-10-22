@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+*.bak*
+.env
+.env.*
+.agent-ops/
+graphify-out/
+**/fonts/thmanyah/
+**/fonts/licensed/*.ttf
+**/fonts/licensed/*.otf
+**/fonts/licensed/*.woff*
+# Fonts are never published — local only
+local-fonts/
+*.ttf
+*.otf
+*.woff
+*.woff2
+*.ttc
+*.eot

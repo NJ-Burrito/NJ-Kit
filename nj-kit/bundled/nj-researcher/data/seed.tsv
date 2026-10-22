@@ -1,0 +1,337 @@
+# nj-researcher seed registry. Columns, separated by " | " (tab also accepted):
+# name | url | domain | tier | lang | region | state | authoritative_for | why this tier
+# state: verified = URL confirmed to exist; unverified = recorded from knowledge, confirm before citing.
+# A tier is authority FOR the stated scope, never in general. See references/RUBRIC.md.
+
+# ---------------------------------------------------------------- AI / ML
+arXiv cs.AI | https://arxiv.org/list/cs.AI/recent | ai | 2 | en | global | verified | preprints: the paper itself, before peer review | primary text of the research, but NOT peer reviewed - cite as a preprint and say so
+arXiv cs.LG | https://arxiv.org/list/cs.LG/recent | ai | 2 | en | global | verified | machine-learning preprints | same as cs.AI: primary but unreviewed
+arXiv cs.CL | https://arxiv.org/list/cs.CL/recent | ai | 2 | en | global | verified | NLP and language-model preprints | primary but unreviewed
+arXiv cs.CV | https://arxiv.org/list/cs.CV/recent | ai | 2 | en | global | verified | computer-vision preprints | primary but unreviewed
+arXiv cs.RO | https://arxiv.org/list/cs.RO/recent | ai | 2 | en | global | verified | robotics preprints | primary but unreviewed
+arXiv stat.ML | https://arxiv.org/list/stat.ML/recent | ai | 2 | en | global | verified | statistical ML theory preprints | primary but unreviewed
+Papers with Code | https://paperswithcode.com/ | ai | 4 | en | global | unverified | finding the code behind a paper and leaderboard context | community-maintained index; leaderboards are self-reported - a map to primaries
+OpenReview | https://openreview.net/ | ai | 2 | en | global | verified | the actual peer reviews of ICLR/NeurIPS submissions | shows the review itself, which is stronger evidence than the acceptance
+NeurIPS proceedings | https://papers.nips.cc/ | ai | 2 | en | global | verified | accepted NeurIPS papers | peer-reviewed conference of record in ML
+ICML proceedings (PMLR) | https://proceedings.mlr.press/ | ai | 2 | en | global | verified | ICML/AISTATS/CoLT accepted papers | peer-reviewed proceedings series
+JMLR | https://www.jmlr.org/ | ai | 2 | en | global | verified | peer-reviewed ML theory and methods | open-access journal of record, no publisher paywall incentive
+ACL Anthology | https://aclanthology.org/ | ai | 2 | en | global | verified | every ACL/EMNLP/NAACL paper | complete peer-reviewed NLP archive
+CVF Open Access | https://openaccess.thecvf.com/ | ai | 2 | en | global | verified | CVPR/ICCV/ECCV papers | peer-reviewed vision proceedings
+AAAI proceedings | https://ojs.aaai.org/index.php/AAAI | ai | 2 | en | global | unverified | AAAI accepted papers | peer-reviewed AI conference
+DeepMind research | https://deepmind.google/research/ | ai | 2 | en | global | unverified | what DeepMind claims about its own systems | first-party: authoritative for their system, interested about its significance
+OpenAI research | https://openai.com/research | ai | 2 | en | global | unverified | OpenAI model capabilities and releases | first-party - authoritative for the artefact, not for comparative claims
+Anthropic research | https://www.anthropic.com/research | ai | 2 | en | global | verified | Claude model behaviour, safety and interpretability work | first-party for own models
+Anthropic model cards / docs | https://docs.claude.com/ | ai | 1 | en | global | verified | Claude API surface, model IDs, limits, pricing | vendor documentation IS the primary record for its own product
+Meta AI research | https://ai.meta.com/research/ | ai | 2 | en | global | unverified | Llama family and FAIR output | first-party
+Google Research blog | https://research.google/blog/ | ai | 3 | en | global | unverified | Google research announcements | corporate blog: announcement, cite the linked paper instead
+Hugging Face models | https://huggingface.co/models | ai | 3 | en | global | verified | what weights and model cards actually exist | the artefact is real; model-card claims are uploader-supplied
+Hugging Face datasets | https://huggingface.co/datasets | ai | 3 | en | global | verified | dataset availability and licences | as above
+NIST AI Risk Management Framework | https://www.nist.gov/itl/ai-risk-management-framework | ai | 1 | en | us | verified | the US reference framework for AI risk | standards body publishing its own normative text
+EU AI Act (EUR-Lex) | https://eur-lex.europa.eu/eli/reg/2024/1689/oj | law | 1 | en | eu | unverified | the binding text of the EU AI Act | the official journal text is the law itself
+OECD AI Policy Observatory | https://oecd.ai/ | ai | 1 | en | global | verified | national AI policies and the OECD AI Principles | IGO publishing the instrument it owns
+Stanford HAI AI Index | https://aiindex.stanford.edu/report/ | ai | 2 | en | global | verified | year-over-year AI measurement | university institute, methodology published; still a secondary compilation
+Epoch AI | https://epoch.ai/ | ai | 3 | en | global | unverified | compute, dataset and training-run trend estimates | transparent methodology, but estimates not primary records
+ML Commons / MLPerf | https://mlcommons.org/benchmarks/ | ai | 1 | en | global | unverified | standardised ML benchmark results | consortium that defines the benchmark - primary for the benchmark
+Partnership on AI | https://partnershiponai.org/ | ai | 3 | en | global | unverified | multi-stakeholder AI practice guidance | member-funded; check who funded a given report
+AI Incident Database | https://incidentdatabase.ai/ | ai | 3 | en | global | unverified | catalogued real-world AI harms | curated community database; each entry links a press primary
+UK AI Safety Institute | https://www.aisi.gov.uk/ | ai | 1 | en | global | unverified | UK government model evaluations | government body publishing its own evaluations
+IEEE Spectrum | https://spectrum.ieee.org/ | ai | 3 | en | global | verified | engineering and AI reporting for practitioners | edited specialist press with a professional-society parent
+The Batch (DeepLearning.AI) | https://www.deeplearning.ai/the-batch/ | ai | 4 | en | global | unverified | weekly AI news roundup | newsletter/aggregator - follow through to the primary
+Import AI newsletter | https://importai.substack.com/ | ai | 4 | en | global | unverified | AI policy and capability commentary | one author's analysis; useful pointer, not a citation
+ROS (Robot Operating System) docs | https://docs.ros.org/ | ai | 1 | en | global | verified | ROS APIs and behaviour | project documentation is primary for the project
+IFR World Robotics | https://ifr.org/ | ai | 2 | en | global | unverified | industrial robot installation statistics | the industry federation that collects the census; interested party, methodology stated
+
+# ---------------------------------------------------------- software engineering
+MDN Web Docs | https://developer.mozilla.org/ | software | 2 | mixed | global | verified | web platform APIs, HTML/CSS/JS behaviour | community+Mozilla maintained, tracks the specs, has a change history
+WHATWG HTML Standard | https://html.spec.whatwg.org/ | standards | 1 | en | global | verified | what HTML actually is | the living specification itself
+W3C standards | https://www.w3.org/TR/ | standards | 1 | en | global | verified | web standards recommendations | the standards body's own normative texts
+ECMA-262 (TC39) | https://tc39.es/ecma262/ | standards | 1 | en | global | verified | JavaScript language semantics | the language specification itself
+TC39 proposals | https://github.com/tc39/proposals | software | 1 | en | global | verified | the real stage of a JS feature | the committee's own tracking repo
+IETF RFC Editor | https://www.rfc-editor.org/ | standards | 1 | en | global | verified | internet protocols (HTTP, TLS, DNS, SMTP) | the RFC is the protocol definition
+IETF Datatracker | https://datatracker.ietf.org/ | standards | 1 | en | global | verified | the status and history of any draft or RFC | primary process record
+Python docs | https://docs.python.org/3/ | software | 1 | en | global | verified | Python language and stdlib behaviour | the implementation's own reference
+PEP index | https://peps.python.org/ | software | 1 | en | global | verified | why Python is the way it is; deprecation timelines | the design record itself
+CPython repository | https://github.com/python/cpython | software | 1 | en | global | verified | what the interpreter actually does | the source is the final authority on behaviour
+Node.js docs | https://nodejs.org/docs/latest/api/ | software | 1 | en | global | verified | Node runtime APIs and release lines | project documentation
+Rust std / Reference | https://doc.rust-lang.org/reference/ | software | 1 | en | global | verified | Rust language semantics | project reference
+Go documentation | https://go.dev/doc/ | software | 1 | en | global | verified | Go language and toolchain | project documentation
+Linux kernel documentation | https://docs.kernel.org/ | software | 1 | en | global | verified | kernel interfaces and behaviour | maintained in-tree with the code
+PostgreSQL documentation | https://www.postgresql.org/docs/ | software | 1 | en | global | verified | PostgreSQL semantics, SQL conformance notes | project documentation, versioned
+SQLite documentation | https://sqlite.org/docs.html | software | 1 | en | global | verified | SQLite behaviour and file format | project documentation by the sole maintainer team
+POSIX / Open Group Base Specs | https://pubs.opengroup.org/onlinepubs/9699919799/ | standards | 1 | en | global | unverified | what POSIX actually requires | the standard text
+Kubernetes documentation | https://kubernetes.io/docs/ | software | 1 | en | global | verified | Kubernetes API and behaviour | project documentation
+Docker documentation | https://docs.docker.com/ | software | 1 | en | global | verified | Docker CLI, build and runtime behaviour | vendor documentation for its own product
+AWS documentation | https://docs.aws.amazon.com/ | software | 1 | en | global | verified | AWS service behaviour, limits, pricing pages | vendor is primary for its own service
+Google Cloud documentation | https://cloud.google.com/docs | software | 1 | en | global | verified | GCP service behaviour | vendor primary
+Azure documentation | https://learn.microsoft.com/azure/ | software | 1 | en | global | verified | Azure service behaviour | vendor primary
+Git documentation | https://git-scm.com/docs | software | 1 | en | global | verified | git command semantics | project reference
+GitHub docs | https://docs.github.com/ | software | 1 | en | global | verified | GitHub API, Actions, permissions | vendor primary
+PostgREST/OpenAPI Spec | https://spec.openapis.org/oas/latest.html | standards | 1 | en | global | unverified | the OpenAPI specification | the spec itself
+Unicode Consortium | https://www.unicode.org/ | standards | 1 | mixed | global | verified | character encoding, bidi, Arabic shaping | the standard that defines the behaviour
+Unicode UAX #9 Bidirectional Algorithm | https://www.unicode.org/reports/tr9/ | standards | 1 | en | global | unverified | the exact bidi rules Arabic text depends on | normative annex
+CLDR (Unicode locale data) | https://cldr.unicode.org/ | standards | 1 | mixed | global | unverified | locale, calendar and number formats incl. Arabic | the reference locale data
+ACM Digital Library | https://dl.acm.org/ | software | 2 | en | global | verified | peer-reviewed CS literature | scholarly society archive
+IEEE Xplore | https://ieeexplore.ieee.org/ | software | 2 | en | global | verified | peer-reviewed engineering and CS papers | society publisher, peer review
+USENIX proceedings | https://www.usenix.org/publications/proceedings | software | 2 | en | global | unverified | systems and security papers with artefact evaluation | peer review plus artefact checking
+Google SRE book | https://sre.google/books/ | software | 3 | en | global | unverified | one large operator's reliability practice | vendor-authored experience report, not a standard
+Martin Fowler / bliki | https://martinfowler.com/ | software | 3 | en | global | verified | named design and refactoring terminology | single expert author, cited widely, but one person's definitions
+Stack Overflow | https://stackoverflow.com/ | software | 4 | mixed | global | verified | finding that a problem exists and candidate fixes | user-generated, voted, often stale - verify against the vendor doc
+Hacker News | https://news.ycombinator.com/ | software | 4 | en | global | verified | discovering what practitioners are reacting to | discussion board, no editorial control
+OWASP | https://owasp.org/ | security | 2 | en | global | verified | application-security practice and the Top 10 | open foundation, documented process, widely adopted
+Semantic Versioning | https://semver.org/ | standards | 1 | mixed | global | verified | what a version number promises | the specification itself
+Chromium Platform Status | https://chromestatus.com/ | software | 1 | en | global | unverified | which web features ship in Chrome and when | the implementer's own tracker
+Can I Use | https://caniuse.com/ | software | 3 | en | global | verified | cross-browser support tables | compiled from vendor data; accurate but secondary
+Web Almanac (HTTP Archive) | https://almanac.httparchive.org/ | software | 2 | en | global | unverified | measured state of the web, with published method | large-scale measurement with open methodology
+
+# --------------------------------------------------------------- security
+NVD (National Vulnerability Database) | https://nvd.nist.gov/ | security | 1 | en | global | verified | CVE records, CVSS scores | the US government vulnerability register
+CVE Program | https://www.cve.org/ | security | 1 | en | global | verified | the authoritative CVE identifier and description | the body that issues the identifier
+CISA Known Exploited Vulnerabilities | https://www.cisa.gov/known-exploited-vulnerabilities-catalog | security | 1 | en | us | unverified | which vulnerabilities are confirmed exploited | government catalogue with a stated evidence bar
+CISA advisories | https://www.cisa.gov/news-events/cybersecurity-advisories | security | 1 | en | us | unverified | official US advisories and ICS alerts | government issuing its own advisory
+MITRE ATT&CK | https://attack.mitre.org/ | security | 1 | en | global | verified | the shared vocabulary of adversary techniques | the framework's owner
+MITRE CWE | https://cwe.mitre.org/ | security | 1 | en | global | verified | weakness classification | the taxonomy's owner
+FIRST (CVSS) | https://www.first.org/cvss/ | security | 1 | en | global | verified | how a CVSS score is defined and computed | the body that owns the scoring standard
+NIST CSRC publications | https://csrc.nist.gov/publications | security | 1 | en | us | verified | SP 800 series, FIPS, cryptographic guidance | standards body normative output
+NIST FIPS | https://csrc.nist.gov/publications/fips | security | 1 | en | us | unverified | approved cryptographic algorithms | the approval itself
+ENISA | https://www.enisa.europa.eu/ | security | 1 | en | eu | unverified | EU cybersecurity threat landscape and guidance | EU agency, own publications
+Google Project Zero | https://googleprojectzero.blogspot.com/ | security | 2 | en | global | unverified | deep vulnerability research write-ups | first-party researcher accounts with reproducible detail; vendor-employed
+Have I Been Pwned | https://haveibeenpwned.com/ | security | 3 | en | global | verified | which breach corpora contain an address | single operator, transparent about provenance, not an official record
+Krebs on Security | https://krebsonsecurity.com/ | security | 3 | en | global | verified | investigative security journalism | single named journalist with a long correction record
+Schneier on Security | https://www.schneier.com/ | security | 3 | en | global | verified | security policy and cryptography commentary | recognised expert opinion - opinion, not record
+Verizon DBIR | https://www.verizon.com/business/resources/reports/dbir/ | security | 2 | en | global | unverified | incident-pattern statistics | large sample with a published method; vendor-funded, sample is not the world
+Mandiant / Google threat intelligence | https://cloud.google.com/security/resources/reports | security | 3 | en | global | unverified | APT attribution reports | first-hand incident data; commercial interest in threat salience
+Let's Encrypt / ISRG | https://letsencrypt.org/docs/ | security | 1 | en | global | verified | ACME issuance behaviour and CT practice | the CA documenting its own operation
+CA/Browser Forum | https://cabforum.org/ | security | 1 | en | global | unverified | certificate issuance requirements | the body that sets the baseline requirements
+Exploit Database | https://www.exploit-db.com/ | security | 4 | en | global | verified | existence of public exploit code | community archive - proves publication, not severity
+SANS Internet Storm Center | https://isc.sans.edu/ | security | 3 | en | global | unverified | early sensor-based attack telemetry | practitioner-run, methodology varies by diary entry
+PCI Security Standards Council | https://www.pcisecuritystandards.org/ | security | 1 | en | global | unverified | PCI DSS requirements | the standards body itself
+Cloud Security Alliance | https://cloudsecurityalliance.org/ | security | 3 | en | global | unverified | cloud-control frameworks | industry consortium, member-funded
+Jordan NCSC | https://www.ncsc.jo/ | security | 1 | mixed | jordan | unverified | Jordanian national cyber directives | national authority for its own directives
+
+# ------------------------------------------------------- medicine / health
+PubMed | https://pubmed.ncbi.nlm.nih.gov/ | medicine | 2 | en | global | verified | finding the biomedical literature on a question | NLM index of peer-reviewed journals; the index is not the evidence, the paper is
+PubMed Central | https://www.ncbi.nlm.nih.gov/pmc/ | medicine | 2 | en | global | verified | full open-access biomedical texts | full text, so a claim can be checked against the method section
+Cochrane Library | https://www.cochranelibrary.com/ | medicine | 2 | en | global | verified | systematic reviews: what the whole evidence base says | pre-registered protocol, explicit bias assessment - strongest secondary in medicine
+ClinicalTrials.gov | https://clinicaltrials.gov/ | medicine | 1 | en | global | verified | what a trial pre-registered vs what it later reported | the registry entry is the primary record of intent
+WHO | https://www.who.int/ | medicine | 1 | mixed | global | verified | global health guidance, disease definitions, ICD | the IGO that issues the guidance
+WHO ICD-11 | https://icd.who.int/ | medicine | 1 | mixed | global | verified | the official disease classification codes | the classification itself
+US FDA | https://www.fda.gov/ | medicine | 1 | en | us | verified | US drug and device approvals, labels, recalls | the regulator issuing the decision
+DailyMed (FDA labels) | https://dailymed.nlm.nih.gov/ | medicine | 1 | en | us | unverified | the approved label text for a drug | the label of record
+EMA | https://www.ema.europa.eu/ | medicine | 1 | en | eu | verified | EU medicine authorisations and assessment reports | the regulator publishing its own decisions
+US CDC | https://www.cdc.gov/ | medicine | 1 | en | us | verified | US surveillance data, case definitions, guidance | the agency that collects the data
+NIH | https://www.nih.gov/ | medicine | 1 | en | us | verified | US biomedical research funding and institute guidance | government primary
+The Lancet | https://www.thelancet.com/ | medicine | 2 | en | global | verified | peer-reviewed clinical research | high-rigour peer review; still one journal, and prestige is not proof
+NEJM | https://www.nejm.org/ | medicine | 2 | en | global | verified | peer-reviewed clinical trials | as above
+BMJ | https://www.bmj.com/ | medicine | 2 | en | global | verified | clinical research and evidence-based medicine critique | peer reviewed, strong open-data stance
+JAMA Network | https://jamanetwork.com/ | medicine | 2 | en | global | verified | peer-reviewed clinical research | society publisher, peer review
+Nature Medicine | https://www.nature.com/nm/ | medicine | 2 | en | global | unverified | translational medical research | peer reviewed
+UpToDate | https://www.uptodate.com/ | medicine | 3 | en | global | verified | current clinical practice summaries | expert-authored and edited, but proprietary and not primary
+NICE guidance | https://www.nice.org.uk/guidance | medicine | 1 | en | global | verified | UK clinical guidelines and cost-effectiveness decisions | the body issuing the guideline
+Our World in Data | https://ourworldindata.org/ | data | 3 | en | global | verified | charted global series with the source shown per chart | transparent compilation of primaries; cite the underlying source
+IHME / GBD | https://www.healthdata.org/ | medicine | 2 | en | global | verified | global burden-of-disease estimates | modelled estimates with published methods - models, not counts
+Jordan Ministry of Health | https://moh.gov.jo/ | medicine | 1 | ar | jordan | unverified | Jordanian health statistics and directives | national authority
+WHO EMRO | https://www.emro.who.int/ | medicine | 1 | mixed | mena | unverified | regional health data for MENA including Jordan | WHO regional office, Arabic and English
+Retraction Watch | https://retractionwatch.com/ | medicine | 3 | en | global | verified | whether a paper has been retracted or is under scrutiny | specialist journalism; then read the retraction notice itself
+PROSPERO | https://www.crd.york.ac.uk/prospero/ | medicine | 1 | en | global | unverified | pre-registered systematic-review protocols | registry of record for review intent
+EQUATOR Network | https://www.equator-network.org/ | medicine | 2 | en | global | unverified | CONSORT/PRISMA reporting standards | custodian of the reporting guidelines
+
+# ------------------------------------------------------- law / regulation
+EUR-Lex | https://eur-lex.europa.eu/ | law | 1 | mixed | eu | verified | the binding text of EU law | the official journal of the Union
+US Code (OLRC) | https://uscode.house.gov/ | law | 1 | en | us | unverified | the codified text of US federal law | the official codification
+Federal Register | https://www.federalregister.gov/ | law | 1 | en | us | verified | US rulemaking as published | the publication of record
+CourtListener / RECAP | https://www.courtlistener.com/ | law | 2 | en | us | verified | US court opinions and dockets | free mirror of primary filings; confirm against the court docket
+US Supreme Court opinions | https://www.supremecourt.gov/opinions/opinions.aspx | law | 1 | en | us | unverified | the text of SCOTUS decisions | the court publishing its own opinion
+legislation.gov.uk | https://www.legislation.gov.uk/ | law | 1 | en | global | verified | UK statute as enacted and as amended | official statute database
+GDPR text | https://eur-lex.europa.eu/eli/reg/2016/679/oj | law | 1 | mixed | eu | unverified | the actual GDPR articles | the regulation itself, not a summary of it
+EDPB | https://www.edpb.europa.eu/ | law | 1 | en | eu | unverified | how EU regulators interpret GDPR | the interpreting authority
+WIPO | https://www.wipo.int/ | law | 1 | mixed | global | verified | international IP treaties and filings | the treaty administrator
+WTO | https://www.wto.org/ | law | 1 | mixed | global | verified | trade agreements and dispute rulings | the body itself
+UN Treaty Collection | https://treaties.un.org/ | law | 1 | mixed | global | unverified | whether a state has actually ratified a treaty | the depositary's own record
+International Court of Justice | https://www.icj-cij.org/ | law | 1 | mixed | global | verified | ICJ judgments and orders | the court's own text
+International Criminal Court | https://www.icc-cpi.int/ | law | 1 | mixed | global | verified | ICC filings and decisions | the court's own record
+Jordan Bureau of Legislation | http://www.lob.gov.jo/ | law | 1 | ar | jordan | unverified | Jordanian statutes and regulations in Arabic | the national legislation bureau
+Jordan government portal | https://www.jordan.gov.jo/ | law | 1 | ar | jordan | unverified | Jordanian official announcements and e-services | government primary
+Creative Commons licences | https://creativecommons.org/licenses/ | law | 1 | mixed | global | verified | what a CC licence actually permits | the licence steward's own text
+SPDX licence list | https://spdx.org/licenses/ | law | 1 | en | global | verified | canonical identifiers and texts of open-source licences | the list is the standard
+Open Source Initiative | https://opensource.org/licenses | law | 1 | en | global | verified | whether a licence is OSI-approved | the approving body
+GNU licences (FSF) | https://www.gnu.org/licenses/ | law | 1 | mixed | global | verified | GPL family text and FSF interpretation | the licence author
+Lawfare | https://www.lawfaremedia.org/ | law | 3 | en | global | unverified | national-security law analysis | expert commentary, named authors, openly opinion
+SCOTUSblog | https://www.scotusblog.com/ | law | 3 | en | us | verified | SCOTUS case tracking and analysis | specialist press; use to orient, cite the opinion
+Electronic Frontier Foundation | https://www.eff.org/ | law | 3 | en | global | verified | digital-rights litigation and analysis | advocacy organisation: accurate but a declared position
+
+# ------------------------------------------------------- finance / economics
+IMF | https://www.imf.org/ | finance | 1 | mixed | global | verified | country macro data, Article IV reports, WEO | IGO producing the dataset
+World Bank Open Data | https://data.worldbank.org/ | finance | 1 | mixed | global | verified | cross-country development indicators | compiler of record; indicators originate in national offices
+OECD Data | https://data.oecd.org/ | finance | 1 | en | global | verified | OECD-member economic statistics | IGO statistics
+Bank for International Settlements | https://www.bis.org/ | finance | 1 | en | global | verified | Basel standards and cross-border banking data | the standard-setter
+US Federal Reserve | https://www.federalreserve.gov/ | finance | 1 | en | us | verified | US monetary policy decisions and statements | the decision-maker
+FRED | https://fred.stlouisfed.org/ | finance | 1 | en | us | verified | assembled economic time series with source notes | Fed-run, each series names its origin
+European Central Bank | https://www.ecb.europa.eu/ | finance | 1 | mixed | eu | verified | euro-area monetary policy and data | the central bank
+Bank of England | https://www.bankofengland.co.uk/ | finance | 1 | en | global | verified | UK monetary policy and financial stability reports | the central bank
+SEC EDGAR | https://www.sec.gov/edgar | finance | 1 | en | us | verified | what a US public company actually filed | filings are sworn primary documents
+Central Bank of Jordan | https://www.cbj.gov.jo/ | finance | 1 | mixed | jordan | unverified | Jordanian monetary and banking statistics | the central bank
+Amman Stock Exchange | https://www.ase.com.jo/ | finance | 1 | mixed | jordan | unverified | Jordanian listed-company disclosures | the exchange's own record
+NBER working papers | https://www.nber.org/papers | finance | 2 | en | global | verified | frontier economics research | working papers: pre-peer-review, institution-screened
+American Economic Association | https://www.aeaweb.org/journals | finance | 2 | en | global | verified | peer-reviewed economics | society journals with a data-availability policy
+VoxEU (CEPR) | https://cepr.org/voxeu | finance | 3 | en | global | unverified | economists summarising their own papers | author-written summary - cite the paper
+Financial Stability Board | https://www.fsb.org/ | finance | 1 | en | global | unverified | global financial-stability standards | the standard-setting body
+UNCTAD | https://unctad.org/ | finance | 1 | mixed | global | verified | trade and investment statistics for developing economies | UN body producing the data
+Trading Economics | https://tradingeconomics.com/ | finance | 4 | en | global | verified | fast indicator lookup | aggregator of official series - follow through to the series
+Companies House (UK) | https://find-and-update.company-information.service.gov.uk/ | finance | 1 | en | global | unverified | UK company filings and officers | statutory register
+
+# ----------------------------------------------------------------- science
+Nature | https://www.nature.com/ | science | 2 | en | global | verified | peer-reviewed multidisciplinary research | selective peer review; selectivity is not correctness
+Science (AAAS) | https://www.science.org/ | science | 2 | en | global | verified | peer-reviewed multidisciplinary research | society publisher, peer review
+PNAS | https://www.pnas.org/ | science | 2 | en | global | verified | peer-reviewed research across the sciences | academy journal; check the contributed-track note
+Cell | https://www.cell.com/ | science | 2 | en | global | verified | molecular and cell biology | peer reviewed
+PLOS ONE | https://journals.plos.org/plosone/ | science | 2 | en | global | verified | technically-sound open-access research | peer review checks soundness, not importance - judge the paper
+eLife | https://elifesciences.org/ | science | 2 | en | global | verified | life-science research with published reviews | the reviews are public, which is stronger evidence than acceptance
+bioRxiv | https://www.biorxiv.org/ | science | 3 | en | global | verified | biology preprints | not peer reviewed - say "preprint" every time
+medRxiv | https://www.medrxiv.org/ | medicine | 3 | en | global | verified | health-science preprints | not peer reviewed; especially risky for clinical claims
+SSRN | https://www.ssrn.com/ | science | 3 | en | global | verified | social-science and law preprints | not peer reviewed
+Crossref | https://www.crossref.org/ | science | 1 | en | global | verified | DOI resolution, metadata, retraction flags | the DOI registration agency
+DOI Foundation | https://www.doi.org/ | science | 1 | en | global | verified | resolving a persistent identifier | the registry itself
+ORCID | https://orcid.org/ | science | 1 | en | global | verified | which author is which | the identifier authority
+OpenAlex | https://openalex.org/ | science | 3 | en | global | verified | open bibliometric graph, citation counts | open index; counts are approximate, coverage varies
+Semantic Scholar | https://www.semanticscholar.org/ | science | 3 | en | global | verified | finding related work and citation context | AI-built index - a finding aid, not a citation
+Zenodo | https://zenodo.org/ | science | 2 | en | global | verified | archived datasets, software and supplements with DOIs | CERN-operated archive; deposit is not review
+NASA | https://www.nasa.gov/ | science | 1 | en | us | verified | mission data and space-science facts | the agency that produced the data
+NASA ADS | https://ui.adsabs.harvard.edu/ | science | 2 | en | global | unverified | astronomy and physics literature | curated disciplinary index
+ESA | https://www.esa.int/ | science | 1 | mixed | eu | verified | European mission data | agency primary
+NOAA | https://www.noaa.gov/ | science | 1 | en | us | verified | US weather, ocean and climate observations | the observing agency
+IPCC | https://www.ipcc.ch/ | science | 1 | mixed | global | verified | the assessed state of climate science | government-approved synthesis of the peer-reviewed literature
+Copernicus (C3S) | https://climate.copernicus.eu/ | science | 1 | en | eu | unverified | European climate reanalysis and monthly bulletins | operational service publishing its own data
+NASA GISS surface temperature | https://data.giss.nasa.gov/gistemp/ | science | 1 | en | global | unverified | the GISTEMP temperature series | dataset producer
+CERN | https://home.cern/ | science | 1 | mixed | global | verified | particle-physics results from its experiments | the laboratory itself
+USGS | https://www.usgs.gov/ | science | 1 | en | us | verified | earthquakes, geology, water data | the measuring agency
+IUCN Red List | https://www.iucnredlist.org/ | science | 1 | en | global | verified | species conservation status | the assessing body
+GBIF | https://www.gbif.org/ | science | 2 | en | global | verified | species occurrence records | aggregated primary records with provenance per record
+Protein Data Bank | https://www.rcsb.org/ | science | 1 | en | global | verified | experimentally determined structures | the deposition archive
+NCBI GenBank | https://www.ncbi.nlm.nih.gov/genbank/ | science | 1 | en | global | verified | sequence records | the sequence archive of record
+Royal Society | https://royalsociety.org/ | science | 2 | en | global | verified | expert reports and journals | academy with peer review
+Max Planck Society | https://www.mpg.de/ | science | 2 | mixed | eu | verified | institute research announcements | institutional; cite the paper it links
+Quanta Magazine | https://www.quantamagazine.org/ | journalism | 3 | en | global | verified | accurate explanatory science journalism | edited, foundation-funded, no paywall incentive - still secondary
+Scientific American | https://www.scientificamerican.com/ | journalism | 3 | en | global | verified | science explanation for non-specialists | edited magazine, secondary
+
+# ------------------------------------------------------ statistics / data
+UN Statistics Division | https://unstats.un.org/ | data | 1 | mixed | global | verified | SDG indicators and national statistical standards | the UN statistical authority
+Eurostat | https://ec.europa.eu/eurostat | data | 1 | en | eu | verified | harmonised EU statistics | the EU statistical office
+US Census Bureau | https://www.census.gov/ | data | 1 | en | us | verified | US population, housing and business statistics | the collecting agency
+US Bureau of Labor Statistics | https://www.bls.gov/ | data | 1 | en | us | verified | US employment, wages and CPI | the collecting agency
+UK Office for National Statistics | https://www.ons.gov.uk/ | data | 1 | en | global | verified | UK official statistics | the national statistics office
+Jordan Department of Statistics | http://dosweb.dos.gov.jo/ | data | 1 | ar | jordan | unverified | Jordanian census, labour force, CPI | the national statistics office - the only primary for Jordanian counts
+Statista | https://www.statista.com/ | data | 4 | en | global | verified | finding that a figure exists | a reseller of other people's numbers; never cite Statista, cite its source
+data.gov | https://data.gov/ | government | 1 | en | us | verified | US open datasets | federal catalogue pointing at agency primaries
+EU Open Data Portal | https://data.europa.eu/ | government | 1 | mixed | eu | verified | EU institutional datasets | official catalogue
+Jordan Open Government Data | https://data.jordan.gov.jo/ | government | 1 | ar | jordan | unverified | Jordanian open datasets | national catalogue
+Google Dataset Search | https://datasetsearch.research.google.com/ | data | 4 | en | global | unverified | discovering that a dataset exists | a search index over metadata
+Kaggle Datasets | https://www.kaggle.com/datasets | data | 4 | en | global | verified | convenient copies of datasets | user uploads - provenance often lost, go upstream
+ICPSR | https://www.icpsr.umich.edu/ | data | 2 | en | global | unverified | archived social-science data with documentation | curated archive with codebooks
+World Values Survey | https://www.worldvaluessurvey.org/ | data | 2 | en | global | unverified | cross-national attitude data | documented survey programme with public methodology
+Pew Research Center | https://www.pewresearch.org/ | data | 2 | en | global | verified | survey research with published questionnaires and margins | non-partisan, method published; still survey, not census
+Gallup | https://news.gallup.com/ | data | 3 | en | global | verified | long-run opinion series | commercial pollster, method partly proprietary
+Arab Barometer | https://www.arabbarometer.org/ | data | 2 | mixed | mena | verified | public-opinion data across Arab states | academic survey programme with published methodology and Arabic instruments
+International Energy Agency | https://www.iea.org/ | data | 1 | en | global | verified | energy production, demand and price statistics | IGO that compiles the statistics
+Ember (electricity data) | https://ember-energy.org/ | data | 3 | en | global | unverified | global electricity generation by source | think tank with open method; declared climate position
+FAOSTAT | https://www.fao.org/faostat/ | data | 1 | mixed | global | verified | food and agriculture statistics | UN agency dataset
+UNHCR data portal | https://data.unhcr.org/ | data | 1 | mixed | mena | verified | refugee population figures incl. Jordan | the agency that registers the population
+Internet Archive | https://archive.org/ | reference | 2 | mixed | global | verified | what a page said on a date | custody of the snapshot; the snapshot's content is only as good as the original
+Wayback Machine | https://web.archive.org/ | reference | 2 | mixed | global | verified | proving a page changed or vanished | timestamped capture - the evidence for "as of" claims
+
+# ------------------------------------------------------- standards bodies
+ISO | https://www.iso.org/ | standards | 1 | mixed | global | verified | international standards scope and status | the standards body; full texts are paid
+IEC | https://www.iec.ch/ | standards | 1 | en | global | verified | electrotechnical standards | the standards body
+ITU | https://www.itu.int/ | standards | 1 | mixed | global | verified | telecom standards and spectrum allocations | UN specialised agency
+ETSI | https://www.etsi.org/ | standards | 1 | en | eu | verified | European telecom standards, freely downloadable | the body, with open access to texts
+3GPP | https://www.3gpp.org/ | standards | 1 | en | global | verified | what 4G/5G specifications actually say | the partnership that writes them
+BIPM (SI units) | https://www.bipm.org/ | standards | 1 | mixed | global | verified | the definition of the SI units | the treaty body that defines them
+NIST | https://www.nist.gov/ | standards | 1 | en | us | verified | measurement standards, reference data | national metrology institute
+IANA | https://www.iana.org/ | standards | 1 | en | global | verified | protocol number and name registries | the registry operator
+ICANN | https://www.icann.org/ | standards | 1 | mixed | global | verified | domain-name policy and root-zone facts | the coordinating body
+OASIS Open | https://www.oasis-open.org/ | standards | 1 | en | global | verified | SAML, XML and related standards | the consortium that publishes them
+Ecma International | https://ecma-international.org/ | standards | 1 | en | global | verified | ECMA standards incl. ECMA-262/404 | the publisher of record
+ANSI | https://www.ansi.org/ | standards | 1 | en | us | verified | US standards accreditation status | the accreditor
+CEN-CENELEC | https://www.cencenelec.eu/ | standards | 1 | en | eu | unverified | European harmonised standards under EU law | the European standards organisations
+Jordan Standards and Metrology Organization | https://www.jsmo.gov.jo/ | standards | 1 | mixed | jordan | unverified | Jordanian technical standards and conformity | national standards body
+GSO (GCC Standardization) | https://www.gso.org.sa/ | standards | 1 | mixed | mena | unverified | Gulf regional standards | regional standards organisation
+WCAG 2.2 (W3C) | https://www.w3.org/TR/WCAG22/ | standards | 1 | en | global | verified | accessibility conformance criteria | the normative recommendation
+
+# ------------------------------------------------ government / IGO primaries
+United Nations | https://www.un.org/ | government | 1 | mixed | global | verified | UN resolutions, documents and official positions | the organisation's own record
+UN Digital Library | https://digitallibrary.un.org/ | government | 1 | mixed | global | verified | the text and voting record of resolutions | the documentary archive
+UNESCO | https://www.unesco.org/ | government | 1 | mixed | global | verified | education, heritage and AI-ethics instruments | the agency that adopts them
+UNDP | https://www.undp.org/ | government | 1 | mixed | global | verified | Human Development Report and country programmes | the producing agency
+ILO | https://www.ilo.org/ | government | 1 | mixed | global | verified | labour standards and labour statistics | the standard-setting agency
+UNICEF data | https://data.unicef.org/ | government | 1 | en | global | verified | child-wellbeing indicators | the agency that compiles them
+European Commission | https://commission.europa.eu/ | government | 1 | mixed | eu | verified | EU policy proposals and decisions | the institution itself
+European Parliament | https://www.europarl.europa.eu/ | government | 1 | mixed | eu | verified | votes, amendments and briefings | the institution's own record
+White House | https://www.whitehouse.gov/ | government | 1 | en | us | verified | US executive orders and statements | the issuer - authoritative for the position, interested about its effect
+Congress.gov | https://www.congress.gov/ | government | 1 | en | us | verified | US bill text and status | the legislature's own record
+GOV.UK | https://www.gov.uk/ | government | 1 | en | global | verified | UK government policy, guidance and statistics | the government's publication channel
+Royal Hashemite Court | https://rhc.jo/ | government | 1 | mixed | jordan | unverified | official Jordanian royal statements | the issuing office
+Jordan Ministry of Digital Economy | https://www.modee.gov.jo/ | government | 1 | mixed | jordan | unverified | Jordan's digital and AI policy documents | the ministry that issues them
+Jordan Ministry of Education | https://moe.gov.jo/ | government | 1 | ar | jordan | unverified | Jordanian curriculum and education directives | the ministry
+Jordan Higher Education Accreditation Commission | https://www.heac.org.jo/ | government | 1 | mixed | jordan | unverified | accreditation status of Jordanian universities | the accrediting authority
+Jordan Investment / Ministry of Investment | https://moin.gov.jo/ | government | 1 | mixed | jordan | unverified | Jordanian investment law and incentives | the ministry
+Arab League | http://www.leagueofarabstates.net/ | government | 1 | ar | mena | unverified | Arab League resolutions and communiques | the organisation's own record
+GCC Secretariat | https://www.gcc-sg.org/ | government | 1 | mixed | mena | unverified | GCC summit decisions | the secretariat
+Islamic Development Bank | https://www.isdb.org/ | government | 1 | mixed | mena | verified | development finance in member states incl. Jordan | the lender's own record
+ESCWA (UN Western Asia) | https://www.unescwa.org/ | government | 1 | mixed | mena | verified | Arab-region economic and social statistics | UN regional commission
+
+# ---------------------------------------------------------------- reference
+Encyclopaedia Britannica | https://www.britannica.com/ | reference | 3 | en | global | verified | orientation on an established topic | edited, signed entries - tertiary, cite what it cites
+Stanford Encyclopedia of Philosophy | https://plato.stanford.edu/ | reference | 2 | en | global | verified | philosophical concepts and their literature | peer-reviewed, expert-authored, versioned - unusually strong for a reference work
+Wikipedia (EN) | https://en.wikipedia.org/ | reference | 4 | en | global | verified | finding the primary sources fast | anyone can edit; use the reference list, never the article
+Wikipedia (AR) | https://ar.wikipedia.org/ | reference | 4 | ar | mena | verified | Arabic terminology and entry points | as EN, with thinner sourcing - check each citation
+Wikidata | https://www.wikidata.org/ | reference | 4 | mixed | global | verified | identifiers linking one entity across databases | community data, each statement should carry its own reference
+Oxford English Dictionary | https://www.oed.com/ | reference | 2 | en | global | verified | attested English usage and first citations | lexicographic evidence base
+Merriam-Webster | https://www.merriam-webster.com/ | reference | 2 | en | global | verified | current American usage | edited dictionary
+Almaany dictionary | https://www.almaany.com/ | reference | 3 | ar | mena | verified | Arabic word senses across classical dictionaries | compiles named classical dictionaries; compilation, not the source
+Arabic Academy in Cairo | http://www.arabicacademy.org.eg/ | reference | 2 | ar | mena | unverified | standardised Arabic terminology decisions | the language academy
+King Salman Academy for Arabic | https://kaa.org.sa/ | reference | 2 | ar | mena | unverified | modern Arabic terminology and corpora | academy with published programmes
+Library of Congress | https://www.loc.gov/ | reference | 1 | en | us | verified | authority records, primary documents, catalogues | national library
+WorldCat | https://search.worldcat.org/ | reference | 2 | mixed | global | verified | whether a book exists and where | union catalogue of library records
+Google Scholar | https://scholar.google.com/ | reference | 4 | mixed | global | verified | finding papers and citation counts | opaque index, includes unreviewed material - a finding aid only
+HathiTrust | https://www.hathitrust.org/ | reference | 2 | en | global | unverified | scanned book text for quotation checking | library digitisation with provenance
+
+# ----------------------------------------------------- long-form journalism
+Reuters | https://www.reuters.com/ | journalism | 3 | mixed | global | verified | wire reporting of events | strict sourcing standards; but many outlets reprint it - that is ONE source, not many
+Associated Press | https://apnews.com/ | journalism | 3 | mixed | global | verified | wire reporting and AP style | as Reuters: syndication is not corroboration
+Agence France-Presse | https://www.afp.com/ | journalism | 3 | mixed | global | verified | wire reporting, strong MENA presence | wire - same syndication caveat
+BBC News | https://www.bbc.com/news | journalism | 3 | mixed | global | verified | international reporting | public broadcaster with a published editorial code
+The Guardian | https://www.theguardian.com/ | journalism | 3 | en | global | verified | investigative and international reporting | trust-owned, corrections column, declared editorial line
+The New York Times | https://www.nytimes.com/ | journalism | 3 | en | global | verified | investigative reporting | edited, corrections record, US perspective
+The Washington Post | https://www.washingtonpost.com/ | journalism | 3 | en | global | verified | US politics and investigations | as NYT
+ProPublica | https://www.propublica.org/ | journalism | 3 | en | global | verified | document-backed investigations, often with the documents attached | non-profit that publishes its evidence
+Al Jazeera English | https://www.aljazeera.com/ | journalism | 3 | en | mena | verified | MENA reporting in English | state-funded (Qatar) - note the funder when the story touches the funder
+Al Jazeera Arabic | https://www.aljazeera.net/ | journalism | 3 | ar | mena | verified | MENA reporting in Arabic | as above
+BBC Arabic | https://www.bbc.com/arabic | journalism | 3 | ar | mena | verified | international reporting in Arabic | public broadcaster, editorial code
+Reuters Arabic | https://www.reuters.com/arabic/ | journalism | 3 | ar | mena | unverified | wire reporting in Arabic | wire standards; same syndication caveat
+Asharq Al-Awsat | https://aawsat.com/ | journalism | 3 | ar | mena | verified | pan-Arab news and analysis | Saudi-owned, long-running, note ownership
+Al-Ghad (Jordan) | https://alghad.com/ | journalism | 3 | ar | jordan | verified | Jordanian domestic news | leading independent Jordanian daily
+Jordan Times | https://jordantimes.com/ | journalism | 3 | en | jordan | verified | Jordanian news in English | Jordan Press Foundation, state-linked ownership
+Roya News | https://royanews.tv/ | journalism | 3 | ar | jordan | verified | Jordanian breaking news | private Jordanian broadcaster
+Petra News Agency | https://petra.gov.jo/ | journalism | 1 | ar | jordan | unverified | official Jordanian government announcements | the state agency: primary for the state's own position, not independent
+Arab News | https://www.arabnews.com/ | journalism | 3 | en | mena | verified | Gulf and regional reporting in English | Saudi-owned; note ownership on political stories
+The National (UAE) | https://www.thenationalnews.com/ | journalism | 3 | en | mena | verified | Gulf business and regional reporting | UAE state-linked ownership
+Al-Fanar Media | https://www.al-fanarmedia.org/ | journalism | 3 | mixed | mena | unverified | Arab higher education and research | specialist bilingual coverage of the sector
+Wired | https://www.wired.com/ | journalism | 3 | en | global | verified | technology reporting and features | edited magazine, secondary
+Ars Technica | https://arstechnica.com/ | journalism | 3 | en | global | verified | technically careful tech reporting | named specialist writers, usually links the primary
+MIT Technology Review | https://www.technologyreview.com/ | journalism | 3 | en | global | verified | AI and emerging-tech reporting | university-owned magazine, edited
+Rest of World | https://restofworld.org/ | journalism | 3 | en | global | verified | technology outside the US and Europe | non-profit, original reporting
+Nature News | https://www.nature.com/news | journalism | 3 | en | global | unverified | research-community news | journalists separate from the journal's peer review - still journalism
+
+# ------------------------------------------- research method / meta-sources
+Cochrane Handbook | https://training.cochrane.org/handbook | meta | 1 | en | global | verified | how to do a systematic review properly | the methodological standard in its field
+PRISMA statement | https://www.prisma-statement.org/ | meta | 1 | en | global | unverified | how a review must be reported | the reporting standard itself
+GRADE working group | https://www.gradeworkinggroup.org/ | meta | 1 | en | global | unverified | rating certainty of evidence | the framework's owner
+CRAAP / evaluating sources (library guides) | https://guides.lib.berkeley.edu/evaluating-resources | meta | 3 | en | global | unverified | teaching source evaluation | university library guidance - pedagogy, not a standard
+Center for Open Science | https://www.cos.io/ | meta | 2 | en | global | verified | pre-registration and replication practice | the organisation running the registries
+OSF (Open Science Framework) | https://osf.io/ | meta | 1 | en | global | verified | pre-registrations and study materials | the registry record itself
+Media Bias/Fact Check | https://mediabiasfactcheck.com/ | meta | 4 | en | global | verified | a quick prior on an outlet | one small team's ratings, method thin - a prior, never evidence
+Reporters Without Borders press index | https://rsf.org/en | meta | 3 | mixed | global | verified | press-freedom context for a country's outlets | advocacy NGO with a published method
+Full Fact | https://fullfact.org/ | meta | 3 | en | global | verified | UK fact checks with working shown | independent fact-checker, IFCN signatory
+Snopes | https://www.snopes.com/ | meta | 3 | en | global | verified | claim provenance for viral material | long record, shows sources; still secondary
+IFCN (Poynter) | https://www.poynter.org/ifcn/ | meta | 3 | en | global | verified | which fact-checkers are signatories to a code | the code's custodian
+Fatabyyano | https://fatabyyano.net/ | meta | 3 | ar | mena | verified | Arabic-language fact checks | IFCN-signatory Arabic fact-checker based in Jordan
+Misbar | https://misbar.com/ | meta | 3 | ar | mena | verified | Arabic fact-checking and misinformation tracking | Arabic fact-checker with published method

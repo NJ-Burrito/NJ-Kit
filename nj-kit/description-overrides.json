@@ -1,0 +1,118 @@
+{
+  "_note": "Trimmed skill descriptions for THIRD-PARTY skills, per SKILL-AUDIT-2026-09-18.md. Descriptions are the only always-on token cost: every installed skill's description loads into every session before any work. install.py fetches these 23 skills from their upstream repos, which carry the long originals, so a trim made by hand on one machine is lost on the next install. This file is that trim as re-appliable data. Run scripts/apply-descriptions.py after install.py; --check reports drift and changes nothing. Bodies are never touched, because they belong upstream and an edit there loses the next upstream fix. Target: 40 words or fewer, keeping every distinctive trigger phrase and cutting the prose around them.",
+  "apple-design": {
+    "description": "Apple's approach to interface design and fluid, physical motion, for the web. Use for gesture-driven UI, spring animations, drag/swipe/sheet interactions, momentum and interruptible transitions, translucent materials and depth, typography (optical sizing, tracking, leading), reduced-motion.",
+    "words": 34,
+    "upstream_words": 49
+  },
+  "doc-coauthoring": {
+    "description": "Structured workflow for co-authoring documentation — docs, proposals, technical specs, decision docs. Use when the user mentions writing docs, creating proposals or drafting specs; helps transfer context, iterate, and verify the doc works for readers.",
+    "words": 35,
+    "upstream_words": 57
+  },
+  "docx": {
+    "description": "Word documents and templates (.docx, .dotx): create, read, edit, find-and-replace, images, tracked changes, comments, tables of contents, headings, page numbers, letterheads. Use for a report, memo, letter or template asked for as a Word file. Not PDFs or spreadsheets.",
+    "words": 39,
+    "upstream_words": 125
+  },
+  "hyperframes": {
+    "description": "Mandatory entry point: read first for any video, animation or motion-graphic request — promo, explainer, captioned clip, title card, overlay, slideshow, interactive deck, Remotion port, HyperFrames composition — or inspect, preview, publish or batch-render one. HyperFrames is the default framework.",
+    "words": 40,
+    "upstream_words": 118
+  },
+  "hyperframes-animation": {
+    "description": "All HyperFrames animation: atomic motion rules, multi-phase scene blueprints, transitions, 24 named text effects, choreography audits, and the seven runtime adapters (GSAP default, Lottie, Three.js, Anime.js, CSS keyframes, WAAPI, TypeGPU). Single paused timeline, seek-safe, deterministic.",
+    "words": 35,
+    "upstream_words": 84
+  },
+  "hyperframes-audio": {
+    "description": "Mixing audio already placed in a HyperFrames composition: fade-in/out, crossfade, track gain or volume, ducking, voiceover carve, effects (EQ, compressor, limiter, reverb, delay), automation envelopes, submix bus (`<hf-audio-group>`). Sourcing or generating audio is /media-use; clip timing is /hyperframes-core.",
+    "words": 38,
+    "upstream_words": 103
+  },
+  "hyperframes-cli": {
+    "description": "The HyperFrames CLI loop: init, add, catalog, capture, lint, check, snapshot, compare, preview, play, present, beats, keyframes, single or batch render, publish, cloud, lambda, doctor, tts, transcribe. Also for diagnosing build or render failures. validate/inspect/layout are deprecated aliases; use check.",
+    "words": 40,
+    "upstream_words": 71
+  },
+  "hyperframes-keyframes": {
+    "description": "HyperFrames punch-in, punch-out, zoom, reframe, Ken Burns, camera move, visual match/whip handoff, or other seek-safe 2D/3D keyframes; GSAP, CSS keyframes, Anime.js, WAAPI, FLIP, paths, masks, SVG morph/draw, text trails, 3D depth, `hyperframes keyframes` diagnostics.",
+    "words": 34,
+    "upstream_words": 59
+  },
+  "hyperframes-registry": {
+    "description": "Search, install and wire HyperFrames registry blocks and components. Use BEFORE hand-building any named visual — CRT scanlines, glitch, chromatic aberration, film grain, shimmer sweep, chart, terminal window, map, confetti — and for hyperframes add, hyperframes catalog, or hyperframes.json.",
+    "words": 39,
+    "upstream_words": 139
+  },
+  "media-use": {
+    "description": "Every media need for HyperFrames: resolve BGM, SFX, image, icon, brand logo, voice, colour grade or LUT into a frozen file; generate via TTS/music/image models; voiceover, transcription, captions, background removal; cut/reframe/transform; footage that looks dark, flat or should feel retro.",
+    "words": 40,
+    "upstream_words": 99
+  },
+  "no-ai-slop": {
+    "description": "Edit drafts into sharper, more human writing while preserving the writer's voice, or detect AI-slop patterns without rewriting. Use when a draft should be clearer, more direct, more opinionated or less AI-sounding, or when asked whether writing reads as AI.",
+    "words": 40,
+    "upstream_words": 41
+  },
+  "pdf": {
+    "description": "Anything with PDF files: extract text or tables, merge, split, rotate, watermark, create, fill forms, encrypt/decrypt, extract images, OCR scanned PDFs to make them searchable. Use whenever a .pdf file is mentioned or asked for.",
+    "words": 35,
+    "upstream_words": 69
+  },
+  "pitch-deck": {
+    "description": "Populates investment-banking pitch deck templates with data from source files. Use when a PowerPoint template must be filled in from Excel/CSV source data, or data transferred into existing slide layouts. Not for creating presentations from scratch.",
+    "words": 36,
+    "upstream_words": 55
+  },
+  "playwright-best-practices": {
+    "description": "Writing or fixing Playwright tests: flakiness, debugging failures, Page Object Model, CI/CD, API mocking, auth/OAuth, accessibility (axe-core), fixtures, tags and --grep, visual, component, security and performance testing, iframes, multi-tab, mobile, Electron, browser extensions.",
+    "words": 33,
+    "upstream_words": 108
+  },
+  "ponytail": {
+    "description": "Forces the laziest solution that works: YAGNI, standard library before custom code, native features before dependencies, one line before fifty. Levels lite/full/ultra. Use on any coding task, or on \"ponytail\", \"be lazy\", \"simplest solution\", \"yagni\", \"do less\", over-engineering complaints.",
+    "words": 39,
+    "upstream_words": 113
+  },
+  "ponytail-review": {
+    "description": "Code review focused only on over-engineering — what to delete: reinvented standard library, unneeded dependencies, speculative abstractions, dead flexibility. One line per finding. Use on \"review for over-engineering\", \"what can we delete\", \"is this over-engineered\", \"simplify review\", /ponytail-review.",
+    "words": 38,
+    "upstream_words": 58
+  },
+  "prompt-engineering-patterns": {
+    "description": "Use when asked to optimise a prompt, improve prompt performance, design a prompt template, write better prompts, debug prompt issues, use chain-of-thought, structured prompting or few-shot prompting for production LLM applications.",
+    "words": 31,
+    "upstream_words": 44
+  },
+  "simple-issue-description": {
+    "description": "Turn a rough bug report, feature request, support note or pull request into a short plain-language issue about the problem and desired behaviour. Use to simplify an issue, explain what a PR is for, strip implementation detail, or /simple-issue-description.",
+    "words": 39,
+    "upstream_words": 55
+  },
+  "skill-creator": {
+    "description": "Create, modify and improve skills, and measure skill performance. Use to create a skill from scratch, edit or optimise an existing skill, run evals, benchmark with variance analysis, or optimise a skill's description for better triggering.",
+    "words": 36,
+    "upstream_words": 49
+  },
+  "speech": {
+    "description": "Text-to-speech narration or voiceover, accessibility reads, audio prompts, or batch speech generation via the OpenAI Audio API; runs `scripts/text_to_speech.py` with built-in voices and needs OPENAI_API_KEY. Custom voice creation is out of scope.",
+    "words": 32,
+    "upstream_words": 44
+  },
+  "ui-ux-pro-max": {
+    "description": "UI/UX design intelligence for web, mobile and desktop — designing, building, reviewing or fixing interfaces. Searchable local data: 79 styles, 192 product palettes, 74 font pairings, 119 UX guidelines, 105 icons, 17 GSAP presets, 25 chart types, 22 stacks.",
+    "words": 39,
+    "upstream_words": 67
+  },
+  "watch": {
+    "description": "Watch a video (URL or local path) like an editor: scene-change frames, pacing metrics (cuts/min, shot length), 0-10s hook microscope, transcript from captions or Whisper. Produces report.md and can auto-ingest into an Obsidian vault ($WATCH_VAULT_DIR).",
+    "words": 35,
+    "upstream_words": 58
+  },
+  "xlsx": {
+    "description": "Spreadsheets as input or output: read, edit, fix, create or convert .xlsx, .xlsm, .xltx, .csv, .tsv — formulas, formatting, charts, cleaning messy tabular data. Trigger when a spreadsheet is named. Not for Word, HTML reports, or Google Sheets APIs.",
+    "words": 39,
+    "upstream_words": 152
+  }
+}

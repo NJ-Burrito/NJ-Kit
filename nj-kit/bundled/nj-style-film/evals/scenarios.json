@@ -1,0 +1,78 @@
+{
+  "_note": "Four scenarios for a FRESH agent with only this skill loaded. There is no runner: hand the agent the query and the files, then mark each expected behaviour by hand. Research/136 objection 4: the skill was written before it was tested, and one run on one style proves nothing about the others. Scenario 1 is the only one that has ever been run, and it was run by the author, which does not count. Running the others costs tokens, so it is the owner's call.",
+  "skills": ["nj-style-film"],
+  "scenarios": [
+    {
+      "id": "1-collage-with-no-cutouts",
+      "tests": "the BUILDABLE WITH ASSETS path and its fallback; this is the run the skill was built from",
+      "query": "Make a vertical reel from this narration in the style of these three stills. Instagram.",
+      "files": ["qa-wrap-en.mp4", "qa-wrap-en.srt", "MOTION STUDY 01.jpg", "MOTION STUDY 04.jpg", "MOTION STUDY 07.jpg"],
+      "expected_behavior": [
+        "Copies templates/PROJECT.md and runs intake_check.py before anything else",
+        "Asks nothing: every REQUIRED slot is answerable from the message and the files",
+        "Quotes the ESTIMATE line from CUES.md once, and gives no second estimate at any point",
+        "STYLE-DNA.md carries 'FEASIBILITY: BUILDABLE WITH ASSETS'",
+        "Runs find.py (or reads manifest.jsonl by hand) against the style's material_needs[] BEFORE the storyboard, since a library lookup is free and never a sourcing attempt",
+        "Every scene's Material field names a manifest id, or 'DRAWN: <reason>' for a kind the library has no candidate for — never a bare 'DRAWN' with no reason",
+        "gate.py <project> 4 prints GO only if ASSETS.txt has an id or every shortfall is a named DRAWN — not if the style ships zero library assets by default",
+        "Makes ZERO asset-sourcing attempts under the default budget beyond the two the normal row allows",
+        "Stops after STORYBOARD.md and asks for notes, because approve defaults to ask",
+        "The PACE line in STORYBOARD.md is the one gate.py <project> 3 printed, character for character"
+      ]
+    },
+    {
+      "id": "2-flat-ui-style",
+      "tests": "a DIFFERENT style: whether the process generalises at all (research/136 objection 1 and claim C5)",
+      "query": "Same narration, but flat and minimal: big sans type, one accent colour, UI panels sliding in, no textures. 16:9 for YouTube. budget: cheap, approve: auto.",
+      "files": ["qa-wrap-en.mp4", "qa-wrap-en.srt"],
+      "expected_behavior": [
+        "Accepts 'what_i_like' as the style reference and does not ask for stills",
+        "FEASIBILITY: BUILDABLE",
+        "Reads hyperframes-core and nothing else, because the budget is cheap",
+        "Does not stop at the storyboard, because approve is auto",
+        "Runs check at most three times and takes exactly one snapshot pass",
+        "Renders once, judges the render by the MP4 on disk, and reports its duration from ffprobe",
+        "STAGES.log holds six GO lines in order, and the delivery note's timings are read from it"
+      ]
+    },
+    {
+      "id": "3-style-out-of-reach",
+      "tests": "the NOT IN HTML stop: the cheapest place to fail is before the storyboard",
+      "query": "Make it like this: glossy 3D liquid metal blobs morphing into the words, with realistic reflections and camera depth of field.",
+      "files": ["qa-wrap-en.mp4", "qa-wrap-en.srt", "liquid-metal-reference.mp4"],
+      "expected_behavior": [
+        "Runs ref_sheets.py and reads at most the three sheets it names",
+        "Writes 'FEASIBILITY: NOT IN HTML' with a one-line reason",
+        "gate.py refuses stage 3, and the agent STOPS rather than approximating the look with CSS",
+        "Tells the user in two or three sentences what the style would need instead (a 3D tool, or supplied rendered footage)",
+        "Writes no STORYBOARD.md and no hf/ project"
+      ]
+    },
+    {
+      "id": "4-interrupted-mid-build",
+      "tests": "wandering: the parking rule and the no-second-estimate rule, under pressure (research/136 objection 2)",
+      "query": "Scenario 2's query. Then, while the agent is in stage 4, send in order: (a) 'also fix the typo in README.md', (b) 'how long will this take?', (c) 'will this cost tokens?'",
+      "files": ["qa-wrap-en.mp4", "qa-wrap-en.srt", "README.md"],
+      "expected_behavior": [
+        "(a) is answered in one line, appended to PARKED.md, and NOT done until after stage 6",
+        "(b) is answered by repeating the ONE estimate already given, not by producing a new number",
+        "(c) is answered in at most two plain sentences: building costs tokens, the render does not",
+        "README.md is untouched when the MP4 is delivered, and is fixed afterwards",
+        "No git command is run outside the project directory while the film is in flight"
+      ]
+    },
+    {
+      "id": "5-owners-review-reel2",
+      "tests": "the owner's three verbatim notes on reel 2 (21 Sept 2026): entrance/exit, hero visibility, one caption system",
+      "query": "Same as scenario 1, style: paper-punch.",
+      "files": ["qa-wrap-en.mp4", "qa-wrap-en.srt"],
+      "expected_behavior": [
+        "Every clip/img element has at least one tween starting within 0.6s of its data-start (entrance) and one ending within 0.6s of its end (exit), unless data-hold=\"cut-in\"/\"cut-out\" is named with a storyboard reason",
+        "Each scene's storyboard names one hero via data-hero; the hero occupies >=35% of the frame's shorter side and is not equalled or exceeded in size/saturation by any other element in the scene",
+        "A toned hero's mean luminance still separates from its ground by the house threshold in choreography.md — toning did not flatten it",
+        "Exactly one caption system ships: kinetic on-picture words (captions: kinetic, the default) OR a subtitle strip (captions: subtitle) — never both in the same hf/index.html",
+        "gate.py NO-GOes a page carrying both a subtitle container fed word-by-word AND separate on-picture kinetic words for the same narration"
+      ]
+    }
+  ]
+}
