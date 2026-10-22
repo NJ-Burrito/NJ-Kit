@@ -1,40 +1,50 @@
 <div align="center">
 
-<a href="https://nj-burrito.github.io/NJ-Kit/"><img src="docs/assets/banner.png" alt="NJ-Kit: a working method for Claude Code. 43 skills, each ending in a PASS or FAIL gate." width="100%"></a>
+<a href="https://nj-burrito.github.io/NJ-Kit/"><img src="docs/assets/banner.gif" alt="NJ-Kit: a working method for Claude Code. A light walks the six steps of the method; at the gate the word PASS lights up." width="100%"></a>
 
 # NJ-Kit
 
-## A working method for Claude Code.
-
-## Skills that check their own work.
+### One working method for Claude Code. Every skill ends in a gate that prints PASS or FAIL.
 
 [![Website](https://img.shields.io/badge/website-nj--burrito.github.io%2FNJ--Kit-c2ea4e?labelColor=0e1311)](https://nj-burrito.github.io/NJ-Kit/)
 [![CI](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml/badge.svg)](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Font: Thmanyah, own licence](https://img.shields.io/badge/font-Thmanyah%20%E2%80%94%20own%20licence-1f2937.svg)](https://font.thmanyah.com)
-[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757.svg)](.claude-plugin/marketplace.json)
-[![Skills](https://img.shields.io/badge/skills-43-7c3aed.svg)](#whats-inside)
-[![Arabic and English](https://img.shields.io/badge/Arabic%20%2B%20English-first--class-0d9488.svg)](nj-plugin/skills/arabic-english-proofreading)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](nj-kit/scripts/install.py)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Nader%20Alzghoul-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nader-alzghoul)
-[![GitHub](https://img.shields.io/badge/GitHub-NJ--Burrito-181717?logo=github&logoColor=white)](https://github.com/NJ-Burrito)
-[![Portfolio](https://img.shields.io/badge/Portfolio-nj--burrito.github.io-0A66C2?logo=googlechrome&logoColor=white)](https://nj-burrito.github.io/)
-[![Stars](https://img.shields.io/badge/stars-1-white?style=social&logo=github)](https://github.com/NJ-Burrito/NJ-Kit/stargazers)
+[![License: MIT](https://img.shields.io/badge/license-MIT-c2ea4e?labelColor=0e1311)](LICENSE)
+[![Skills](https://img.shields.io/badge/skills-40-c2ea4e?labelColor=0e1311)](#whats-inside)
+[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-c2ea4e?labelColor=0e1311)](.claude-plugin/marketplace.json)
+[![Arabic and English](https://img.shields.io/badge/Arabic%20%2B%20English-first--class-c2ea4e?labelColor=0e1311)](nj-plugin/skills/arabic-english-proofreading)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-c2ea4e?labelColor=0e1311)](nj-kit/scripts/install.py)
+[![Font: Thmanyah, own licence](https://img.shields.io/badge/font-Thmanyah%2C%20own%20licence-9aa7a0?labelColor=0e1311)](https://font.thmanyah.com)
+[![Stars](https://img.shields.io/github/stars/NJ-Burrito/NJ-Kit?style=social)](https://github.com/NJ-Burrito/NJ-Kit/stargazers)
 
 > ### ⚡ In 10 seconds
-> 🧠 **What:** a free toolkit that gives Claude Code one working method and 43 skills.\
-> ✅ **Why:** every skill ends with a script that says **PASS** or **FAIL**. No "should work".\
-> 🚀 **Start:** 2 lines in Claude Code. [Go ↓](#plugin)\
-> 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) in English and Arabic.
+> 🧠 **What:** a free toolkit: one working method and 40 skills for Claude Code.\
+> ✅ **Why:** each skill ends in a script that prints **PASS** or **FAIL**. "Should work" is not a result.\
+> 🚀 **Start:** paste 2 lines into Claude Code. [Go ↓](#plugin)\
+> 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/), in English and Arabic.
 
 ### Pick how you want it. All free. 👇
 
 | 🧩 Plugin | 🧰 Kit installer | 📂 Copy a skill | 🔤 NJ-Font |
 |:---:|:---:|:---:|:---:|
-| For **Claude Code** | Whole setup on a new machine | For any agent that reads `SKILL.md` | A typeface by the creator |
+| **23 skills** for Claude Code | **All 40** on a new machine | For any agent that reads `SKILL.md` | A typeface by the creator |
 | [Install ↓](#plugin) | [Install ↓](#kit) | [Browse ↓](#whats-inside) | [Install ↓](#nj-font) |
 
 </div>
+
+---
+
+## 🔁 How it works · 6 steps, 1 gate
+
+<div align="center"><img src="docs/assets/hero.gif" alt="NJ-Kit at work: you ask for a PDF; the six steps light up in turn: analyse, find the skill, plan, execute, gate, review. The gate prints FAIL, the text is not selectable; after one fix it prints PASS." width="720"></div>
+
+| Step | What happens |
+|---|---|
+| 🔍 **1 Analyse** | Name the deliverable and what "done" means |
+| 📖 **2 Find the skill** | Use a tested skill before improvising |
+| 📋 **3 Plan** | Short steps, each leaving a checkpoint file |
+| ⌨️ **4 Execute** | Do the work, checking as it goes |
+| ✅ **5 Gate** | A script prints PASS or FAIL. FAIL means one fix, then the gate runs again |
+| 🔄 **6 Review** | Compare the result with the request, item by item |
 
 ---
 
@@ -62,15 +72,17 @@ Needs: 🐍 Python 3.10+
 ```bash
 git clone https://github.com/NJ-Burrito/NJ-Kit
 cd NJ-Kit
-python nj-kit/scripts/install.py --check   # 👀 preview, changes nothing
-python nj-kit/scripts/install.py           # ✅ install
+python nj-kit/scripts/install.py --check       # 👀 preview, changes nothing
+python nj-kit/scripts/install.py               # ✅ install
+python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 ```
 
 <details>
-<summary>📖 More: where skills go, options</summary>
+<summary>📖 More: where skills go, the assets, options</summary>
 
 - Skills land in `~/.claude/skills/` (every repo on this machine).
 - `--scope project` puts them in one repo instead.
+- **NJ-Kit assets v1** is a GitHub release (tag `assets-v1`) with the heavy parts kept out of git: the graphify package, the nj-researcher source registry, the tashkeel evidence runs. `fetch_assets.py` checks each file's sha256 before writing it. `--list` shows them.
 - [uv](https://docs.astral.sh/uv/) is recommended for Python.
 - Full guide: [nj-kit/README.md](nj-kit/README.md)
 
@@ -78,19 +90,9 @@ python nj-kit/scripts/install.py           # ✅ install
 
 ---
 
-## 🔁 How it works · 3 steps
-
-<div align="center"><img src="docs/assets/hero.gif" alt="NJ-Kit: analyse, find the skill, plan, execute, gate, review. A script decides PASS or FAIL." width="560"></div>
-
-| 1️⃣ Install | 2️⃣ Ask | 3️⃣ Read the gate |
-|:---:|:---:|:---:|
-| Plugin or kit | Ask for work as usual | ✅ PASS or ❌ FAIL, from a script |
-
----
-
 <a id="whats-inside"></a>
 
-## 📦 What's inside · tap a row to open
+## 📦 What's inside · 40 skills · tap a row to open
 
 <details>
 <summary>🧠 <b>Method and agents</b> · 9 skills · plan, delegate, hand off</summary>
@@ -148,9 +150,9 @@ python nj-kit/scripts/install.py           # ✅ install
 </details>
 
 <details>
-<summary>🧰 <b>Bundled with the kit</b> · 20 more · research, design, decks</summary>
+<summary>🧰 <b>Bundled with the kit</b> · 17 more · research, design, decks</summary>
 
-nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-motion-deck · nj-laya · nj-pinterest · srs-verifier · safe-delete · pdf-typography, plus third-party design skills (brandkit, design-taste-frontend, high-end-visual-design, minimalist-ui, redesign-existing-projects, hyperframes-studio, general-video) and graphify. Heavy optional parts (graphify package, researcher source registry) are fetched on demand: `python nj-kit/scripts/fetch_assets.py --list`. Folder: [`nj-kit/bundled`](nj-kit/bundled) · Credits: [THIRD_PARTY.md](THIRD_PARTY.md)
+nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-motion-deck · nj-laya · nj-pinterest · srs-verifier · safe-delete, plus third-party design skills (brandkit, design-taste-frontend, high-end-visual-design, minimalist-ui, redesign-existing-projects, hyperframes-studio, general-video) and graphify. The kit installer puts them in place; graphify's package and the researcher's source registry come from **NJ-Kit assets v1** (`python nj-kit/scripts/fetch_assets.py --all`). Folder: [`nj-kit/bundled`](nj-kit/bundled) · Credits: [THIRD_PARTY.md](THIRD_PARTY.md)
 
 </details>
 
@@ -234,6 +236,15 @@ Yes. Arabic and English are both first-class, RTL included.
 
 Yes. Nothing is tied to one machine. Set `NJ_PLUGIN_ROOT`, `JIRA_BASE_URL`, `PORTAL_URL` and the other variables a skill names, or keep the defaults under your home folder.
 </details>
+
+---
+
+## 🔗 More from NJ
+
+| | |
+|---|---|
+| 🧾 [**Profile-Wrap**](https://nj-burrito.github.io/Profile-Wrap/) | Free, open-source LinkedIn post manager. Nothing goes out until you tap Allow. [Source](https://github.com/NJ-Burrito/Profile-Wrap) |
+| 🌐 [**NJ-Kit website**](https://nj-burrito.github.io/NJ-Kit/) | This kit in English and Arabic |
 
 ---
 

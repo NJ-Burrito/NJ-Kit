@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "note": "Heavy optional parts that are not in the git tree. `python nj-kit/scripts/fetch_assets.py --list` shows them; `<name>` or `--all` downloads, verifies sha256 and puts them at `target` (relative to the repo root, or to --root).",
+  "note": "NJ-Kit assets v1 (release tag assets-v1): the heavy parts kept out of the git tree. `python nj-kit/scripts/fetch_assets.py --list` shows them; `<name>` or `--all` downloads, verifies sha256 and puts them at `target` (relative to the repo root, or to --root).",
   "release_base": "https://github.com/NJ-Burrito/NJ-Kit/releases/download/assets-v1",
   "assets": [
     {
@@ -19,7 +19,7 @@
     {
       "name": "researcher-sources-db",
       "kind": "file",
-      "what": "nj-researcher source registry (SQLite, 328 sources). Optional: `python scripts/sources.py seed --reset` rebuilds a registry from data/seed.tsv.",
+      "what": "nj-researcher source registry (SQLite, 328 sources). Without network, `python scripts/sources.py seed --reset` rebuilds a registry from data/seed.tsv.",
       "url": "https://github.com/NJ-Burrito/NJ-Kit/releases/download/assets-v1/sources.db",
       "upstream": "none (own data, GitHub release asset)",
       "version": "2026-10-22",
@@ -31,7 +31,7 @@
     {
       "name": "tashkeel-evidence-runs",
       "kind": "zip",
-      "what": "Raw model-run evidence for the Arabic tashkeel KB (run1, run1-scored, run2, run3, run5, run6 JSON). Optional: only the analysis scripts in the same folder read them.",
+      "what": "Raw model-run evidence for the Arabic tashkeel KB (run1, run1-scored, run2, run3, run5, run6 JSON), read by the analysis scripts in the same folder.",
       "url": "https://github.com/NJ-Burrito/NJ-Kit/releases/download/assets-v1/tashkeel-evidence-runs.zip",
       "upstream": "none (own data, GitHub release asset)",
       "version": "2026-10-22",
