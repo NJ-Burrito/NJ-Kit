@@ -11,7 +11,7 @@
 
 - [Nader Alzghoul, QA Automation Engineer](https://nj-burrito.github.io/): the author
 - [Profile-Wrap](https://nj-burrito.github.io/Profile-Wrap/): open-source LinkedIn post manager
-- [QA Wrap](https://nj-burrito.github.io/QA-Wrap/): browser extension that turns a test session into a bug report
+- [QA-Wrap](https://nj-burrito.github.io/QA-Wrap/): browser extension that turns a test session into a bug report
 
 ## Answers
 
