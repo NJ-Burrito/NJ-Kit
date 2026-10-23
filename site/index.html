@@ -29,7 +29,13 @@
 <meta name="twitter:image:alt" content="NJ-Kit: a working method for Claude Code. 40 skills, each ending in a PASS or FAIL gate.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230e1311'/%3E%3Crect x='3' y='3' width='26' height='26' rx='3' fill='%23c2ea4e'/%3E%3Cpath d='M9.5 16.5l4.5 4.5 8.5-9.5' fill='none' stroke='%230e1311' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"NJ-Kit","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","url":"https://nj-burrito.github.io/NJ-Kit/","codeRepository":"https://github.com/NJ-Burrito/NJ-Kit","license":"https://opensource.org/licenses/MIT","inLanguage":["en","ar"],"description":"One working method and 40 skills for Claude Code. Every skill ends in a script gate that says PASS or FAIL. Free and open source under the MIT licence.","image":"https://nj-burrito.github.io/NJ-Kit/banner.png","screenshot":"https://nj-burrito.github.io/NJ-Kit/banner.png","featureList":["40 skills for Claude Code","Every skill ends in a script gate that says PASS or FAIL","Installs as a Claude Code plugin or as plain SKILL.md folders for any agent","Arabic and English first-class"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Nader Alzghoul","url":"https://nj-burrito.github.io/","sameAs":["https://www.linkedin.com/in/nader-alzghoul","https://github.com/NJ-Burrito"]}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"NJ-Kit","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","url":"https://nj-burrito.github.io/NJ-Kit/","codeRepository":"https://github.com/NJ-Burrito/NJ-Kit","license":"https://opensource.org/licenses/MIT","inLanguage":["en","ar"],"description":"One working method and 40 skills for Claude Code. Every skill ends in a script gate that says PASS or FAIL. Free and open source under the MIT licence.","image":"https://nj-burrito.github.io/NJ-Kit/banner.png","screenshot":["https://nj-burrito.github.io/NJ-Kit/banner.png","https://nj-burrito.github.io/NJ-Kit/assets/banner.gif","https://nj-burrito.github.io/NJ-Kit/assets/hero.gif"],"featureList":["40 skills for Claude Code","Every skill ends in a script gate that says PASS or FAIL","Installs as a Claude Code plugin or as plain SKILL.md folders for any agent","Arabic and English first-class"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Nader Alzghoul","url":"https://nj-burrito.github.io/","sameAs":["https://www.linkedin.com/in/nader-alzghoul","https://github.com/NJ-Burrito"]}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebSite", "name": "NJ-Kit", "url": "https://nj-burrito.github.io/NJ-Kit/", "inLanguage": ["en", "ar"], "publisher": {"@type": "Person", "name": "Nader Alzghoul", "url": "https://nj-burrito.github.io/"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "What is NJ-Kit?", "acceptedAnswer": {"@type": "Answer", "text": "NJ-Kit is a free, open-source Claude Code plugin: one working method and 40 skills. Every skill ends in a script gate that prints PASS or FAIL. It is MIT licensed, by Nader Alzghoul."}}, {"@type": "Question", "name": "How do I install NJ-Kit?", "acceptedAnswer": {"@type": "Answer", "text": "In Claude Code, run /plugin marketplace add NJ-Burrito/NJ-Kit, then /plugin install nj-kit@nj-kit. That takes about a minute and gives you 23 skills. The kit installer adds the other 17."}}, {"@type": "Question", "name": "Does it work with agents other than Claude Code?", "acceptedAnswer": {"@type": "Answer", "text": "Any agent that reads SKILL.md files can use the skill folders directly, with no installer. The plugin route is for Claude Code."}}, {"@type": "Question", "name": "Is NJ-Kit made by Anthropic?", "acceptedAnswer": {"@type": "Answer", "text": "No. NJ-Kit is an independent project by Nader Alzghoul, not affiliated with or endorsed by Anthropic."}}, {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It is open source under the MIT licence."}}, {"@type": "Question", "name": "Do I need all of it?", "acceptedAnswer": {"@type": "Answer", "text": "No. Copy one skill folder into ~/.claude/skills/ and it works on its own."}}, {"@type": "Question", "name": "Does it work in Arabic?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Arabic and English are both first-class, right-to-left included."}}, {"@type": "Question", "name": "Will paths work on my machine?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Set the variables a skill names, like NJ_PLUGIN_ROOT, or keep the defaults."}}]}
 </script>
 <script>document.documentElement.classList.add("js")</script>
 <style>
@@ -297,6 +303,14 @@ html[lang=ar] .tldr .cards b{letter-spacing:0;font-size:.95rem}
 .loop.rest .node.gate .disc{fill:var(--acc);stroke:var(--acc)}
 .loop.rest .node.gate use{color:var(--on-acc)}
 
+/* motion figures: still poster first, GIF swapped in when near the viewport */
+.shot{margin:0;width:100%;max-width:1040px;justify-self:center}
+.shot img{width:100%;height:auto;border:1px solid var(--line2);border-radius:var(--r);background:var(--surface)}
+.shot figcaption{margin-top:10px;color:var(--mute);font-size:.95rem;line-height:1.5}
+.hero .shot{grid-column:1/-1;order:3}
+#how .shot{margin-top:clamp(28px,4vw,48px)}
+#how .def{max-width:62ch;margin:0 0 clamp(24px,3vw,36px)}
+
 /* reveal */
 .js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--i,0) * 70ms)}
 .js .rv.in{opacity:1;transform:none}
@@ -419,17 +433,26 @@ html[lang=ar] .tldr .cards b{letter-spacing:0;font-size:.95rem}
         </ul>
       </nav>
       </div>
+      <figure class="shot rv" style="--i:1">
+        <img id="gif-banner" src="assets/banner-poster.webp" data-gif="assets/banner.gif" data-alt-en="NJ-Kit banner, animated: the method loop analyse, find the skill, plan, execute, gate, review, ending on PASS." data-alt-ar="شعار NJ-Kit متحرك: حلقة المنهج حلّل، ابحث عن المهارة، خطّط، نفّذ، افحص، راجع، وتنتهي بـ PASS." alt="NJ-Kit banner, animated: the method loop analyse, find the skill, plan, execute, gate, review, ending on PASS." width="1280" height="640" loading="lazy" decoding="async">
+        <figcaption><span data-l="en">NJ-Kit in 6 seconds: 40 skills, every one ending in a PASS or FAIL gate.</span><span data-l="ar">NJ-Kit في 6 ثوانٍ: 40 مهارة، وكل واحدة تنتهي بفحص <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>.</span></figcaption>
+      </figure>
     </div>
   </section>
 
   <section id="how">
     <div class="wrap">
       <h2 class="rv"><span data-l="en">3 steps. Then read the gate.</span><span data-l="ar">3 خطوات، ثم اقرأ نتيجة الفحص.</span></h2>
+      <p class="lede def rv"><span data-l="en">NJ-Kit is a free, open-source Claude Code plugin: one working method and 40 skills. Each skill ends in a script that prints PASS or FAIL, so "done" means a check ran.</span><span data-l="ar">NJ-Kit إضافة مجانية ومفتوحة المصدر لـ <bdi dir="ltr">Claude Code</bdi>: منهج عمل واحد و40 مهارة. تنتهي كل مهارة بسكربت يطبع <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>، فيعني «تم» أن فحصًا جرى فعلًا.</span></p>
       <ol class="rail" style="list-style:none;padding:0">
         <li class="step rv"><div class="k"><svg class="ic" aria-hidden="true"><use href="#i-plug"/></svg></div><h3><span data-l="en">Install</span><span data-l="ar">ثبّت</span></h3><p><span data-l="en">The plugin, or the kit installer.</span><span data-l="ar">الإضافة، أو مثبّت الحزمة.</span></p></li>
         <li class="step rv" style="--i:1"><div class="k"><svg class="ic" aria-hidden="true"><use href="#i-message-square"/></svg></div><h3><span data-l="en">Ask</span><span data-l="ar">اطلب</span></h3><p><span data-l="en">Ask for work as usual.</span><span data-l="ar">اطلب العمل كما تفعل عادةً.</span></p></li>
         <li class="step rv" style="--i:2"><div class="k"><svg class="ic" aria-hidden="true"><use href="#i-circle-check-big"/></svg></div><h3><span data-l="en">Read the gate</span><span data-l="ar">اقرأ النتيجة</span></h3><p><span data-l="en">PASS or FAIL, from a script. No "should work".</span><span data-l="ar"><bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi> من سكربت، لا «يُفترض أن يعمل».</span></p></li>
       </ol>
+      <figure class="shot rv">
+        <img id="gif-hero" src="assets/hero-poster.webp" data-gif="assets/hero.gif" data-alt-en="Animated walkthrough of how NJ-Kit works: you ask, the method picks a skill, a script gate prints PASS or FAIL." data-alt-ar="شرح متحرك لطريقة عمل NJ-Kit: تطلب، فيختار المنهج مهارة، ثم يطبع سكربت الفحص PASS أو FAIL." alt="Animated walkthrough of how NJ-Kit works: you ask, the method picks a skill, a script gate prints PASS or FAIL." width="1040" height="600" loading="lazy" decoding="async">
+        <figcaption><span data-l="en">How it runs: ask, the method picks the skill, the gate reports.</span><span data-l="ar">كيف تعمل: تطلب، فيختار المنهج المهارة، ثم يعلن الفحص النتيجة.</span></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -592,6 +615,10 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
   <section class="faq" id="questions">
     <div class="wrap">
       <h2 class="rv"><span data-l="en">Questions</span><span data-l="ar">أسئلة</span></h2>
+      <details><summary><span data-l="en">What is NJ-Kit?</span><span data-l="ar">ما هي <bdi dir="ltr">NJ-Kit</bdi>؟</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><span data-l="en">NJ-Kit is a free, open-source Claude Code plugin: one working method and 40 skills. Every skill ends in a script gate that prints PASS or FAIL. It is MIT licensed, by Nader Alzghoul.</span><span data-l="ar"><bdi dir="ltr">NJ-Kit</bdi> إضافة مجانية ومفتوحة المصدر لـ <bdi dir="ltr">Claude Code</bdi>: منهج عمل واحد و40 مهارة. تنتهي كل مهارة بسكربت فحص يطبع <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>. برخصة <bdi dir="ltr">MIT</bdi>، من صنع نادر الزغول.</span></p></details>
+      <details><summary><span data-l="en">How do I install NJ-Kit?</span><span data-l="ar">كيف أثبّت <bdi dir="ltr">NJ-Kit</bdi>؟</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><span data-l="en">In Claude Code, run <code dir="ltr">/plugin marketplace add NJ-Burrito/NJ-Kit</code>, then <code dir="ltr">/plugin install nj-kit@nj-kit</code>. That takes about a minute and gives you 23 skills. The kit installer adds the other 17.</span><span data-l="ar">في <bdi dir="ltr">Claude Code</bdi> نفّذ <code dir="ltr">/plugin marketplace add NJ-Burrito/NJ-Kit</code> ثم <code dir="ltr">/plugin install nj-kit@nj-kit</code>. يستغرق ذلك نحو دقيقة ويمنحك 23 مهارة، ويضيف مثبّت الحزمة الـ17 الباقية.</span></p></details>
+      <details><summary><span data-l="en">Does it work with agents other than Claude Code?</span><span data-l="ar">هل تعمل مع وكلاء غير <bdi dir="ltr">Claude Code</bdi>؟</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><span data-l="en">Any agent that reads <code dir="ltr">SKILL.md</code> files can use the skill folders directly, with no installer. The plugin route is for Claude Code.</span><span data-l="ar">يمكن لأي وكيل يقرأ ملفات <code dir="ltr">SKILL.md</code> استخدام مجلدات المهارات مباشرة بلا مثبّت. أما مسار الإضافة فهو لـ <bdi dir="ltr">Claude Code</bdi>.</span></p></details>
+      <details><summary><span data-l="en">Is NJ-Kit made by Anthropic?</span><span data-l="ar">هل <bdi dir="ltr">NJ-Kit</bdi> من <bdi dir="ltr">Anthropic</bdi>؟</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><span data-l="en">No. NJ-Kit is an independent project by Nader Alzghoul, not affiliated with or endorsed by Anthropic.</span><span data-l="ar">لا. <bdi dir="ltr">NJ-Kit</bdi> مشروع مستقل من نادر الزغول، وغير تابع لشركة <bdi dir="ltr">Anthropic</bdi> ولا معتمد منها.</span></p></details>
       <details><summary><span data-l="en">Is it free?</span><span data-l="ar">هل هي مجانية؟</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><span data-l="en">Yes. MIT licence.</span><span data-l="ar">نعم، برخصة <bdi dir="ltr">MIT</bdi>.</span></p></details>
       <details><summary><span data-l="en">Do I need all of it?</span><span data-l="ar">هل أحتاج إليها كلها؟</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><span data-l="en">No. Copy one skill folder into <code dir="ltr">~/.claude/skills/</code> and it works on its own.</span><span data-l="ar">لا. انسخ مجلد مهارة واحدة إلى <code dir="ltr">~/.claude/skills/</code> ويعمل وحده.</span></p></details>
       <details><summary><span data-l="en">Does it work in Arabic?</span><span data-l="ar">هل تعمل بالعربية؟</span><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><span data-l="en">Yes. Arabic and English are both first-class, right-to-left included.</span><span data-l="ar">نعم. العربية والإنجليزية بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار.</span></p></details>
@@ -645,6 +672,7 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
   var titles={en:"NJ-Kit: a working method for Claude Code",ar:"NJ-Kit: منهج عمل لـ Claude Code"};
   function setLang(l,save){
     html.lang=l; html.dir=l==="ar"?"rtl":"ltr"; document.title=titles[l];
+    [].forEach.call(document.querySelectorAll("img[data-gif]"),function(i){i.alt=i.getAttribute("data-alt-"+l)});
     if(save){try{localStorage.setItem("njkit-lang",l)}catch(e){}}
   }
   var q=new URLSearchParams(location.search).get("lang"), s=null;
@@ -670,6 +698,16 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
       if(navigator.clipboard){navigator.clipboard.writeText(txt).then(done,function(){})}
     });
   });
+
+  var gifs=[].slice.call(document.querySelectorAll("img[data-gif]"));
+  var still=window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches;
+  function play(i){i.src=i.getAttribute("data-gif")}
+  if(!still){
+    if("IntersectionObserver" in window){
+      var gio=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){play(x.target);gio.unobserve(x.target)}})},{rootMargin:"300px 0px"});
+      gifs.forEach(function(i){gio.observe(i)});
+    } else {gifs.forEach(play)}
+  }
 
   var loop=document.querySelector(".loop"); if(loop){setTimeout(function(){loop.classList.add("rest")},12000)}
 

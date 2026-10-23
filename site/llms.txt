@@ -12,3 +12,11 @@
 - [Nader Alzghoul, QA Automation Engineer](https://nj-burrito.github.io/): the author
 - [Profile-Wrap](https://nj-burrito.github.io/Profile-Wrap/): open-source LinkedIn post manager
 - [QA Wrap](https://nj-burrito.github.io/QA-Wrap/): browser extension that turns a test session into a bug report
+
+## Answers
+
+- What is it? A free, open-source Claude Code plugin: one working method and 40 skills, each ending in a PASS or FAIL script gate.
+- Install: `/plugin marketplace add NJ-Burrito/NJ-Kit` then `/plugin install nj-kit@nj-kit` (23 skills); the kit installer adds the other 17.
+- Other agents: any agent that reads `SKILL.md` can use the skill folders directly.
+- Affiliation: independent project, not affiliated with or endorsed by Anthropic.
+- Animated overview: https://nj-burrito.github.io/NJ-Kit/assets/banner.gif
