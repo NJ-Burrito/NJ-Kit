@@ -1,0 +1,14 @@
+# NJ-Kit
+
+> NJ-Kit is a free, open-source Claude Code plugin: one working method and 40 skills. Every skill ends in a script gate that says PASS or FAIL. MIT licence, Arabic and English first-class, by Nader Alzghoul.
+
+- [Website](https://nj-burrito.github.io/NJ-Kit/): what is inside, install steps, FAQ
+- [Source and skill list](https://github.com/NJ-Burrito/NJ-Kit): all 40 skills, README, MIT licence
+- Install as a plugin: `/plugin marketplace add NJ-Burrito/NJ-Kit`
+- Any agent that reads `SKILL.md` can use the skill folders directly, no installer
+
+## Related
+
+- [Nader Alzghoul, QA Automation Engineer](https://nj-burrito.github.io/): the author
+- [Profile-Wrap](https://nj-burrito.github.io/Profile-Wrap/): open-source LinkedIn post manager
+- [QA Wrap](https://nj-burrito.github.io/QA-Wrap/): browser extension that turns a test session into a bug report
