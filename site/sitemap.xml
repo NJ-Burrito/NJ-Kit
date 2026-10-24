@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://nj-burrito.github.io/NJ-Kit/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nj-burrito.github.io/NJ-Kit/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://nj-burrito.github.io/NJ-Kit/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nj-burrito.github.io/NJ-Kit/"/>
     <image:image><image:loc>https://nj-burrito.github.io/NJ-Kit/assets/banner.gif</image:loc><image:title>NJ-Kit banner: a working method for Claude Code</image:title></image:image>
-    <image:image><image:loc>https://nj-burrito.github.io/NJ-Kit/assets/hero.gif</image:loc><image:title>How NJ-Kit works: ask, pick a skill, read the PASS or FAIL gate</image:title></image:image>
+    <image:image><image:loc>https://nj-burrito.github.io/NJ-Kit/banner.png</image:loc><image:title>NJ-Kit: Claude Code skills that end in PASS or FAIL</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://nj-burrito.github.io/NJ-Kit/ar/</loc>
+    <lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nj-burrito.github.io/NJ-Kit/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://nj-burrito.github.io/NJ-Kit/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nj-burrito.github.io/NJ-Kit/"/>
+    <image:image><image:loc>https://nj-burrito.github.io/NJ-Kit/og-ar.png</image:loc><image:title>NJ-Kit: مهارات Claude Code تنتهي بـ PASS أو FAIL</image:title></image:image>
   </url>
 </urlset>

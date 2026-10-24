@@ -2,11 +2,9 @@
 
 <a href="https://nj-burrito.github.io/NJ-Kit/"><img src="docs/assets/banner.gif" alt="NJ-Kit: a working method for Claude Code. A light walks the six steps of the method; at the gate the word PASS lights up." width="100%"></a>
 
-# NJ-Kit
+# NJ-Kit: Claude Code skills that end in PASS or FAIL
 
-### ✅ Every skill ends in PASS or FAIL
-
-One working method and 40 skills for Claude Code.
+### ✅ One working method and 40 skills for Claude Code. Every skill ends in a script that checks the work.
 
 [![Website](https://img.shields.io/badge/website-nj--burrito.github.io%2FNJ--Kit-c2ea4e?labelColor=0e1311)](https://nj-burrito.github.io/NJ-Kit/)
 [![CI](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml/badge.svg)](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml)
@@ -30,9 +28,9 @@ One working method and 40 skills for Claude Code.
 > 🧠 **What:** a free method and 40 skills for Claude Code.\
 > ✅ **Why:** a script prints **PASS** or **FAIL**. No "should work".\
 > 🚀 **Start:** paste 2 lines into Claude Code. [Go ↓](#plugin)\
-> 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) · English and Arabic
+> 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) · [بالعربية](https://nj-burrito.github.io/NJ-Kit/ar/)
 
-🧭 **Jump to:** [Start here](#start-here) · [How it works](#how) · [Skills](#whats-inside) · [Safety](#safe) · [Questions](#faq) · [NJ-Font](#nj-font)
+🧭 **Jump to:** [Start here](#start-here) · [How it works](#how) · [Skills](#whats-inside) · [Compare](#compare) · [Safety](#safe) · [Questions](#faq) · [NJ-Font](#nj-font) · [العربية](#ar)
 
 ---
 
@@ -118,7 +116,9 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="whats-inside"></a>
 
-## 📦 What's inside · 40 skills · tap a row to open
+## 📦 40 Claude Code skills · tap a row to open
+
+23 come with the plugin. The kit installer adds 17. Every one ends in a PASS or FAIL gate.
 
 <details>
 <summary>🧠 <b>Method and agents</b> · 9 skills · plan, delegate, hand off</summary>
@@ -192,6 +192,23 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 ---
 
+<a id="compare"></a>
+
+## 🆚 NJ-Kit and other Claude Code skill collections
+
+You can combine them. NJ-Kit skills are plain `SKILL.md` folders, so they work next to skills from any of these.
+
+| Project | What it is | Reach for it when |
+|---|---|---|
+| ✅ **NJ-Kit** | A working method and 40 skills. Every skill ends in a PASS or FAIL script. Arabic and English | You want the agent to prove a task is done |
+| [anthropics/skills](https://github.com/anthropics/skills) | Anthropic's public repository for Agent Skills | You want the skills Anthropic publishes itself |
+| [obra/superpowers](https://github.com/obra/superpowers) | An agentic skills framework and software development methodology | You want a software development methodology built from skills |
+| [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | A hand-picked list of Claude Code resources: skills, agents, plugins, tools | You want to browse what exists |
+
+Descriptions from each project's own GitHub page, 24 Oct 2026.
+
+---
+
 <a id="nj-font"></a>
 
 ## 🔤 NJ-Font
@@ -255,7 +272,37 @@ Get-ChildItem NJ-Font\ttf\*.ttf | ForEach-Object {
 
 <a id="faq"></a>
 
-## ❓ Questions · tap to open
+## ❓ Questions about NJ-Kit and Claude Code skills · tap to open
+
+<details><summary>🧠 What is NJ-Kit?</summary>
+
+A free, open-source Claude Code plugin: one working method and 40 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, by Nader Alzghoul.
+</details>
+
+<details><summary>📂 What are Claude Code skills?</summary>
+
+A skill is a folder with a `SKILL.md` file of instructions, plus any scripts it needs. Claude Code reads each skill's description and loads the skill when a task matches it.
+</details>
+
+<details><summary>✅ What is a gate?</summary>
+
+A script at the end of a skill that checks the result and prints PASS or FAIL. On FAIL, the skill makes one fix and runs the gate again.
+</details>
+
+<details><summary>🆚 How is it different from Anthropic's skills repository?</summary>
+
+Anthropic's repository is its public collection of Agent Skills. NJ-Kit is an independent kit built around one working method, and every one of its skills ends in a PASS or FAIL script. You can install both. [Compare ↑](#compare)
+</details>
+
+<details><summary>🤖 Does it work with agents other than Claude Code?</summary>
+
+Any agent that reads `SKILL.md` files can use the skill folders directly, with no installer. The plugin route is for Claude Code.
+</details>
+
+<details><summary>🏢 Is NJ-Kit made by Anthropic?</summary>
+
+No. An independent project by Nader Alzghoul, not affiliated with or endorsed by Anthropic.
+</details>
 
 <details><summary>💸 Is it free?</summary>
 
@@ -287,7 +334,28 @@ Yes. Nothing is tied to one machine.
 | | |
 |---|---|
 | 🧾 [**Profile-Wrap**](https://nj-burrito.github.io/Profile-Wrap/) | Free, open-source LinkedIn post manager. Nothing goes out until you tap Allow. [Source](https://github.com/NJ-Burrito/Profile-Wrap) |
-| 🌐 [**NJ-Kit website**](https://nj-burrito.github.io/NJ-Kit/) | This kit in English and Arabic |
+| 🧪 [**QA-Wrap**](https://nj-burrito.github.io/QA-Wrap/) | A local-first QA toolkit in your browser. It records a session and writes the bug report. [Source](https://github.com/NJ-Burrito/QA-Wrap) |
+| 🌐 [**NJ-Kit website**](https://nj-burrito.github.io/NJ-Kit/) | This kit in [English](https://nj-burrito.github.io/NJ-Kit/) and [Arabic](https://nj-burrito.github.io/NJ-Kit/ar/) |
+| 👤 [**Portfolio**](https://nj-burrito.github.io/) | Who builds these tools |
+
+---
+
+<a id="ar"></a>
+
+## 🌍 بالعربية
+
+<div dir="rtl" lang="ar">
+
+**NJ-Kit** منهج عمل مجاني و40 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يفحص النتيجة ويطبع PASS أو FAIL، فتعني «تم» أن فحصًا جرى فعلًا.
+
+- 🚀 **ابدأ:** الصق السطرين في Claude Code، فتحصل على 23 مهارة في نحو دقيقة. [السطران ↑](#plugin)
+- 🧰 **الحزمة كاملة:** يضيف مثبّت الحزمة الـ17 الباقية. [المثبّت ↑](#kit)
+- 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
+- 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
+- 💸 **مجانية** ومفتوحة المصدر برخصة MIT، وغير تابعة لشركة Anthropic ولا معتمدة منها.
+- 🌐 **الموقع بالعربية:** [nj-burrito.github.io/NJ-Kit/ar](https://nj-burrito.github.io/NJ-Kit/ar/)
+
+</div>
 
 ---
 
