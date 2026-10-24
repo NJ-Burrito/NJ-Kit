@@ -5,6 +5,8 @@
 | Library | File | Licence |
 |---|---|---|
 | GSAP 3.15 | `nj-kit/bundled/nj-style-film/templates/vendor/gsap.min.js` | GreenSock Standard "No Charge" License — https://gsap.com/standard-license |
+| GSAP 3.15 + ScrollTrigger (website only) | `site/vendor/gsap.min.js`, `site/vendor/ScrollTrigger.min.js` | GreenSock Standard "No Charge" License, https://gsap.com/standard-license |
+| transitions.dev UI generation (website only) | `site/vendor/ui-generation.js`, `site/vendor/text-image-generation.js`, `site/vendor/ui-generation.css` | (c) 2026 Jakub Antalik / Transitions.dev, used on this website under https://transitions.dev/terms.html; not part of the kit and not offered as a library |
 
 ## Skills by other authors (in `nj-kit/bundled`)
 
