@@ -1,0 +1,4 @@
+Third-party files in this folder (the NJ-Kit website only; not part of the skills):
+
+gsap.min.js, ScrollTrigger.min.js  GSAP 3.15.0, GreenSock Standard "No Charge" License, https://gsap.com/standard-license
+ui-generation.js, text-image-generation.js, ui-generation.css  transitions.dev UI generation, (c) 2026 Jakub Antalik / Transitions.dev, used on this website under https://transitions.dev/terms.html

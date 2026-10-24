@@ -1,22 +1,26 @@
 # NJ-Kit
 
-> NJ-Kit is a free, open-source Claude Code plugin: one working method and 40 skills. Every skill ends in a script gate that says PASS or FAIL. MIT licence, Arabic and English first-class, by Nader Alzghoul.
+> NJ-Kit is a free, open-source Claude Code plugin: one working method and 40 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, Arabic and English first-class, by Nader Alzghoul. Independent project, not affiliated with or endorsed by Anthropic.
 
-- [Website](https://nj-burrito.github.io/NJ-Kit/): what is inside, install steps, FAQ
+- [Website, English](https://nj-burrito.github.io/NJ-Kit/): what is inside, one illustrated run, comparison, install, FAQ
+- [Website, Arabic](https://nj-burrito.github.io/NJ-Kit/ar/): the same page in Arabic
 - [Source and skill list](https://github.com/NJ-Burrito/NJ-Kit): all 40 skills, README, MIT licence
-- Install as a plugin: `/plugin marketplace add NJ-Burrito/NJ-Kit`
+- Install as a Claude Code plugin: `/plugin marketplace add NJ-Burrito/NJ-Kit` then `/plugin install nj-kit@nj-kit` (23 skills, about a minute); the kit installer adds the other 17
 - Any agent that reads `SKILL.md` can use the skill folders directly, no installer
+
+## Answers
+
+- What is NJ-Kit? A free, open-source Claude Code plugin: one working method and 40 skills, each ending in a PASS or FAIL script gate.
+- What are Claude Code skills? A skill is a folder with a SKILL.md file of instructions, plus any scripts it needs. Claude Code reads each skill's description and loads the skill when a task matches it.
+- What is a gate? A script at the end of a skill that checks the result and prints PASS or FAIL. On FAIL, the skill makes one fix and runs the gate again.
+- The method: analyse, find the skill, plan, execute, gate, review.
+- Skill groups: method and agents (9), QA and Jira (5), documents and writing (6), audio and video (3), bundled with the kit (17).
+- How is it different from anthropics/skills? Anthropic's repository is its public collection of Agent Skills. NJ-Kit is an independent kit built around one working method, and every one of its skills ends in a PASS or FAIL script. Both can be installed together.
+- Arabic: Arabic and English are both first-class, right-to-left included, with an Arabic proofreading skill.
+- Licence and price: MIT, free.
 
 ## Related
 
 - [Nader Alzghoul, QA Automation Engineer](https://nj-burrito.github.io/): the author
 - [Profile-Wrap](https://nj-burrito.github.io/Profile-Wrap/): open-source LinkedIn post manager
 - [QA-Wrap](https://nj-burrito.github.io/QA-Wrap/): browser extension that turns a test session into a bug report
-
-## Answers
-
-- What is it? A free, open-source Claude Code plugin: one working method and 40 skills, each ending in a PASS or FAIL script gate.
-- Install: `/plugin marketplace add NJ-Burrito/NJ-Kit` then `/plugin install nj-kit@nj-kit` (23 skills); the kit installer adds the other 17.
-- Other agents: any agent that reads `SKILL.md` can use the skill folders directly.
-- Affiliation: independent project, not affiliated with or endorsed by Anthropic.
-- Animated overview: https://nj-burrito.github.io/NJ-Kit/assets/banner.gif
