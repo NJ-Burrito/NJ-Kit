@@ -1,7 +1,7 @@
 {
   "name": "nj-kit",
   "owner": "Nader Alzghoul",
-  "updated": "2026-10-16",
+  "updated": "2026-10-27",
   "note": "Regenerate the skills block with scripts/export.py; the rest is hand-maintained. 2026-09-19 rework: plugin bodies trimmed (website-fine-print, workflow-diagram, pdf-typography, nj-delegate, nj-agent-ops, nj-director) with bulk moved to per-skill references/ that load on demand. Five zero-invocation skills archived to nj-plugin/_archive/ and dropped from marketplace.json (srs-verifier, design-gate, script-your-tools, scout, 10x) - restore by moving the folder back and re-adding its marketplace.json line. Duplicate user-level copies of devil and pdf-typography were recycled; the nj-kit plugin is now the single authoritative source for both. Evidence and the decision table: Desktop/_skills-backup/{decisions,content-audit}.md; rollback tarballs alongside them.",
   "privacy": {
     "why": "Eight people share one Claude account. These keep this machine's work off the shared account without changing anything for anyone else — they are user-scope, so they travel with the person, not the team.",
@@ -314,7 +314,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "@upstash/context7-mcp@latest"
+        "@upstash/context7-mcp@4.4.4"
       ],
       "why": "current library documentation"
     }
@@ -381,111 +381,133 @@
       {
         "skill": "apple-design",
         "source": "emilkowalski/skills",
+        "ref": "2d228630ba1446365f614a108cb8252f1feda202",
         "why": "Apple's approach to interface design and fluid, physical motion, for the web. Use for gesture-driven UI, spring animations, drag/swipe/sheet interactions, momen"
       },
       {
         "skill": "caveman",
         "source": "juliusbrussee/caveman",
+        "ref": "9b68f7ed12b05e7efaff18e65c5a3fc2849fd0a4",
         "why": "Ultra-compressed communication mode that cuts output tokens while keeping technical accuracy. Levels: lite, full, ultra and the wenyan variants. Use for /cavema"
       },
       {
         "skill": "chrome-extension-development",
         "source": "mindrally/skills",
+        "ref": "7682ca77710e0971eab4e0ae5dddfa281aea0ba5",
         "why": "Expert guidelines for Chrome extension development with Manifest V3, covering security, performance, and best practices. Use when building browser extensions, c"
       },
       {
         "skill": "doc-coauthoring",
         "source": "anthropics/skills",
+        "ref": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
         "why": "Structured workflow for co-authoring documentation — docs, proposals, technical specs, decision docs. Use when the user mentions writing docs, creating proposal"
       },
       {
         "skill": "hyperframes",
         "source": "heygen-com/hyperframes",
+        "ref": "207c8a4daf6480d697f203784f1fd422727569e3",
         "why": "Mandatory entry point: read first for any video, animation or motion-graphic request — promo, explainer, captioned clip, title card, overlay, slideshow, interac"
       },
       {
         "skill": "hyperframes-animation",
         "source": "heygen-com/hyperframes",
+        "ref": "207c8a4daf6480d697f203784f1fd422727569e3",
         "why": "All HyperFrames animation: atomic motion rules, multi-phase scene blueprints, transitions, 24 named text effects, choreography audits, and the seven runtime ada"
       },
       {
         "skill": "hyperframes-audio",
         "source": "heygen-com/hyperframes",
+        "ref": "207c8a4daf6480d697f203784f1fd422727569e3",
         "why": "Mixing audio already placed in a HyperFrames composition: fade-in/out, crossfade, track gain or volume, ducking, voiceover carve, effects (EQ, compressor, limit"
       },
       {
         "skill": "hyperframes-cli",
         "source": "heygen-com/hyperframes",
+        "ref": "207c8a4daf6480d697f203784f1fd422727569e3",
         "why": "The HyperFrames CLI loop: init, add, catalog, capture, lint, check, snapshot, compare, preview, play, present, beats, keyframes, single or batch render, publish"
       },
       {
         "skill": "hyperframes-core",
         "source": "heygen-com/hyperframes",
+        "ref": "207c8a4daf6480d697f203784f1fd422727569e3",
         "why": "The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class=\"clip\"`, tracks, sub-"
       },
       {
         "skill": "hyperframes-creative",
         "source": "heygen-com/hyperframes",
+        "ref": "207c8a4daf6480d697f203784f1fd422727569e3",
         "why": "Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, au"
       },
       {
         "skill": "hyperframes-keyframes",
         "source": "heygen-com/hyperframes",
+        "ref": "207c8a4daf6480d697f203784f1fd422727569e3",
         "why": "HyperFrames punch-in, punch-out, zoom, reframe, Ken Burns, camera move, visual match/whip handoff, or other seek-safe 2D/3D keyframes; GSAP, CSS keyframes, Anim"
       },
       {
         "skill": "hyperframes-registry",
         "source": "heygen-com/hyperframes",
+        "ref": "207c8a4daf6480d697f203784f1fd422727569e3",
         "why": "Search, install and wire HyperFrames registry blocks and components. Use BEFORE hand-building any named visual — CRT scanlines, glitch, chromatic aberration, fi"
       },
       {
         "skill": "mcp-builder",
         "source": "anthropics/skills",
+        "ref": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
         "why": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when b"
       },
       {
         "skill": "media-use",
         "source": "heygen-com/hyperframes",
+        "ref": "207c8a4daf6480d697f203784f1fd422727569e3",
         "why": "Every media need for HyperFrames: resolve BGM, SFX, image, icon, brand logo, voice, colour grade or LUT into a frozen file; generate via TTS/music/image models;"
       },
       {
         "skill": "no-ai-slop",
         "source": "petergyang/no-ai-slop",
+        "ref": "000650b156983f5159695b441477f4e63b25dc85",
         "why": "Edit drafts into sharper, more human writing while preserving the writer's voice, or detect AI-slop patterns without rewriting. Use when a draft should be clear"
       },
       {
         "skill": "pitch-deck",
         "source": "anthropics/financial-services",
+        "ref": "574ed3624aebd0418c7e96cd101262f30210ab26",
         "why": "Populating an investment-banking pitch-deck template from source data — the client's «pitch». Template population only, not decks from scratch."
       },
       {
         "skill": "playwright-best-practices",
         "source": "currents-dev/playwright-best-practices-skill",
+        "ref": "283d5cbc5d11aac1abda058b16ad22c317d54dc0",
         "why": "Writing or fixing Playwright tests: flakiness, debugging failures, Page Object Model, CI/CD, API mocking, auth/OAuth, accessibility (axe-core), fixtures, tags a"
       },
       {
         "skill": "prompt-engineering-patterns",
         "source": "wshobson/agents",
+        "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
         "why": "Use when asked to optimise a prompt, improve prompt performance, design a prompt template, write better prompts, debug prompt issues, use chain-of-thought, stru"
       },
       {
         "skill": "refactor",
         "source": "github/awesome-copilot",
+        "ref": "d75b41863510272ed217a3074c7045202b96e93f",
         "why": "'Surgical code refactoring to improve maintainability without changing behavior. Covers extracting functions, renaming variables, breaking down god functions, i"
       },
       {
         "skill": "simple-issue-description",
         "source": "every-app/open-seo",
+        "ref": "99d9a49c8cb742d54eddd64d09efbc5302f6db89",
         "why": "Turn a rough bug report, feature request, support note or pull request into a short plain-language issue about the problem and desired behaviour. Use to simplif"
       },
       {
         "skill": "test-fixing",
         "source": "mhattingpete/claude-skills-marketplace",
+        "ref": "b5b34bcf4c920bb72cee1c391b54a33cb5353c12",
         "why": "Run tests and systematically fix all failing tests using smart error grouping. Use when user asks to fix failing tests, mentions test failures, runs test suite "
       },
       {
         "skill": "web-design-guidelines",
         "source": "nexu-io/open-design",
+        "ref": "325494e5a1e5858f7aa63bd71d7f326bdf911e7f",
         "why": "Review UI code for Web Interface Guidelines compliance by the Vercel engineering team. Covers layout, typography, color, motion, and accessibility for product U"
       }
     ],
@@ -597,7 +619,9 @@
   },
   "standing_instructions": {
     "file": "~/.claude/CLAUDE.md",
-    "why": "makes nj-method the default for every session in every project, and carries the few facts that are cheap to state and expensive to rediscover (poppler for Arabic, PYTHONUTF8, Thmanyah only and Cairo banned). install.py must copy this or a new machine follows none of it. Since 2026-10-16 its delegation section describes NJ Governance v4 (sonnet-lead / haiku-helper tree); the agents, hooks and env that enforce it ship in governance_v4."
+    "template": "templates/CLAUDE.neutral.md",
+    "policy": "2026-10-27 security fix: install.py writes the NEUTRAL template (no personal rules, no Jira, no Gemini), and only when ~/.claude/CLAUDE.md does not exist. The author's own file is never bundled by default (export.py --with-personal writes bundled/CLAUDE.personal.md for a private migration; it is gitignored).",
+    "why": "makes nj-method the default for every session in every project, and carries the few facts that are cheap to state and expensive to rediscover (poppler for Arabic, PYTHONUTF8, Thmanyah only and Cairo banned). install.py copies the neutral template when none exists. Since 2026-10-16 its delegation section describes NJ Governance v4 (sonnet-lead / haiku-helper tree); the agents, hooks and env that enforce it ship in governance_v4."
   },
   "declined": {
     "why": "Considered and turned down 2026-09-03. Recorded so they are not proposed again.",

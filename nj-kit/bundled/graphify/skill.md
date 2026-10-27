@@ -7,6 +7,8 @@ description: "Use for any question about a codebase, its architecture, file rela
 
 # /graphify
 
+> **Safe usage (security audit 2026-10-27):** graphifyy 0.9.66 and older are affected by GHSA-pcc4-rvhr-2pr8 (a hostile repo can make indexing read arbitrary host files, for example `.ssh/id_rsa`). This kit pins 0.9.70, the fixed version. Even so, run `/graphify <url>` only on repositories you trust, never on code from a stranger, and never with `--break-system-packages`.
+
 Turn any folder of files into a navigable knowledge graph with community detection, an honest audit trail, and three outputs: interactive HTML, GraphRAG-ready JSON, and a plain-language GRAPH_REPORT.md.
 
 ## Usage
@@ -72,7 +74,7 @@ PYTHON=""
 GRAPHIFY_BIN=$(which graphify 2>/dev/null)
 # 1. uv tool installs — most reliable on modern Mac/Linux
 if [ -z "$PYTHON" ] && command -v uv >/dev/null 2>&1; then
-    _UV_PY=$(uv tool run --from graphifyy python -c "import sys; print(sys.executable)" 2>/dev/null)
+    _UV_PY=$(uv tool run --from "graphifyy==0.9.70" python -c "import sys; print(sys.executable)" 2>/dev/null)
     if [ -n "$_UV_PY" ]; then PYTHON="$_UV_PY"; fi
 fi
 # 2. Read shebang from graphify binary (pipx and direct pip installs)
@@ -87,12 +89,11 @@ fi
 if [ -z "$PYTHON" ]; then PYTHON="python3"; fi
 if ! "$PYTHON" -c "import graphify" 2>/dev/null; then
     if command -v uv >/dev/null 2>&1; then
-        uv tool install --upgrade graphifyy -q 2>&1 | tail -3
-        _UV_PY=$(uv tool run --from graphifyy python -c "import sys; print(sys.executable)" 2>/dev/null)
+        uv tool install "graphifyy==0.9.70" -q 2>&1 | tail -3
+        _UV_PY=$(uv tool run --from "graphifyy==0.9.70" python -c "import sys; print(sys.executable)" 2>/dev/null)
         if [ -n "$_UV_PY" ]; then PYTHON="$_UV_PY"; fi
     else
-        "$PYTHON" -m pip install graphifyy -q 2>/dev/null \
-          || "$PYTHON" -m pip install graphifyy -q --break-system-packages 2>&1 | tail -3
+        "$PYTHON" -m pip install "graphifyy==0.9.70" -q 2>&1 | tail -3
     fi
 fi
 # Write interpreter path for all subsequent steps (persists across invocations)

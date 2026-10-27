@@ -39,6 +39,108 @@ KIT = Path(__file__).resolve().parent.parent
 SKILLS = KIT.parent
 USER_HOME = Path.home() / ".claude"
 
+# Supply-chain pins (hand-maintained, never rewritten here): see pinned-sources.json.
+PINS_FILE = KIT / "pinned-sources.json"
+PINS = json.loads(PINS_FILE.read_text(encoding="utf-8")) if PINS_FILE.exists() else {}
+
+
+# -- redaction (security fix 2026-10-27) --------------------------------------------------------
+# Everything read from the machine that lands in manifest.json, bundled/ or the zip goes through
+# these. Pure functions, covered by tests/test_export_redaction.py.
+_SECRET_FLAG = re.compile(r"^--?(?:token|access[-_]?token|api[-_]?key|apikey|key|secret|client[-_]?secret|"
+                          r"password|passwd|pass|auth|authorization|bearer|cookie)$", re.I)
+_SECRET_VALUE = re.compile(
+    r"(sk-or-v1-[A-Za-z0-9]{10,}|gsk_[A-Za-z0-9]{10,}|sk-ant-[A-Za-z0-9_-]{10,}|sk-(?:proj-)?[A-Za-z0-9]{32,}"
+    r"|gh[pousr]_[A-Za-z0-9]{20,}|github[_]pat_[A-Za-z0-9_]{20,}|AIza[0-9A-Za-z_-]{30,}|xox[abprs]-[A-Za-z0-9-]{10,}"
+    r"|npm_[A-Za-z0-9]{30,}|Bearer\s+[A-Za-z0-9._~+/=-]{16,})")
+_ENV_ASSIGN = re.compile(r"\b([A-Za-z_][A-Za-z0-9_]*(?:KEY|TOKEN|SECRET|PASSWORD|PASSWD|AUTH|COOKIE)[A-Za-z0-9_]*)="
+                         r"(\"[^\"]*\"|'[^']*'|[^\s;&|]+)", re.I)
+_URL_QUERY = re.compile(r"(https?://[^\s\"'?#]+)\?[^\s\"'#]*")
+_URL_USERINFO = re.compile(r"(://)[^/\s@\"']+:[^/\s@\"']+@")
+_FLAG_INLINE = re.compile(r"(--?[A-Za-z][A-Za-z0-9_-]*)[=\s]+(\"[^\"]*\"|'[^']*'|[^\s;&|]+)")
+REDACTED = "<redacted>"
+
+
+def _home_variants() -> list[str]:
+    h = str(Path.home())
+    return sorted({h, h.replace("\\", "/"), h.replace("/", "\\"), h.replace("\\", "\\\\")}, key=len, reverse=True)
+
+
+def redact_text(text: str) -> str:
+    """Remove credential-shaped values, URL query strings and userinfo, and the home directory path."""
+    for hv in _home_variants():
+        text = text.replace(hv, "~")
+    text = _URL_USERINFO.sub(r"\1" + REDACTED + "@", text)
+    text = _URL_QUERY.sub(lambda m: m.group(1) + "?" + REDACTED, text)
+    text = _ENV_ASSIGN.sub(lambda m: m.group(1) + "=" + REDACTED, text)
+    text = _FLAG_INLINE.sub(lambda m: (m.group(1) + " " + REDACTED) if _SECRET_FLAG.match(m.group(1)) else m.group(0), text)
+    text = _SECRET_VALUE.sub(REDACTED, text)
+    return text
+
+
+def redact_command(cmd: str) -> str:
+    """A hook or statusLine command line."""
+    return redact_text(cmd)
+
+
+def redact_args(args: list) -> list:
+    """An MCP args list: the value after --token/--api-key/--key..., --flag=value forms, URLs, key shapes."""
+    out, hide = [], False
+    for a in args:
+        if not isinstance(a, str):
+            out.append(a)
+            continue
+        if hide:
+            out.append(REDACTED)
+            hide = False
+            continue
+        m = re.match(r"^(--?[A-Za-z][A-Za-z0-9_-]*)=(.*)$", a, re.S)
+        if m and _SECRET_FLAG.match(m.group(1)):
+            out.append(m.group(1) + "=" + REDACTED)
+            continue
+        if _SECRET_FLAG.match(a):
+            out.append(a)
+            hide = True
+            continue
+        out.append(redact_text(a))
+    return out
+
+
+def pin_npx_args(args: list) -> list:
+    """Force every npm package named in pinned-sources.json to its exact version (no @latest, no bare name)."""
+    pins = PINS.get("npm", {})
+    out = []
+    for a in args:
+        if isinstance(a, str):
+            for pkg, ver in pins.items():
+                if a == pkg or (a.startswith(pkg + "@") and a[len(pkg) + 1:] in ("latest", "")):
+                    a = f"{pkg}@{ver}"
+        out.append(a)
+    return out
+
+
+# What the zip must never carry. Provider key shapes and private keys only, so docs that merely
+# mention the word "token" do not block an export.
+_LEAK_RE = re.compile(_SECRET_VALUE.pattern + r"|-----BEGIN [A-Z ]*PRIVATE KEY")
+
+
+def leak_scan(root: Path) -> list[str]:
+    """Return 'relative/path: shape' for every text file under root holding a credential shape."""
+    hits = []
+    for f in root.rglob("*"):
+        if not f.is_file() or f.stat().st_size > 2_000_000 or f.suffix.lower() in {".woff2", ".otf", ".ttf", ".png", ".gif", ".webp", ".pdf", ".zip", ".db", ".jpg"}:
+            continue
+        if {"node_modules", ".git", "__pycache__"} & set(f.parts):
+            continue
+        try:
+            text = f.read_text(encoding="utf-8")
+        except (UnicodeDecodeError, OSError):
+            continue
+        m = _LEAK_RE.search(text)
+        if m:
+            hits.append(f"{f.relative_to(root)}: {m.group(0)[:6]}...")
+    return hits
+
 # Skills that live in a public repo. Anything not listed here and present on
 # disk is treated as ours and bundled.
 KNOWN_SOURCES = {
@@ -297,7 +399,11 @@ def collect() -> dict:
             continue
         why = WHY.get(d.name) or describe(d)
         if d.name in KNOWN_SOURCES:
-            third_party.append({"skill": d.name, "source": KNOWN_SOURCES[d.name], "why": why})
+            src_repo = KNOWN_SOURCES[d.name]
+            ref = PINS.get("repos", {}).get(src_repo)
+            if not ref:
+                print(f"  WARNING: {d.name} ({src_repo}) has no pinned commit in pinned-sources.json; install.py will refuse to fetch it")
+            third_party.append({"skill": d.name, "source": src_repo, "ref": ref, "why": why})
         else:
             ours.append({"skill": d.name, "from": "local", "why": why})
 
@@ -333,6 +439,11 @@ def live_mcp_servers(previous: dict) -> dict:
         for k in ("headers",):
             if isinstance(spec.get(k), dict):
                 spec[k] = {h: "<set your own>" for h in spec[k]}
+        if isinstance(spec.get("args"), list):
+            spec["args"] = pin_npx_args(redact_args(spec["args"]))
+        for k in ("url", "command"):
+            if isinstance(spec.get(k), str):
+                spec[k] = redact_text(spec[k])
         spec["why"] = previous.get(name, {}).get("why", "TODO: say why this server is here")
         out[name] = spec
     return out
@@ -365,7 +476,7 @@ def live_hooks(previous: dict) -> dict:
         rows = []
         for group in groups:
             for hook in group.get("hooks", []):
-                cmd = hook.get("command", "")
+                cmd = redact_command(hook.get("command", ""))
                 rows.append({
                     "command": cmd,
                     "scope": "user",
@@ -376,7 +487,7 @@ def live_hooks(previous: dict) -> dict:
 
     status = settings.get("statusLine")
     if isinstance(status, dict) and status.get("command"):
-        cmd = status["command"]
+        cmd = redact_command(status["command"])
         out["statusLine"] = [{
             "command": cmd,
             "scope": "user",
@@ -461,6 +572,10 @@ SECRET_RE = re.compile(
     re.I)
 
 
+WITH_MEMORY = False          # --with-memory
+WITH_PERSONAL = False        # --with-personal
+
+
 def bundle_memory(bundled: Path) -> list[str]:
     """
     Copy every ~/.claude/projects/*/memory/ into bundled/memory/<project-dir>/.
@@ -472,6 +587,8 @@ def bundle_memory(bundled: Path) -> list[str]:
     dst_root = bundled / "memory"
     if dst_root.exists():
         shutil.rmtree(dst_root)
+    if not WITH_MEMORY:
+        return ["memory: NOT bundled (private by default; pass --with-memory for a private migration, never publish it)"]
     n = 0
     skipped: list[str] = []
     for mem in sorted(root.glob("*/memory")):
@@ -492,7 +609,7 @@ def bundle_memory(bundled: Path) -> list[str]:
                 continue
             out = dst_root / rel.parts[0] / Path(*rel.parts[2:])
             out.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(f, out)
+            out.write_text(redact_text(text), encoding="utf-8")
             n += 1
     lines = [f"memory: {n} file(s) bundled from {len(list(root.glob('*/memory')))} project dir(s)"]
     lines += [f"  memory skipped: {s}" for s in skipped]
@@ -529,6 +646,8 @@ def bundle_v4(bundled: Path) -> list[str]:
     """NJ Governance v4 tooling: ~/.claude/agents/{sonnet-lead,haiku-helper}.md and hooks/nj_*.py (manifest governance_v4)."""
     home = Path.home() / ".claude"
     dst = bundled / "claude-v4"
+    if not (home / "hooks").is_dir() and not (home / "agents").is_dir():
+        return ["claude-v4: ~/.claude/{agents,hooks} not found, bundled copy kept as is"]
     if dst.exists():
         shutil.rmtree(dst)
     n = 0
@@ -565,7 +684,13 @@ def main() -> int:
     ap.add_argument("--quiet", action="store_true", help="only print when something changed")
     ap.add_argument("--if-changed", dest="if_changed", action="store_true",
                     help="do nothing unless the skill set actually differs from the manifest")
+    ap.add_argument("--with-memory", action="store_true",
+                    help="also bundle auto-memory (private migration only; never publish the result)")
+    ap.add_argument("--with-personal", action="store_true",
+                    help="also bundle ~/.claude/CLAUDE.md as bundled/CLAUDE.personal.md (private migration only)")
     args = ap.parse_args()
+    global WITH_MEMORY, WITH_PERSONAL
+    WITH_MEMORY, WITH_PERSONAL = args.with_memory, args.with_personal
 
     manifest_path = KIT / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {}
@@ -605,7 +730,7 @@ def main() -> int:
     # Drop bundles whose skill no longer exists. copytree only ever adds, so
     # without this a deleted skill lives on in the kit and gets reinstalled on
     # the next machine — the toolkit would quietly resurrect things you removed.
-    current = {e["skill"] for e in manifest["skills"]["ours"]} | {"memory", "nj-plugin"}
+    current = {e["skill"] for e in manifest["skills"]["ours"]} | {"memory", "nj-plugin", "claude-v4"}
     for stale in [d for d in bundled.iterdir() if d.is_dir() and d.name not in current]:
         shutil.rmtree(stale)
         print(f"  pruned: {stale.name}")
@@ -631,9 +756,16 @@ def main() -> int:
 
     # The standing instructions travel with the kit: skills without them
     # reproduce the files and not the behaviour.
+    # Security fix 2026-10-27: the author's own CLAUDE.md is private. It is bundled only on request,
+    # under a different name (bundled/CLAUDE.personal.md, gitignored), after redaction. The installer
+    # ships templates/CLAUDE.neutral.md instead.
     claude_md = Path.home() / ".claude" / "CLAUDE.md"
-    if claude_md.exists():
-        shutil.copy(claude_md, bundled / "CLAUDE.md")
+    personal = bundled / "CLAUDE.personal.md"
+    for stale in (bundled / "CLAUDE.md", personal):
+        if stale.exists():
+            stale.unlink()
+    if WITH_PERSONAL and claude_md.exists():
+        personal.write_text(redact_text(claude_md.read_text(encoding="utf-8")), encoding="utf-8")
 
     lines_extra = bundle_memory(bundled) + bundle_plugin(bundled) + bundle_v4(bundled)
 
@@ -647,6 +779,12 @@ def main() -> int:
 
     if args.zip is not None:
         target = Path(args.zip) if args.zip else (Path.home() / "Desktop" / "nj-kit.zip")
+        leaks = leak_scan(KIT)
+        if leaks:
+            print("REFUSING to write the zip: credential-shaped values in the kit:")
+            for hit in leaks[:20]:
+                print("  " + hit)
+            return 2
         written = write_zip(target)
         lines.append(f"portable copy: {written}  ({written.stat().st_size // 1024} KB)")
 

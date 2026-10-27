@@ -37,6 +37,13 @@ from pathlib import Path
 KIT = Path(__file__).resolve().parent.parent
 MANIFEST = json.loads((KIT / "manifest.json").read_text(encoding="utf-8"))
 USER_CLAUDE = Path.home() / ".claude"
+PINS_FILE = KIT / "pinned-sources.json"
+PINS = json.loads(PINS_FILE.read_text(encoding="utf-8")) if PINS_FILE.exists() else {}
+SKILLS_CLI = PINS.get("skills_cli", "skills")          # e.g. "skills@1.7.4": never an unpinned `npx skills`
+REPO_PINS = PINS.get("repos", {})
+NPM_PINS = PINS.get("npm", {})
+ASSUME_YES = False                                       # set by --yes in main()
+WITH_PERSONAL = False                                    # set by --with-personal-instructions in main()
 
 
 def say(ok: bool | None, text: str) -> None:
@@ -111,6 +118,43 @@ def _is_link(p: Path) -> bool:
     return bool(attrs & stat.FILE_ATTRIBUTE_REPARSE_POINT)
 
 
+def fetch_pinned(repo: str, sha: str, dest: Path) -> Path | None:
+    """Fetch exactly commit `sha` of github.com/<repo> into dest and verify it. None on any failure."""
+    try:
+        dest.mkdir(parents=True, exist_ok=True)
+        for cmd in (["git", "init", "-q", str(dest)],
+                    ["git", "-C", str(dest), "fetch", "-q", "--depth", "1", f"https://github.com/{repo}.git", sha],
+                    ["git", "-C", str(dest), "checkout", "-q", "FETCH_HEAD"]):
+            r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=300)
+            if r.returncode != 0:
+                return None
+        head = subprocess.run(["git", "-C", str(dest), "rev-parse", "HEAD"], capture_output=True, text=True,
+                              encoding="utf-8", errors="replace", timeout=30).stdout.strip()
+        return dest if head == sha else None
+    except Exception:  # noqa: BLE001 - a failed fetch is reported, never installed around
+        return None
+
+
+def _confirm_third_party(todo: list, target: Path) -> bool:
+    """Show exactly what will be downloaded, then ask once. --yes accepts the list without a prompt."""
+    by_repo: dict[str, list[str]] = {}
+    for e in todo:
+        by_repo.setdefault(e["source"], []).append(e["skill"])
+    print(f"\n{len(todo)} third-party skill(s) from {len(by_repo)} GitHub repositories will be downloaded into {target}.")
+    print("They are other people's prompts and scripts and run with your agent's permissions."
+          f" Each repository is pinned to one commit (pinned-sources.json, {PINS.get('pinned', '?')}); CLI {SKILLS_CLI}.")
+    for repo, names in sorted(by_repo.items()):
+        print(f"    {repo}@{REPO_PINS[repo][:12]}  ->  {', '.join(names)}")
+    if ASSUME_YES:
+        return True
+    if not sys.stdin.isatty():
+        return False
+    try:
+        return input("Install these third-party skills? [y/N] ").strip().lower() in ("y", "yes")
+    except EOFError:      # NUL/closed stdin reports isatty() on Windows: no answer means no
+        return False
+
+
 def install_skills(target: Path, check_only: bool) -> None:
     target.mkdir(parents=True, exist_ok=True)
     ours = MANIFEST["skills"]["ours"]
@@ -146,6 +190,29 @@ def install_skills(target: Path, check_only: bool) -> None:
         link_project_skills(target, check_only)
         return
 
+    todo = [e for e in third if not (target / e["skill"]).exists()]
+    for e in third:
+        if e not in todo:
+            say(True, f"{e['skill']:<30} already present")
+    if not todo:
+        link_project_skills(target, check_only)
+        return
+    unpinned = sorted({e["source"] for e in todo if e["source"] not in REPO_PINS})
+    if unpinned or not PINS.get("skills_cli"):
+        # Fail closed: an unpinned source is never fetched.
+        say(False, "no pinned commit for: " + (", ".join(unpinned) or "the skills CLI")
+                   + " (nj-kit/pinned-sources.json); third-party skills NOT installed")
+        link_project_skills(target, check_only)
+        return
+    if not _confirm_third_party(todo, target):
+        say(None, f"{len(todo)} third-party skill(s) skipped (not confirmed). Re-run with --yes after reading the list.")
+        link_project_skills(target, check_only)
+        return
+    if not shutil.which("npx") or not shutil.which("git"):
+        say(False, "npx and git are both needed to fetch third-party skills")
+        link_project_skills(target, check_only)
+        return
+
     user_scope = target == USER_CLAUDE / "skills"
     scope_flag = ["-g"] if user_scope else []
     # `-g` installs to ~/.claude/skills; without it the CLI installs into the
@@ -153,25 +220,30 @@ def install_skills(target: Path, check_only: bool) -> None:
     workdir = None if user_scope else str(target.parent.parent)
 
     # On Windows `npx` is `npx.cmd`, which CreateProcess cannot execute
-    # directly — subprocess raises WinError 2 as if npx were not installed.
-    # Going through cmd.exe is what makes it runnable; this is the same trap
-    # that makes spawnSync('npx') fail silently in Node on this platform.
+    # directly, so go through cmd.exe.
     launcher = ["cmd", "/c", "npx"] if os.name == "nt" else ["npx"]
 
-    for entry in third:
-        if (target / entry["skill"]).exists():
-            say(True, f"{entry['skill']:<30} already present")
-            continue
-        run = subprocess.run(
-            [*launcher, "-y", "skills", "add", entry["source"], "--skill", entry["skill"],
-             "--agent", "claude-code", "-y", "--copy", *scope_flag],
-            capture_output=True, text=True, encoding="utf-8", errors="replace",
-            cwd=workdir,
-        )
-        ok = (target / entry["skill"]).exists() or "Done!" in (run.stdout or "")
-        say(ok, f"{entry['skill']:<30} {entry['source']}"
-                + ("" if ok else f"  — {(run.stderr or run.stdout or '').strip().splitlines()[-1][:70]}"
-                   if (run.stderr or run.stdout) else ""))
+    import tempfile
+    with tempfile.TemporaryDirectory(prefix="njkit-pin-") as tmp:
+        checkouts: dict[str, Path | None] = {}
+        for entry in todo:
+            repo = entry["source"]
+            if repo not in checkouts:
+                checkouts[repo] = fetch_pinned(repo, REPO_PINS[repo], Path(tmp) / repo.replace("/", "__"))
+            src = checkouts[repo]
+            if src is None:
+                say(False, f"{entry['skill']:<30} {repo}@{REPO_PINS[repo][:12]}  - pinned commit could not be fetched/verified")
+                continue
+            run = subprocess.run(
+                [*launcher, "-y", SKILLS_CLI, "add", str(src), "--skill", entry["skill"],
+                 "--agent", "claude-code", "-y", "--copy", *scope_flag],
+                capture_output=True, text=True, encoding="utf-8", errors="replace",
+                cwd=workdir,
+            )
+            ok = (target / entry["skill"]).exists() or "Done!" in (run.stdout or "")
+            say(ok, f"{entry['skill']:<30} {repo}@{REPO_PINS[repo][:12]}"
+                    + ("" if ok else f"  - {(run.stderr or run.stdout or '').strip().splitlines()[-1][:70]}"
+                       if (run.stderr or run.stdout) else ""))
 
     link_project_skills(target, check_only)
 
@@ -299,6 +371,20 @@ def apply_privacy(check_only: bool) -> None:
     path.write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+def pin_npx(spec: dict) -> dict:
+    """Rewrite an npx MCP spec so every npm package named in pinned-sources.json carries its exact version."""
+    if not spec.get("args"):
+        return spec
+    out = []
+    for a in spec["args"]:
+        if isinstance(a, str):
+            for pkg, ver in NPM_PINS.items():
+                if a == pkg or (a.startswith(pkg + "@") and a[len(pkg) + 1:] in ("latest", "")):
+                    a = f"{pkg}@{ver}"
+        out.append(a)
+    return {**spec, "args": out}
+
+
 def apply_mcp(check_only: bool) -> None:
     path = Path.home() / ".claude.json"
     print("\nMCP servers (user scope)")
@@ -310,6 +396,7 @@ def apply_mcp(check_only: bool) -> None:
     changed = False
     for name, spec in MANIFEST["mcp_servers"].items():
         spec = {k: v for k, v in spec.items() if k != "why"}
+        spec = pin_npx(spec)
         if "args" in spec:
             spec["args"] = [a.replace("~", str(Path.home())) if a.startswith("~") else a for a in spec["args"]]
         if servers.get(name) == spec:
@@ -458,7 +545,7 @@ def provision_pdf_typography(target: Path, check_only: bool) -> None:
 
     if not have_pw:
         launcher = ["cmd", "/c", "npm"] if os.name == "nt" else ["npm"]
-        subprocess.run([*launcher, "install", "playwright", "--no-save", "--silent"],
+        subprocess.run([*launcher, "install", "playwright@" + NPM_PINS.get("playwright", "latest"), "--no-save", "--silent"],
                        cwd=str(skill), capture_output=True, text=True,
                        encoding="utf-8", errors="replace")
         say((skill / "node_modules" / "playwright").exists(),
@@ -542,11 +629,13 @@ def apply_standing_instructions(check_only: bool) -> None:
     spec = MANIFEST.get("standing_instructions")
     if not spec:
         return
-    src = KIT / "bundled" / "CLAUDE.md"
+    src = KIT / "templates" / "CLAUDE.neutral.md"
+    if WITH_PERSONAL and (KIT / "bundled" / "CLAUDE.personal.md").exists():
+        src = KIT / "bundled" / "CLAUDE.personal.md"      # private migration of the author's own file only
     dst = Path.home() / ".claude" / "CLAUDE.md"
-    print("\nstanding instructions")
+    print("\nstanding instructions (a neutral template, written only when you have no ~/.claude/CLAUDE.md)")
     if not src.exists():
-        say(None, "CLAUDE.md not bundled — re-run export.py on the source machine")
+        say(None, f"{src.name} missing - skipped")
         return
     if dst.exists():
         same = dst.read_text(encoding="utf-8") == src.read_text(encoding="utf-8")
@@ -559,7 +648,7 @@ def apply_standing_instructions(check_only: bool) -> None:
         return
     dst.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy(src, dst)
-    say(True, f"wrote {dst} — nj-method is now the default here")
+    say(True, f"wrote {dst} from {src.name} (neutral template; edit it freely)")
 
 
 def tracks_project_skills(repo: Path) -> bool:
@@ -710,7 +799,13 @@ def main() -> int:
     ap.add_argument("--check", action="store_true", help="report only, change nothing")
     ap.add_argument("--no-privacy", action="store_true")
     ap.add_argument("--target", type=Path, help="repo root for --scope project (default: cwd)")
+    ap.add_argument("--yes", action="store_true",
+                    help="accept the listed third-party skills (pinned commits) without the prompt")
+    ap.add_argument("--with-personal-instructions", action="store_true",
+                    help="private migration only: use bundled/CLAUDE.personal.md if present")
     args = ap.parse_args()
+    global ASSUME_YES, WITH_PERSONAL
+    ASSUME_YES, WITH_PERSONAL = args.yes, args.with_personal_instructions
 
     print(f"nj-kit · manifest {MANIFEST['updated']} · {'CHECK ONLY' if args.check else 'installing'}")
     print(f"house style: {MANIFEST['house_style']['font']}, "

@@ -10,7 +10,7 @@ done by you; nothing is submitted automatically. Model: the Profile-Wrap checkli
 - [ ] These open in a private browser window (they are in `plugin.json`): README, LICENSE, `docs/PRIVACY.md`, the issues page.
 - [ ] `https://nj-burrito.github.io/NJ-Kit/` opens (GitHub Pages switched on). It is the `homepage`; do not submit before it does.
 - [ ] In the repo folder run `claude plugin validate --strict nj-plugin`. It must say "Validation passed". (Not run by the build agent: the `claude` command was not available there.)
-- [ ] Optional dry run: `claude plugin marketplace add NJ-Burrito/NJ-Kit`, then `claude plugin install nj-kit@nj-kit`. It should install version 2.0.0 with 23 skills.
+- [ ] Optional dry run: `claude plugin marketplace add NJ-Burrito/NJ-Kit`, then `claude plugin install nj-kit@nj-kit`. It should install version 2.0.1 with 23 skills.
 
 ## B. Facts the portal checks
 
@@ -35,7 +35,7 @@ report; if it objects, tell the Lead before changing anything.
 4. [ ] Select the repository `NJ-Burrito/NJ-Kit`, branch `main`.
 5. [ ] For the plugin folder enter `nj-plugin`.
 6. [ ] Wait for the automatic checks. If one fails, copy its message and fix the file it names; do not edit portal fields to hide it.
-7. [ ] Check the preview: name `nj-kit`, version 2.0.0, MIT, and the links. Paste the texts from `docs/listings/anthropic-plugin-directory.md`.
+7. [ ] Check the preview: name `nj-kit`, version 2.0.1, MIT, and the links. Paste the texts from `docs/listings/anthropic-plugin-directory.md`.
 8. [ ] If asked about MCP servers: there are none. If asked about data: nothing leaves the machine except the calls listed in `docs/PRIVACY.md`.
 9. [ ] Accept the Anthropic Software Directory Policy only after you have read it (not read by the build agent).
 10. [ ] Press submit. Save the confirmation page or email.

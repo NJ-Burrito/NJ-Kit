@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U=' 'sha256-yfHXkMsC+CN3UH/s6BAUlouzB0KWs0H8dmy60ODLpow='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0e1311" media="(prefers-color-scheme: dark)">
@@ -319,6 +321,7 @@ html[dir=rtl] .t-learn-chevron{transform:scaleX(-1)}
 html[dir=rtl] .t-learn:hover .t-learn-chevron{transform:scaleX(-1) translateX(2px)}
 .t-learn:hover .t-learn-arm-top{transform:rotate(8deg)}
 .t-learn:hover .t-learn-arm-bot{transform:rotate(-8deg)}
+.fine{margin-top:10px;font-size:.92em;color:var(--mute)}
 .more-opts{margin-top:4px;border-top:1px solid var(--line)}
 .more-opts summary{display:flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;color:var(--mute);font-weight:700;list-style:none}
 .more-opts summary::-webkit-details-marker{display:none}
@@ -670,6 +673,8 @@ cd NJ-Kit
 python nj-kit/scripts/install.py --check   <span class="c"># preview, changes nothing</span>
 python nj-kit/scripts/install.py           <span class="c"># install</span>
 python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit assets v1</span></code></pre><button class="copy" type="button" data-copy="c-kit" data-state="a" aria-label="Copy"><span class="t-icon-swap" aria-hidden="true"><svg class="t-icon" data-icon="a"><use href="#i-copy"/></svg><svg class="t-icon" data-icon="b"><use href="#i-check"/></svg></span></button></div>
+          <p class="fine"><strong>What the installer changes.</strong> It shows the list of 22 third-party skills, each pinned to one fixed commit, and asks before downloading (<code translate="no" dir="ltr">--yes</code> skips the question). It also adds NJ-Kit hooks, a status line and environment limits to <code translate="no" dir="ltr">~/.claude/settings.json</code> (a backup is kept), adds MCP servers to <code translate="no" dir="ltr">~/.claude.json</code>, and writes a neutral <code translate="no" dir="ltr">~/.claude/CLAUDE.md</code> only if you have none. Run <code translate="no" dir="ltr">--check</code> first to see everything.</p>
+          
           <details class="more-opts"><summary><span>Where skills go, options</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
             <ul>
               <li>Skills land in <code translate="no" dir="ltr">~/.claude/skills/</code>.</li>

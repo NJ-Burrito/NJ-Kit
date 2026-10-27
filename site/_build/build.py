@@ -8,6 +8,8 @@ document with its own <html lang>, title, description, canonical and hreflang li
 """
 from __future__ import annotations
 
+import base64
+import hashlib
 import json
 import re
 import sys
@@ -68,6 +70,31 @@ class Keep(HTMLParser):
     def handle_pi(self, d): self._raw(f"<?{d}>")
 
 
+INLINE_SCRIPT = re.compile(r"<script(?P<attrs>[^>]*)>(?P<body>.*?)</script>", re.S)
+
+
+def inline_script_hashes(html: str) -> list[str]:
+    """CSP hashes of every inline script the browser would run (JSON-LD data blocks are not executed)."""
+    out = []
+    for m in INLINE_SCRIPT.finditer(html):
+        attrs = m.group("attrs")
+        if "src=" in attrs or "application/ld+json" in attrs:
+            continue
+        digest = hashlib.sha256(m.group("body").encode("utf-8")).digest()
+        out.append("'sha256-" + base64.b64encode(digest).decode() + "'")
+    return out
+
+
+def csp_meta(html: str) -> str:
+    """Meta CSP with the computed script hashes (frame-ancestors cannot be set from a meta tag).
+    style-src keeps 'unsafe-inline' because hashes would disable it for the style="" attributes."""
+    hashes = " ".join(inline_script_hashes(html))
+    policy = ("default-src 'self'; script-src 'self' " + hashes + "; style-src 'self' 'unsafe-inline'; "
+              "img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; "
+              "base-uri 'self'; form-action 'none'")
+    return f'<meta http-equiv="Content-Security-Policy" content="{policy}">'
+
+
 def build(lang: str) -> str:
     src = TPL.read_text(encoding="utf-8")
     p = Keep(lang)
@@ -85,6 +112,7 @@ def build(lang: str) -> str:
     }
     for k, v in sub.items():
         html = html.replace(k, v)
+    html = html.replace("{CSP}", csp_meta(html.replace("{CSP}", "")))   # last: hashes cover the final script text
     return html
 
 
@@ -101,6 +129,17 @@ def check(lang: str, html: str) -> list[str]:
             json.loads(m.group(1))
         except ValueError as e:
             bad.append(f"JSON-LD: {e}")
+    if 'http-equiv="Content-Security-Policy"' not in html:
+        bad.append("CSP meta missing")
+    if 'name="referrer"' not in html:
+        bad.append("referrer meta missing")
+    if re.search(r"<[a-z][^>]*\son[a-z]+=", html, re.I):
+        bad.append("inline event handler (blocked by the CSP)")
+    for h in inline_script_hashes(html):
+        if h not in html:
+            bad.append("script hash not in CSP")
+    if re.search(r"<(?:script|link|img|iframe)[^>]+(?:src|href)=[\"']https?://(?![^\"']*(?:nj-burrito\.github\.io|github\.com|linkedin\.com))", html, re.I):
+        bad.append("external subresource")
     if "—" in html:
         bad.append("em dash present")
     if f'<html lang="{lang}"' not in html:

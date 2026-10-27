@@ -1,15 +1,22 @@
 """NJ governance v4 PreToolUse guard. Stdlib, fail-open (own errors -> allow).
 Rule 1: a subagent (input has agent_id, or agent_type in sonnet-lead/haiku-helper) may not run git push / git merge / gh pr merge.
-Rule 2: haiku-helper may not Read/Grep/Glob/Bash-touch secrets paths.
+Rule 2: haiku-helper may not Read/Grep/Glob/Bash/PowerShell-touch secrets paths.
 The main thread (no agent_id/agent_type) is never blocked: Lead merges.
+BEST EFFORT, not a security boundary: it matches text and is fail-open (its own errors allow).
+Tests: nj-kit/tests/test_nj_guard.py (from the repo root: python -m unittest discover -s nj-kit/tests).
 """
 import json, re, sys
 
 HELPERS = {"sonnet-lead", "haiku-helper"}
+SHELL_TOOLS = {"Bash", "PowerShell"}   # both shell tools are inspected (PowerShell used to bypass rule 1)
 GIT = re.compile(r"(?:^|[;&|(`\s])git\s+(?:-[^\s]+(?:\s+[^\s-][^\s]*)?\s+)*(push|merge)\b|\bgh\s+pr\s+merge\b", re.I)
 SECRET = re.compile(
     r"(\.claude/secrets|/secrets/|credentials\.json|settings\.local\.json|jira\.local\.json|"
-    r"(?:^|/)\.env(?:\.|\b)|test data .*\.html|accounts-[a-z]+|\bjira\.json\b|(?:^|/)credentials/)", re.I)
+    r"(?:^|/)\.env(?:\.|\b)|test data .*\.html|accounts-[a-z]+|\bjira\.json\b|(?:^|/)credentials/|"
+    # house credential location ~/.config/<project>/<name>.env (li.env, pinterest.env ...), any *.env file,
+    # and the usual home-directory credential stores
+    r"(?:^|/)[^/\s\"']*\.env\b|\.config/[^/\s\"']+/[^/\s\"']*\.env\b|\.git-credentials|\.claude/\.credentials|"
+    r"(?:^|/)\.ssh/|(?:^|/)\.aws/credentials|(?:^|/)\.npmrc\b)", re.I)
 
 
 def deny(reason):
@@ -37,7 +44,7 @@ def main():
         return  # main thread = Lead
     tool, ti = d.get("tool_name", ""), d.get("tool_input") or {}
     cmd = ti.get("command") or ""
-    if tool == "Bash" and GIT.search(cmd):
+    if tool in SHELL_TOOLS and GIT.search(cmd):
         return deny("NJ v4: workers commit only; git push/merge belong to the Lead.")
     if atype == "haiku-helper":
         blob = " ".join(str(ti.get(k, "")) for k in ("file_path", "path", "pattern", "command", "glob"))

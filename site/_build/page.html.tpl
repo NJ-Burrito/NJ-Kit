@@ -2,6 +2,8 @@
 <html lang="{LANG}" dir="{DIR}">
 <head>
 <meta charset="utf-8">
+{CSP}
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0e1311" media="(prefers-color-scheme: dark)">
@@ -337,6 +339,7 @@ html[dir=rtl] .t-learn-chevron{transform:scaleX(-1)}
 html[dir=rtl] .t-learn:hover .t-learn-chevron{transform:scaleX(-1) translateX(2px)}
 .t-learn:hover .t-learn-arm-top{transform:rotate(8deg)}
 .t-learn:hover .t-learn-arm-bot{transform:rotate(-8deg)}
+.fine{margin-top:10px;font-size:.92em;color:var(--mute)}
 .more-opts{margin-top:4px;border-top:1px solid var(--line)}
 .more-opts summary{display:flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;color:var(--mute);font-weight:700;list-style:none}
 .more-opts summary::-webkit-details-marker{display:none}
@@ -745,6 +748,8 @@ cd NJ-Kit
 python nj-kit/scripts/install.py --check   <span class="c"># preview, changes nothing</span>
 python nj-kit/scripts/install.py           <span class="c"># install</span>
 python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit assets v1</span></code></pre><button class="copy" type="button" data-copy="c-kit" data-state="a" aria-label="Copy" data-l="en"><span class="t-icon-swap" aria-hidden="true"><svg class="t-icon" data-icon="a"><use href="#i-copy"/></svg><svg class="t-icon" data-icon="b"><use href="#i-check"/></svg></span></button><button class="copy" type="button" data-copy="c-kit" data-state="a" aria-label="نسخ" data-l="ar"><span class="t-icon-swap" aria-hidden="true"><svg class="t-icon" data-icon="a"><use href="#i-copy"/></svg><svg class="t-icon" data-icon="b"><use href="#i-check"/></svg></span></button></div>
+          <p class="fine" data-l="en"><strong>What the installer changes.</strong> It shows the list of 22 third-party skills, each pinned to one fixed commit, and asks before downloading (<code dir="ltr">--yes</code> skips the question). It also adds NJ-Kit hooks, a status line and environment limits to <code dir="ltr">~/.claude/settings.json</code> (a backup is kept), adds MCP servers to <code dir="ltr">~/.claude.json</code>, and writes a neutral <code dir="ltr">~/.claude/CLAUDE.md</code> only if you have none. Run <code dir="ltr">--check</code> first to see everything.</p>
+          <p class="fine" data-l="ar"><strong>ما الذي يغيره المثبت.</strong> يعرض قائمة 22 مهارة من مصادر خارجية، كل واحدة مثبتة على إصدار (commit) واحد ثابت، ويسألك قبل التنزيل (الخيار <code dir="ltr">--yes</code> يتخطى السؤال). ويضيف أيضا خطافات (hooks) وسطر حالة وحدودا في البيئة إلى ملف <code dir="ltr">~/.claude/settings.json</code> مع نسخة احتياطية، ويضيف خوادم MCP إلى <code dir="ltr">~/.claude.json</code>، ويكتب ملف <code dir="ltr">~/.claude/CLAUDE.md</code> محايدا فقط إذا لم يكن لديك ملف. شغل <code dir="ltr">--check</code> أولا لترى كل شيء.</p>
           <details class="more-opts"><summary><span data-l="en">Where skills go, options</span><span data-l="ar">أين تُثبَّت المهارات، والخيارات</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
             <ul data-l="en">
               <li>Skills land in <code dir="ltr">~/.claude/skills/</code>.</li>

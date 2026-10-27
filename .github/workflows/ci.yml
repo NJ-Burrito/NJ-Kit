@@ -1,14 +1,18 @@
 name: CI
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with: { python-version: "3.12" }
       - name: Python compiles
         run: python -m compileall -q nj-plugin nj-kit > /dev/null
+      - name: Unit tests (installer pins, export redaction, nj_guard)
+        run: python -m unittest discover -s nj-kit/tests
       - name: JSON parses
         run: find . -name "*.json" -not -path "./.git/*" -print0 | xargs -0 -n1 python -m json.tool > /dev/null
       - name: No secrets or machine paths

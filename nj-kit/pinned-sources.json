@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "note": "Supply-chain pins for everything install.py fetches from the network. Hand-maintained: export.py reads this file and never rewrites it. Each repo is pinned to the commit that was default-branch HEAD on 2026-10-27 (resolved with `gh api repos/<owner>/<repo>/commits/HEAD`). A pin means 'this exact content', not 'this content was code-reviewed'. heygen-com/hyperframes is pinned to 207c8a4 (2026-10-21), the last commit that still ships hyperframes-animation, -audio, -core, -creative and -keyframes; upstream HEAD (a669316) folded them into other skills, so a HEAD pin would silently drop five skills. To bump: resolve the new SHA, read the diff of the skills you use (nj-security-review), edit the line, commit.",
+  "pinned": "2026-10-27",
+  "skills_cli": "skills@1.7.4",
+  "npm": {
+    "playwright": "1.64.1",
+    "@playwright/mcp": "0.0.82",
+    "@upstash/context7-mcp": "4.4.4"
+  },
+  "repos": {
+    "anthropics/financial-services": "574ed3624aebd0418c7e96cd101262f30210ab26",
+    "anthropics/skills": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+    "currents-dev/playwright-best-practices-skill": "283d5cbc5d11aac1abda058b16ad22c317d54dc0",
+    "emilkowalski/skills": "2d228630ba1446365f614a108cb8252f1feda202",
+    "every-app/open-seo": "99d9a49c8cb742d54eddd64d09efbc5302f6db89",
+    "github/awesome-copilot": "d75b41863510272ed217a3074c7045202b96e93f",
+    "heygen-com/hyperframes": "207c8a4daf6480d697f203784f1fd422727569e3",
+    "juliusbrussee/caveman": "9b68f7ed12b05e7efaff18e65c5a3fc2849fd0a4",
+    "mhattingpete/claude-skills-marketplace": "b5b34bcf4c920bb72cee1c391b54a33cb5353c12",
+    "mindrally/skills": "7682ca77710e0971eab4e0ae5dddfa281aea0ba5",
+    "nexu-io/open-design": "325494e5a1e5858f7aa63bd71d7f326bdf911e7f",
+    "petergyang/no-ai-slop": "000650b156983f5159695b441477f4e63b25dc85",
+    "wshobson/agents": "0874a27b17a22e2b7c2e2bcd725768e0803cad06"
+  }
+}

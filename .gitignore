@@ -7,3 +7,7 @@ node_modules/
 .env.*
 .agent-ops/
 graphify-out/
+
+# private migration output of export.py (--with-memory / --with-personal): never commit
+nj-kit/bundled/memory/
+nj-kit/bundled/CLAUDE.personal.md
