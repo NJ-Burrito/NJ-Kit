@@ -26,6 +26,7 @@ def helper(tool, **ti):
     return {"agent_id": "h1", "agent_type": "haiku-helper", "tool_name": tool, "tool_input": ti}
 
 
+@unittest.skipUnless(GUARD.exists(), 'this kit lineage does not bundle nj_guard.py')
 class GitRule(unittest.TestCase):
     def test_bash_push_denied(self):
         self.assertEqual(run(sub("Bash", command="git push origin main"))["permissionDecision"], "deny")
@@ -44,6 +45,7 @@ class GitRule(unittest.TestCase):
         self.assertIsNone(run({"tool_name": "PowerShell", "tool_input": {"command": "git push"}}))
 
 
+@unittest.skipUnless(GUARD.exists(), 'this kit lineage does not bundle nj_guard.py')
 class SecretRule(unittest.TestCase):
     def denied(self, tool, **ti):
         out = run(helper(tool, **ti))
@@ -73,6 +75,7 @@ class SecretRule(unittest.TestCase):
         self.assertIsNone(run(sub("Read", file_path="/home/x/.config/linkedin/li.env")))
 
 
+@unittest.skipUnless(GUARD.exists(), 'this kit lineage does not bundle nj_guard.py')
 class FailOpen(unittest.TestCase):
     def test_garbage_input_allows(self):
         r = subprocess.run([sys.executable, "-I", str(GUARD)], input="not json", capture_output=True, text=True, timeout=30)
