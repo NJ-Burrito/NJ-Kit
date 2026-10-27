@@ -1,7 +1,7 @@
 {
   "name": "nj-kit",
   "version": "2.0.0",
-  "description": "Nader Alzghoul's own toolkit: the nj-method working rules, delegation and agent-ops, session handoff, and house skills for documents, design gates, audio and video hygiene.",
+  "description": "A working method and 23 Claude Code skills that end in a script gate printing PASS or FAIL: delegation and agent ops, session handoff, QA and Jira, PDF and Arabic-English proofreading.",
   "author": {
     "name": "Nader Alzghoul (NJ-Burrito)",
     "email": "naderalzghoulbusiness@gmail.com",
@@ -10,7 +10,20 @@
   "homepage": "https://nj-burrito.github.io/NJ-Kit/",
   "repository": "https://github.com/NJ-Burrito/NJ-Kit",
   "license": "MIT",
-  "keywords": ["skills", "workflow", "agents", "arabic", "bilingual", "qa", "handoff", "governance"],
+  "keywords": [
+    "claude-code",
+    "skills",
+    "verification",
+    "pass-fail",
+    "qa",
+    "playwright",
+    "jira",
+    "pdf",
+    "arabic",
+    "bilingual",
+    "handoff",
+    "governance"
+  ],
   "documentationUrl": "https://github.com/NJ-Burrito/NJ-Kit/blob/main/README.md",
   "supportUrl": "https://github.com/NJ-Burrito/NJ-Kit/issues",
   "privacyPolicyUrl": "https://github.com/NJ-Burrito/NJ-Kit/blob/main/docs/PRIVACY.md",
