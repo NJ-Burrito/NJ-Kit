@@ -18,6 +18,7 @@
 - How is it different from anthropics/skills? Anthropic's repository is its public collection of Agent Skills. NJ-Kit is an independent kit built around one working method, and every one of its skills ends in a PASS or FAIL script. Both can be installed together.
 - Arabic: Arabic and English are both first-class, right-to-left included, with an Arabic proofreading skill.
 - Licence and price: MIT, free.
+- NJ-Narration (coming in the next release): a skill that scouts a narrator voice from a character brief, engineers it once, and heals noise before or after a line without cutting words; PASS or FAIL gates; ships no voices and no audio samples
 
 ## Related
 

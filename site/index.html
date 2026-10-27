@@ -321,6 +321,7 @@ html[dir=rtl] .t-learn-chevron{transform:scaleX(-1)}
 html[dir=rtl] .t-learn:hover .t-learn-chevron{transform:scaleX(-1) translateX(2px)}
 .t-learn:hover .t-learn-arm-top{transform:rotate(8deg)}
 .t-learn:hover .t-learn-arm-bot{transform:rotate(-8deg)}
+.ex-h{margin:44px 0 0;font-size:1.15rem}.cmd code .c{color:var(--faint)}
 .fine{margin-top:10px;font-size:.92em;color:var(--mute)}
 .more-opts{margin-top:4px;border-top:1px solid var(--line)}
 .more-opts summary{display:flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;color:var(--mute);font-weight:700;list-style:none}
@@ -420,6 +421,7 @@ footer a:hover{text-decoration:underline}
       <ul>
         <li><a href="#how">How it works</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#narration">NJ-Narration</a></li>
         <li><a href="#compare">Compare</a></li>
         <li><a href="#get">Install</a></li>
         <li><a href="#questions">Questions</a></li>
@@ -591,6 +593,45 @@ footer a:hover{text-decoration:underline}
     </div>
   </section>
 
+  <section id="narration">
+    <div class="wrap">
+      <h2>NJ-Narration: the right voice for your story, with no noise around it.</h2>
+      
+      <p class="lede">A skill for Claude Code that picks and cleans a narrator's voice. It checks every step with a script and prints PASS or FAIL. Coming in the next NJ-Kit release.</p>
+      
+      <dl class="gets">
+        <div><dt><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>Scout a voice that fits</dt><dd>You describe the character: age, origin, accent, mood. The skill turns it into numbers and measures licensed voices against them.</dd></div>
+        <div><dt><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg>Engineer it once, at the source</dt><dd>The reference clip is cleaned once, and every line is voiced once. No re-voicing until one sounds right.</dd></div>
+        <div><dt><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg>Heal noise without cutting words</dt><dd>A burst of hiss before or after a sentence is removed, and the gate checks that the speech itself is untouched.</dd></div>
+      </dl>
+      
+      <h3 class="ex-h">One example, as text</h3>
+      
+      <p class="fine">Made-up data to show the shape of the output. It is not a real measurement and not a real person.</p>
+      
+      <div class="cmd"><pre><code translate="no">BRIEF    narrator, woman, 40 to 55, calm, British English, dry room
+TARGET   pitch 165 to 210 Hz, 130 to 150 words a minute, little echo
+SOURCES  public domain or written consent only, one clip per speaker
+
+REFERENCE CLIP (the one you will clone)
+REF-QUALITY       FAIL  0.6 s of room tone at the start
+                  <span class="c"># cleaned once, word-safe, then measured again</span>
+REF-QUALITY       PASS
+
+EACH GENERATED LINE (one take)
+TAKE-QUALITY      PASS
+VOICE-EDGE-NOISE  FAIL  1.9 s of hiss after the last word
+                  <span class="c"># cleaned without touching the speech</span>
+VOICE-EDGE-NOISE  PASS  speech samples identical
+
+NEXT     the top 3 voices go to your ear. You decide.</code></pre></div>
+      <p class="fine"><strong>Honest note.</strong> NJ-Narration ships no voices and no audio samples. It does not include a voice engine and does not pick one for you: you bring a licensed voice and an engine you are allowed to use. The numbers decide what reaches your ear, and your ear decides last.</p>
+      
+      <p class="fine">Install: the same two lines as NJ-Kit, in <a href="#get">Install</a>. NJ-Narration is not in the 23-skill plugin yet.</p>
+      
+    </div>
+  </section>
+
   <section id="does">
     <div class="wrap">
       <h2>What it does for you.</h2>
@@ -726,11 +767,12 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
       <h2>More from Nader.</h2>
       
       <ul>
-        <li><a href="https://nj-burrito.github.io/"><span class="t"><span>Portfolio</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Who builds these tools.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/Profile-Wrap/"><span class="t"><span dir="ltr">Profile-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Free, open-source LinkedIn post manager. Nothing goes out until you tap Allow.</span></span></a></li>
+        <li><a href="https://nj-burrito.github.io/"><span class="t"><span>Portfolio</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Nader's work.</span></span></a></li>
+        <li><a href="https://nj-burrito.github.io/Profile-Wrap/"><span class="t"><span dir="ltr">Profile-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Your LinkedIn on autopilot, you stay the boss. Nothing goes out until you tap Allow.</span></span></a></li>
         <li><a href="https://github.com/NJ-Burrito/Profile-Wrap" rel="noopener"><span class="t"><span>Profile-Wrap on GitHub</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>The source code.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/QA-Wrap/"><span class="t"><span dir="ltr">QA-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>A local-first QA toolkit in your browser. It records a session and writes the bug report.</span></span></a></li>
+        <li><a href="https://nj-burrito.github.io/QA-Wrap/"><span class="t"><span dir="ltr">QA-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Test the page, get the bug report.</span></span></a></li>
         <li><a href="https://github.com/NJ-Burrito/QA-Wrap" rel="noopener"><span class="t"><span>QA-Wrap on GitHub</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>The source code.</span></span></a></li>
+        <li><a href="https://www.instagram.com/nj.story.ar/" rel="noopener"><span class="t"><span dir="ltr">Story-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>The series «مكتب المفقودات».</span></span></a></li>
         <li><a href="https://github.com/NJ-Burrito/NJ-Kit" rel="noopener"><span class="t"><span>NJ-Kit on GitHub</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Skills, installer, issues.</span></span></a></li>
         <li><a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener"><span class="t">LinkedIn<svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Say hello or send a question.</span></span></a></li>
         <li><a href="https://github.com/NJ-Burrito" rel="me noopener"><span class="t">GitHub<svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Every public repository.</span></span></a></li>
@@ -764,11 +806,12 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
     <p>Made by Nader Alzghoul. Free and open source under the MIT licence. Not affiliated with or endorsed by Anthropic.</p>
     
     <nav aria-label="Elsewhere">
-      <a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener">LinkedIn</a>
-      <a href="https://github.com/NJ-Burrito" rel="me noopener">GitHub</a>
       <a href="https://nj-burrito.github.io/"><span>Portfolio</span></a>
-      <a href="https://nj-burrito.github.io/Profile-Wrap/">Profile-Wrap</a>
       <a href="https://nj-burrito.github.io/QA-Wrap/">QA-Wrap</a>
+      <a href="https://nj-burrito.github.io/Profile-Wrap/">Profile-Wrap</a>
+      <a href="https://www.instagram.com/nj.story.ar/" rel="noopener">Story-Wrap</a>
+      <a href="https://github.com/NJ-Burrito" rel="me noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener">LinkedIn</a>
     </nav>
   </div>
 </footer>

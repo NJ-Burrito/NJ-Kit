@@ -30,7 +30,7 @@
 > 🚀 **Start:** paste 2 lines into Claude Code. [Go ↓](#plugin)\
 > 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) · [بالعربية](https://nj-burrito.github.io/NJ-Kit/ar/)
 
-🧭 **Jump to:** [Start here](#start-here) · [How it works](#how) · [Skills](#whats-inside) · [Compare](#compare) · [Safety](#safe) · [Questions](#faq) · [NJ-Font](#nj-font) · [العربية](#ar)
+🧭 **Jump to:** [Start here](#start-here) · [How it works](#how) · [Skills](#whats-inside) · [NJ-Narration](#narration) · [Compare](#compare) · [Safety](#safe) · [Questions](#faq) · [NJ-Font](#nj-font) · [العربية](#ar)
 
 ---
 
@@ -329,14 +329,53 @@ Yes. Nothing is tied to one machine.
 
 ---
 
+<a id="narration"></a>
+
+## 🎙️ NJ-Narration · the right voice, no noise around it
+
+> **Coming in the next NJ-Kit release.** A skill that picks and cleans a narrator's voice, and prints PASS or FAIL for every step.
+
+- 🎯 **Scout a voice that fits the character.** Describe age, origin, accent and mood; the skill turns it into numbers and measures licensed voices against them.
+- 🛠️ **Engineer it once, at the source.** The reference clip is cleaned once and every line is voiced once. No re-voicing until one sounds right.
+- 🩹 **Heal noise without cutting words.** Hiss before or after a sentence is removed, and a gate checks the speech itself is untouched.
+
+**One example** (made-up data, to show the shape of the output; not a real measurement, not a real person):
+
+```text
+BRIEF    narrator, woman, 40 to 55, calm, British English, dry room
+TARGET   pitch 165 to 210 Hz, 130 to 150 words a minute, little echo
+SOURCES  public domain or written consent only, one clip per speaker
+
+REFERENCE CLIP (the one you will clone)
+REF-QUALITY       FAIL  0.6 s of room tone at the start
+                  # cleaned once, word-safe, then measured again
+REF-QUALITY       PASS
+
+EACH GENERATED LINE (one take)
+TAKE-QUALITY      PASS
+VOICE-EDGE-NOISE  FAIL  1.9 s of hiss after the last word
+                  # cleaned without touching the speech
+VOICE-EDGE-NOISE  PASS  speech samples identical
+
+NEXT     the top 3 voices go to your ear. You decide.
+```
+
+**Install:** the same two lines as NJ-Kit ([Plugin ↑](#plugin)). It is not in the 23-skill plugin yet.
+
+**Honest note:** NJ-Narration ships no voices and no audio samples. It includes no voice engine and picks none for you: you bring a licensed voice and an engine you are allowed to use. The numbers decide what reaches your ear; your ear decides last.
+
+---
+
 ## 🔗 More from NJ
 
 | | |
 |---|---|
-| 🧾 [**Profile-Wrap**](https://nj-burrito.github.io/Profile-Wrap/) | Free, open-source LinkedIn post manager. Nothing goes out until you tap Allow. [Source](https://github.com/NJ-Burrito/Profile-Wrap) |
-| 🧪 [**QA-Wrap**](https://nj-burrito.github.io/QA-Wrap/) | A local-first QA toolkit in your browser. It records a session and writes the bug report. [Source](https://github.com/NJ-Burrito/QA-Wrap) |
-| 🌐 [**NJ-Kit website**](https://nj-burrito.github.io/NJ-Kit/) | This kit in [English](https://nj-burrito.github.io/NJ-Kit/) and [Arabic](https://nj-burrito.github.io/NJ-Kit/ar/) |
-| 👤 [**Portfolio**](https://nj-burrito.github.io/) | Who builds these tools |
+| 👤 [**Portfolio**](https://nj-burrito.github.io/) | Nader's work |
+| 🧪 [**QA-Wrap**](https://nj-burrito.github.io/QA-Wrap/) | Test the page, get the bug report. [Source](https://github.com/NJ-Burrito/QA-Wrap) |
+| 🧾 [**Profile-Wrap**](https://nj-burrito.github.io/Profile-Wrap/) | Your LinkedIn on autopilot, you stay the boss. [Source](https://github.com/NJ-Burrito/Profile-Wrap) |
+| 🎬 [**Story-Wrap**](https://www.instagram.com/nj.story.ar/) | The series «مكتب المفقودات» |
+| 🐙 [**GitHub**](https://github.com/NJ-Burrito) · 💼 [**LinkedIn**](https://www.linkedin.com/in/nader-alzghoul) | |
+| 🌐 **This kit's website** | [English](https://nj-burrito.github.io/NJ-Kit/) · [Arabic](https://nj-burrito.github.io/NJ-Kit/ar/) |
 
 ---
 
@@ -352,6 +391,7 @@ Yes. Nothing is tied to one machine.
 - 🧰 **الحزمة كاملة:** يضيف مثبّت الحزمة الـ17 الباقية. [المثبّت ↑](#kit)
 - 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
 - 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
+- 🎙️ **NJ-Narration** (تصل مع الإصدار القادم): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
 - 💸 **مجانية** ومفتوحة المصدر برخصة MIT، وغير تابعة لشركة Anthropic ولا معتمدة منها.
 - 🌐 **الموقع بالعربية:** [nj-burrito.github.io/NJ-Kit/ar](https://nj-burrito.github.io/NJ-Kit/ar/)
 

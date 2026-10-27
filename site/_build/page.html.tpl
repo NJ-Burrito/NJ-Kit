@@ -339,6 +339,7 @@ html[dir=rtl] .t-learn-chevron{transform:scaleX(-1)}
 html[dir=rtl] .t-learn:hover .t-learn-chevron{transform:scaleX(-1) translateX(2px)}
 .t-learn:hover .t-learn-arm-top{transform:rotate(8deg)}
 .t-learn:hover .t-learn-arm-bot{transform:rotate(-8deg)}
+.ex-h{margin:44px 0 0;font-size:1.15rem}.cmd code .c{color:var(--faint)}
 .fine{margin-top:10px;font-size:.92em;color:var(--mute)}
 .more-opts{margin-top:4px;border-top:1px solid var(--line)}
 .more-opts summary{display:flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;color:var(--mute);font-weight:700;list-style:none}
@@ -438,6 +439,7 @@ footer a:hover{text-decoration:underline}
       <ul>
         <li><a href="#how">How it works</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#narration">NJ-Narration</a></li>
         <li><a href="#compare">Compare</a></li>
         <li><a href="#get">Install</a></li>
         <li><a href="#questions">Questions</a></li>
@@ -447,6 +449,7 @@ footer a:hover{text-decoration:underline}
       <ul>
         <li><a href="#how">طريقة العمل</a></li>
         <li><a href="#skills">المهارات</a></li>
+        <li><a href="#narration"><bdi dir="ltr">NJ-Narration</bdi></a></li>
         <li><a href="#compare">مقارنة</a></li>
         <li><a href="#get">التثبيت</a></li>
         <li><a href="#questions">أسئلة</a></li>
@@ -646,6 +649,49 @@ footer a:hover{text-decoration:underline}
     </div>
   </section>
 
+  <section id="narration">
+    <div class="wrap">
+      <h2 data-l="en">NJ-Narration: the right voice for your story, with no noise around it.</h2>
+      <h2 data-l="ar"><bdi dir="ltr">NJ-Narration</bdi>: الصوت المناسب لقصتك، بلا ضجيج حوله.</h2>
+      <p class="lede" data-l="en">A skill for Claude Code that picks and cleans a narrator's voice. It checks every step with a script and prints PASS or FAIL. Coming in the next NJ-Kit release.</p>
+      <p class="lede" data-l="ar">مهارة لـ <bdi dir="ltr">Claude Code</bdi> تختار صوت الراوي وتنظّفه، وتفحص كل خطوة بسكربت يطبع <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>. تصل مع الإصدار القادم من <bdi dir="ltr">NJ-Kit</bdi>.</p>
+      <dl class="gets" data-l="en">
+        <div><dt><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>Scout a voice that fits</dt><dd>You describe the character: age, origin, accent, mood. The skill turns it into numbers and measures licensed voices against them.</dd></div>
+        <div><dt><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg>Engineer it once, at the source</dt><dd>The reference clip is cleaned once, and every line is voiced once. No re-voicing until one sounds right.</dd></div>
+        <div><dt><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg>Heal noise without cutting words</dt><dd>A burst of hiss before or after a sentence is removed, and the gate checks that the speech itself is untouched.</dd></div>
+      </dl>
+      <dl class="gets" data-l="ar">
+        <div><dt><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>اختر صوتا يناسب الشخصية</dt><dd>تصف الشخصية: العمر والأصل واللهجة والطبع. تحوّلها المهارة إلى أرقام وتقيس بها أصواتا مرخّصة.</dd></div>
+        <div><dt><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg>اهندسه مرة واحدة من المصدر</dt><dd>يُنظَّف المقطع المرجعي مرة واحدة، ويُسجَّل كل سطر مرة واحدة. بلا إعادة تسجيل حتى يعجبك أحدها.</dd></div>
+        <div><dt><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg>عالج الضجيج دون قصّ الكلمات</dt><dd>يُزال الفحيح قبل الجملة أو بعدها، ويتأكد الفحص أن الكلام نفسه لم يُمسّ.</dd></div>
+      </dl>
+      <h3 class="ex-h" data-l="en">One example, as text</h3>
+      <h3 class="ex-h" data-l="ar">مثال واحد، كنص</h3>
+      <p class="fine" data-l="en">Made-up data to show the shape of the output. It is not a real measurement and not a real person.</p>
+      <p class="fine" data-l="ar">بيانات متخيَّلة لتوضيح شكل المخرجات. ليست قياسا حقيقيا وليست لشخص حقيقي.</p>
+      <div class="cmd"><pre><code>BRIEF    narrator, woman, 40 to 55, calm, British English, dry room
+TARGET   pitch 165 to 210 Hz, 130 to 150 words a minute, little echo
+SOURCES  public domain or written consent only, one clip per speaker
+
+REFERENCE CLIP (the one you will clone)
+REF-QUALITY       FAIL  0.6 s of room tone at the start
+                  <span class="c"># cleaned once, word-safe, then measured again</span>
+REF-QUALITY       PASS
+
+EACH GENERATED LINE (one take)
+TAKE-QUALITY      PASS
+VOICE-EDGE-NOISE  FAIL  1.9 s of hiss after the last word
+                  <span class="c"># cleaned without touching the speech</span>
+VOICE-EDGE-NOISE  PASS  speech samples identical
+
+NEXT     the top 3 voices go to your ear. You decide.</code></pre></div>
+      <p class="fine" data-l="en"><strong>Honest note.</strong> NJ-Narration ships no voices and no audio samples. It does not include a voice engine and does not pick one for you: you bring a licensed voice and an engine you are allowed to use. The numbers decide what reaches your ear, and your ear decides last.</p>
+      <p class="fine" data-l="ar"><strong>ملاحظة صريحة.</strong> لا تأتي <bdi dir="ltr">NJ-Narration</bdi> بأي أصوات ولا بعينات صوتية. ولا تتضمن محرك توليد صوت ولا تختاره عنك: تحضر أنت صوتا مرخّصا ومحركا يحق لك استخدامه. الأرقام تقرّر ما يصل إلى أذنك، وأذنك تقرّر أخيرا.</p>
+      <p class="fine" data-l="en">Install: the same two lines as NJ-Kit, in <a href="#get">Install</a>. NJ-Narration is not in the 23-skill plugin yet.</p>
+      <p class="fine" data-l="ar">التثبيت: السطران نفسهما لـ <bdi dir="ltr">NJ-Kit</bdi> في قسم <a href="#get">التثبيت</a>. ولم تدخل <bdi dir="ltr">NJ-Narration</bdi> بعد في الإضافة ذات المهارات الـ 23.</p>
+    </div>
+  </section>
+
   <section id="does">
     <div class="wrap">
       <h2 data-l="en">What it does for you.</h2>
@@ -817,11 +863,12 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
       <h2 data-l="en">More from Nader.</h2>
       <h2 data-l="ar">المزيد من نادر.</h2>
       <ul>
-        <li><a href="https://nj-burrito.github.io/"><span class="t"><span data-l="en">Portfolio</span><span data-l="ar">الملف الشخصي</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span data-l="en">Who builds these tools.</span><span data-l="ar">من يبني هذه الأدوات.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/Profile-Wrap/"><span class="t"><span dir="ltr">Profile-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span data-l="en">Free, open-source LinkedIn post manager. Nothing goes out until you tap Allow.</span><span data-l="ar">مدير مجاني ومفتوح المصدر لمنشورات <bdi dir="ltr">LinkedIn</bdi>، لا يُنشر شيء حتى تضغط «سماح».</span></span></a></li>
+        <li><a href="https://nj-burrito.github.io/"><span class="t"><span data-l="en">Portfolio</span><span data-l="ar">الملف الشخصي</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span data-l="en">Nader's work.</span><span data-l="ar">الموقع الشخصي.</span></span></a></li>
+        <li><a href="https://nj-burrito.github.io/Profile-Wrap/"><span class="t"><span dir="ltr">Profile-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span data-l="en">Your LinkedIn on autopilot, you stay the boss. Nothing goes out until you tap Allow.</span><span data-l="ar">مدير مجاني ومفتوح المصدر لمنشورات <bdi dir="ltr">LinkedIn</bdi>، لا يُنشر شيء حتى تضغط «سماح».</span></span></a></li>
         <li><a href="https://github.com/NJ-Burrito/Profile-Wrap" rel="noopener"><span class="t"><span data-l="en">Profile-Wrap on GitHub</span><span data-l="ar"><bdi dir="ltr">Profile-Wrap</bdi> على <bdi dir="ltr">GitHub</bdi></span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span data-l="en">The source code.</span><span data-l="ar">الشيفرة المصدرية.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/QA-Wrap/"><span class="t"><span dir="ltr">QA-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span data-l="en">A local-first QA toolkit in your browser. It records a session and writes the bug report.</span><span data-l="ar">أداة اختبار جودة داخل المتصفح تسجّل الجلسة وتكتب تقرير الخلل.</span></span></a></li>
+        <li><a href="https://nj-burrito.github.io/QA-Wrap/"><span class="t"><span dir="ltr">QA-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span data-l="en">Test the page, get the bug report.</span><span data-l="ar">اختبر الصفحة، وخذ تقرير الخلل جاهزا.</span></span></a></li>
         <li><a href="https://github.com/NJ-Burrito/QA-Wrap" rel="noopener"><span class="t"><span data-l="en">QA-Wrap on GitHub</span><span data-l="ar"><bdi dir="ltr">QA-Wrap</bdi> على <bdi dir="ltr">GitHub</bdi></span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span data-l="en">The source code.</span><span data-l="ar">الشيفرة المصدرية.</span></span></a></li>
+        <li><a href="https://www.instagram.com/nj.story.ar/" rel="noopener"><span class="t"><span dir="ltr">Story-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span data-l="en">The series «مكتب المفقودات».</span><span data-l="ar">سلسلة «مكتب المفقودات».</span></span></a></li>
         <li><a href="https://github.com/NJ-Burrito/NJ-Kit" rel="noopener"><span class="t"><span data-l="en">NJ-Kit on GitHub</span><span data-l="ar"><bdi dir="ltr">NJ-Kit</bdi> على <bdi dir="ltr">GitHub</bdi></span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span data-l="en">Skills, installer, issues.</span><span data-l="ar">المهارات والمثبّت والبلاغات.</span></span></a></li>
         <li><a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener"><span class="t">LinkedIn<svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span data-l="en">Say hello or send a question.</span><span data-l="ar">تواصل معي أو أرسل سؤالك.</span></span></a></li>
         <li><a href="https://github.com/NJ-Burrito" rel="me noopener"><span class="t">GitHub<svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span data-l="en">Every public repository.</span><span data-l="ar">كل المستودعات العامة.</span></span></a></li>
@@ -855,11 +902,12 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
     <p data-l="en">Made by Nader Alzghoul. Free and open source under the MIT licence. Not affiliated with or endorsed by Anthropic.</p>
     <p data-l="ar">من صنع نادر الزغول. مجانية ومفتوحة المصدر برخصة <bdi dir="ltr">MIT</bdi>. غير تابعة لشركة <bdi dir="ltr">Anthropic</bdi> ولا معتمدة منها.</p>
     <nav aria-label="Elsewhere">
-      <a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener">LinkedIn</a>
-      <a href="https://github.com/NJ-Burrito" rel="me noopener">GitHub</a>
-      <a href="https://nj-burrito.github.io/"><span data-l="en">Portfolio</span><span data-l="ar">الملف الشخصي</span></a>
-      <a href="https://nj-burrito.github.io/Profile-Wrap/">Profile-Wrap</a>
+      <a href="https://nj-burrito.github.io/"><span data-l="en">Portfolio</span><span data-l="ar">الموقع الشخصي</span></a>
       <a href="https://nj-burrito.github.io/QA-Wrap/">QA-Wrap</a>
+      <a href="https://nj-burrito.github.io/Profile-Wrap/">Profile-Wrap</a>
+      <a href="https://www.instagram.com/nj.story.ar/" rel="noopener">Story-Wrap</a>
+      <a href="https://github.com/NJ-Burrito" rel="me noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener">LinkedIn</a>
     </nav>
   </div>
 </footer>
