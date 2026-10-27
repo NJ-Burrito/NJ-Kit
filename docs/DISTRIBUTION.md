@@ -29,7 +29,7 @@ the plugin folder is `nj-plugin`, whose manifest is `nj-plugin/.claude-plugin/pl
 ## 2. Smithery (Agent Skills)
 
 Needs: a Smithery account (the maintainer's, `naderalzghoulbusiness`); the repo public with the skills on `main`.
-Files: each skill is `nj-plugin/skills/<name>/SKILL.md` with `name` and `description` frontmatter (all 23 parse as YAML; `nj-rank` was
+Files: each skill is `nj-plugin/skills/<name>/SKILL.md` with `name` and `description` frontmatter (all 24 parse as YAML; `nj-rank` was
 fixed because its unquoted description broke the parser). Text to paste: `docs/listings/smithery.md`.
 Smithery's screens can change, so where a label differs follow the screen. Steps, as done for Profile-Wrap:
 

@@ -4,12 +4,12 @@
 
 # NJ-Kit: Claude Code skills that end in PASS or FAIL
 
-### ✅ One working method and 40 skills for Claude Code. Every skill ends in a script that checks the work.
+### ✅ One working method and 41 skills for Claude Code. Every skill ends in a script that checks the work.
 
 [![Website](https://img.shields.io/badge/website-nj--burrito.github.io%2FNJ--Kit-c2ea4e?labelColor=0e1311)](https://nj-burrito.github.io/NJ-Kit/)
 [![CI](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml/badge.svg)](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-c2ea4e?labelColor=0e1311)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-40-c2ea4e?labelColor=0e1311)](#whats-inside)
+[![Skills](https://img.shields.io/badge/skills-41-c2ea4e?labelColor=0e1311)](#whats-inside)
 
 <details>
 <summary>🏷️ More badges</summary>
@@ -25,7 +25,7 @@
 </div>
 
 > ### ⚡ In 10 seconds
-> 🧠 **What:** a free method and 40 skills for Claude Code.\
+> 🧠 **What:** a free method and 41 skills for Claude Code.\
 > ✅ **Why:** a script prints **PASS** or **FAIL**. No "should work".\
 > 🚀 **Start:** paste 2 lines into Claude Code. [Go ↓](#plugin)\
 > 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) · [بالعربية](https://nj-burrito.github.io/NJ-Kit/ar/)
@@ -40,8 +40,8 @@
 
 | You want… | Take this | Time |
 |---|---|---|
-| 🧩 Claude Code, fastest | [Plugin ↓](#plugin) · 23 skills | ⏱️ 1 min |
-| 🧰 All 40 on a new machine | [Kit installer ↓](#kit) | ⏱️ 5 min |
+| 🧩 Claude Code, fastest | [Plugin ↓](#plugin) · 24 skills | ⏱️ 1 min |
+| 🧰 All 41 on a new machine | [Kit installer ↓](#kit) | ⏱️ 5 min |
 | 📂 Another agent that reads `SKILL.md` | [Copy one skill ↓](#whats-inside) | ⏱️ 1 folder |
 | 🔤 The typeface | [NJ-Font ↓](#nj-font) | ⏱️ 1 command |
 
@@ -77,7 +77,7 @@ All free. 👆 Pick one and skip the rest.
 /plugin install nj-kit@nj-kit
 ```
 
-**2.** Say: **"use nj-method"** ✅ Done. You have 23 skills.
+**2.** Say: **"use nj-method"** ✅ Done. You have 24 skills.
 
 ---
 
@@ -116,9 +116,9 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="whats-inside"></a>
 
-## 📦 40 Claude Code skills · tap a row to open
+## 📦 41 Claude Code skills · tap a row to open
 
-23 come with the plugin. The kit installer adds 17. Every one ends in a PASS or FAIL gate.
+24 come with the plugin. The kit installer adds 17. Every one ends in a PASS or FAIL gate.
 
 <details>
 <summary>🧠 <b>Method and agents</b> · 9 skills · plan, delegate, hand off</summary>
@@ -165,11 +165,12 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 </details>
 
 <details>
-<summary>🎬 <b>Audio and video</b> · 3 skills · voice, music, film</summary>
+<summary>🎬 <b>Audio and video</b> · 4 skills · voice, music, film</summary>
 
 | Skill | What it does |
 |---|---|
 | [voice-clean](nj-plugin/skills/voice-clean) | Master a voiceover to broadcast loudness with ffmpeg only |
+| [nj-narration](nj-plugin/skills/nj-narration) | Cast and engineer a TTS voice, then clean the noise around each line |
 | [bg-music](nj-plugin/skills/bg-music) | Licence-cleared music beds and SFX, with credit lines |
 | [nj-director](nj-plugin/skills/nj-director) | Plan the picture of a 30–90 s film: beat sheet, shots |
 
@@ -200,7 +201,7 @@ You can combine them. NJ-Kit skills are plain `SKILL.md` folders, so they work n
 
 | Project | What it is | Reach for it when |
 |---|---|---|
-| ✅ **NJ-Kit** | A working method and 40 skills. Every skill ends in a PASS or FAIL script. Arabic and English | You want the agent to prove a task is done |
+| ✅ **NJ-Kit** | A working method and 41 skills. Every skill ends in a PASS or FAIL script. Arabic and English | You want the agent to prove a task is done |
 | [anthropics/skills](https://github.com/anthropics/skills) | Anthropic's public repository for Agent Skills | You want the skills Anthropic publishes itself |
 | [obra/superpowers](https://github.com/obra/superpowers) | An agentic skills framework and software development methodology | You want a software development methodology built from skills |
 | [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | A hand-picked list of Claude Code resources: skills, agents, plugins, tools | You want to browse what exists |
@@ -276,7 +277,7 @@ Get-ChildItem NJ-Font\ttf\*.ttf | ForEach-Object {
 
 <details><summary>🧠 What is NJ-Kit?</summary>
 
-A free, open-source Claude Code plugin: one working method and 40 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, by Nader Alzghoul.
+A free, open-source Claude Code plugin: one working method and 41 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, by Nader Alzghoul.
 </details>
 
 <details><summary>📂 What are Claude Code skills?</summary>
@@ -333,7 +334,7 @@ Yes. Nothing is tied to one machine.
 
 ## 🎙️ NJ-Narration · the right voice, no noise around it
 
-> **Coming in the next NJ-Kit release.** A skill that picks and cleans a narrator's voice, and prints PASS or FAIL for every step.
+> **In the plugin since 2.0.2.** A skill that picks and cleans a narrator's voice, and prints PASS or FAIL for every step.
 
 - 🎯 **Scout a voice that fits the character.** Describe age, origin, accent and mood; the skill turns it into numbers and measures licensed voices against them.
 - 🛠️ **Engineer it once, at the source.** The reference clip is cleaned once and every line is voiced once. No re-voicing until one sounds right.
@@ -360,7 +361,9 @@ VOICE-EDGE-NOISE  PASS  speech samples identical
 NEXT     the top 3 voices go to your ear. You decide.
 ```
 
-**Install:** the same two lines as NJ-Kit ([Plugin ↑](#plugin)). It is not in the 23-skill plugin yet.
+**Install:** the same two lines as NJ-Kit ([Plugin ↑](#plugin)). `nj-narration` is one of the 24 plugin skills; after installing, say **"use nj-narration"**.
+
+Plugin only: `/plugin install nj-kit@nj-kit`. Any other agent that reads `SKILL.md`: copy the folder [`nj-plugin/skills/nj-narration`](nj-plugin/skills/nj-narration).
 
 **Honest note:** NJ-Narration ships no voices and no audio samples. It includes no voice engine and picks none for you: you bring a licensed voice and an engine you are allowed to use. The numbers decide what reaches your ear; your ear decides last.
 
@@ -385,13 +388,13 @@ NEXT     the top 3 voices go to your ear. You decide.
 
 <div dir="rtl" lang="ar">
 
-**NJ-Kit** منهج عمل مجاني و40 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يفحص النتيجة ويطبع PASS أو FAIL، فتعني «تم» أن فحصًا جرى فعلًا.
+**NJ-Kit** منهج عمل مجاني و41 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يفحص النتيجة ويطبع PASS أو FAIL، فتعني «تم» أن فحصًا جرى فعلًا.
 
-- 🚀 **ابدأ:** الصق السطرين في Claude Code، فتحصل على 23 مهارة في نحو دقيقة. [السطران ↑](#plugin)
+- 🚀 **ابدأ:** الصق السطرين في Claude Code، فتحصل على 24 مهارة في نحو دقيقة. [السطران ↑](#plugin)
 - 🧰 **الحزمة كاملة:** يضيف مثبّت الحزمة الـ17 الباقية. [المثبّت ↑](#kit)
 - 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
 - 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
-- 🎙️ **NJ-Narration** (تصل مع الإصدار القادم): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
+- 🎙️ **NJ-Narration** (ضمن الإضافة، `nj-narration`): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
 - 💸 **مجانية** ومفتوحة المصدر برخصة MIT، وغير تابعة لشركة Anthropic ولا معتمدة منها.
 - 🌐 **الموقع بالعربية:** [nj-burrito.github.io/NJ-Kit/ar](https://nj-burrito.github.io/NJ-Kit/ar/)
 

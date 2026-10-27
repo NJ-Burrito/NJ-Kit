@@ -1,0 +1,27 @@
+{
+ "id": "narrator",
+ "source_name": "Mozilla Common Voice 19.0, Arabic (ar)",
+ "source_url": "https://commonvoice.mozilla.org/ (the dataset or page the recording came from)",
+ "download_url": "the exact file fetched",
+ "clip_id": "common_voice_ar_00000000",
+ "licence": "CC0-1.0",
+ "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+ "licence_evidence_url": "the page that proves the licence for THIS dataset (dataset card, LibriVox PD statement)",
+ "consent": "CC0: the contributor's own public-domain dedication when donating. Own/talent recording: holder, date, scope (cloning, commercial use, AI disclosure), where the signed paper is kept (never in the repo)",
+ "validation": "community-votes | published-audiobook | own-recording",
+ "up_votes": 2,
+ "down_votes": 0,
+ "labels_from_source": {"gender": "male", "age": "thirties", "accent": "as the source labels it, or null"},
+ "readers_note": "volunteer not identified; we never name or identify a volunteer reader",
+ "span": {"start_s": 0.0, "end_s": 7.16, "sha256_source": "<sha256 of the downloaded file>"},
+ "dsp": [
+  "decode mp3 -> wav 24 kHz mono (ffmpeg)",
+  "edge fix: strip exact-zero and sub-floor edges (78 ms lead, 39 ms tail)",
+  "voice_edges clean --no-pad: noise-only room tone removed (530 ms lead, 960 ms tail), guards kept, span samples identical",
+  "highpass 70 Hz 2 poles; one linear gain to -23 LUFS; no denoise, no gate"
+ ],
+ "sha256_ref_wav": "<sha256 of the final clip as cloned>",
+ "measures": {"refq": "voice_measure.py ref profile", "problems": []},
+ "transcript": "only if the source publishes it; never produced by ASR",
+ "chosen_by": "the owner, by ear, date, from top 3 of <ranking path>"
+}

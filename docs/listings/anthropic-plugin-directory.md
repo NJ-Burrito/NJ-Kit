@@ -12,7 +12,7 @@ Skills for working with AI agents: a working method, delegation rules, session h
 
 ## Long description
 
-NJ-Kit is 23 skills for Claude Code from one working QA and automation engineer. It gives your sessions a repeatable method (analyse, look up skills, plan with named checkpoints, execute, review against the request), rules for delegating to sub-agents with briefs and receipts, and a handoff file so a fresh session picks up where the last one stopped.
+NJ-Kit is 24 skills for Claude Code from one working QA and automation engineer. It gives your sessions a repeatable method (analyse, look up skills, plan with named checkpoints, execute, review against the request), rules for delegating to sub-agents with briefs and receipts, and a handoff file so a fresh session picks up where the last one stopped.
 
 It also carries tools for the work around code: proofreading for Arabic, English and bilingual text, PDFs whose text stays selectable, voice cleaning with ffmpeg, licence-cleared music and sound effects, a pre-ship website audit, and Jira-based QA reporting and automation for people who run Jira.
 

@@ -10,8 +10,8 @@
 <meta name="theme-color" content="#eef1ea" media="(prefers-color-scheme: light)">
 <title data-l="en">NJ-Kit: free Claude Code skills that end in PASS or FAIL</title>
 <title data-l="ar">NJ-Kit: مهارات Claude Code مجانية تنتهي بـ PASS أو FAIL</title>
-<meta data-l="en" name="description" content="NJ-Kit is a free, open-source Claude Code plugin: a working method and 40 skills, each ending in a script that prints PASS or FAIL. Arabic and English, MIT licence.">
-<meta data-l="ar" name="description" content="NJ-Kit إضافة مجانية ومفتوحة المصدر لـ Claude Code: منهج عمل و40 مهارة، تنتهي كل منها بسكربت يطبع PASS أو FAIL. بالعربية والإنجليزية، برخصة MIT.">
+<meta data-l="en" name="description" content="NJ-Kit is a free, open-source Claude Code plugin: a working method and 41 skills, each ending in a script that prints PASS or FAIL. Arabic and English, MIT licence.">
+<meta data-l="ar" name="description" content="NJ-Kit إضافة مجانية ومفتوحة المصدر لـ Claude Code: منهج عمل و41 مهارة، تنتهي كل منها بسكربت يطبع PASS أو FAIL. بالعربية والإنجليزية، برخصة MIT.">
 <link rel="canonical" href="{SELF}">
 <link rel="alternate" hreflang="en" href="https://nj-burrito.github.io/NJ-Kit/">
 <link rel="alternate" hreflang="ar" href="https://nj-burrito.github.io/NJ-Kit/ar/">
@@ -23,15 +23,15 @@
 <meta property="og:url" content="{SELF}">
 <meta data-l="en" property="og:title" content="NJ-Kit: Claude Code skills that end in PASS or FAIL">
 <meta data-l="ar" property="og:title" content="NJ-Kit: مهارات Claude Code تنتهي بـ PASS أو FAIL">
-<meta data-l="en" property="og:description" content="A working method and 40 skills for Claude Code. Every skill ends in a script that prints PASS or FAIL. Free, MIT, Arabic and English.">
-<meta data-l="ar" property="og:description" content="منهج عمل و40 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يطبع PASS أو FAIL. مجانية، برخصة MIT، بالعربية والإنجليزية.">
+<meta data-l="en" property="og:description" content="A working method and 41 skills for Claude Code. Every skill ends in a script that prints PASS or FAIL. Free, MIT, Arabic and English.">
+<meta data-l="ar" property="og:description" content="منهج عمل و41 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يطبع PASS أو FAIL. مجانية، برخصة MIT، بالعربية والإنجليزية.">
 <meta data-l="en" property="og:image" content="https://nj-burrito.github.io/NJ-Kit/banner.png">
 <meta data-l="ar" property="og:image" content="https://nj-burrito.github.io/NJ-Kit/og-ar.png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
 <meta property="og:image:type" content="image/png">
-<meta data-l="en" property="og:image:alt" content="NJ-Kit: a working method for Claude Code. 40 skills, each ending in a PASS or FAIL gate.">
-<meta data-l="ar" property="og:image:alt" content="NJ-Kit: منهج عمل لـ Claude Code. 40 مهارة، تنتهي كل منها بفحص PASS أو FAIL.">
+<meta data-l="en" property="og:image:alt" content="NJ-Kit: a working method for Claude Code. 41 skills, each ending in a PASS or FAIL gate.">
+<meta data-l="ar" property="og:image:alt" content="NJ-Kit: منهج عمل لـ Claude Code. 41 مهارة، تنتهي كل منها بفحص PASS أو FAIL.">
 <meta data-l="en" property="og:locale" content="en_US">
 <meta data-l="en" property="og:locale:alternate" content="ar_AR">
 <meta data-l="ar" property="og:locale" content="ar_AR">
@@ -39,8 +39,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta data-l="en" name="twitter:title" content="NJ-Kit: Claude Code skills that end in PASS or FAIL">
 <meta data-l="ar" name="twitter:title" content="NJ-Kit: مهارات Claude Code تنتهي بـ PASS أو FAIL">
-<meta data-l="en" name="twitter:description" content="A working method and 40 skills for Claude Code. Every skill ends in a script that prints PASS or FAIL. Free, MIT.">
-<meta data-l="ar" name="twitter:description" content="منهج عمل و40 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يطبع PASS أو FAIL. مجانية، برخصة MIT.">
+<meta data-l="en" name="twitter:description" content="A working method and 41 skills for Claude Code. Every skill ends in a script that prints PASS or FAIL. Free, MIT.">
+<meta data-l="ar" name="twitter:description" content="منهج عمل و41 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يطبع PASS أو FAIL. مجانية، برخصة MIT.">
 <meta data-l="en" name="twitter:image" content="https://nj-burrito.github.io/NJ-Kit/banner.png">
 <meta data-l="ar" name="twitter:image" content="https://nj-burrito.github.io/NJ-Kit/og-ar.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230e1311'/%3E%3Crect x='3' y='3' width='26' height='26' rx='3' fill='%23c2ea4e'/%3E%3Cpath d='M9.5 16.5l4.5 4.5 8.5-9.5' fill='none' stroke='%230e1311' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
@@ -48,12 +48,12 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebSite","@id":"https://nj-burrito.github.io/NJ-Kit/#website","name":"NJ-Kit","url":"https://nj-burrito.github.io/NJ-Kit/","inLanguage":["en","ar"],"publisher":{"@id":"https://nj-burrito.github.io/#nader"}},
 {"@type":"Person","@id":"https://nj-burrito.github.io/#nader","name":"Nader Alzghoul","url":"https://nj-burrito.github.io/","sameAs":["https://www.linkedin.com/in/nader-alzghoul","https://github.com/NJ-Burrito"]},
-{"@type":"SoftwareApplication","@id":"https://nj-burrito.github.io/NJ-Kit/#app","name":"NJ-Kit","alternateName":"NJ-Kit Claude Code skills","applicationCategory":"DeveloperApplication","applicationSubCategory":"Claude Code plugin","operatingSystem":"Windows, macOS, Linux","url":"https://nj-burrito.github.io/NJ-Kit/","downloadUrl":"https://github.com/NJ-Burrito/NJ-Kit","codeRepository":"https://github.com/NJ-Burrito/NJ-Kit","sameAs":["https://github.com/NJ-Burrito/NJ-Kit"],"license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":["en","ar"],"keywords":["Claude Code skills","Claude Code plugin","Agent Skills","SKILL.md","PASS or FAIL gate","Arabic"],"description":"A free, open-source Claude Code plugin: one working method and 40 skills. Every skill ends in a script gate that prints PASS or FAIL. Arabic and English first-class.","image":"https://nj-burrito.github.io/NJ-Kit/banner.png","screenshot":["https://nj-burrito.github.io/NJ-Kit/banner.png","https://nj-burrito.github.io/NJ-Kit/assets/banner.gif"],"featureList":["40 skills for Claude Code, 23 installed by the plugin","Every skill ends in a script gate that prints PASS or FAIL","Installs as a Claude Code plugin in two lines, or as plain SKILL.md folders for any agent","Arabic and English first-class, right-to-left included"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://nj-burrito.github.io/#nader"}},
+{"@type":"SoftwareApplication","@id":"https://nj-burrito.github.io/NJ-Kit/#app","name":"NJ-Kit","alternateName":"NJ-Kit Claude Code skills","applicationCategory":"DeveloperApplication","applicationSubCategory":"Claude Code plugin","operatingSystem":"Windows, macOS, Linux","url":"https://nj-burrito.github.io/NJ-Kit/","downloadUrl":"https://github.com/NJ-Burrito/NJ-Kit","codeRepository":"https://github.com/NJ-Burrito/NJ-Kit","sameAs":["https://github.com/NJ-Burrito/NJ-Kit"],"license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":["en","ar"],"keywords":["Claude Code skills","Claude Code plugin","Agent Skills","SKILL.md","PASS or FAIL gate","Arabic"],"description":"A free, open-source Claude Code plugin: one working method and 41 skills. Every skill ends in a script gate that prints PASS or FAIL. Arabic and English first-class.","image":"https://nj-burrito.github.io/NJ-Kit/banner.png","screenshot":["https://nj-burrito.github.io/NJ-Kit/banner.png","https://nj-burrito.github.io/NJ-Kit/assets/banner.gif"],"featureList":["41 skills for Claude Code, 23 installed by the plugin","Every skill ends in a script gate that prints PASS or FAIL","Installs as a Claude Code plugin in two lines, or as plain SKILL.md folders for any agent","Arabic and English first-class, right-to-left included"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://nj-burrito.github.io/#nader"}},
 {"@type":"FAQPage","@id":"https://nj-burrito.github.io/NJ-Kit/#faq","inLanguage":"en","mainEntity":[
-{"@type":"Question","name":"What is NJ-Kit?","acceptedAnswer":{"@type":"Answer","text":"NJ-Kit is a free, open-source Claude Code plugin: one working method and 40 skills. Every skill ends in a script gate that prints PASS or FAIL. It is MIT licensed, by Nader Alzghoul."}},
+{"@type":"Question","name":"What is NJ-Kit?","acceptedAnswer":{"@type":"Answer","text":"NJ-Kit is a free, open-source Claude Code plugin: one working method and 41 skills. Every skill ends in a script gate that prints PASS or FAIL. It is MIT licensed, by Nader Alzghoul."}},
 {"@type":"Question","name":"What are Claude Code skills?","acceptedAnswer":{"@type":"Answer","text":"A skill is a folder with a SKILL.md file of instructions, plus any scripts it needs. Claude Code reads each skill's description and loads the skill when a task matches it."}},
 {"@type":"Question","name":"What is a gate?","acceptedAnswer":{"@type":"Answer","text":"A script at the end of a skill that checks the result and prints PASS or FAIL. On FAIL, the skill makes one fix and runs the gate again."}},
-{"@type":"Question","name":"How do I install NJ-Kit?","acceptedAnswer":{"@type":"Answer","text":"In Claude Code, run /plugin marketplace add NJ-Burrito/NJ-Kit, then /plugin install nj-kit@nj-kit. That takes about a minute and gives you 23 skills. The kit installer adds the other 17."}},
+{"@type":"Question","name":"How do I install NJ-Kit?","acceptedAnswer":{"@type":"Answer","text":"In Claude Code, run /plugin marketplace add NJ-Burrito/NJ-Kit, then /plugin install nj-kit@nj-kit. That takes about a minute and gives you 24 skills. The kit installer adds the other 17."}},
 {"@type":"Question","name":"How is NJ-Kit different from Anthropic's skills repository?","acceptedAnswer":{"@type":"Answer","text":"Anthropic's repository is its public collection of Agent Skills. NJ-Kit is an independent kit built around one working method, and every one of its skills ends in a PASS or FAIL script. You can install both."}},
 {"@type":"Question","name":"Does it work with agents other than Claude Code?","acceptedAnswer":{"@type":"Answer","text":"Any agent that reads SKILL.md files can use the skill folders directly, with no installer. The plugin route is for Claude Code."}},
 {"@type":"Question","name":"Is NJ-Kit made by Anthropic?","acceptedAnswer":{"@type":"Answer","text":"No. NJ-Kit is an independent project by Nader Alzghoul, not affiliated with or endorsed by Anthropic."}},
@@ -67,12 +67,12 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebSite","@id":"https://nj-burrito.github.io/NJ-Kit/#website","name":"NJ-Kit","url":"https://nj-burrito.github.io/NJ-Kit/","inLanguage":["en","ar"],"publisher":{"@id":"https://nj-burrito.github.io/#nader"}},
 {"@type":"Person","@id":"https://nj-burrito.github.io/#nader","name":"Nader Alzghoul","alternateName":"نادر الزغول","url":"https://nj-burrito.github.io/","sameAs":["https://www.linkedin.com/in/nader-alzghoul","https://github.com/NJ-Burrito"]},
-{"@type":"SoftwareApplication","@id":"https://nj-burrito.github.io/NJ-Kit/#app","name":"NJ-Kit","applicationCategory":"DeveloperApplication","applicationSubCategory":"Claude Code plugin","operatingSystem":"Windows, macOS, Linux","url":"https://nj-burrito.github.io/NJ-Kit/ar/","downloadUrl":"https://github.com/NJ-Burrito/NJ-Kit","codeRepository":"https://github.com/NJ-Burrito/NJ-Kit","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":"ar","keywords":["مهارات Claude Code","إضافة Claude Code","مهارات الوكلاء","SKILL.md","العربية"],"description":"إضافة مجانية ومفتوحة المصدر لـ Claude Code: منهج عمل واحد و40 مهارة، تنتهي كل منها بسكربت فحص يطبع PASS أو FAIL. العربية والإنجليزية بالمستوى نفسه.","image":"https://nj-burrito.github.io/NJ-Kit/og-ar.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://nj-burrito.github.io/#nader"}},
+{"@type":"SoftwareApplication","@id":"https://nj-burrito.github.io/NJ-Kit/#app","name":"NJ-Kit","applicationCategory":"DeveloperApplication","applicationSubCategory":"Claude Code plugin","operatingSystem":"Windows, macOS, Linux","url":"https://nj-burrito.github.io/NJ-Kit/ar/","downloadUrl":"https://github.com/NJ-Burrito/NJ-Kit","codeRepository":"https://github.com/NJ-Burrito/NJ-Kit","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":"ar","keywords":["مهارات Claude Code","إضافة Claude Code","مهارات الوكلاء","SKILL.md","العربية"],"description":"إضافة مجانية ومفتوحة المصدر لـ Claude Code: منهج عمل واحد و41 مهارة، تنتهي كل منها بسكربت فحص يطبع PASS أو FAIL. العربية والإنجليزية بالمستوى نفسه.","image":"https://nj-burrito.github.io/NJ-Kit/og-ar.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://nj-burrito.github.io/#nader"}},
 {"@type":"FAQPage","@id":"https://nj-burrito.github.io/NJ-Kit/ar/#faq","inLanguage":"ar","mainEntity":[
-{"@type":"Question","name":"ما هي NJ-Kit؟","acceptedAnswer":{"@type":"Answer","text":"NJ-Kit إضافة مجانية ومفتوحة المصدر لـ Claude Code: منهج عمل واحد و40 مهارة. تنتهي كل مهارة بسكربت فحص يطبع PASS أو FAIL. برخصة MIT، من صنع نادر الزغول."}},
+{"@type":"Question","name":"ما هي NJ-Kit؟","acceptedAnswer":{"@type":"Answer","text":"NJ-Kit إضافة مجانية ومفتوحة المصدر لـ Claude Code: منهج عمل واحد و41 مهارة. تنتهي كل مهارة بسكربت فحص يطبع PASS أو FAIL. برخصة MIT، من صنع نادر الزغول."}},
 {"@type":"Question","name":"ما هي مهارات Claude Code؟","acceptedAnswer":{"@type":"Answer","text":"المهارة مجلد فيه ملف SKILL.md يضم التعليمات، ومعه أي سكربتات يحتاجها. يقرأ Claude Code وصف كل مهارة ويحمّلها حين تطابق المهمةُ وصفَها."}},
 {"@type":"Question","name":"ما هو الفحص؟","acceptedAnswer":{"@type":"Answer","text":"سكربت في نهاية المهارة يفحص النتيجة ويطبع PASS أو FAIL. وعند FAIL تُجري المهارة إصلاحًا واحدًا ثم تعيد الفحص."}},
-{"@type":"Question","name":"كيف أثبّت NJ-Kit؟","acceptedAnswer":{"@type":"Answer","text":"في Claude Code نفّذ /plugin marketplace add NJ-Burrito/NJ-Kit ثم /plugin install nj-kit@nj-kit. يستغرق ذلك نحو دقيقة ويمنحك 23 مهارة، ويضيف مثبّت الحزمة الـ17 الباقية."}},
+{"@type":"Question","name":"كيف أثبّت NJ-Kit؟","acceptedAnswer":{"@type":"Answer","text":"في Claude Code نفّذ /plugin marketplace add NJ-Burrito/NJ-Kit ثم /plugin install nj-kit@nj-kit. يستغرق ذلك نحو دقيقة ويمنحك 24 مهارة، ويضيف مثبّت الحزمة الـ17 الباقية."}},
 {"@type":"Question","name":"ما الفرق بين NJ-Kit ومستودع المهارات من Anthropic؟","acceptedAnswer":{"@type":"Answer","text":"مستودع Anthropic هو مجموعتها العامة من مهارات الوكلاء. أما NJ-Kit فحزمة مستقلة مبنية حول منهج عمل واحد، وتنتهي كل مهارة فيها بسكربت يطبع PASS أو FAIL. ويمكنك تثبيت الاثنين معًا."}},
 {"@type":"Question","name":"هل تعمل مع وكلاء غير Claude Code؟","acceptedAnswer":{"@type":"Answer","text":"يمكن لأي وكيل يقرأ ملفات SKILL.md استخدام مجلدات المهارات مباشرة بلا مثبّت. أما مسار الإضافة فهو لـ Claude Code."}},
 {"@type":"Question","name":"هل NJ-Kit من Anthropic؟","acceptedAnswer":{"@type":"Answer","text":"لا. NJ-Kit مشروع مستقل من نادر الزغول، وغير تابع لشركة Anthropic ولا معتمد منها."}},
@@ -469,15 +469,15 @@ footer a:hover{text-decoration:underline}
       <div>
         <h1 data-l="en">Claude Code skills that end in <em>PASS or&nbsp;FAIL.</em></h1>
         <h1 data-l="ar">مهارات لـ <bdi dir="ltr">Claude Code</bdi> تنتهي كلٌّ منها بـ <em><bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi></em>.</h1>
-        <p class="lede" data-l="en">NJ-Kit is a free working method and 40 skills for Claude Code. Every skill ends in a script that checks the result, so “done” means a check ran.</p>
-        <p class="lede" data-l="ar"><bdi dir="ltr">NJ-Kit</bdi> منهج عمل مجاني و40 مهارة لـ <bdi dir="ltr">Claude Code</bdi>. تنتهي كل مهارة بسكربت يفحص النتيجة، فتعني «تم» أن فحصًا جرى فعلًا.</p>
+        <p class="lede" data-l="en">NJ-Kit is a free working method and 41 skills for Claude Code. Every skill ends in a script that checks the result, so “done” means a check ran.</p>
+        <p class="lede" data-l="ar"><bdi dir="ltr">NJ-Kit</bdi> منهج عمل مجاني و41 مهارة لـ <bdi dir="ltr">Claude Code</bdi>. تنتهي كل مهارة بسكربت يفحص النتيجة، فتعني «تم» أن فحصًا جرى فعلًا.</p>
         <div class="start">
           <span class="lbl" data-l="en">Start: paste into Claude Code</span>
           <span class="lbl" data-l="ar">ابدأ: الصق في <bdi dir="ltr">Claude Code</bdi></span>
           <div class="cmd"><pre><code id="c-hero">/plugin marketplace add NJ-Burrito/NJ-Kit
 /plugin install nj-kit@nj-kit</code></pre><button class="copy" type="button" data-copy="c-hero" data-state="a" aria-label="Copy" data-l="en"><span class="t-icon-swap" aria-hidden="true"><svg class="t-icon" data-icon="a"><use href="#i-copy"/></svg><svg class="t-icon" data-icon="b"><use href="#i-check"/></svg></span></button><button class="copy" type="button" data-copy="c-hero" data-state="a" aria-label="نسخ" data-l="ar"><span class="t-icon-swap" aria-hidden="true"><svg class="t-icon" data-icon="a"><use href="#i-copy"/></svg><svg class="t-icon" data-icon="b"><use href="#i-check"/></svg></span></button></div>
-          <p class="after" data-l="en">23 skills in about a minute. The kit installer adds the other 17.</p>
-          <p class="after" data-l="ar">23 مهارة في نحو دقيقة، ويضيف مثبّت الحزمة الـ17 الباقية.</p>
+          <p class="after" data-l="en">24 skills in about a minute. The kit installer adds the other 17.</p>
+          <p class="after" data-l="ar">24 مهارة في نحو دقيقة، ويضيف مثبّت الحزمة الـ17 الباقية.</p>
         </div>
         <ul class="facts" data-l="en">
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Free, MIT licence</li>
@@ -537,8 +537,8 @@ footer a:hover{text-decoration:underline}
     <div class="wrap">
       <h2 data-l="en">How it works: six steps, then a gate.</h2>
       <h2 data-l="ar">كيف تعمل: ست خطوات، ثم فحص.</h2>
-      <p class="lede def" data-l="en">NJ-Kit is a free, open-source Claude Code plugin: one working method and 40 skills. Each skill ends in a script that prints PASS or FAIL. On FAIL, it makes one fix and runs the gate again.</p>
-      <p class="lede def" data-l="ar"><bdi dir="ltr">NJ-Kit</bdi> إضافة مجانية ومفتوحة المصدر لـ <bdi dir="ltr">Claude Code</bdi>: منهج عمل واحد و40 مهارة. تنتهي كل مهارة بسكربت يطبع <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>. وعند <bdi dir="ltr">FAIL</bdi> تُجري إصلاحًا واحدًا ثم تعيد الفحص.</p>
+      <p class="lede def" data-l="en">NJ-Kit is a free, open-source Claude Code plugin: one working method and 41 skills. Each skill ends in a script that prints PASS or FAIL. On FAIL, it makes one fix and runs the gate again.</p>
+      <p class="lede def" data-l="ar"><bdi dir="ltr">NJ-Kit</bdi> إضافة مجانية ومفتوحة المصدر لـ <bdi dir="ltr">Claude Code</bdi>: منهج عمل واحد و41 مهارة. تنتهي كل مهارة بسكربت يطبع <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>. وعند <bdi dir="ltr">FAIL</bdi> تُجري إصلاحًا واحدًا ثم تعيد الفحص.</p>
       <figure class="run" data-run="static">
         <div class="bar"><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg><b>nj-method</b><span data-l="en">one request, start to finish</span><span data-l="ar">طلب واحد من أوله إلى آخره</span></div>
         <ol class="chips" data-l="en"><li class="chip">analyse</li><li class="chip">find the skill</li><li class="chip">plan</li><li class="chip">execute</li><li class="chip g">gate</li><li class="chip">review</li></ol>
@@ -577,17 +577,17 @@ footer a:hover{text-decoration:underline}
 
   <section id="skills">
     <div class="wrap">
-      <h2 data-l="en">40 Claude Code skills, grouped by job.</h2>
-      <h2 data-l="ar">40 مهارة لـ <bdi dir="ltr">Claude Code</bdi>، مجمّعة حسب العمل.</h2>
-      <p class="lede" data-l="en">23 come with the plugin. The kit installer adds 17. Pick a group.</p>
-      <p class="lede" data-l="ar">23 مع الإضافة، ويضيف مثبّت الحزمة 17. اختر مجموعة.</p>
+      <h2 data-l="en">41 Claude Code skills, grouped by job.</h2>
+      <h2 data-l="ar">41 مهارة لـ <bdi dir="ltr">Claude Code</bdi>، مجمّعة حسب العمل.</h2>
+      <p class="lede" data-l="en">24 come with the plugin. The kit installer adds 17. Pick a group.</p>
+      <p class="lede" data-l="ar">24 مع الإضافة، ويضيف مثبّت الحزمة 17. اختر مجموعة.</p>
       <div class="explorer">
         <div class="tabs" role="tablist" aria-label="Skill groups" data-l="en">
           <span class="pill" aria-hidden="true"></span>
           <button class="tab" role="tab" id="tab-m" aria-controls="p-m" aria-selected="true"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>Method and agents<span class="n">9</span></button>
           <button class="tab" role="tab" id="tab-q" aria-controls="p-q" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-list-checks"/></svg>QA and Jira<span class="n">5</span></button>
           <button class="tab" role="tab" id="tab-d" aria-controls="p-d" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-file-text"/></svg>Documents and writing<span class="n">6</span></button>
-          <button class="tab" role="tab" id="tab-a" aria-controls="p-a" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-clapperboard"/></svg>Audio and video<span class="n">3</span></button>
+          <button class="tab" role="tab" id="tab-a" aria-controls="p-a" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-clapperboard"/></svg>Audio and video<span class="n">4</span></button>
           <button class="tab" role="tab" id="tab-b" aria-controls="p-b" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg>Bundled with the kit<span class="n">17</span></button>
         </div>
         <div class="tabs" role="tablist" aria-label="مجموعات المهارات" data-l="ar">
@@ -595,7 +595,7 @@ footer a:hover{text-decoration:underline}
           <button class="tab" role="tab" id="tab-m" aria-controls="p-m" aria-selected="true"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>المنهج والوكلاء<span class="n">9</span></button>
           <button class="tab" role="tab" id="tab-q" aria-controls="p-q" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-list-checks"/></svg>ضمان الجودة و<bdi dir="ltr">Jira</bdi><span class="n">5</span></button>
           <button class="tab" role="tab" id="tab-d" aria-controls="p-d" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-file-text"/></svg>المستندات والكتابة<span class="n">6</span></button>
-          <button class="tab" role="tab" id="tab-a" aria-controls="p-a" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-clapperboard"/></svg>الصوت والفيديو<span class="n">3</span></button>
+          <button class="tab" role="tab" id="tab-a" aria-controls="p-a" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-clapperboard"/></svg>الصوت والفيديو<span class="n">4</span></button>
           <button class="tab" role="tab" id="tab-b" aria-controls="p-b" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg>مرفقة مع الحزمة<span class="n">17</span></button>
         </div>
         <div class="panel" role="tabpanel" id="p-m" aria-labelledby="tab-m">
@@ -633,6 +633,7 @@ footer a:hover{text-decoration:underline}
         <div class="panel" role="tabpanel" id="p-a" aria-labelledby="tab-a" hidden>
           <ul class="skills">
             <li><code>voice-clean</code><span data-l="en">Master a voiceover to broadcast loudness with ffmpeg only.</span><span data-l="ar">اضبط التعليق الصوتي على مستوى ارتفاع البث باستخدام <bdi dir="ltr">ffmpeg</bdi> وحده.</span></li>
+            <li><code>nj-narration</code><span data-l="en">Cast a licensed TTS voice, engineer it once, clean the noise around each line.</span><span data-l="ar">اختر صوتًا مرخّصًا، وهندسه مرة واحدة، ونظّف الضجيج حول كل جملة.</span></li>
             <li><code>bg-music</code><span data-l="en">Licence-cleared music beds and sound effects, with credit lines.</span><span data-l="ar">موسيقى خلفية ومؤثرات صوتية مرخّصة، مع سطور الإسناد.</span></li>
             <li><code>nj-director</code><span data-l="en">Plan the picture of a 30 to 90 second film: beat sheet, shots.</span><span data-l="ar">خطّط صورة فيلم مدته من 30 إلى 90 ثانية: تسلسل اللحظات واللقطات.</span></li>
           </ul>
@@ -653,8 +654,8 @@ footer a:hover{text-decoration:underline}
     <div class="wrap">
       <h2 data-l="en">NJ-Narration: the right voice for your story, with no noise around it.</h2>
       <h2 data-l="ar"><bdi dir="ltr">NJ-Narration</bdi>: الصوت المناسب لقصتك، بلا ضجيج حوله.</h2>
-      <p class="lede" data-l="en">A skill for Claude Code that picks and cleans a narrator's voice. It checks every step with a script and prints PASS or FAIL. Coming in the next NJ-Kit release.</p>
-      <p class="lede" data-l="ar">مهارة لـ <bdi dir="ltr">Claude Code</bdi> تختار صوت الراوي وتنظّفه، وتفحص كل خطوة بسكربت يطبع <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>. تصل مع الإصدار القادم من <bdi dir="ltr">NJ-Kit</bdi>.</p>
+      <p class="lede" data-l="en">A skill for Claude Code that picks and cleans a narrator's voice. It checks every step with a script and prints PASS or FAIL. In the plugin since 2.0.2.</p>
+      <p class="lede" data-l="ar">مهارة لـ <bdi dir="ltr">Claude Code</bdi> تختار صوت الراوي وتنظّفه، وتفحص كل خطوة بسكربت يطبع <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>. وهي ضمن الإضافة منذ الإصدار 2.0.2.</p>
       <dl class="gets" data-l="en">
         <div><dt><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>Scout a voice that fits</dt><dd>You describe the character: age, origin, accent, mood. The skill turns it into numbers and measures licensed voices against them.</dd></div>
         <div><dt><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg>Engineer it once, at the source</dt><dd>The reference clip is cleaned once, and every line is voiced once. No re-voicing until one sounds right.</dd></div>
@@ -687,8 +688,8 @@ VOICE-EDGE-NOISE  PASS  speech samples identical
 NEXT     the top 3 voices go to your ear. You decide.</code></pre></div>
       <p class="fine" data-l="en"><strong>Honest note.</strong> NJ-Narration ships no voices and no audio samples. It does not include a voice engine and does not pick one for you: you bring a licensed voice and an engine you are allowed to use. The numbers decide what reaches your ear, and your ear decides last.</p>
       <p class="fine" data-l="ar"><strong>ملاحظة صريحة.</strong> لا تأتي <bdi dir="ltr">NJ-Narration</bdi> بأي أصوات ولا بعينات صوتية. ولا تتضمن محرك توليد صوت ولا تختاره عنك: تحضر أنت صوتا مرخّصا ومحركا يحق لك استخدامه. الأرقام تقرّر ما يصل إلى أذنك، وأذنك تقرّر أخيرا.</p>
-      <p class="fine" data-l="en">Install: the same two lines as NJ-Kit, in <a href="#get">Install</a>. NJ-Narration is not in the 23-skill plugin yet.</p>
-      <p class="fine" data-l="ar">التثبيت: السطران نفسهما لـ <bdi dir="ltr">NJ-Kit</bdi> في قسم <a href="#get">التثبيت</a>. ولم تدخل <bdi dir="ltr">NJ-Narration</bdi> بعد في الإضافة ذات المهارات الـ 23.</p>
+      <p class="fine" data-l="en">Install: the same two lines as NJ-Kit, in <a href="#get">Install</a>. NJ-Narration is one of the 24 plugin skills. After installing, say <strong>“use nj-narration”</strong>. Without Claude Code plugins, copy the folder <code translate="no" dir="ltr">nj-plugin/skills/nj-narration</code> from the repository.</p>
+      <p class="fine" data-l="ar">التثبيت: السطران نفسهما لـ <bdi dir="ltr">NJ-Kit</bdi> في قسم <a href="#get">التثبيت</a>. وهي إحدى مهارات الإضافة الـ 24. بعد التثبيت قل <strong dir="ltr">“use nj-narration”</strong>. وبدون إضافات <bdi dir="ltr">Claude Code</bdi> انسخ المجلد <code translate="no" dir="ltr">nj-plugin/skills/nj-narration</code> من المستودع.</p>
     </div>
   </section>
 
@@ -725,7 +726,7 @@ NEXT     the top 3 voices go to your ear. You decide.</code></pre></div>
         <table class="cmp" data-l="en">
           <thead><tr><th scope="col">Project</th><th scope="col">What it is</th><th scope="col">Reach for it when</th></tr></thead>
           <tbody>
-            <tr class="us"><th scope="row">NJ-Kit</th><td>A working method and 40 skills. Every skill ends in a PASS or FAIL script. Arabic and English.</td><td>You want the agent to prove a task is done.</td></tr>
+            <tr class="us"><th scope="row">NJ-Kit</th><td>A working method and 41 skills. Every skill ends in a PASS or FAIL script. Arabic and English.</td><td>You want the agent to prove a task is done.</td></tr>
             <tr><th scope="row"><a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a></th><td>Anthropic's public repository for Agent Skills.</td><td>You want the skills Anthropic publishes itself.</td></tr>
             <tr><th scope="row"><a href="https://github.com/obra/superpowers" rel="noopener">obra/superpowers</a></th><td>An agentic skills framework and software development methodology.</td><td>You want a software development methodology built from skills.</td></tr>
             <tr><th scope="row"><a href="https://github.com/hesreallyhim/awesome-claude-code" rel="noopener">awesome-claude-code</a></th><td>A hand-picked list of Claude Code resources: skills, agents, plugins, tools.</td><td>You want to browse what exists.</td></tr>
@@ -734,7 +735,7 @@ NEXT     the top 3 voices go to your ear. You decide.</code></pre></div>
         <table class="cmp" data-l="ar">
           <thead><tr><th scope="col">المشروع</th><th scope="col">ما هو</th><th scope="col">متى تختاره</th></tr></thead>
           <tbody>
-            <tr class="us"><th scope="row" dir="ltr">NJ-Kit</th><td>منهج عمل و40 مهارة، تنتهي كل منها بسكربت <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>، بالعربية والإنجليزية.</td><td>تريد أن يثبت الوكيل أن المهمة أُنجزت.</td></tr>
+            <tr class="us"><th scope="row" dir="ltr">NJ-Kit</th><td>منهج عمل و41 مهارة، تنتهي كل منها بسكربت <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>، بالعربية والإنجليزية.</td><td>تريد أن يثبت الوكيل أن المهمة أُنجزت.</td></tr>
             <tr><th scope="row"><a href="https://github.com/anthropics/skills" rel="noopener" dir="ltr">anthropics/skills</a></th><td>المستودع العام لمهارات الوكلاء من <bdi dir="ltr">Anthropic</bdi>.</td><td>تريد المهارات التي تنشرها <bdi dir="ltr">Anthropic</bdi> بنفسها.</td></tr>
             <tr><th scope="row"><a href="https://github.com/obra/superpowers" rel="noopener" dir="ltr">obra/superpowers</a></th><td>إطار مهارات للوكلاء ومنهجية لتطوير البرمجيات.</td><td>تريد منهجية لتطوير البرمجيات مبنية على المهارات.</td></tr>
             <tr><th scope="row"><a href="https://github.com/hesreallyhim/awesome-claude-code" rel="noopener" dir="ltr">awesome-claude-code</a></th><td>قائمة منتقاة من موارد <bdi dir="ltr">Claude Code</bdi>: مهارات ووكلاء وإضافات وأدوات.</td><td>تريد أن تتصفح ما هو موجود.</td></tr>
@@ -784,10 +785,10 @@ NEXT     the top 3 voices go to your ear. You decide.</code></pre></div>
           <p data-l="ar">لـ <strong dir="ltr">Claude Code</strong>. الصق هذين السطرين:</p>
           <div class="cmd"><pre><code id="c-plugin">/plugin marketplace add NJ-Burrito/NJ-Kit
 /plugin install nj-kit@nj-kit</code></pre><button class="copy" type="button" data-copy="c-plugin" data-state="a" aria-label="Copy" data-l="en"><span class="t-icon-swap" aria-hidden="true"><svg class="t-icon" data-icon="a"><use href="#i-copy"/></svg><svg class="t-icon" data-icon="b"><use href="#i-check"/></svg></span></button><button class="copy" type="button" data-copy="c-plugin" data-state="a" aria-label="نسخ" data-l="ar"><span class="t-icon-swap" aria-hidden="true"><svg class="t-icon" data-icon="a"><use href="#i-copy"/></svg><svg class="t-icon" data-icon="b"><use href="#i-check"/></svg></span></button></div>
-          <p data-l="en">Then say <strong>“use nj-method”</strong>. You have 23 skills.</p>
-          <p data-l="ar">ثم قل <strong dir="ltr">“use nj-method”</strong>. صارت لديك 23 مهارة.</p>
+          <p data-l="en">Then say <strong>“use nj-method”</strong>. You have 24 skills.</p>
+          <p data-l="ar">ثم قل <strong dir="ltr">“use nj-method”</strong>. صارت لديك 24 مهارة.</p>
           <div class="top" style="margin-top:14px"><h3><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg><span data-l="en">Kit installer</span><span data-l="ar">مثبّت الحزمة</span></h3><span class="time"><span data-l="en">5 minutes</span><span data-l="ar">5 دقائق</span></span></div>
-          <p data-l="en">All 40 skills on a new machine. Needs Python 3.10+.</p>
+          <p data-l="en">All 41 skills on a new machine. Needs Python 3.10+.</p>
           <p data-l="ar">المهارات الأربعون كلها على جهاز جديد. يحتاج إلى <bdi dir="ltr">Python 3.10+</bdi>.</p>
           <div class="cmd"><pre><code id="c-kit">git clone https://github.com/NJ-Burrito/NJ-Kit
 cd NJ-Kit
@@ -830,10 +831,10 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
       <h2 data-l="en">Questions about NJ-Kit and Claude Code skills</h2>
       <h2 data-l="ar">أسئلة عن <bdi dir="ltr">NJ-Kit</bdi> ومهارات <bdi dir="ltr">Claude Code</bdi></h2>
       <div data-l="en">
-        <details><summary>What is NJ-Kit?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>NJ-Kit is a free, open-source Claude Code plugin: one working method and 40 skills. Every skill ends in a script gate that prints PASS or FAIL. It is MIT licensed, by Nader Alzghoul.</p></details>
+        <details><summary>What is NJ-Kit?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>NJ-Kit is a free, open-source Claude Code plugin: one working method and 41 skills. Every skill ends in a script gate that prints PASS or FAIL. It is MIT licensed, by Nader Alzghoul.</p></details>
         <details><summary>What are Claude Code skills?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>A skill is a folder with a <code>SKILL.md</code> file of instructions, plus any scripts it needs. Claude Code reads each skill's description and loads the skill when a task matches it.</p></details>
         <details><summary>What is a gate?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>A script at the end of a skill that checks the result and prints PASS or FAIL. On FAIL, the skill makes one fix and runs the gate again. <a href="#how">See one run</a>.</p></details>
-        <details><summary>How do I install NJ-Kit?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>In Claude Code, run <code dir="ltr">/plugin marketplace add NJ-Burrito/NJ-Kit</code>, then <code dir="ltr">/plugin install nj-kit@nj-kit</code>. That takes about a minute and gives you 23 skills. The <a href="#get">kit installer</a> adds the other 17.</p></details>
+        <details><summary>How do I install NJ-Kit?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>In Claude Code, run <code dir="ltr">/plugin marketplace add NJ-Burrito/NJ-Kit</code>, then <code dir="ltr">/plugin install nj-kit@nj-kit</code>. That takes about a minute and gives you 24 skills. The <a href="#get">kit installer</a> adds the other 17.</p></details>
         <details><summary>How is NJ-Kit different from Anthropic's skills repository?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Anthropic's repository is its public collection of Agent Skills. NJ-Kit is an independent kit built around one working method, and every one of its skills ends in a PASS or FAIL script. You can install both. <a href="#compare">Compare them</a>.</p></details>
         <details><summary>Does it work with agents other than Claude Code?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Any agent that reads <code dir="ltr">SKILL.md</code> files can use the skill folders directly, with no installer. The plugin route is for Claude Code.</p></details>
         <details><summary>Is NJ-Kit made by Anthropic?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>No. NJ-Kit is an independent project by Nader Alzghoul, not affiliated with or endorsed by Anthropic.</p></details>
@@ -843,10 +844,10 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
         <details><summary>Will paths work on my machine?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Yes. Set the variables a skill names, like <code dir="ltr">NJ_PLUGIN_ROOT</code>, or keep the defaults.</p></details>
       </div>
       <div data-l="ar">
-        <details><summary>ما هي <bdi dir="ltr">NJ-Kit</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><bdi dir="ltr">NJ-Kit</bdi> إضافة مجانية ومفتوحة المصدر لـ <bdi dir="ltr">Claude Code</bdi>: منهج عمل واحد و40 مهارة. تنتهي كل مهارة بسكربت فحص يطبع <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>. برخصة <bdi dir="ltr">MIT</bdi>، من صنع نادر الزغول.</p></details>
+        <details><summary>ما هي <bdi dir="ltr">NJ-Kit</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><bdi dir="ltr">NJ-Kit</bdi> إضافة مجانية ومفتوحة المصدر لـ <bdi dir="ltr">Claude Code</bdi>: منهج عمل واحد و41 مهارة. تنتهي كل مهارة بسكربت فحص يطبع <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>. برخصة <bdi dir="ltr">MIT</bdi>، من صنع نادر الزغول.</p></details>
         <details><summary>ما هي مهارات <bdi dir="ltr">Claude Code</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>المهارة مجلد فيه ملف <code dir="ltr">SKILL.md</code> يضم التعليمات، ومعه أي سكربتات يحتاجها. يقرأ <bdi dir="ltr">Claude Code</bdi> وصف كل مهارة ويحمّلها حين تطابق المهمةُ وصفَها.</p></details>
         <details><summary>ما هو الفحص؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>سكربت في نهاية المهارة يفحص النتيجة ويطبع <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>. وعند <bdi dir="ltr">FAIL</bdi> تُجري المهارة إصلاحًا واحدًا ثم تعيد الفحص. <a href="#how">شاهد مثالًا</a>.</p></details>
-        <details><summary>كيف أثبّت <bdi dir="ltr">NJ-Kit</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>في <bdi dir="ltr">Claude Code</bdi> نفّذ <code dir="ltr">/plugin marketplace add NJ-Burrito/NJ-Kit</code> ثم <code dir="ltr">/plugin install nj-kit@nj-kit</code>. يستغرق ذلك نحو دقيقة ويمنحك 23 مهارة، ويضيف <a href="#get">مثبّت الحزمة</a> الـ17 الباقية.</p></details>
+        <details><summary>كيف أثبّت <bdi dir="ltr">NJ-Kit</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>في <bdi dir="ltr">Claude Code</bdi> نفّذ <code dir="ltr">/plugin marketplace add NJ-Burrito/NJ-Kit</code> ثم <code dir="ltr">/plugin install nj-kit@nj-kit</code>. يستغرق ذلك نحو دقيقة ويمنحك 24 مهارة، ويضيف <a href="#get">مثبّت الحزمة</a> الـ17 الباقية.</p></details>
         <details><summary>ما الفرق بين <bdi dir="ltr">NJ-Kit</bdi> ومستودع المهارات من <bdi dir="ltr">Anthropic</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>مستودع <bdi dir="ltr">Anthropic</bdi> هو مجموعتها العامة من مهارات الوكلاء. أما <bdi dir="ltr">NJ-Kit</bdi> فحزمة مستقلة مبنية حول منهج عمل واحد، وتنتهي كل مهارة فيها بسكربت يطبع <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>. ويمكنك تثبيت الاثنين معًا. <a href="#compare">قارن بينها</a>.</p></details>
         <details><summary>هل تعمل مع وكلاء غير <bdi dir="ltr">Claude Code</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>يمكن لأي وكيل يقرأ ملفات <code dir="ltr">SKILL.md</code> استخدام مجلدات المهارات مباشرة بلا مثبّت. أما مسار الإضافة فهو لـ <bdi dir="ltr">Claude Code</bdi>.</p></details>
         <details><summary>هل <bdi dir="ltr">NJ-Kit</bdi> من <bdi dir="ltr">Anthropic</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>لا. <bdi dir="ltr">NJ-Kit</bdi> مشروع مستقل من نادر الزغول، وغير تابع لشركة <bdi dir="ltr">Anthropic</bdi> ولا معتمد منها.</p></details>
@@ -890,8 +891,8 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
       <figure class="shot">
         <img data-l="en" src="{R}assets/banner-poster.webp" data-gif="{R}assets/banner.gif" alt="NJ-Kit banner, animated: the method loop analyse, find the skill, plan, execute, gate, review, ending on PASS." width="1280" height="640" loading="lazy" decoding="async">
         <img data-l="ar" src="{R}assets/banner-poster.webp" data-gif="{R}assets/banner.gif" alt="شعار NJ-Kit متحرك: حلقة المنهج حلّل، ابحث عن المهارة، خطّط، نفّذ، افحص، راجع، وتنتهي بـ PASS." width="1280" height="640" loading="lazy" decoding="async">
-        <figcaption data-l="en">NJ-Kit in 6 seconds: 40 skills, every one ending in a PASS or FAIL gate.</figcaption>
-        <figcaption data-l="ar"><bdi dir="ltr">NJ-Kit</bdi> في 6 ثوانٍ: 40 مهارة، وكل واحدة تنتهي بفحص <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>.</figcaption>
+        <figcaption data-l="en">NJ-Kit in 6 seconds: 41 skills, every one ending in a PASS or FAIL gate.</figcaption>
+        <figcaption data-l="ar"><bdi dir="ltr">NJ-Kit</bdi> في 6 ثوانٍ: 41 مهارة، وكل واحدة تنتهي بفحص <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>.</figcaption>
       </figure>
     </div>
   </section>

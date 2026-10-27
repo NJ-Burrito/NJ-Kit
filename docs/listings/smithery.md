@@ -12,7 +12,7 @@ Skills for working with AI agents: a clear working method, delegation rules, ses
 
 ## Long description
 
-NJ-Kit is a set of 23 skills written by one working QA and automation engineer for his own daily use, then cleaned up and published. Each skill is a folder with a SKILL.md and, where useful, small scripts and references.
+NJ-Kit is a set of 24 skills written by one working QA and automation engineer for his own daily use, then cleaned up and published. Each skill is a folder with a SKILL.md and, where useful, small scripts and references.
 
 What is inside:
 

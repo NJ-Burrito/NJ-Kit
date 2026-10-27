@@ -10,7 +10,7 @@ done by you; nothing is submitted automatically. Model: the Profile-Wrap checkli
 - [ ] These open in a private browser window (they are in `plugin.json`): README, LICENSE, `docs/PRIVACY.md`, the issues page.
 - [ ] `https://nj-burrito.github.io/NJ-Kit/` opens (GitHub Pages switched on). It is the `homepage`; do not submit before it does.
 - [ ] In the repo folder run `claude plugin validate --strict nj-plugin`. It must say "Validation passed". (Not run by the build agent: the `claude` command was not available there.)
-- [ ] Optional dry run: `claude plugin marketplace add NJ-Burrito/NJ-Kit`, then `claude plugin install nj-kit@nj-kit`. It should install version 2.0.1 with 23 skills.
+- [ ] Optional dry run: `claude plugin marketplace add NJ-Burrito/NJ-Kit`, then `claude plugin install nj-kit@nj-kit`. It should install version 2.0.1 with 24 skills.
 
 ## B. Facts the portal checks
 

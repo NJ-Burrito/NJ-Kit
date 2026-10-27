@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.2 — 2026-10-27
+
+- New skill `nj-narration` (plugin now 24 skills, 41 with the kit installer): cast a licensed TTS voice from a character brief, engineer it once, master it, and heal noise before or after a line without cutting words. Offline numpy scripts (`voice_edges.py`, `voice_measure.py`, `tts_guards.py`), a self-test, templates and five reference notes. It ships no voices, no audio samples and no voice engine; it reads no credential and calls no network service.
+- Site (EN and AR) and README: the NJ-Narration section now gives the real install line.
+
 ## 2.0.1 — 2026-10-27
 
 Security fixes from the 2026-10-27 audit of this repo and the site.

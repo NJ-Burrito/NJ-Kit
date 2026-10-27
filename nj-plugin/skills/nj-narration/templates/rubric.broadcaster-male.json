@@ -1,0 +1,25 @@
+{
+ "what": "Reference score 0-100 for a deep, calm, male broadcaster narrator (calibration project, 2026-10-26). Copy and retune the bands from YOUR casting brief; write the new rubric down BEFORE measuring, never after seeing the ranking.",
+ "source": "a reference judge rubric",
+ "gates_before_score": [
+  "licence tier A first, B below A, X excluded",
+  "target sex by F0 band (here: median under 165 Hz) and not a voice the owner already rejected or banned",
+  "duplicate clips of one speaker merged",
+  "REF-QUALITY pass (after the edge fix) ranks above fail"
+ ],
+ "criteria": {
+  "pitch":  {"metric": "f0_median_hz", "weight": 20, "band": [90, 115, 75, 150], "zero_if": {"metric": "f0_floor_share", "gt": 0.15}},
+  "steady": {"metric": "f0_sd_st", "weight": 8, "band": [1.8, 3.5, 0.8, 5.5]},
+  "smooth": {"metric": "f0_step_st", "weight": 7, "lin": [0.6, 0.15]},
+  "snr":    {"metric": "snr_db", "weight": 20, "lin": [35, 50], "require": {"metric": "floor_dbfs", "between": [-75, -53]}},
+  "dry":    {"metric": "decay20_s", "weight": 15, "lin": [0.15, 0.06]},
+  "band":   {"metric": "top_db", "weight": 10, "lin": [-58, -38]},
+  "warm":   {"metric": "centroid_hz", "weight": 10, "band": [450, 750, 400, 1100]},
+  "crest":  {"metric": "crest_db", "weight": 5, "band": [20, 26, 18, 30]},
+  "voiced": {"metric": "voiced_frac", "weight": 5, "band": [0.45, 0.75, 0.25, 0.9]}
+ },
+ "notes": [
+  "the calibration project's 'smooth' also subtracts 2 points per octave jump (max 6) and 'warm' blends 40% spectral tilt; this generic file keeps the simple form. Write your own judge for exact parity.",
+  "Final rank in the calibration project = 0.4 x reference score + 0.6 x take score (RUBRIC_TAKE, references/voice-scouting.md section 6), tier A always above tier B."
+ ]
+}

@@ -11,7 +11,7 @@
       "name": "nj-kit",
       "source": "./",
       "description": "Nader Alzghoul's own toolkit: the nj-method working rules, delegation and agent-ops, session handoff, and the house skills for documents, design gates, audio and video hygiene.",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "strict": false,
       "skills": [
         "./skills/arabic-english-proofreading",
@@ -26,6 +26,7 @@
         "./skills/nj-jira-to-automation",
         "./skills/nj-learn",
         "./skills/nj-method",
+        "./skills/nj-narration",
         "./skills/nj-qa-pipeline",
         "./skills/nj-rank",
         "./skills/nj-security-review",
