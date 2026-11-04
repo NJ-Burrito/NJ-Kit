@@ -22,6 +22,7 @@
 
 ## Related
 
-- [Nader Alzghoul, QA Automation Engineer](https://nj-burrito.github.io/): the author
+- [Nader Alzghoul (NJ-Burrito), QA Automation Engineer](https://nj-burrito.github.io/): the author; also [LinkedIn](https://www.linkedin.com/in/nader-alzghoul) and [GitHub](https://github.com/NJ-Burrito)
 - [Profile-Wrap](https://nj-burrito.github.io/Profile-Wrap/): open-source LinkedIn post manager
 - [QA-Wrap](https://nj-burrito.github.io/QA-Wrap/): browser extension that turns a test session into a bug report
+- [Business-Wrap](https://nj-burrito.github.io/Business-Wrap/): by the same author
