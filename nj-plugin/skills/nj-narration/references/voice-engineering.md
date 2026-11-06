@@ -15,9 +15,14 @@ throwaway line per engine.
 | XTTS-v2, MMS-TTS, OmniVoice, Fish S1-mini | non-commercial | dropped |
 | Azure, ElevenLabs, Polly | paid cloud | best-documented talent consent (Azure); paid, so only on the owner's word |
 
+**Engine status, checked 2026-11-07:** the Chatterbox README says "As of August 2026, Chatterbox is retired research and is
+no longer maintained" (MIT code stays public as an archive; unconfirmed by a second source). Whether to stay is an owner
+decision, never a silent switch. The full decision table (local, paid with cited prices and dates, open alternatives) is
+`engines.md`.
+
 Install recipe that worked (Chatterbox): `uv venv chatterbox --python 3.11`, `uv pip install chatterbox-tts
 --index-strategy unsafe-best-match --extra-index-url https://download.pytorch.org/whl/cu124`, `uv pip install
-"setuptools<81"` (perth needs `pkg_resources`). Pre-flight free VRAM and commit memory before loading.
+"setuptools<81"` (perth needs `pkg_resources`). Run the preflight (section 8) before loading.
 
 ## 2. Reference preparation (once per voice, at casting)
 
@@ -36,12 +41,17 @@ reference is cleaned once, at the source, deterministically, and logged in its p
    counts: the edge-cleaned file you clone, not the clip the judge scored (edge room tone flatters floor and SNR, so a clip
    can pass judged and fail cleaned; `voice-scouting.md` 7). On a fail, pick the next passing candidate; never loosen the gate.
 
+References per emotion register, length 5-8 s, a transcript file beside each clip, the REF-QUALITY lessons of the last casting
+and the rule that a child is never cloned: `reference-prep.md`. Commissioned recordings: `templates/recording-spec.md`.
+
 ## 3. Per-voice settings
 
 Chatterbox knobs: `exaggeration` (0.25-2.0), `cfg_weight` (0-1), `temperature` (0.05-5). Defaults 0.5 / 0.5 / 0.8.
 the calibration project's grave narrator: exaggeration 0.30, cfg 0.30, temperature 0.70, the same for every voice in the search so
 the comparison is fair. Settings live in the casting record per speaker; a value outside the legal range is refused,
 never clamped silently. Settings change style and stability, not where speech ends: they do not fix tails.
+Direction (affect, tone, pace, emotion, pauses) is written in a direction sheet before the line is voiced and mapped to these
+knobs: `direction.md`, `templates/direction-sheet.md`. Pronunciation and tashkeel: `pronunciation.md`.
 
 ## 4. Generation cap per voice (from measured chars/s)
 
@@ -85,3 +95,16 @@ and the pauses do not: the pause distance (soft frames under the p95, inside the
    fewer than 3 pause frames.
 3. **A take that already fails as generated is regenerated at its stage, not rescued here**: the floor restores what the
    engine gave, it does not invent distance. This is the post-limiter pause floor stage.
+
+## 8. Memory and VRAM preflight (before loading a local model)
+
+A model that does not fit fails late or drags the machine. Measure the engine's peak once on your hardware (it is
+about 3.6 GB of VRAM for Chatterbox Multilingual on a 6 GB card) and write it in the engine record. Before every load run
+
+```bash
+python "$S/voice_preflight.py" --need-vram-gb 3.6 --need-ram-gb 6     # exit 0 fits, 1 too little, 2 NOT_MEASURED
+```
+
+It reads free VRAM from `nvidia-smi` and free RAM and commit memory from the OS, refuses below the need, and refuses when a
+value cannot be read (never load on a guess). Free the other GPU users first; do not lower the need to pass. After the run,
+free the model and confirm no process was left.

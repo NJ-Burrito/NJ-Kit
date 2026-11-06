@@ -341,6 +341,7 @@ Yes. Nothing is tied to one machine.
 - 🎯 **Scout a voice that fits the character.** Describe age, origin, accent and mood; the skill turns it into numbers and measures licensed voices against them.
 - 🛠️ **Engineer it once, at the source.** The reference clip is cleaned once and every line is voiced once. No re-voicing until one sounds right.
 - 🩹 **Heal noise without cutting words.** Hiss before or after a sentence is removed, and a gate checks the speech itself is untouched.
+- 🎬 **Direct it before it speaks.** A direction sheet per character, a pronunciation lexicon, and consent and recording templates for hired voice actors. A child's voice is never cloned.
 
 **One example** (made-up data, to show the shape of the output; not a real measurement, not a real person):
 

@@ -12,7 +12,8 @@ No model listens, no ASR, no LLM judge: numbers from the waveform only. Numbers 
 
   ref   REF-QUALITY profile (floor, SNR, crest, clipping, digital silence, centroid, top band, reverb decay, mains hum),
         F0 stats when librosa is present (pyin), the rubric score when --rubric is given. Exit 1 if any clip fails.
-  take  TAKE-QUALITY profile (pause noise re the voice, centroid, clipping, hum, digital-silence gaps inside speech).
+  take  TAKE-QUALITY profile (pause noise re the voice, centroid, clipping, hum, digital-silence gaps inside speech,
+        click count split inside speech / in pauses; the click count is report-only until limits set max_clicks).
   --edge-fix  strip exact-zero and sub-floor edges BEFORE measuring (MP3 decode / encoder padding leaves them, e.g.
         Mozilla Common Voice). This fixes the measurement input; it never loosens a limit. Inside of the clip untouched.
 
@@ -48,7 +49,10 @@ REFQ = {
     "max_hum_db": 40.0,                       # 50/60 Hz line over the pause spectrum; only gross hum
 }
 TAKEQ = {"max_pause_rel_db": -24.0, "min_centroid_hz": 400.0, "max_clip_samples": 20, "max_hum_db": 40.0,
-         "max_gate_gaps": 0}
+         "max_gate_gaps": 0,
+         "max_clicks": None}                      # None = click count is REPORTED, not gated, until a threshold is measured on your takes
+CLICK_K, CLICK_ABS, CLICK_MERGE_S = 15.0, 0.02, 0.002   # click = |2nd difference| > K x block median and > CLICK_ABS (full scale)
+CLICK_ISO, CLICK_ISO_S = 3.0, 0.025                      # ...and > 3 x the largest |d2| within 2-25 ms either side (not a pitch pulse)
 WIN_S, HOP_S, SPEECH_BELOW_P95_DB, PAUSE_BELOW_P95_DB, ZERO_RUN_S = 0.020, 0.010, 30, 18, 0.020
 EDGE_FLOOR_DBFS = -75.0
 
@@ -143,6 +147,37 @@ def ref_problems(p, prov=None, q=REFQ):
     return out + [msg for bad, msg in checks if bad]
 
 
+def click_stats(x, rate):
+    """Impulse (click, pop) count from the second difference: deterministic, numpy only. A sample is a click when
+    |d2| exceeds CLICK_K times the median |d2| of its own 10 ms block and CLICK_ABS (so a quiet floor never triggers);
+    it must also stand alone (3x the largest |d2| 2 to 25 ms either side), so a periodic pitch pulse is not a click; hits within 2 ms merge. Split into inside speech (frame within 30 dB of p95) and in pauses.
+    Report-only by default: no threshold is guessed (TAKEQ max_clicks is None until you measure one)."""
+    x = np.asarray(x, dtype="float64")
+    if len(x) < 8:
+        return {"clicks": 0, "clicks_in_speech": 0, "clicks_in_pause": 0}
+    db, hop, _, _ = frame_db(x, rate)
+    p95 = _pct(db, .95)
+    d2 = np.abs(np.diff(x, 2))
+    nblk = -(-len(d2) // hop)                                         # ceil: the last block may be short
+    padded = np.concatenate([d2, np.repeat(d2[-1:], nblk * hop - len(d2))])
+    med = np.repeat(np.median(padded.reshape(nblk, hop), axis=1), hop)[: len(d2)]
+    hits = np.nonzero((d2 > CLICK_K * np.maximum(med, 1e-6)) & (d2 > CLICK_ABS))[0] + 1
+    near, far = max(1, int(CLICK_MERGE_S * rate)), int(CLICK_ISO_S * rate)
+    merged, last = [], -10 ** 9
+    for i in hits:
+        j = int(i) - 1                                           # index in d2
+        side = max(d2[max(0, j - far):max(0, j - near)].max(initial=0.0), d2[j + near:j + far].max(initial=0.0))
+        if d2[j] > CLICK_ISO * side and i - last > near:        # isolated: a periodic pitch pulse has equal neighbours
+            merged.append(int(i))
+        last = int(i)
+    def lvl(i):                                  # the click lifts its own frame, so judge by the quietest neighbour
+        f = min(i // hop, len(db) - 1)
+        return db[max(0, f - 1):f + 2].min()
+    inside = sum(1 for i in merged if lvl(i) >= p95 - SPEECH_BELOW_P95_DB)
+    return {"clicks": len(merged), "clicks_in_speech": inside, "clicks_in_pause": len(merged) - inside,
+            "click_positions": merged[:20]}
+
+
 def take_profile(x, rate):
     db, hop, win, _ = frame_db(x, rate)
     p95 = _pct(db, .95)
@@ -160,7 +195,7 @@ def take_profile(x, rate):
         gaps = int(np.sum(runs >= ZERO_RUN_S * rate))
     rp = ref_profile(x, rate)
     return {"pause_rel_db": pause_rel, "centroid_hz": rp["centroid_hz"], "clip_samples": rp["clip_samples"],
-            "hum_db": rp["hum_db"], "gate_gaps": gaps, "seconds": rp["seconds"]}
+            "hum_db": rp["hum_db"], "gate_gaps": gaps, "seconds": rp["seconds"], **click_stats(x, rate)}
 
 
 def take_problems(p, q=TAKEQ):
@@ -170,6 +205,7 @@ def take_problems(p, q=TAKEQ):
         (p["clip_samples"] > q["max_clip_samples"], f"{p['clip_samples']} samples at full scale"),
         (p["hum_db"] is not None and p["hum_db"] > q["max_hum_db"], f"mains hum {p['hum_db']} dB"),
         (p["gate_gaps"] > q["max_gate_gaps"], f"{p['gate_gaps']} digital-silence gap(s) inside the speech"),
+        (q.get("max_clicks") is not None and p.get("clicks", 0) > q["max_clicks"], f"{p.get('clicks')} click(s) (limit {q.get('max_clicks')})"),
     ]
     return [msg for bad, msg in checks if bad]
 

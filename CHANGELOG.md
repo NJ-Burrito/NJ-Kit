@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.3 — 2026-11-07
+
+- `nj-narration` upgraded with the 2026 research (sources cited in each reference note). New: a direction sheet per character and per line, mapped to the knobs each engine really has (`templates/direction-sheet.md`, `references/direction.md`); a pronunciation lexicon template and a note on where Arabic tashkeel comes from, with the licence and evidence of seven diacritizers and the rule that a diacritizer is a model and therefore an owner decision (`templates/lexicon.example.json`, `references/pronunciation.md`); reference preparation per emotion register (5-8 s, a transcript beside each clip, the REF-QUALITY lessons of a 16-role casting, a child's voice is never cloned) (`references/reference-prep.md`); a commissioned-talent route with a consent record and a recording spec (`templates/consent-record.md`, `templates/recording-spec.md`); an engine decision table with cited prices and dates, including the notice that Chatterbox's README calls it retired since August 2026 (unconfirmed, an owner decision) (`references/engines.md`).
+- QA: a deterministic click metric in `voice_measure.py` (report-only until you measure a limit), `voice_declick.py` (ffmpeg `adeclick`, allowed only outside the guarded speech span, speech samples copied back unchanged), `voice_preflight.py` (refuses to load a local model when free VRAM or RAM is short), and a self-test that now builds synthetic known-bad takes and checks every FAIL path, with pyloudnorm as an optional LUFS oracle. GPL-3.0 audio libraries are listed as an owner licence call and not used (`references/qa-tools.md`).
+- `SKILL.md` opens with the thirteen-step session checklist. The one-take, clean-data and no-model rules are unchanged; where paid tools regenerate passages, the skill says so and keeps its rule.
+- README: one bullet added to the NJ-Narration section.
+
 ## 2.0.2 — 2026-10-27
 
 - New skill `nj-narration` (plugin now 24 skills, 41 with the kit installer): cast a licensed TTS voice from a character brief, engineer it once, master it, and heal noise before or after a line without cutting words. Offline numpy scripts (`voice_edges.py`, `voice_measure.py`, `tts_guards.py`), a self-test, templates and five reference notes. It ships no voices, no audio samples and no voice engine; it reads no credential and calls no network service.

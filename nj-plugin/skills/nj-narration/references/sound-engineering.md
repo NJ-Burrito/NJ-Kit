@@ -61,12 +61,14 @@ same room. The quiet heart of a story gets no swell.
 | Gate | What it refuses | Tool |
 |---|---|---|
 | REF-QUALITY | reference: noisy floor, digital-silence floor, low SNR, squashed, muffled, reverberant, gated (zero share), boxy, mains hum, clipped, unvalidated | `voice_measure.py ref` |
-| TAKE-QUALITY | take: noise between words (pauses above -24 dB re voice), boxy, clipped, hum, digital-silence gaps inside speech | `voice_measure.py take` |
+| TAKE-QUALITY | take: noise between words (pauses above -24 dB re voice), boxy, clipped, hum, digital-silence gaps inside speech; clicks are counted and reported (a limit only once `max_clicks` is measured) | `voice_measure.py take` |
 | VOICE-EDGE-NOISE | noise-only lead-in over 30 ms or tail over 50 ms beyond the guards | `voice_edges.py measure` |
 | VOICE-TAIL | a clipped word ending (level at the cut within 24 dB of the peak) or energy in the last 100 ms | the project's voice gate |
 | VOICE-MASTER | after the chain: loudness off target over 1 LU, true peak over the ceiling, noise re voice over -40 dB, sibilance over -14 dB, new digital silence | the project's master chain |
 | Licence / provenance | any field missing, hash mismatch, banned voice or engine | project gate (for example VOICE-REF, VOICE-BANNED-REF) |
 | Mix gates | dialogue clarity on the phone, mono safety, peak and cue over voice, silence gaps, delivered loudness on the AAC | the project's audio checks and compose gate |
+
+QA tools adopted and refused, GPL-3.0 tools as an owner licence call, the self-test fixtures and the pyloudnorm oracle: `qa-tools.md`.
 
 A FAIL is fixed at the stage that owns it (`healing.md`), then only that stage and later ones rerun.
 The owner's ear comes after the gates pass, never instead of them.

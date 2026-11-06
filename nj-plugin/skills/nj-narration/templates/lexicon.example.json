@@ -1,0 +1,41 @@
+{
+ "_about": "Pronunciation lexicon: one file per project, versioned. It rewrites the TTS text only; the visible text is never changed. Every entry says who decided it. A changed entry is a new line (retext), never a patch of an old take. No ASR, no model produced any entry.",
+ "version": 1,
+ "language": "ar",
+ "register": "MSA",
+ "tashkeel_source": "writer-stage (hand-written). A diacritizer is a model: it enters only after a recorded owner decision (references/pronunciation.md).",
+ "entries": [
+  {
+   "written": "<name as it appears in the script>",
+   "kind": "name",
+   "tts_text": "<the same name with the vowels the engine should say>",
+   "reading": "<plain-letter note of the sound, for the owner's ear check>",
+   "decided_by": "writer | owner",
+   "decided_on": "YYYY-MM-DD",
+   "heard_ok_on": null,
+   "note": "stress, long vowel, the letter that is easy to misread"
+  },
+  {
+   "written": "<foreign word in Arabic letters, e.g. a place or a brand>",
+   "kind": "foreign",
+   "tts_text": "<respelled in Arabic letters the engine reads as the source sound, vowelled>",
+   "reading": "<how it sounds in the source language>",
+   "decided_by": "writer | owner",
+   "decided_on": "YYYY-MM-DD",
+   "heard_ok_on": null,
+   "note": "if the visible text glosses the word, the gloss stays in the visible text only"
+  }
+ ],
+ "numbers": {
+  "policy": "Every digit is written out as words in tts_text, in the grammatical case the sentence needs (gender of the counted noun, case ending). Years, ordinals, times and decimals are listed here once so every line reads them alike.",
+  "examples": [
+   {"written": "<2026>", "tts_text": "<the year in words, vowelled>", "kind": "year"},
+   {"written": "<3>", "tts_text": "<the number in words matching the counted noun's gender>", "kind": "count"},
+   {"written": "<10:30>", "tts_text": "<the time in words>", "kind": "time"}
+  ]
+ },
+ "abbreviations": [
+  {"written": "<abbreviation>", "tts_text": "<spelled out, vowelled>"}
+ ],
+ "check": "Offline only: a script lists every written form of the script text that is in this file and every digit or Latin letter left in tts_text. Listening is the owner's."
+}
