@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.0 — 2026-11-07
+
+- `nj-narration`: narration breathes. New `references/breath.md`: split each line after punctuation, voice each segment as its own utterance so the next word starts like a new sentence, and join the segments with breath pauses cut from the voice's own room tone (comma about 0.22 s, `؛`/`:` 0.30 s, `.`/`…` 0.40 s, `؟`/`!` 0.45 s), never digital silence. Short comma segments merge; the inhale is off by default. Each segment is still one take. `SKILL.md` gets a short section and job-table row 12.
+
 ## 2.1.0 — 2026-11-07
 
 - `nj-narration` learns to describe a voice by numbers and to build a voice library. New `references/listening.md`: the stack in three layers (measured, model-predicted, inferred) with picks, licences, CPU and 6 GB notes and what failed in practice; reporting rules (basis and confidence on every attribute, never "listened", end with "needs a human ear"); child provenance (acoustics veto and never clear, ages 13 to 16 count as child, provenance recorded with date and basis); an age/gender model with a non-commercial licence is not used; and the hard boundary that these tools analyse source clips only and never judge a generated take, so the one-take rule stands.

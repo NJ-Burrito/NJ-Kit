@@ -5,7 +5,7 @@ description: 'Cast and engineer a TTS voice for any story: casting brief from th
 
 # NJ-Narration
 
-Version 2.1.0.
+Version 2.2.0.
 
 From "who is this character?" to a clean, mastered take the owner approves by ear.
 Words of the script belong to `nj-writer`; a quick master of a human recording is `voice-clean`; music and SFX
@@ -57,6 +57,7 @@ sourcing is `bg-music`. This skill owns the voice: who it is, how it is directed
 | 9. Listening to source voices | `references/listening.md` (layers, reporting rules, child gate, boundary) | `scripts/voice_listen.py` |
 | 10. Harvesting voices | `references/harvest.md` | separation, VAD, embeddings, clustering |
 | 11. Emotion and mode variants | `references/emotions.md` (knob table, slices, `variant.py` presets) | Chatterbox settings |
+| 12. Breath between clauses | `references/breath.md` | split, per-segment voicing, room-tone join |
 
 ## Using the direction sheet
 
@@ -82,6 +83,10 @@ frozen; it is never repeated per line. Details and sources: `references/directio
 
 - A pick that fails REF-QUALITY as cloned is replaced by the next passing candidate in the ranking, never by a looser gate; references under about 5 s are flagged for the owner's ear.
 - Mastering keeps the pause distance of the generated take (post-limiter pause floor); a take that fails as generated is regenerated, not rescued.
+
+## Narration breathes (owner, 2026-11-07)
+
+Never voice a whole line in one go. Split after punctuation, voice each segment as its own utterance, join with room-tone breath pauses (comma 0.22 s, `؛`/`:` 0.30 s, `.`/`…` 0.40 s, `؟`/`!` 0.45 s), merge short comma segments, inhale off by default. Still one take per segment; fixed once in the pipeline. Details and the public reference code: `references/breath.md`.
 
 ## The noise window, in one breath
 
