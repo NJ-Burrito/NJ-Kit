@@ -1,9 +1,11 @@
 ---
 name: nj-narration
-description: 'Cast and engineer a TTS voice for any story: casting brief from the character, licensed sources, signal-only rubric, top 3 for the ear; direction sheet, pronunciation lexicon, reference prep, commissioned-talent consent; engine, caps, one take; edge clean, mastering chain, loudness, gates, healing. Triggers: voice casting, narrator, TTS voice quality, direction sheet, pronunciation lexicon, tashkeel, sound engineering, noise or clicks at start or end of lines, Arabic MSA narration, اختيار صوت الراوي.'
+description: 'Cast and engineer a TTS voice for any story: casting brief from the character, licensed sources, signal-only rubric, top 3 for the ear; direction sheet, pronunciation lexicon, reference prep, commissioned-talent consent; engine, caps, one take; edge clean, mastering chain, loudness, gates, healing. Triggers: voice casting, narrator, TTS voice quality, direction sheet, pronunciation lexicon, tashkeel, sound engineering, noise or clicks at start or end of lines, Arabic MSA narration, describing or harvesting source voices, emotion variants, اختيار صوت الراوي.'
 ---
 
 # NJ-Narration
+
+Version 2.1.0.
 
 From "who is this character?" to a clean, mastered take the owner approves by ear.
 Words of the script belong to `nj-writer`; a quick master of a human recording is `voice-clean`; music and SFX
@@ -52,6 +54,9 @@ sourcing is `bg-music`. This skill owns the voice: who it is, how it is directed
 | 6. Sound engineering | `references/sound-engineering.md`, `references/qa-tools.md` | `templates/sound_profile.example.json`, gates table |
 | 7. Healing | `references/healing.md` | symptom, measurement, root cause, fix at the source |
 | 8. The noise window | `references/noise-window.md` | `voice_edges.py`, `tts_guards.py` |
+| 9. Listening to source voices | `references/listening.md` (layers, reporting rules, child gate, boundary) | `scripts/voice_listen.py` |
+| 10. Harvesting voices | `references/harvest.md` | separation, VAD, embeddings, clustering |
+| 11. Emotion and mode variants | `references/emotions.md` (knob table, slices, `variant.py` presets) | Chatterbox settings |
 
 ## Using the direction sheet
 
@@ -84,6 +89,19 @@ Prevent (per-voice generation cap from measured letters/s, EOS guard after the t
 cleaned once), then clean every take word-safe (four-feature span, guards, fades inside the guards, span samples
 identical, fricative and nasal endings protected), then gate (VOICE-EDGE-NOISE). Details: `references/noise-window.md`.
 
+## Listening
+
+An agent reads numbers, it does not hear. Describe a SOURCE clip by measurement first, then model output, then inferred words, with a basis and
+a confidence on every attribute (`scripts/voice_listen.py`, `references/listening.md`). Never write "I listened"; end with "needs a human ear".
+Children: acoustics may veto and never clear; ages 13 to 16 count as child; provenance is the gate. An age model with a non-commercial licence is not used.
+These tools never judge a generated take: the one-take rule stands.
+
+## Voice library
+
+Harvesting voices from noisy multi-speaker clips: `references/harvest.md`. Emotion and mode variants with Chatterbox, real emotion slices,
+the whisper limit, gate failures recorded not re-voiced, and sharing one voice across characters with `variant.py` presets: `references/emotions.md`.
+If you keep a library of harvested voices, keep it outside the plugin and call it your local voice library: indexed voices, a record per voice (provenance, attributes with basis and confidence, child gate), and the variants made from them.
+
 ## Scripts (numpy only; librosa optional for F0; scipy optional for `--rate`; ffmpeg for declick)
 
 ```bash
@@ -95,6 +113,7 @@ uv run --with numpy --with librosa --with scipy python "$S/voice_measure.py" ref
 uv run --with numpy python "$S/voice_measure.py" take take.wav                 # TAKE-QUALITY + click count (report-only)
 uv run --with numpy python "$S/voice_declick.py" take.wav take.declicked.wav   # adeclick outside the guarded span only
 uv run --with numpy python "$S/tts_guards.py" cap "<tts_text>" --slowest 7.08  # token cap + done-after time
+uv run --with numpy --with soundfile --with librosa --with pyloudnorm python "$S/voice_listen.py" source.wav --no-models   # JSON for a SOURCE clip; parselmouth optional (GPL)
 uv run --with numpy --with pyloudnorm python "$S/test_nj_narration.py"         # offline self-test (pyloudnorm optional)
 ```
 

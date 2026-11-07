@@ -342,6 +342,7 @@ Yes. Nothing is tied to one machine.
 - 🛠️ **Engineer it once, at the source.** The reference clip is cleaned once and every line is voiced once. No re-voicing until one sounds right.
 - 🩹 **Heal noise without cutting words.** Hiss before or after a sentence is removed, and a gate checks the speech itself is untouched.
 - 🎬 **Direct it before it speaks.** A direction sheet per character, a pronunciation lexicon, and consent and recording templates for hired voice actors. A child's voice is never cloned.
+- 🔎 **Describe a source voice by numbers.** A CPU-only script reports pitch, formants, dialect and quality with a basis and a confidence on every line, never claims to have listened, and can block a clip that sounds like a child. It never judges a finished take.
 
 **One example** (made-up data, to show the shape of the output; not a real measurement, not a real person):
 
