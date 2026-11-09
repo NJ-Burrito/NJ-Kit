@@ -19,6 +19,8 @@ jobs:
         run: python scripts/publish-check.py --selftest && python scripts/publish-check.py
       - name: README skill table is current
         run: python scripts/skill-table.py --check
+      - name: Website is generated from the skills and is current
+        run: python site/_build/build.py --check
       - name: No secrets or machine paths
         run: |
           if grep -rInE "C:[\/]+Users[\/]+[A-Za-z]+[\/]+Desktop|\bghp_[A-Za-z0-9]{20}|github_pat_|\bsk-(or-|ant-|proj-)?[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{30}|-----BEGIN [A-Z ]*PRIVATE KEY" --exclude-dir=.git --exclude=ci.yml .; then echo "::error::secret or machine path found"; exit 1; fi

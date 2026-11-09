@@ -161,6 +161,10 @@ The hub's «المراجعة / Review» tab, from `<S>/review.json` (contract v1
 
 Other hub events the crew writes: `nj_qa.py phase`, `wave-start`, `wall-close`; `cli.mjs set_agent_status`, `post_event`, `add_wall`. Credentials for scripts: `scripts/creds.py` (`get(group, key)`), never printed.
 
+## Evidence file names (owner, 2026-11-09, forward only)
+
+Every screenshot and video is named in Arabic only, `<المشكلة>-<الخدمة>-<التاريخ>-<الوقت>`: a short specific phrase for the defect or what is proven (never «لقطة»), the service's Arabic portal name, `YYYY-MM-DD`, then `HH.MM` in 24 hours (Windows has no `:`), e.g. `زر-الإرسال-لا-يستجيب-طلب-تسجيل-منتج-2026-11-09-14.35.png`. Hyphens between words, at most 150 characters (the service shortens first, never the issue), no English except a ticket code such as `PROJ-5494` after the issue, `-2` on a second shot of the same issue in the same minute. Never type one by hand: `scripts/evidence_name.py` (CLI and import), or `evidenceName(issue, service, when)` in your suite's `lib/shot.ts`. `report-check` and `preview-check` refuse any other picture or video name and print the file. A run imported from before the rule keeps its old names (`NJQA_LEGACY_EVIDENCE=1`, set by the importer); existing evidence files are never renamed.
+
 ## Standing rules that still apply
 
 Screenshots are viewport only, with a red ring on the exact point; Jira evidence is unmasked; real-user triggers, keyboard first; triggered waits, no hard waits; filing never inside the Playwright runner; own Chrome profile and sign-ins one at a time; credentials never printed or copied; Thmanyah only; Arabic RTL; dummy data is never a defect.

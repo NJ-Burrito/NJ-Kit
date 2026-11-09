@@ -69,7 +69,7 @@
 
 /* NJ-Kit identity: "gate readout". Cool ink neutrals, ONE accent (gate lime = PASS),
    one radius scale: --r 4px for every surface and control (machined, never pill).
-   Theme follows the system (dark first). Fonts: Thmanyah only.
+   Theme follows the system (dark first). Fonts: system stacks only, no font files are shipped or loaded.
    Motion tokens: transitions.dev scale (durations, smooth-out ease, blur, distance). */
 :root{
   --bg:#0e1311; --bg2:#121815; --surface:#161d1a; --raise:#1c2420;
@@ -529,13 +529,16 @@ footer a:hover{text-decoration:underline}
       <h2>44 مهارة لـ <bdi translate="no" dir="ltr">Claude Code</bdi>، مجمّعة حسب العمل.</h2>
       
       <p class="lede">27 مع الإضافة، ويضيف مثبّت الحزمة 17. اختر مجموعة.</p>
+      
+      <p class="note">الإصدار الحالي: <a href="https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.1"><bdi translate="no" dir="ltr">v2.3.1</bdi></a>. مهارات جديدة في 2.3.0:</p>
+      <ul class="chipset" aria-label="New in 2.3.0"><li>nj-chart</li><li>nj-qa</li><li>agent-halo</li></ul>
       <div class="explorer">
         
         <div class="tabs" role="tablist" aria-label="مجموعات المهارات">
           <span class="pill" aria-hidden="true"></span>
-          <button class="tab" role="tab" id="tab-m" aria-controls="p-m" aria-selected="true"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>المنهج والوكلاء<span class="n">9</span></button>
-          <button class="tab" role="tab" id="tab-q" aria-controls="p-q" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-list-checks"/></svg>ضمان الجودة و<bdi translate="no" dir="ltr">Jira</bdi><span class="n">5</span></button>
-          <button class="tab" role="tab" id="tab-d" aria-controls="p-d" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-file-text"/></svg>المستندات والكتابة<span class="n">6</span></button>
+          <button class="tab" role="tab" id="tab-m" aria-controls="p-m" aria-selected="true"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>المنهج والوكلاء<span class="n">10</span></button>
+          <button class="tab" role="tab" id="tab-q" aria-controls="p-q" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-list-checks"/></svg>ضمان الجودة و<bdi translate="no" dir="ltr">Jira</bdi><span class="n">6</span></button>
+          <button class="tab" role="tab" id="tab-d" aria-controls="p-d" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-file-text"/></svg>المستندات والرسوم والكتابة<span class="n">7</span></button>
           <button class="tab" role="tab" id="tab-a" aria-controls="p-a" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-clapperboard"/></svg>الصوت والفيديو<span class="n">4</span></button>
           <button class="tab" role="tab" id="tab-b" aria-controls="p-b" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg>مرفقة مع الحزمة<span class="n">17</span></button>
         </div>
@@ -550,6 +553,7 @@ footer a:hover{text-decoration:underline}
             <li><code translate="no">nj-wrapup</code><span>أغلق جلسة أو خدمة مُختبَرة من أولها إلى آخرها، عبر بوابات فحص.</span></li>
             <li><code translate="no">devil</code><span>اعتراضات مرتّبة على الخطة قبل أن تنفّذها.</span></li>
             <li><code translate="no">nj-security-review</code><span>دقّق مهارات الأطراف الخارجية وإضافاتها وخوادم <bdi translate="no" dir="ltr">MCP</bdi> قبل التثبيت.</span></li>
+            <li><code translate="no">agent-halo</code><span>إطار ملوّن واسم نوع الوكيل على كل نافذة متصفح يفتحها، لتميّز النوافذ بعضها عن بعض.</span></li>
           </ul>
         </div>
         <div class="panel" role="tabpanel" id="p-q" aria-labelledby="tab-q" hidden>
@@ -559,6 +563,7 @@ footer a:hover{text-decoration:underline}
             <li><code translate="no">nj-qa-pipeline</code><span>من تذكرة <bdi translate="no" dir="ltr">Jira</bdi> إلى ملاحظات، ففحص على بيئة التجهيز، فتقرير قبول، فأتمتة.</span></li>
             <li><code translate="no">nj-automation-suite</code><span>أنشئ حزمة اختبارات <bdi translate="no" dir="ltr">Playwright</bdi> محمولة ومكتفية بذاتها.</span></li>
             <li><code translate="no">nj-rank</code><span>سجّل العمل المنجز مع أدلته وأغلقه بحالة <bdi translate="no" dir="ltr">Done</bdi>.</span></li>
+            <li><code translate="no">nj-qa</code><span>فريق وكلاء يختبر ملاحظات <bdi translate="no" dir="ltr">Jira</bdi> لخدمة على النظام الحي: قائد لكل خدمة، ومختبِر لكل مسار، وباحثون عن عيوب لم يذكرها أحد.</span></li>
           </ul>
         </div>
         <div class="panel" role="tabpanel" id="p-d" aria-labelledby="tab-d" hidden>
@@ -569,6 +574,7 @@ footer a:hover{text-decoration:underline}
             <li><code translate="no">nj-writer</code><span>نصوص التعليق الصوتي والسيناريو، بالعربية أو الإنجليزية.</span></li>
             <li><code translate="no">impact-copy</code><span>نصوص تبدأ بالأثر وتستند إلى الأرقام.</span></li>
             <li><code translate="no">website-fine-print</code><span>تدقيق الموقع قبل إطلاقه: الخصوصية، وسلامة الصفحات، وصفحات السياسات.</span></li>
+            <li><code translate="no">nj-chart</code><span>رسوم بيانية ولوحات مؤشرات ومقاييس تُقرأ بنظرة واحدة، بالعربية أو الإنجليزية، فاتحة أو داكنة، على محرك <bdi translate="no" dir="ltr">Flint</bdi>.</span></li>
           </ul>
         </div>
         <div class="panel" role="tabpanel" id="p-a" aria-labelledby="tab-a" hidden>

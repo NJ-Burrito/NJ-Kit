@@ -48,7 +48,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebSite","@id":"https://nj-burrito.github.io/NJ-Kit/#website","name":"NJ-Kit","url":"https://nj-burrito.github.io/NJ-Kit/","inLanguage":["en","ar"],"publisher":{"@id":"https://nj-burrito.github.io/#person"}},
 {"@type":"Person","@id":"https://nj-burrito.github.io/#person","name":"Nader Alzghoul","alternateName":["NJ-Burrito","نادر الزغول"],"url":"https://nj-burrito.github.io/","sameAs":["https://www.linkedin.com/in/nader-alzghoul","https://github.com/NJ-Burrito","https://nj-burrito.github.io/","https://nj-burrito.github.io/Business-Wrap/","https://nj-burrito.github.io/QA-Wrap/","https://nj-burrito.github.io/Profile-Wrap/","https://nj-burrito.github.io/NJ-Kit/"]},
-{"@type":"SoftwareApplication","@id":"https://nj-burrito.github.io/NJ-Kit/#app","name":"NJ-Kit","alternateName":"NJ-Kit Claude Code skills","applicationCategory":"DeveloperApplication","applicationSubCategory":"Claude Code plugin","operatingSystem":"Windows, macOS, Linux","url":"https://nj-burrito.github.io/NJ-Kit/","downloadUrl":"https://github.com/NJ-Burrito/NJ-Kit","codeRepository":"https://github.com/NJ-Burrito/NJ-Kit","sameAs":["https://github.com/NJ-Burrito/NJ-Kit"],"license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":["en","ar"],"keywords":["Claude Code skills","Claude Code plugin","Agent Skills","SKILL.md","PASS or FAIL gate","Arabic"],"description":"A free, open-source Claude Code plugin: one working method and 44 skills. Every skill ends in a script gate that prints PASS or FAIL. Arabic and English first-class.","image":"https://nj-burrito.github.io/NJ-Kit/banner.png","screenshot":["https://nj-burrito.github.io/NJ-Kit/banner.png","https://nj-burrito.github.io/NJ-Kit/assets/banner.gif"],"featureList":["44 skills for Claude Code, 23 installed by the plugin","Every skill ends in a script gate that prints PASS or FAIL","Installs as a Claude Code plugin in two lines, or as plain SKILL.md folders for any agent","Arabic and English first-class, right-to-left included"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://nj-burrito.github.io/#person"}},
+{"@type":"SoftwareApplication","@id":"https://nj-burrito.github.io/NJ-Kit/#app","name":"NJ-Kit","alternateName":"NJ-Kit Claude Code skills","applicationCategory":"DeveloperApplication","applicationSubCategory":"Claude Code plugin","operatingSystem":"Windows, macOS, Linux","url":"https://nj-burrito.github.io/NJ-Kit/","downloadUrl":"https://github.com/NJ-Burrito/NJ-Kit","codeRepository":"https://github.com/NJ-Burrito/NJ-Kit","sameAs":["https://github.com/NJ-Burrito/NJ-Kit"],"license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":["en","ar"],"keywords":["Claude Code skills","Claude Code plugin","Agent Skills","SKILL.md","PASS or FAIL gate","Arabic"],"description":"A free, open-source Claude Code plugin: one working method and 44 skills. Every skill ends in a script gate that prints PASS or FAIL. Arabic and English first-class.","image":"https://nj-burrito.github.io/NJ-Kit/banner.png","screenshot":["https://nj-burrito.github.io/NJ-Kit/banner.png","https://nj-burrito.github.io/NJ-Kit/assets/banner.gif"],"featureList":["44 skills for Claude Code, 27 installed by the plugin","Every skill ends in a script gate that prints PASS or FAIL","Installs as a Claude Code plugin in two lines, or as plain SKILL.md folders for any agent","Arabic and English first-class, right-to-left included"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://nj-burrito.github.io/#person"}},
 {"@type":"FAQPage","@id":"https://nj-burrito.github.io/NJ-Kit/#faq","inLanguage":"en","mainEntity":[
 {"@type":"Question","name":"What is NJ-Kit?","acceptedAnswer":{"@type":"Answer","text":"NJ-Kit is a free, open-source Claude Code plugin: one working method and 44 skills. Every skill ends in a script gate that prints PASS or FAIL. It is MIT licensed, by Nader Alzghoul."}},
 {"@type":"Question","name":"What are Claude Code skills?","acceptedAnswer":{"@type":"Answer","text":"A skill is a folder with a SKILL.md file of instructions, plus any scripts it needs. Claude Code reads each skill's description and loads the skill when a task matches it."}},
@@ -69,7 +69,7 @@
 
 /* NJ-Kit identity: "gate readout". Cool ink neutrals, ONE accent (gate lime = PASS),
    one radius scale: --r 4px for every surface and control (machined, never pill).
-   Theme follows the system (dark first). Fonts: Thmanyah only.
+   Theme follows the system (dark first). Fonts: system stacks only, no font files are shipped or loaded.
    Motion tokens: transitions.dev scale (durations, smooth-out ease, blur, distance). */
 :root{
   --bg:#0e1311; --bg2:#121815; --surface:#161d1a; --raise:#1c2420;
@@ -529,12 +529,15 @@ footer a:hover{text-decoration:underline}
       
       <p class="lede">27 come with the plugin. The kit installer adds 17. Pick a group.</p>
       
+      <p class="note">Current release: <a href="https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.1">v2.3.1</a>. New skills in 2.3.0:</p>
+      
+      <ul class="chipset" aria-label="New in 2.3.0"><li>nj-chart</li><li>nj-qa</li><li>agent-halo</li></ul>
       <div class="explorer">
         <div class="tabs" role="tablist" aria-label="Skill groups">
           <span class="pill" aria-hidden="true"></span>
-          <button class="tab" role="tab" id="tab-m" aria-controls="p-m" aria-selected="true"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>Method and agents<span class="n">9</span></button>
-          <button class="tab" role="tab" id="tab-q" aria-controls="p-q" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-list-checks"/></svg>QA and Jira<span class="n">5</span></button>
-          <button class="tab" role="tab" id="tab-d" aria-controls="p-d" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-file-text"/></svg>Documents and writing<span class="n">6</span></button>
+          <button class="tab" role="tab" id="tab-m" aria-controls="p-m" aria-selected="true"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>Method and agents<span class="n">10</span></button>
+          <button class="tab" role="tab" id="tab-q" aria-controls="p-q" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-list-checks"/></svg>QA and Jira<span class="n">6</span></button>
+          <button class="tab" role="tab" id="tab-d" aria-controls="p-d" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-file-text"/></svg>Documents, charts and writing<span class="n">7</span></button>
           <button class="tab" role="tab" id="tab-a" aria-controls="p-a" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-clapperboard"/></svg>Audio and video<span class="n">4</span></button>
           <button class="tab" role="tab" id="tab-b" aria-controls="p-b" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg>Bundled with the kit<span class="n">17</span></button>
         </div>
@@ -550,6 +553,7 @@ footer a:hover{text-decoration:underline}
             <li><code translate="no">nj-wrapup</code><span>Close a session or a tested service end to end, through gates.</span></li>
             <li><code translate="no">devil</code><span>Ranked objections to a plan before you act on it.</span></li>
             <li><code translate="no">nj-security-review</code><span>Audit third-party skills, plugins and MCP servers before installing.</span></li>
+            <li><code translate="no">agent-halo</code><span>Every browser window an agent opens carries a coloured border and the agent's type at the top, so a person can tell agent windows apart</span></li>
           </ul>
         </div>
         <div class="panel" role="tabpanel" id="p-q" aria-labelledby="tab-q" hidden>
@@ -559,6 +563,7 @@ footer a:hover{text-decoration:underline}
             <li><code translate="no">nj-qa-pipeline</code><span>From a Jira ticket to notes, a staging check, an acceptance report and automation.</span></li>
             <li><code translate="no">nj-automation-suite</code><span>Scaffold a portable, self-contained Playwright suite.</span></li>
             <li><code translate="no">nj-rank</code><span>Register finished work with its evidence and file it as Done.</span></li>
+            <li><code translate="no">nj-qa</code><span>A crew of agents tests a service's Jira notes on the live system: a leader per service, a tester per route, scavengers for unlisted defects.</span></li>
           </ul>
         </div>
         <div class="panel" role="tabpanel" id="p-d" aria-labelledby="tab-d" hidden>
@@ -569,6 +574,7 @@ footer a:hover{text-decoration:underline}
             <li><code translate="no">nj-writer</code><span>Narration and script words, Arabic or English.</span></li>
             <li><code translate="no">impact-copy</code><span>Impact-first, metric-driven copy.</span></li>
             <li><code translate="no">website-fine-print</code><span>Pre-ship site audit: privacy, hygiene, policy pages.</span></li>
+            <li><code translate="no">nj-chart</code><span>Charts, dashboards and metric reports that read at a glance, in Arabic or English, light or dark, built on the Flint chart engine (MCP server flint)</span></li>
           </ul>
         </div>
         <div class="panel" role="tabpanel" id="p-a" aria-labelledby="tab-a" hidden>

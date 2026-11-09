@@ -1,0 +1,205 @@
+{
+ "_doc": "Site skill list. Membership is checked against .claude-plugin/marketplace.json; a skill with no 'en' uses the first sentence of its SKILL.md. Arabic is required for every plugin skill.",
+ "new": {
+  "version": "2.3.0",
+  "current": "2.3.1",
+  "skills": [
+   "nj-chart",
+   "nj-qa",
+   "agent-halo"
+  ]
+ },
+ "groups": [
+  {
+   "id": "m",
+   "icon": "i-bot",
+   "en": "Method and agents",
+   "ar": "المنهج والوكلاء",
+   "skills": [
+    "nj-method",
+    "nj-delegate",
+    "nj-agent-ops",
+    "nj-supervise",
+    "session-handoff",
+    "nj-learn",
+    "nj-wrapup",
+    "devil",
+    "nj-security-review",
+    "agent-halo"
+   ]
+  },
+  {
+   "id": "q",
+   "icon": "i-list-checks",
+   "en": "QA and Jira",
+   "ar": "ضمان الجودة و<bdi dir=\"ltr\">Jira</bdi>",
+   "skills": [
+    "nj-jira",
+    "nj-jira-to-automation",
+    "nj-qa-pipeline",
+    "nj-automation-suite",
+    "nj-rank",
+    "nj-qa"
+   ]
+  },
+  {
+   "id": "d",
+   "icon": "i-file-text",
+   "en": "Documents, charts and writing",
+   "ar": "المستندات والرسوم والكتابة",
+   "skills": [
+    "pdf-typography",
+    "arabic-english-proofreading",
+    "workflow-diagram",
+    "nj-writer",
+    "impact-copy",
+    "website-fine-print",
+    "nj-chart"
+   ]
+  },
+  {
+   "id": "a",
+   "icon": "i-clapperboard",
+   "en": "Audio and video",
+   "ar": "الصوت والفيديو",
+   "skills": [
+    "voice-clean",
+    "nj-narration",
+    "bg-music",
+    "nj-director"
+   ]
+  }
+ ],
+ "text": {
+  "nj-method": {
+   "en": "The default method for every request: analyse, find a skill, plan with checkpoints, execute, review.",
+   "ar": "المنهج الافتراضي لكل طلب: حلّل، وابحث عن مهارة، وخطّط بنقاط تحقق، ونفّذ، وراجع."
+  },
+  "nj-delegate": {
+   "en": "Governance for agent teams: a Lead decides, workers build, helpers do bounded work.",
+   "ar": "حوكمة فرق الوكلاء: القائد يقرّر، والعمّال يبنون، والمساعدون يؤدّون مهامّ محدودة."
+  },
+  "nj-agent-ops": {
+   "en": "The transport layer: results through files, bad telemetry refused at write time.",
+   "ar": "طبقة النقل: النتائج تمرّ عبر الملفات، والقياسات غير الصالحة تُرفض لحظة كتابتها."
+  },
+  "nj-supervise": {
+   "en": "How to brief a worker and know it is actually working.",
+   "ar": "كيف تكلّف عاملًا وتتأكد أنه يعمل فعلًا."
+  },
+  "session-handoff": {
+   "en": "Close a session with a handoff.md the next one reads first.",
+   "ar": "أغلق الجلسة بملف <bdi dir=\"ltr\">handoff.md</bdi> تقرؤه الجلسة التالية أولًا."
+  },
+  "nj-learn": {
+   "en": "Capture a lesson where it will be read again.",
+   "ar": "دوّن الدرس حيث سيُقرأ مرة أخرى."
+  },
+  "nj-wrapup": {
+   "en": "Close a session or a tested service end to end, through gates.",
+   "ar": "أغلق جلسة أو خدمة مُختبَرة من أولها إلى آخرها، عبر بوابات فحص."
+  },
+  "devil": {
+   "en": "Ranked objections to a plan before you act on it.",
+   "ar": "اعتراضات مرتّبة على الخطة قبل أن تنفّذها."
+  },
+  "nj-security-review": {
+   "en": "Audit third-party skills, plugins and MCP servers before installing.",
+   "ar": "دقّق مهارات الأطراف الخارجية وإضافاتها وخوادم <bdi dir=\"ltr\">MCP</bdi> قبل التثبيت."
+  },
+  "nj-jira": {
+   "en": "Analyse a ticket, file Bugs with evidence, re-check QA, keep a tracker.",
+   "ar": "حلّل التذكرة، وسجّل الأخطاء بأدلتها، وأعد فحص الجودة، واحتفظ بسجل متابعة."
+  },
+  "nj-jira-to-automation": {
+   "en": "Turn a ticket into a runnable automation.",
+   "ar": "حوّل التذكرة إلى اختبار آلي قابل للتشغيل."
+  },
+  "nj-qa-pipeline": {
+   "en": "From a Jira ticket to notes, a staging check, an acceptance report and automation.",
+   "ar": "من تذكرة <bdi dir=\"ltr\">Jira</bdi> إلى ملاحظات، ففحص على بيئة التجهيز، فتقرير قبول، فأتمتة."
+  },
+  "nj-automation-suite": {
+   "en": "Scaffold a portable, self-contained Playwright suite.",
+   "ar": "أنشئ حزمة اختبارات <bdi dir=\"ltr\">Playwright</bdi> محمولة ومكتفية بذاتها."
+  },
+  "nj-rank": {
+   "en": "Register finished work with its evidence and file it as Done.",
+   "ar": "سجّل العمل المنجز مع أدلته وأغلقه بحالة <bdi dir=\"ltr\">Done</bdi>."
+  },
+  "pdf-typography": {
+   "en": "PDFs whose text stays real: selectable, searchable, then audited.",
+   "ar": "ملفات <bdi dir=\"ltr\">PDF</bdi> يبقى نصها حقيقيًا: قابلًا للتحديد والبحث، ثم يُدقَّق."
+  },
+  "arabic-english-proofreading": {
+   "en": "Hamza, taa marbuta, bidi characters, mixed numerals, Latin punctuation in Arabic.",
+   "ar": "الهمزة، والتاء المربوطة، ورموز الاتجاه الخفية، والأرقام المختلطة، وعلامات الترقيم اللاتينية داخل النص العربي."
+  },
+  "workflow-diagram": {
+   "en": "Workflow figures drawn from evidence, BPMN-correct.",
+   "ar": "مخططات سير عمل مرسومة من الأدلة ومتوافقة مع <bdi dir=\"ltr\">BPMN</bdi>."
+  },
+  "nj-writer": {
+   "en": "Narration and script words, Arabic or English.",
+   "ar": "نصوص التعليق الصوتي والسيناريو، بالعربية أو الإنجليزية."
+  },
+  "impact-copy": {
+   "en": "Impact-first, metric-driven copy.",
+   "ar": "نصوص تبدأ بالأثر وتستند إلى الأرقام."
+  },
+  "website-fine-print": {
+   "en": "Pre-ship site audit: privacy, hygiene, policy pages.",
+   "ar": "تدقيق الموقع قبل إطلاقه: الخصوصية، وسلامة الصفحات، وصفحات السياسات."
+  },
+  "voice-clean": {
+   "en": "Master a voiceover to broadcast loudness with ffmpeg only.",
+   "ar": "اضبط التعليق الصوتي على مستوى ارتفاع البث باستخدام <bdi dir=\"ltr\">ffmpeg</bdi> وحده."
+  },
+  "nj-narration": {
+   "en": "Cast a licensed TTS voice, engineer it once, clean the noise around each line.",
+   "ar": "اختر صوتًا مرخّصًا، وهندسه مرة واحدة، ونظّف الضجيج حول كل جملة."
+  },
+  "bg-music": {
+   "en": "Licence-cleared music beds and sound effects, with credit lines.",
+   "ar": "موسيقى خلفية ومؤثرات صوتية مرخّصة، مع سطور الإسناد."
+  },
+  "nj-director": {
+   "en": "Plan the picture of a 30 to 90 second film: beat sheet, shots.",
+   "ar": "خطّط صورة فيلم مدته من 30 إلى 90 ثانية: تسلسل اللحظات واللقطات."
+  },
+  "agent-halo": {
+   "ar": "إطار ملوّن واسم نوع الوكيل على كل نافذة متصفح يفتحها، لتميّز النوافذ بعضها عن بعض."
+  },
+  "nj-qa": {
+   "en": "A crew of agents tests a service's Jira notes on the live system: a leader per service, a tester per route, scavengers for unlisted defects.",
+   "ar": "فريق وكلاء يختبر ملاحظات <bdi dir=\"ltr\">Jira</bdi> لخدمة على النظام الحي: قائد لكل خدمة، ومختبِر لكل مسار، وباحثون عن عيوب لم يذكرها أحد."
+  },
+  "nj-chart": {
+   "ar": "رسوم بيانية ولوحات مؤشرات ومقاييس تُقرأ بنظرة واحدة، بالعربية أو الإنجليزية، فاتحة أو داكنة، على محرك <bdi dir=\"ltr\">Flint</bdi>."
+  }
+ },
+ "bundled": {
+  "icon": "i-layers",
+  "en": "Bundled with the kit",
+  "ar": "مرفقة مع الحزمة",
+  "skills": [
+   "nj-evidence",
+   "nj-knowledge-book",
+   "nj-researcher",
+   "nj-style-film",
+   "nj-motion-deck",
+   "nj-laya",
+   "nj-pinterest",
+   "srs-verifier",
+   "safe-delete",
+   "brandkit",
+   "design-taste-frontend",
+   "high-end-visual-design",
+   "minimalist-ui",
+   "redesign-existing-projects",
+   "hyperframes-studio",
+   "general-video",
+   "graphify"
+  ]
+ }
+}
