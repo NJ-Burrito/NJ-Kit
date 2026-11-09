@@ -117,6 +117,13 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
+## 🆕 What's new in 2.3.2
+
+Release: [v2.3.2 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.2). Still 27 plugin skills, 44 with the kit installer.
+
+- 🏷️ `nj-jira` bug template: the evidence rules now name the Arabic file-name rule from 2.3.1 and point to `nj-qa/scripts/evidence_name.py`.
+- 🧪 `nj-qa` self-check: `test_nj_qa.py` now covers the evidence-name rules, including the refusals in `report-check` and `preview-check`.
+
 ## 🆕 What's new in 2.3.1
 
 Release: [v2.3.1 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.1). Still 27 plugin skills, 44 with the kit installer.
@@ -445,7 +452,7 @@ Details: [CONTRIBUTING.md](CONTRIBUTING.md).
 - 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
 - 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
 - 🎙️ **NJ-Narration** (ضمن الإضافة، `nj-narration`): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
-- 🆕 **جديد في 2.3.1** ([الإصدار v2.3.1 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.1)): أسماء ملفات الأدلة بالعربية في `nj-qa` و`nj-jira`، وقائمة المهارات في الموقع تُولَّد من ملفات `SKILL.md`. وفي 2.3.0 ([الإصدار v2.3.0](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.0)): ‏`nj-chart` للرسوم البيانية ولوحات المؤشرات (على محرك Flint من Microsoft برخصة MIT)، و‏`nj-qa` لاختبار ملاحظات Jira بفريق من الوكلاء، و‏`agent-halo` لإطار ملوّن يميّز نافذة كل وكيل.
+- 🆕 **جديد في 2.3.2** ([الإصدار v2.3.2 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.2)): قالب البلاغ في `nj-jira` يذكر الآن قاعدة أسماء ملفات الأدلة بالعربية، واختبار `nj-qa` الذاتي يغطي قواعد هذه الأسماء. وفي 2.3.1 ([الإصدار v2.3.1](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.1)): أسماء ملفات الأدلة بالعربية في `nj-qa` و`nj-jira`، وقائمة المهارات في الموقع تُولَّد من ملفات `SKILL.md`. وفي 2.3.0 ([الإصدار v2.3.0](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.0)): ‏`nj-chart` للرسوم البيانية ولوحات المؤشرات (على محرك Flint من Microsoft برخصة MIT)، و‏`nj-qa` لاختبار ملاحظات Jira بفريق من الوكلاء، و‏`agent-halo` لإطار ملوّن يميّز نافذة كل وكيل.
 - 🔐 **لا بيانات خاصة:** يمرّ كل إصدار على `scripts/publish-check.py` قبل النشر، فلا كلمات مرور ولا بيانات مشاريع ولا مسارات أجهزة ولا ملفات خطوط.
 - 💸 **مجانية** ومفتوحة المصدر برخصة MIT، وغير تابعة لشركة Anthropic ولا معتمدة منها.
 - 🌐 **الموقع بالعربية:** [nj-burrito.github.io/NJ-Kit/ar](https://nj-burrito.github.io/NJ-Kit/ar/)
