@@ -1,7 +1,7 @@
 # Pinterest API v5 — setup path (not executed; no account/app created)
 
 No Pinterest credentials exist (`ls credentials/` — no `pinterest.env`). This is instructions
-+ a script only, per the brief ("Do NOT create accounts or apps"). the owner runs the steps below
++ a script only, per the brief ("Do NOT create accounts or apps"). The owner runs the steps below
 himself when he wants Pinterest sourcing; the Lead/worker never registers an app.
 
 ## Steps (the owner does these)

@@ -1,4 +1,4 @@
-# ADHD-friendly output standard (the owner, 2026-10-11)
+# ADHD-friendly output standard (owner, 2026-10-11)
 
 Applies to EVERYTHING the QA skills produce: reports, PDFs, HTML pages, terminal output, AGENT.md / AI-RUN-NOTES.md, Jira comments, and worker receipts.
 

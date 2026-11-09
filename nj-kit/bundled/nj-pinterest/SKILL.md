@@ -7,7 +7,7 @@ description: 'Browse Pinterest as the owner, headed, on his own signed-in profil
 
 ## The permission (verbatim)
 
-the owner, 2026-09-25, recorded in
+The owner, 2026-09-25, recorded in
 `~/.claude/projects/<project-memory-slug>/memory/pinterest-verbal-permission.md`:
 
 > "i got a verbal confirmation from pinterest headquarters that they said: owner you
@@ -31,7 +31,7 @@ So:
 
 - Everything this skill pulls is **reference and inspiration only** — style research
   for a mood board, a triage bucket, a "here's the grammar we're matching" note.
-- **An image never enters a published Ensera deliverable straight from a pin.** It
+- **An image never enters a published Acme deliverable straight from a pin.** It
   goes in only through `library.py intake`, with its own licence traced to the
   original creator, exactly like any other sourced image (`~/.claude/CLAUDE.md` §
   Central media library). A pin's `image_url` and `link` are leads for that intake
@@ -43,7 +43,7 @@ So:
 
 - `scripts/pinterest_browse.cjs` — a plain Node script, run from the CLI
   (`node scripts/pinterest_browse.cjs ...`), never through the Playwright MCP
-  server. the owner's account is a live login: it runs headed
+  server. The owner's account is a live login: it runs headed
   (`headless: false`, `PROJ_HEADED`-style always-on, not conditional) so anyone
   can see exactly what the browser does on his account, per
   `~/.claude/CLAUDE.md` § Browser automation runs headed.
@@ -55,14 +55,14 @@ So:
   verification/checkpoint screen, **the script stops and reports exactly what the
   screen says** — it does not attempt to sign in or accept anything.
 - Needs `playwright` importable — either run from a project whose
-  `node_modules` already has it (ENSERA does), or point
+  `node_modules` already has it (ACME does), or point
   `PLAYWRIGHT_REQUIRE_PATH` at a `node_modules` that does; the script's header
   documents both.
 - **Polite pacing**: `slowMo: 150`, 1–3 s randomised delay between actions
   (scroll, hover, click), and a hard cap on pins per run (default 40) so a run
   reads like a person scrolling, not a scraper.
 - **Closes its own browser at the end**, success or failure (`try/finally`), and
-  **tags its window title** (`--ensera-tag=<session-tag>`) so `relay.py sweep`
+  **tags its window title** (`--session-tag=<session-tag>`) so `relay.py sweep`
   can find and attribute it — never leave a Pinterest window open past the run.
 
 ## Output

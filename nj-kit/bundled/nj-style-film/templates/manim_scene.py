@@ -17,7 +17,7 @@ from manim import DOWN, LEFT, UP, Arrow, Circle, Create, FadeIn, MarkupText, Sce
 # (brand/fonts/thmanyah/otf/*.otf, tracked since 2026-09-21) — no WOFF2 step;
 # Pango reads OTF directly. Personal grant to the owner: never copy these files
 # into anything published for others to reuse.
-REPO_FONTS = Path(os.environ.get("ENSERA_FONTS", Path.home() / "Desktop" / "ENSERA" / "brand" / "fonts" / "thmanyah" / "otf"))  # fixed repo path, not project-relative
+REPO_FONTS = Path(os.environ.get("NJ_FONTS", Path.home() / "Desktop" / "ACME" / "brand" / "fonts" / "thmanyah" / "otf"))  # fixed repo path, not project-relative
 DISPLAY_FILE = REPO_FONTS / "thmanyahserifdisplay-Bold.otf"
 BODY_FILE = REPO_FONTS / "thmanyahsans-Medium.otf"
 

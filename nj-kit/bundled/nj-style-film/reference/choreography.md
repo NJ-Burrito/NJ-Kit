@@ -1,6 +1,6 @@
 # Choreography — entrance/exit and the hero, owner's review 21 Sept 2026
 
-the owner's three notes on reel 2, verbatim in `run-log.md`'s fifth run. Rules 1
+The owner's three notes on reel 2, verbatim in `run-log.md`'s fifth run. Rules 1
 and 2 here; rule 3 (one caption system) is in `SKILL.md`'s house-finish table
 directly, short enough not to need its own section.
 

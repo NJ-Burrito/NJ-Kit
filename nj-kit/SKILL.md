@@ -96,7 +96,7 @@ Binding rule, recorded in `manifest.json` `house_style.social_media` and the
 then use the channel it reports. Logged-out only; never `agent-reach transcribe`
 (audio goes to Groq/OpenAI). Instagram is the exception: its channel needs a
 logged-in Chrome, so use yt-dlp + ffmpeg + local faster-whisper
-(`--with "av>=15,<16"`). Recipe: ENSERA `documentation/10-Instagram-Reels-Review/agent-reach-install.md`.
+(`--with "av>=15,<16"`). Recipe: ACME `documentation/10-Instagram-Reels-Review/agent-reach-install.md`.
 Not in `KNOWN_SOURCES` - that list is for skills, and Agent Reach is a `uv tool`.
 
 ## Private by default, and why that is the default
@@ -390,7 +390,7 @@ claude plugin install nj-kit@nj-kit
 
 ## The media library
 
-One root, `library/` at the top of ENSERA (env `NJ_LIBRARY`), replacing
+One root, `library/` at the top of ACME (env `NJ_LIBRARY`), replacing
 `production/library/`, `production/music-library/`, `bg-music/assets/`,
 `nj-style-film/assets/sfx/` — all retired 2026-09-21 (`manifest.json`'s
 `libraries` block has the counts). Kind-first (`images/`, `sfx/`, `music/`,
@@ -456,9 +456,11 @@ binary; install it with `irm https://astral.sh/uv/install.ps1 | iex`.
 
 ## Changelog
 
+- 2026-11-09: release gate `scripts/publish-check.py` in the public repo: fails on credentials, private project data, machine paths and font files before any push (PASS/FAIL, `--selftest`).
+
 - 2026-10-19 (evening): Jira attachment allowlist (the owner): png/jpg/jpeg/mp4/webm/gif/md only; `ALLOWED_EXT` + `check_attachable` in `nj_rank.py` (+ .pdf, per the owner; `register` also drops non-allowed files and prints them; refuses at `attach`, `file_one` keeps others local as `local_only`); tests added; docs in nj-rank, nj-jira (SKILL, bug-template, rest-recipes), nj-qa-pipeline
 
-- 2026-10-19 (later): Jira stage label (the owner): one fixed label `phase2-uat` on every new Bug/Task (supersedes `<stage>-<SERVICE-SLUG>`); single home `STAGE_LABEL` in `nj_rank.py` + `nj-jira/SKILL.md` § Jira stage label; nj-rank defaults to it. `nj-jira/references/bug-template.md` rewritten: canonical Bug layout = PROJ-1234 (Verdict/Source, Where, Steps, Expected, Actual, Evidence; no metadata lines in body; Jira evidence unmasked). Sanad: new account only, kept out of skills (PROJ CLAUDE.md); Automation Tests Sanad OTP wait raised to 30 min.
+- 2026-10-19 (later): Jira stage label (the owner): one fixed label `phase2-uat` on every new Bug/Task (supersedes `<stage>-<SERVICE-SLUG>`); single home `STAGE_LABEL` in `nj_rank.py` + `nj-jira/SKILL.md` § Jira stage label; nj-rank defaults to it. `nj-jira/references/bug-template.md` rewritten: canonical Bug layout = PROJ-1234 (Verdict/Source, Where, Steps, Expected, Actual, Evidence; no metadata lines in body; Jira evidence unmasked). SSO: new account only, kept out of skills (PROJ CLAUDE.md); Automation Tests SSO OTP wait raised to 30 min.
 
 - 2026-10-19: Jira rules (the owner): nj-rank one Task per (service, work type), never per note; only PROJ work is tasked (`file` skips other projects, test added); nj-jira Bug description carries no Priority/Severity/Labels/Assignee/related/Environment lines or sections (fields and links only).
 

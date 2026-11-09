@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.3.0 — 2026-11-09
+
+- New skills in the plugin (now 27; 44 with the kit installer):
+  - `nj-chart`: charts, dashboards and KPI rows on Microsoft's Flint chart engine (MIT, MCP `flint`), with house rules for reading comfort, Arabic and English, light and dark, and offline pages that vendor the compiled backend with its licence.
+  - `nj-qa`: an agent-crew method for testing a service's Jira notes on the live system, with route planning, walls and healing, and `scripts/nj_qa.py` enforcing the limits (preflight, leases, plan, report and preview checks; tests in `test_nj_qa.py`). The author's review hub and agent definitions are not included.
+  - `agent-halo`: a coloured border and the agent's name on every browser window an agent opens (`halo.js`, `halo_keeper.js`); hidden from screenshots and page text.
+- Updated: `nj-jira` (UAT-notes standard and `uat_preview.py`, `file_bugs.py`, `task.py`, a small REST client), `nj-rank` (metrics tab, `team_metrics.py`, existing-task registration, not-a-bug rendering), `nj-delegate` (anti-slowness rules), `nj-method` routing rows, `nj-jira-to-automation` (evidence-bound four-layer checks), `pdf-typography`, `workflow-diagram` (left-to-right only), `bg-music`, `nj-writer`.
+- New release gate `scripts/publish-check.py` (with `--selftest`): fails on credentials, known secret formats, private project and people names (English and Arabic), private hosts and IPs, machine paths, long ID-like digit runs, font files and binary or large artefacts. It prints file, line and rule, never the value. CI runs it.
+- New `scripts/skill-table.py`: the README's plugin skill table is generated from each `SKILL.md` description; CI fails when it is stale.
+- Removed: every font file (the Thmanyah folder under `NJ-Font/` and the website's `site/fonts/`); the site now uses system fonts. Project names, paths, ticket serials and people's names left in earlier files were generalised to placeholders (`PROJ-123`, `ACME`, `<project-root>`).
+- Kept private (not published): per-project profiles (`references/<project>.md`), personal team data and the scheduled-task launcher of `nj-rank`, and the author's review hub for `nj-qa`.
+
 ## 2.2.0 — 2026-11-07
 
 - `nj-narration`: narration breathes. New `references/breath.md`: split each line after punctuation, voice each segment as its own utterance so the next word starts like a new sentence, and join the segments with breath pauses cut from the voice's own room tone (comma about 0.22 s, `؛`/`:` 0.30 s, `.`/`…` 0.40 s, `؟`/`!` 0.45 s), never digital silence. Short comma segments merge; the inhale is off by default. Each segment is still one take. `SKILL.md` gets a short section and job-table row 12.

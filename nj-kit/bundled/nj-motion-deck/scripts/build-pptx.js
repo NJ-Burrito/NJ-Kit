@@ -14,7 +14,7 @@ const deck = JSON.parse(fs.readFileSync(path.join(__dirname, 'remotion', 'src', 
 const pres = new pptxgen();
 pres.layout = 'LAYOUT_WIDE';
 pres.title = deck.title;
-pres.company = 'Ensera';
+pres.company = 'Acme';
 if (lang === 'ar') pres.rtlMode = true;
 
 const notes = [deck.subtitle + ' · ' + deck.date, ...deck.slides.map((s) => s.note || '')];

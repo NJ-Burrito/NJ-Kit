@@ -39,7 +39,7 @@ expensive stage starts only when the rehearsal is green. A rehearsal failure
 is classified by cause per §retry above, and the fix is proven by
 re-rehearsing, not by re-running the expensive stage. Preserve successful
 intermediate artefacts (rule 5) regardless of which stage produced them.
-Evidence: S-096 («طلب اضافة حجم جديد») took 2h48, five Arabic recording
+Evidence: S-096 («خدمة تجريبية») took 2h48, five Arabic recording
 attempts and one English, about 1h10 lost to faults — a curtain never
 lifted, a book row never added, masked rows leaking, buttons pressed by the
 wrong locale's caption — that a rehearsal catches before any stills or video

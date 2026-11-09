@@ -118,7 +118,7 @@ script that refuses the violation.
 7. Launch every independent stage **in one message, before waiting on any**;
    the Lead is then SUPERVISORY-IDLE. Every worker, builders and editors
    included, is dispatched with `run_in_background: true` — `Agent` calls in that one
-   message, one wake per batch; completion is the trigger, nobody polls (the owner,
+   message, one wake per batch; completion is the trigger, nobody polls (owner,
    2026-10-11, supersedes 2026-09-29; `../nj-delegate/reference/runtime-map.md` § Waiting
    and § Claude Code mechanics). Then run `relay.py digest <run-id>` once and inspect only the
    smallest extra gate/diff evidence risk requires.
@@ -126,7 +126,7 @@ script that refuses the violation.
 ## 4. The interpreter — called on a trigger
 
 One ECONOMY interpreter per session, spawned the first time a message from
-the owner is long, mixes Arabic and English, or changes a brief already running,
+The owner is long, mixes Arabic and English, or changes a brief already running,
 then kept alive via `SendMessage` — never respawned per message, never polled,
 never run on agent notifications, wake-ups, hook output or the Lead's own
 turns. It sits between the owner and the Lead: it turns that message into a brief.

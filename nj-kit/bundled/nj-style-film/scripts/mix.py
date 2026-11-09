@@ -84,7 +84,7 @@ def load_seed_manifest():
         for r in rows:
             r["_base"] = SEED_DIR
             out[r["id"]] = r
-    nj_library = os.environ.get("NJ_LIBRARY", os.path.join(os.path.expanduser("~"), "Desktop", "ENSERA", "library"))
+    nj_library = os.environ.get("NJ_LIBRARY", os.path.join(os.path.expanduser("~"), "Desktop", "ACME", "library"))
     index_path = os.path.join(nj_library, "INDEX.json")
     if os.path.exists(index_path):
         with open(index_path, encoding="utf-8") as f:

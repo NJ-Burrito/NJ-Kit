@@ -1,6 +1,6 @@
 ---
 name: nj-automation-suite
-description: 'Create an automation-tests folder (a portable, self-contained Playwright suite) like the PROJ one: layout, lib/paths.ts portability (env vars, auto-discovery, no absolute paths), HTML report + per-service Jira HTML, AI-RUN-NOTES.md, AGENT.md, PDFs (Thmanyah TrueType only), launchers, Docker image-only share, sweep-chrome, sign-in lock. Triggers: create an automation suite, scaffold test folder, make it portable, docker for the tests, report pdf. Arabic: أنشئ مجلد اختبارات آلية، اجعله قابلاً للنقل، تقرير HTML وPDF، Docker للاختبارات.'
+description: 'Create an automation-tests folder (a portable, self-contained Playwright suite): layout, lib/paths.ts portability (env vars, auto-discovery, no absolute paths), HTML report + per-service Jira HTML, AI-RUN-NOTES.md, AGENT.md, PDFs (Thmanyah TrueType only), launchers, Docker image-only share, sweep-chrome, sign-in lock. Triggers: create an automation suite, scaffold test folder, make it portable, docker for the tests, report pdf. Arabic: أنشئ مجلد اختبارات آلية، اجعله قابلاً للنقل، تقرير HTML وPDF، Docker للاختبارات.'
 ---
 
 # nj-automation-suite: scaffold a suite like `Improvement Delivery/Automation Tests`

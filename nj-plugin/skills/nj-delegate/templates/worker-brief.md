@@ -20,13 +20,13 @@ VERIFIED_FACTS
   [U] <unknown> — established when: <what counts as an answer>
 SCOPE        <in scope>. NOT in scope: <out>.
 OWNED_PATHS  you may write ONLY: <paths>. Never: <paths>. Shared tool needed? copy it first. BRANCH <name> in your own worktree: commit only, NO_PUSH, no merge.
-PARALLEL     with: <lanes, or "none — serial because <dependency>">; agents live in the tree: <k> of 20, slots <claimed via relay.py slots claim>
+PARALLEL     with: <lanes, or "none — serial because <dependency>">; agents live in the tree: <k> of 20, slots <claimed via relay.py slots claim>; ≤ 3 lanes run browser/test suites at once, others queue that step (§0.22)
 VERIFIER     <the free check that judges your output: gate | schema | test | count | diff> or "none because <why>"
 HIERARCHY    hierarchy clause (nj-delegate §0.3): you are a Sonnet lead; you may, and if ITEMS >= 6 MUST, brief Haiku helpers only — full text under this block
 TIER         STANDARD (sonnet lead; helpers economy) because <reasoning type>; route: <relay.py route START line>
 EFFORT       <medium|high>   (set by the stage; high only for a diagnosis brief)
 BUDGET       uncached in ≤ <N> · output ≤ <M> · model calls ≤ <K> · files read ≤ <F> · tool_calls ≤ <T> (runaway cap, self-counted), helpers included
-STALL_BOUND  no new output for <N> min => stop, name the cause
+STALL_BOUND  no new output for <N> min => stop; WALL ≤ <45> min incl. tests, at 80 % report QUESTION; TESTS touched suites only, full suite once after merge; one blocking call + timeout, no sleep-loop (§0.22)
 GATES        <named deterministic checks you run, fix inside OWNED_PATHS, and re-run>; each proves it saw the ready state or one known-true sample before it may pass (R15)
 ENTRY_SMOKE  <one check through the real caller or entry point> (R14), or "none — no signature, message shape or entry path changes"
 CREDENTIALS  <path read in memory via --creds by YOUR scripts only | "none">. Never print or write them; never put one, or a path to one, in a helper brief.

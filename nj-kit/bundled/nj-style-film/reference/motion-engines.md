@@ -95,7 +95,7 @@ Manim's defaults (its blue, its red, its serif) are as generic as any template's
 ## `[engine: theatre]` — Theatre.js, in-page
 
 What it buys: a hand-curved hero move where the feel of the curve matters more
-than its numbers. the owner is not required to touch it — **the agent authors the
+than its numbers. The owner is not required to touch it — **the agent authors the
 move itself**, writing keyframes and easing straight into the state JSON — but
 he may open the page afterwards to scrub and nudge it if he wants to.
 HyperFrames has no Theatre.js adapter (its seven are GSAP, Lottie, Three.js,
@@ -171,7 +171,7 @@ component, not ten hand-built scenes. Same pre-render → alpha WebM → `ffprob
 free for an individual, a non-profit, a company still evaluating it, or **"a
 for-profit organization with up to 3 employees"**; a for-profit organisation
 past 3 employees needs a paid Company Licence. **Licence confirmed by the owner
-2026-09-21: Ensera is 2 people, permanently — under the threshold.** Re-check
+2026-09-21: Acme is 2 people, permanently — under the threshold.** Re-check
 the licence if headcount ever passes 3.
 
 **Tailwind**: `@remotion/tailwind-v4` (MIT, npm 2026-09-21, matches the

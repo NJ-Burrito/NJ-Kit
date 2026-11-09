@@ -7,7 +7,7 @@ a second convention.
 
 ## Kind of work -> mood
 
-| Ensera work | style | primary mood | secondary | BPM / energy | lift point |
+| Acme work | style | primary mood | secondary | BPM / energy | lift point |
 |---|---|---|---|---|---|
 | product explainer | paper-punch | informational | corporate | 90-110, low-event, no vocal | end-card line only |
 | educational short | paper-punch | informational | deep | 85-105, steady | last third, small lift into end card |
@@ -20,7 +20,7 @@ a second convention.
 House judgement (not sourced): the promo/recruitment/announcement row maps to
 `challenge`/`motivational` because those are the two moods built for rising
 tension and payoff (`bg-music/SKILL.md`'s own mood table, sourced from
-Instagram reel `DdXP2FTOhfj`, 2026-09-17) — Ensera has no dated study of its
+Instagram reel `DdXP2FTOhfj`, 2026-09-17) — Acme has no dated study of its
 own audience, so this is pattern-matching the shape to the job, stated as
 judgement, not measurement.
 

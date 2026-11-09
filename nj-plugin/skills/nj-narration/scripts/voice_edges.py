@@ -4,7 +4,7 @@
 # ///
 """Word-safe edge cleaner for TTS takes and reference clips (nj-narration).
 
-The problem (the owner, 2026-10-26): "when the voicing of a sentence starts, a small window sometimes appears before or
+The problem (owner, 2026-10-26): "when the voicing of a sentence starts, a small window sometimes appears before or
 after with noise only, no words; it is distracting and makes the sound quality poor". Remove it WITHOUT cutting a
 sound or a word short.
 

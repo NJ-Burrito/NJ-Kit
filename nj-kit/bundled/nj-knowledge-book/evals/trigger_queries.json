@@ -14,7 +14,7 @@
     {"q": "add three more tools to the QA knowledge base and rebuild both PDFs", "expect": "nj-knowledge-book", "split": "validation"},
     {"q": "where did this number come from?", "expect": "nj-evidence", "split": "train"},
     {"q": "set up fact gating in this repo", "expect": "nj-evidence", "split": "train"},
-    {"q": "build a fact database for the ENSERA claims, no pages", "expect": "nj-evidence", "split": "validation"},
+    {"q": "build a fact database for the ACME claims, no pages", "expect": "nj-evidence", "split": "validation"},
     {"q": "research the EU MDR transition timeline", "expect": "nj-researcher", "split": "train"},
     {"q": "is this source reliable?", "expect": "nj-researcher", "split": "validation"},
     {"q": "write the user manual for our app", "expect": "doc-coauthoring", "split": "train"},

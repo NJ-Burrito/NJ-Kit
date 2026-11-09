@@ -284,10 +284,10 @@ def selftest():
         json.dump(fx.results(), open(p["results"], "w"))
         # fix 4: two Bugs on one root cause are refused; one merged row (also: [...]) passes and covers every note
         L3 = json.load(open(p["files"][2]))
-        for n in ("N17", "N18"): L3[n]["root_cause"] = "RC-sanad"
+        for n in ("N17", "N18"): L3[n]["root_cause"] = "RC-sso"
         json.dump(L3, open(p["files"][2], "w"))
         m = run(p["results"], p["filed"], fx.mock_get)["mismatches"]
-        assert any("root cause 'RC-sanad' filed as 2 Bugs" in x for x in m), m
+        assert any("root cause 'RC-sso' filed as 2 Bugs" in x for x in m), m
         L3["N17"]["also"] = ["N18"]; del L3["N18"]; json.dump(L3, open(p["files"][2], "w"))
         t3 = run(p["results"], p["filed"], fx.mock_get)
         assert t3["status"] == "pass" and t3["counts"]["new_bugs"] == 8, t3["mismatches"]

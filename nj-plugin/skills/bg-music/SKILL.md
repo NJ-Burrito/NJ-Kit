@@ -63,7 +63,7 @@ instead of being rebuilt.
 
 `library.json` is the machine-readable part: a render script picks a bed by
 mood and carries the licence with it, so nothing is published whose provenance
-nobody can state. That is the same traceability rule the ENSERA KB uses for
+nobody can state. That is the same traceability rule the ACME KB uses for
 claims, applied to audio.
 
 ## The four moods, and where they came from

@@ -1,6 +1,6 @@
 ---
 name: nj-method
-description: 'the owner''s default method for every request: analyse the ask, look up installed skills before improvising, plan with named checkpoints, execute, review against what was asked. Its routing table answers which skill applies, Arabic or English. Checkpoints are files, not messages.'
+description: 'A default method for every request: analyse the ask, look up installed skills before improvising, plan with named checkpoints, execute, review against what was asked. Its routing table answers which skill applies, Arabic or English. Checkpoints are files, not messages.'
 ---
 
 # The method
@@ -89,6 +89,9 @@ picking silently.
 | After testing a service / end of a work session: file Bugs + untestable Tasks + blocker, nj-rank Done Tasks, outputs to QA, boss email AR+EN (سكّر الشغل، ارفع النتائج) | `nj-wrapup` |
 | Create an automation-tests folder (portable, reports, PDF, Docker) | `nj-automation-suite` |
 | Whole QA round: Jira -> notes -> walks -> Bugs -> re-check -> Docker | `nj-qa-pipeline` |
+| Agent crew testing a service's notes, only when the owner names NJ-QA | `nj-qa` |
+| An agent opens a browser window, in any project | `agent-halo` |
+| Any chart, dashboard, KPI row or report with charts | `nj-chart` |
 | UI, design, theming | `frontend-design`, `ui-ux-pro-max`; check with the project's own deterministic gates (layout probe, contrast script, glyph coverage) and `web-design-guidelines` |
 | UI with no set direction | name the defaults to avoid (e.g. cream background, italic accent words, "01/02/03" labels, monospace labels, pill buttons) and extend the list from the first result; never just "avoid a generic look" |
 | Captions, text cards, feature lists, pitch or summary copy | `impact-copy` — bold anchor, separator, one true number |
@@ -140,7 +143,7 @@ Name where each artefact is when handing work back, so a revision request can
 point at a stage. Before any checkpoint that is expensive to redo (a recording, a
 filing, a long render), rehearse at the cheapest fidelity — nj-delegate
 `reference/high-rework.md` § "Rehearse before the expensive stage". Inside
-the owner's deliverable pipelines the Owner exception in `~/.claude/CLAUDE.md` governs
+The owner's deliverable pipelines the Owner exception in `~/.claude/CLAUDE.md` governs
 instead: one run, and one private rehearsal only when the pipeline itself is new or
 changed (2026-09-29); the machine gates still run.
 

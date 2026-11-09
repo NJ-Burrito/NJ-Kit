@@ -1,1 +1,1 @@
-Moved to %NJ_LIBRARY% ($NJ_LIBRARY) -- sfx/, music/, cues in _inbox/legacy/bg-music-assets/.
+Moved to %NJ_LIBRARY% (<your-project>\library) -- sfx/, music/, cues in _inbox/legacy/bg-music-assets/.

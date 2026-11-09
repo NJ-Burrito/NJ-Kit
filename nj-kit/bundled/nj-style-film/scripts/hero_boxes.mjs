@@ -18,10 +18,10 @@ import os from "node:os";
 import { createRequire } from "node:module";
 
 // ponytail: this script ships inside a Claude skill dir, not under the
-// ENSERA repo, so plain `import "playwright"` can't see ENSERA's
+// ACME repo, so plain `import "playwright"` can't see ACME's
 // node_modules (ESM resolution walks up from the importing file's own
 // path). Resolve it explicitly from the repo that has it installed.
-const require = createRequire(path.join(process.env.ENSERA_ROOT ?? path.join(os.homedir(), "Desktop", "ENSERA"), "package.json"));
+const require = createRequire(path.join(process.env.NJ_PROJECT_ROOT ?? path.join(os.homedir(), "Desktop", "ACME"), "package.json"));
 const { chromium } = require("playwright");
 
 const htmlPath = process.argv[2];

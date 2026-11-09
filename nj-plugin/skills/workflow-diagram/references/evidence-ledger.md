@@ -120,13 +120,13 @@ better harvest produced a worse figure and nothing said so. Merge; never pick.
 ### The precondition nobody drew
 
 «رقم كتاب تسجيل المنشأة» is a field with **no `formcontrolname`** and a «تحقق»
-button of its own, and without it `food-product-registration` cannot be filed at
+button of its own, and without it `service-a` cannot be filed at
 all — the service answers ERROR_00811. It was in no source: the model starts at
 the submitted request, and the control dump only reported controls that carry a
 name. Three sources, and the hardest gate in the service was in none of them.
 
-`dump-form-controls.ts` now emits every `taq-*` host owning its own «تحقق»
-button as a field with a **synthetic** control name (`taq-request-serial-input`
+`dump-form-controls.ts` now emits every custom-element host owning its own «تحقق»
+button as a field with a **synthetic** control name (`x-request-serial-input`
 → `requestSerialInput`), `synthetic: true`, `verify: true`. The figure draws each
 as a decision «تحقق من «X»؟» before submit, with both answers — «نعم» onward and
 «لا — الحقل إجباري» back to the form, because that is what the walk was actually
@@ -148,7 +148,7 @@ request can end with nobody touching it.
 So the boundary event gets its own shape, carrying the clock, and the request
 travels task → «انتهاء مهلة الاستكمال» → the cancelling end. Its length comes
 from the service's back-office record; where that record does not state one
-either — and for `food-product-registration` «متغيرات الطلب» is literally «لا
+either — and for `service-a` «متغيرات الطلب» is literally «لا
 يوجد» — the box says **«مهلة يحددها مدير النظام»** rather than inventing a
 number or printing the process variable's name.
 

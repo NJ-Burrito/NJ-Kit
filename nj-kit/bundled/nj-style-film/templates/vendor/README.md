@@ -14,7 +14,7 @@ transforms + GSAP core tweens, no `MorphSVG`/`Draggable`/etc.).
   touched.)
 - **Licence: GSAP's standard licence** — free for this use including all
   plugins, since GSAP's 2025 licence change (Webflow acquisition). No per-seat
-  or per-project fee applies to Ensera's use. Re-check only if GSAP's terms
+  or per-project fee applies to Acme's use. Re-check only if GSAP's terms
   change again.
 
 ## Wiring

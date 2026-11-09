@@ -13,7 +13,7 @@ Exit 0: clean. Exit 1: at least one rule broken, printed one per line.
 """
 import argparse, json, sys, tempfile, os, shutil
 
-NJ_LIBRARY_DEFAULT = os.path.join(os.path.expanduser("~"), "Desktop", "ENSERA", "library")
+NJ_LIBRARY_DEFAULT = os.path.join(os.path.expanduser("~"), "Desktop", "ACME", "library")
 
 
 def load_manifest_from_library(library_root=None):

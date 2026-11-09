@@ -4,7 +4,7 @@ This is the judgement layer. `sources.py check` applies the parts a script can
 apply (host, TLD, path shape); everything else on this page is a human or model
 judgement and must be **written down next to the source**, never assumed.
 
-House rule, inherited from ENSERA's accuracy policy: **no claim of reliability
+House rule, inherited from ACME's accuracy policy: **no claim of reliability
 without a recorded reason.** A tier with no `why` is not a tier, it is a guess.
 
 ---
@@ -127,11 +127,11 @@ this as an open question because no script can answer it.
   It goes in the file as unsure. Inventing confidence here is the one
   unrecoverable error.
 
-## 9. The publication gate (aligned with ENSERA)
+## 9. The publication gate (aligned with ACME)
 
 Nothing may be published as fact unless it has: a **tier-1/2 primary source, or
 two genuinely independent sources on different hosts** (§7), **a retrieval
-date**, and **a named verifier who is not the author**. That is the ENSERA KB
+date**, and **a named verifier who is not the author**. That is the ACME KB
 gate, and nj-researcher does not weaken it.
 
 ## 10. Degrading honestly

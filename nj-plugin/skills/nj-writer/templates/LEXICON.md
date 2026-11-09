@@ -5,8 +5,8 @@ the TTS engine, and why. Add project terms below the pre-filled ones.
 
 | term | language | write it as | why |
 |---|---|---|---|
-| Ensera | en | Ensera | brand name, read as spelled |
-| Ensera | ar | إنسيرا | transliterated, recognisable by sound (NARRATION.md §5) |
+| Acme | en | Acme | brand name, read as spelled |
+| Acme | ar | أكمي | transliterated, recognisable by sound (NARRATION.md §5) |
 | TAISCE | en | TAISCE | programme name, read as an acronym-word ("TAI-see"), not spelled out |
 | TAISCE | ar | تايسي | transliterated to match the English acronym-word reading |
 | Petra | en | Petra | place name, standard English reading |
