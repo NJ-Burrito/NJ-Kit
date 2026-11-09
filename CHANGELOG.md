@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.2 — 2026-11-10
+
+- `nj-jira/references/bug-template.md`: the evidence rules now say what 2.3.1 changed in `nj-qa` and `nj-jira/SKILL.md`: file names are Arabic `<المشكلة>-<الخدمة>-<التاريخ>-<الوقت>`, made by `nj-qa/scripts/evidence_name.py` (the template still told readers to name files by what they show).
+- `nj-qa/scripts/test_nj_qa.py`: the self-check now covers the evidence-name rules (name format, forbidden characters, the 150-character limit, `-2` repeats, refusals that name the file, `report-check` and `preview-check`, and `NJQA_LEGACY_EVIDENCE=1`). It was missing from 2.3.1.
+- Not changed: `nj-qa/scripts/creds.py` stays the single-account version. The newer multi-account version reads a schema file and default accounts from the author's review hub, which this repo does not ship, so it cannot run on its own.
+
 ## 2.3.1 — 2026-11-09
 
 - Evidence file names are Arabic only, `<المشكلة>-<الخدمة>-<التاريخ>-<الوقت>` (issue, the service's Arabic name, `YYYY-MM-DD`, `HH.MM` in 24 hours, 150 characters at most, `-2` for a repeat in the same minute). New `nj-qa/scripts/evidence_name.py` (CLI and import); `nj_qa.py` `report-check` and `preview-check` refuse any other picture or video name, except in a run imported with `NJQA_LEGACY_EVIDENCE=1`. Documented in `nj-qa/SKILL.md`, `nj-qa/references/lessons.md`, `nj-jira/SKILL.md` and `nj-jira/references/bug-template.md`.

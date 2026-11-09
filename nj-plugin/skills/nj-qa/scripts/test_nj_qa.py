@@ -215,6 +215,56 @@ with tempfile.TemporaryDirectory() as t:
     (r2 / "ledger.jsonl").write_text('{"ev": "preflight", "status": "pass", "evidence": "1"}\n{"ev": "lease-sta\nnot json\n[1]\n', encoding="utf-8")
     assert [e["ev"] for e in nj_qa.load_events(r2)] == ["preflight"]
 
+# ---- evidence names (owner 2026-11-09): <issue>-<service>-<YYYY-MM-DD>-<HH.MM>[-N].<ext>, Arabic only
+W = dt.datetime(2026, 11, 9, 14, 35)
+assert en.evidence_name("زر الإرسال لا يستجيب", "طلب تسجيل منتج", W) == EV
+# forbidden characters and English words go; the ticket code stays, after the issue
+n = en.evidence_name('خطأ "500" عند: الإرسال? PROJ-5494 broken <x>', "طلب|الموافقة", dt.datetime(2026, 11, 9, 9, 5), ext=".PNG")
+assert n == "خطأ-500-عند-الإرسال-PROJ-5494-طلب-الموافقة-2026-11-09-09.05.png", n
+assert not set(n) & set('/:*?"<>|' + chr(92)) and en.name_problem(n) is None
+# a long service name shrinks to its first words, the issue stays whole, the total is within 150
+long_service = " ".join(["مستلزمات"] * 40)
+n = en.evidence_name("زر الإرسال لا يستجيب", long_service, W, ext="mp4")
+assert len(n) <= 150 and n.startswith("زر-الإرسال-لا-يستجيب-مستلزمات-") and en.name_problem(n) is None, n
+# the same issue twice in the same minute: -2, -3 (against the folder)
+with tempfile.TemporaryDirectory() as t:
+    first = en.evidence_name("زر الإرسال لا يستجيب", "طلب إجازة", W, dir=t)
+    (pathlib.Path(t) / first).write_bytes(b"x")
+    second = en.evidence_name("زر الإرسال لا يستجيب", "طلب إجازة", W, dir=t)
+    (pathlib.Path(t) / second).write_bytes(b"x")
+    assert second == first.replace(".png", "-2.png") and en.evidence_name("زر الإرسال لا يستجيب", "طلب إجازة", W, dir=t).endswith("-3.png")
+    assert en.name_problem(second) is None
+# refusals name the file
+for bad in ("screen1.png", "shot-2026-11-09-14.35.png", "lqta-tlb-2026-11-09-14.35.png", "زر-طلب-2026-11-09-14:35.png", "زر-طلب-2026-11-09-24.10.png", "زر-طلب-2026-13-09-14.35.png", "طلب-2026-11-09-14.35.png"):
+    assert en.name_problem("dir/" + bad), bad
+    assert bad in en.name_problem("dir/" + bad)
+assert en.name_problem("زر-طلب-2026-11-09-14.35-2.webm") is None and en.name_problem("تقرير.md") is None and en.name_problem("a/b/زر-PROJ-5494-طلب-2026-11-09-14.35.jpg") is None
+try:
+    en.evidence_name("screenshot", "طلب", W)
+    raise SystemExit("an English-only issue must be refused")
+except ValueError:
+    pass
+# the gates refuse an evidence file with the wrong name, naming it
+with tempfile.TemporaryDirectory() as t:
+    base = pathlib.Path(t)
+    (base / "shot1.png").write_bytes(b"x")
+    (base / EV).write_bytes(b"x")
+    rep = lambda ev: {"agent": "a", "route": "R1", "build": "v1", "notes": [{"id": "N1", "verdict": "fixed", "seen": "s", "interpretation": "i", "evidence": [ev]}]}
+    bad = nj_qa.report_problems(rep("shot1.png"), base)
+    assert bad and "shot1.png" in bad[0], bad
+    assert nj_qa.report_problems(rep(EV), base) == []
+    assert nj_qa.preview_problems({"notes": [{"id": "N1", "status": "✅", "image": "shot1.png", "headline": "h", "test_action": "t", "expected": "e"}]}, base)
+    (base / "evidence").mkdir()
+    (base / "evidence" / "shot1.png").write_bytes(b"x")
+    rv = review(note(evidence=[{"path": "evidence/shot1.png", "caption": "c", "kind": "shot"}]))
+    bad = nj_qa.review_problems(rv, base)
+    assert bad and "shot1.png" in bad[0], bad
+    # a run imported from before the rule keeps its names
+    os.environ["NJQA_LEGACY_EVIDENCE"] = "1"
+    assert nj_qa.review_problems(rv, base) == []
+    del os.environ["NJQA_LEGACY_EVIDENCE"]
+print("evidence names OK")
+
 # the engine of the old scripts still sees patched traffic in a report's folder
 assert nj_qa.scan_text("await page.route('**', r => r.continue({ postData: 'x' }))") and not nj_qa.scan_text("await page.goto('/')")
 assert nj_qa.scan_text("await page.evaluate(() => { el.value = 'a'; })") and not nj_qa.scan_text("await page.evaluate(() => el.value === 'a')")

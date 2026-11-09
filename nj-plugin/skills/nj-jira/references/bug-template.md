@@ -42,7 +42,7 @@ Rules for the body: NO Priority / Severity / Labels / Assignee / Related / Envir
 
 ## ADHD-friendly shape (owner, 2026-10-18/19)
 - Start with the labelled blocks above (no Verdict line). Numbered steps, bullets, no paragraphs.
-- Evidence files are named by what they show (`<note-id>-<what-it-shows>.png`), never `screenshot1.png`.
+- Evidence files are named in Arabic `<المشكلة>-<الخدمة>-<التاريخ>-<الوقت>` (owner 2026-11-09, forward only; rule 5 below), never `screenshot1.png`.
 
 ## Description holds none of the metadata (owner, 2026-10-19)
 The Bug DESCRIPTION never contains Priority, Severity, Labels, Assignee, related/linked tickets, Environment/build lines, nor a «Related» or «Severity / priority» section. They are set only as Jira fields and links (Environment field, Relates link, labels). Lineage and "not a duplicate" reasoning go to the Relates link and the filing log, not the body. Fields are still set on every Bug.
@@ -68,7 +68,7 @@ The Bug DESCRIPTION never contains Priority, Severity, Labels, Assignee, related
 2. A red ring (injected CSS outline, removed after) on the exact point. PDF letters: `pdftoppm` ~150 dpi, crop to the sentence, ring it.
 3. Jira evidence is unmasked (the owner 2026-10-19); masking is for SRS / user / training manuals only.
 4. One shot per fact (two if far apart).
-5. File names say what they show: `01-send-refused-termination-date-required.png`.
+5. **File names are Arabic only (owner, 2026-11-09, forward only): `<المشكلة>-<الخدمة>-<التاريخ>-<الوقت>`**, issue (a short specific phrase naming the defect, never «لقطة»), the service's Arabic portal name, `YYYY-MM-DD`, then `HH.MM` in 24 hours (Windows has no `:`), hyphen-joined, at most 150 characters (shorten the service, never drop the issue), no English except a ticket code like `PROJ-5494` after the issue, `-2` on a second shot of the same issue in the same minute. Example: `زر-الإرسال-لا-يستجيب-طلب-تسجيل-منتج-2026-11-09-14.35.png`. Generate it with `nj-qa/scripts/evidence_name.py` (CLI and import) or `evidenceName(issue, service, when)` in the suite's `lib/shot.ts`; existing evidence files are not renamed.
 6. Allowed evidence types are screenshots (.png .jpg .jpeg), videos (.mp4 .webm), .gif, .md and .pdf (official output letters), nothing else; .docx .txt .json .log are refused (owner, 2026-10-19). `.txt` / `.json` / `.log` / API-text excerpts are not evidence and the uploader refuses them: page text may be saved locally for findings, never put on a ticket. A failed call may appear in the description as `{{code}}` (no tokens or cookies).
 7. The «🖼️ Evidence» block lists every shot by name. Also keep `issue-KEY.png` (the filed ticket) for the tracker.
 Tools: `scripts/evidence-shot.ts` (`evidenceShot`: scroll, mask, ring, assert, shoot, unring) and `scripts/ring-pdf.py` (PDF page -> ringed crop).
