@@ -13,7 +13,7 @@ usage: python -X utf8 nj_qa.py <cmd> --run SERVICE_RUN_DIR [...]
   lease-left --agent A        minutes left; prints REPORT-NOW and exits 3 with 3 minutes or less to go
   lease-check                 lists expired leases; exit 1 if any
   sendback --agent A          allows one correction per report; exit 2 on the second
-  report-check FILE           validates an agent report before the leader reads it
+  report-check FILE           validates an agent report before the leader reads it (evidence names must be Arabic issue-service-date-HH.MM, see evidence_name.py)
   classify --status S --reporter R --created YYYY-MM-DD [--today YYYY-MM-DD]
                               verdict and proposed Jira action for a note that still fails
   lesson --cause script|data|route|timing|tooling|brief|requirement --rule "..." [--evidence PATH]
@@ -29,6 +29,7 @@ usage: python -X utf8 nj_qa.py <cmd> --run SERVICE_RUN_DIR [...]
   status                      live leases
 """
 import argparse, datetime as dt, json, os, pathlib, re, subprocess, sys
+import evidence_name  # evidence names are Arabic <issue>-<service>-<date>-<HH.MM> (owner, 2026-11-09)
 
 HERE = pathlib.Path(__file__).resolve().parent
 LEASE_MIN = 30
@@ -42,6 +43,7 @@ NOT_DELIVERED = {"to do", "open", "in progress", "backlog", "reopened", "re open
 PHASES = {"intake", "planning", "preflight", "testing", "reviewing", "paused", "complete", "partial"}
 WALL_OUTCOMES = {"corrected", "blocked", "system-defect"}
 CRITERION_RESULTS = {"pass", "fail", "blocked", "n/a"}
+BLOCK_CAUSES = {"data", "system", "tool"}  # Note.block_cause (contract 3.3)
 FINDING_DECISIONS = {"kept", "merged", "dropped"}
 ROLES = {"leader", "tester", "harvester", "scavenger"}
 CAUSES = {"script", "data", "route", "timing", "tooling", "brief", "requirement"}
@@ -270,11 +272,18 @@ def tamper_scan(run):
                 if n.get("verdict") in NEEDS_EVIDENCE:
                     n.setdefault("tester_verdict", n["verdict"])
                     n["verdict"] = "cannot-test"
+                if n.get("verdict") in ("blocked", "cannot-test"):
+                    n["block_cause"] = "tool"
                 changed = True
         if changed:
             rp.write_text(json.dumps(rv, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     log(run, ev="tamper-scan", hits=[{k: v for k, v in h.items() if k != "notes"} for h in hits])
     return hits
+
+
+def name_problem(path):
+    """Forward only: a run imported from before 2026-11-09 sets NJQA_LEGACY_EVIDENCE=1 and keeps its old file names."""
+    return None if os.environ.get("NJQA_LEGACY_EVIDENCE") else evidence_name.name_problem(path)
 
 
 # ---------------------------------------------------------------- reports
@@ -301,6 +310,8 @@ def report_problems(rep, base):
         if n.get("verdict") in NEEDS_EVIDENCE and not ev:
             bad.append(f"{i}: {n.get('verdict')} without evidence")
         for p in ev:
+            if name_problem(p):
+                bad.append(f"{i}: {name_problem(p)}")
             if not (base / p).exists():
                 bad.append(f"{i}: evidence file missing: {p}")
         if n.get("verdict") == "blocked" and not (n.get("blocked_reason") or "").strip():
@@ -327,6 +338,8 @@ def review_problems(rv, run):
             if not ev:
                 bad.append(f"{i}: {v} with no evidence")
             for e in ev:
+                if name_problem(e.get("path", "")):
+                    bad.append(f"{i}: {name_problem(e.get('path', ''))}")
                 if not (run / e.get("path", "")).is_file():
                     bad.append(f"{i}: evidence file missing: {e.get('path')}")
             for f in ("headline", "test_action", "expected"):
@@ -341,6 +354,9 @@ def review_problems(rv, run):
             bad.append(f"{i}: fixed, but a criterion is {'fail' if 'fail' in results else 'blocked'}")
         if v == "not-fixed" and crit and "fail" not in results:
             bad.append(f"{i}: not-fixed, but no criterion fails")
+        bc = n.get("block_cause")
+        if bc is not None and (v not in ("blocked", "cannot-test") or bc not in BLOCK_CAUSES):
+            bad.append(f"{i}: block_cause {bc!r} needs verdict blocked or cannot-test and one of {', '.join(sorted(BLOCK_CAUSES))}")
         if n.get("tampered") and v == "fixed":
             bad.append(f"{i}: fixed on a path a tampered script touched ({n['tampered'].get('file')}:{n['tampered'].get('line')})")
     for f in rv.get("findings", []):
@@ -363,6 +379,8 @@ def preview_problems(inp, tester_dir):
             if not shots:
                 bad.append(f"{i}: a verdict with no screenshot")
             for s in shots:
+                if name_problem(s):
+                    bad.append(f"{i}: {name_problem(s)}")
                 if not (tester_dir / s).exists():
                     bad.append(f"{i}: screenshot missing: {s}")
             for f in ("headline", "test_action", "expected"):

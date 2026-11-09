@@ -3,6 +3,10 @@ import datetime as dt, json, os, pathlib, subprocess, sys, tempfile
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import jira_refresh
 import nj_qa
+import evidence_name as en
+
+EV = "زر-الإرسال-لا-يستجيب-طلب-تسجيل-منتج-2026-11-09-14.35.png"
+EV_MISSING = "زر-الإرسال-لا-يستجيب-طلب-تسجيل-منتج-2026-11-09-14.36.png"
 
 D = dt.date.fromisoformat
 # Jordan's weekend: filed Thursday, Friday and Saturday do not count, Sunday does
@@ -27,9 +31,9 @@ assert nj_qa.plan_problems({"routes": [{"id": "R1"}], "notes": [{"id": "N1", "ro
 
 with tempfile.TemporaryDirectory() as t:
     base = pathlib.Path(t)
-    good = {"agent": "a", "route": "R1", "build": "v1 2026-11-09", "notes": [{"id": "N1", "verdict": "fixed", "seen": "s", "interpretation": "i", "evidence": ["e.png"]}]}
+    good = {"agent": "a", "route": "R1", "build": "v1 2026-11-09", "notes": [{"id": "N1", "verdict": "fixed", "seen": "s", "interpretation": "i", "evidence": [EV]}]}
     assert nj_qa.report_problems(good, base)  # evidence file absent
-    (base / "e.png").write_bytes(b"x")
+    (base / EV).write_bytes(b"x")
     assert nj_qa.report_problems(good, base) == []
     assert nj_qa.report_problems({**good, "build": ""}, base)
     assert nj_qa.report_problems({**good, "notes": [{"id": "N1", "verdict": "passed", "seen": "s", "interpretation": "i"}]}, base)
@@ -77,8 +81,8 @@ with tempfile.TemporaryDirectory() as t:
     out = subprocess.run([sys.executable, "-X", "utf8", str(pathlib.Path(__file__).parent / "nj_qa.py"), "lease-start", "--run", str(other), "--agent", "z", "--role", "harvester"], capture_output=True, text=True).stdout
     assert "LESSONS: 1" in out, out
     assert nj_qa.preview_problems({"notes": [{"id": "N1", "status": "✅"}]}, base)
-    (base / "s.png").write_bytes(b"x")
-    assert nj_qa.preview_problems({"notes": [{"id": "N1", "status": "✅", "image": "s.png", "headline": "h", "test_action": "t", "expected": "e"}], "outside": [{"title": "x", "leader": "kept"}]}, base) == []
+    (base / EV).write_bytes(b"x")
+    assert nj_qa.preview_problems({"notes": [{"id": "N1", "status": "✅", "image": EV, "headline": "h", "test_action": "t", "expected": "e"}], "outside": [{"title": "x", "leader": "kept"}]}, base) == []
 
 with tempfile.TemporaryDirectory() as t:
     base = pathlib.Path(t)
@@ -96,7 +100,7 @@ assert sum(x.startswith("🆕 C") for x in lines) == 1 and any("➖ B" in x for 
 # ---- the hub's gates (docs/ARCHITECTURE.md sections 3.2, 6, 12): review.json v1, tamper scan, budget stop, publish
 def note(**k):
     return {"id": "N1", "title": "t", "stage_order": 1, "side": "applicant", "route": "R1", "headline": "h", "test_action": "a", "expected": "e",
-            "current": "c", "verdict": "fixed", "evidence": [{"path": "evidence/s.png", "caption": "c", "kind": "shot"}], "source": "s", **k}
+            "current": "c", "verdict": "fixed", "evidence": [{"path": f"evidence/{EV}", "caption": "c", "kind": "shot"}], "source": "s", **k}
 
 
 def review(*notes, findings=()):
@@ -113,10 +117,10 @@ with tempfile.TemporaryDirectory() as t:
     runs = pathlib.Path(t) / "runs" / "R" / "PROJ-1"
     runs.mkdir(parents=True)
     (runs / "evidence").mkdir()
-    (runs / "evidence" / "s.png").write_bytes(b"x")
+    (runs / "evidence" / EV).write_bytes(b"x")
     # a `fixed` with no evidence is refused; so is a missing file, a missing headline, and a finding with no leader decision
     assert nj_qa.review_problems(review(note(evidence=[])), runs), "fixed with 0 evidence must be refused"
-    assert nj_qa.review_problems(review(note(evidence=[{"path": "evidence/none.png"}])), runs)
+    assert nj_qa.review_problems(review(note(evidence=[{"path": f"evidence/{EV_MISSING}"}])), runs)
     assert nj_qa.review_problems(review(note(headline="")), runs)
     assert nj_qa.review_problems(review(note(), findings=[{"id": "F1", "leader": {}}]), runs)
     assert nj_qa.review_problems(review(note(), findings=[{"id": "F1", "leader": {"decision": "kept"}}]), runs) == []
@@ -127,6 +131,10 @@ with tempfile.TemporaryDirectory() as t:
     assert nj_qa.review_problems(review(note(verdict="not-fixed", criteria=[{"text": "c", "result": "fail"}])), runs) == []
     assert nj_qa.review_problems(review(note(tampered={"file": "x", "line": 1, "pattern": "p"})), runs), "no fixed on a tampered path"
     assert nj_qa.review_problems({"v": 2}, runs)
+    # Note.block_cause: only on blocked / cannot-test, only data | system | tool
+    assert nj_qa.review_problems(review(note(verdict="blocked", evidence=[], headline="", block_cause="data")), runs) == []
+    assert nj_qa.review_problems(review(note(verdict="blocked", evidence=[], headline="", block_cause="weather")), runs), "unknown block_cause refused"
+    assert nj_qa.review_problems(review(note(block_cause="tool")), runs), "block_cause on a fixed note refused"
 
     # tamper scan: a script with `fulfill` flags the notes it reached and forces cannot-test; a clean script flags nothing
     (runs / "review.json").write_text(json.dumps(review(note(id="N1"), note(id="N2", verdict="not-fixed"), note(id="N3", verdict="blocked", evidence=[]))), encoding="utf-8")
@@ -146,7 +154,7 @@ with tempfile.TemporaryDirectory() as t:
     # publish: the tamper-scan result blocks nothing by itself, but review-blocked carries the problems
     pub = runs.parent / "PROJ-9"
     (pub / "evidence").mkdir(parents=True)
-    (pub / "evidence" / "s.png").write_bytes(b"x")
+    (pub / "evidence" / EV).write_bytes(b"x")
     (pub / "review.json").write_text(json.dumps(review(note(evidence=[]))), encoding="utf-8")
     code, out = nj(pub, "publish", "--no-thumbs")
     assert code == 2 and "review blocked" in out and nj_qa.load_events(pub)[-1]["ev"] == "review-blocked", out

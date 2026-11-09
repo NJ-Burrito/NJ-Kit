@@ -44,7 +44,7 @@
 | 🧩 Claude Code, fastest | [Plugin ↓](#plugin) · 27 skills | ⏱️ 1 min |
 | 🧰 All 44 on a new machine | [Kit installer ↓](#kit) | ⏱️ 5 min |
 | 📂 Another agent that reads `SKILL.md` | [Copy one skill ↓](#whats-inside) | ⏱️ 1 folder |
-| 🔤 The typeface | [NJ-Font ↓](#nj-font) | ⏱️ 1 command |
+| 🔤 The typeface | [NJ-Font ↓](#nj-font) (coming soon) | ⏱️ soon |
 
 All free. 👆 Pick one and skip the rest.
 
@@ -117,7 +117,17 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
+## 🆕 What's new in 2.3.1
+
+Release: [v2.3.1 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.1). Still 27 plugin skills, 44 with the kit installer.
+
+- 🏷️ **Evidence names are Arabic** in `nj-qa` and `nj-jira`: `<المشكلة>-<الخدمة>-<التاريخ>-<الوقت>`, time as `HH.MM`. `nj-qa/scripts/evidence_name.py` makes the name, and `report-check` and `preview-check` refuse any other picture or video name. Existing runs keep their names (`NJQA_LEGACY_EVIDENCE=1`).
+- 🧪 `nj-qa`: a blocked or untestable note can carry a `block_cause` (`data`, `system` or `tool`), and the checks refuse any other value.
+- 🌐 **The website's skill list is generated** from the plugin's `SKILL.md` files, and CI fails when the committed site is stale.
+
 ## 🆕 What's new in 2.3.0
+
+Release: [v2.3.0 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.0).
 
 | Skill | What it adds |
 |---|---|
@@ -212,7 +222,7 @@ Descriptions from each project's own GitHub page, 24 Oct 2026.
 
 ## 🔤 NJ-Font
 
-A typeface by Nader Alzghoul, installed from this repo in one go.
+A typeface by Nader Alzghoul. **Coming soon:** the font files are not published yet, so `NJ-Font/` holds only a README. The commands below are what will work once they land.
 
 <details>
 <summary>🍎 macOS / 🐧 Linux</summary>
@@ -435,7 +445,7 @@ Details: [CONTRIBUTING.md](CONTRIBUTING.md).
 - 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
 - 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
 - 🎙️ **NJ-Narration** (ضمن الإضافة، `nj-narration`): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
-- 🆕 **جديد في 2.3.0:** ‏`nj-chart` للرسوم البيانية ولوحات المؤشرات (على محرك Flint من Microsoft برخصة MIT)، و‏`nj-qa` لاختبار ملاحظات Jira بفريق من الوكلاء، و‏`agent-halo` لإطار ملوّن يميّز نافذة كل وكيل.
+- 🆕 **جديد في 2.3.1** ([الإصدار v2.3.1 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.1)): أسماء ملفات الأدلة بالعربية في `nj-qa` و`nj-jira`، وقائمة المهارات في الموقع تُولَّد من ملفات `SKILL.md`. وفي 2.3.0 ([الإصدار v2.3.0](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.0)): ‏`nj-chart` للرسوم البيانية ولوحات المؤشرات (على محرك Flint من Microsoft برخصة MIT)، و‏`nj-qa` لاختبار ملاحظات Jira بفريق من الوكلاء، و‏`agent-halo` لإطار ملوّن يميّز نافذة كل وكيل.
 - 🔐 **لا بيانات خاصة:** يمرّ كل إصدار على `scripts/publish-check.py` قبل النشر، فلا كلمات مرور ولا بيانات مشاريع ولا مسارات أجهزة ولا ملفات خطوط.
 - 💸 **مجانية** ومفتوحة المصدر برخصة MIT، وغير تابعة لشركة Anthropic ولا معتمدة منها.
 - 🌐 **الموقع بالعربية:** [nj-burrito.github.io/NJ-Kit/ar](https://nj-burrito.github.io/NJ-Kit/ar/)

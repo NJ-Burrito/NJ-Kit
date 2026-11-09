@@ -4,14 +4,18 @@ The template is bilingual: any element carrying data-l="en" or data-l="ar" belon
 language only. The build keeps one language per page, so each URL is a clean single-language
 document with its own <html lang>, title, description, canonical and hreflang links.
 
-    python site/_build/build.py          # writes both pages, exits non-zero on a check failure
+    python site/_build/build.py          # writes both pages and llms.txt, exits non-zero on a check failure
+    python site/_build/build.py --check  # same, then fails if the committed site differs from the build (CI)
 """
 from __future__ import annotations
 
 import base64
 import hashlib
+import html as htmllib
+import importlib.util
 import json
 import re
+import subprocess
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
@@ -19,6 +23,10 @@ from pathlib import Path
 SITE = Path(__file__).resolve().parent.parent
 TPL = SITE / "_build" / "page.html.tpl"
 BASE = "https://nj-burrito.github.io/NJ-Kit/"
+ROOT = SITE.parent
+SKILLS = SITE / "_build" / "skills.json"
+# nj-kit/bundled folders that are not kit-only skills: the v4 agent files, and a copy of a plugin skill
+NOT_KIT_SKILLS = {"claude-v4", "pdf-typography"}
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 
 
@@ -95,8 +103,90 @@ def csp_meta(html: str) -> str:
     return f'<meta http-equiv="Content-Security-Policy" content="{policy}">'
 
 
+def load_skills() -> dict:
+    """Skill counts, groups and per-skill text, checked against the real skills so the page cannot go stale.
+
+    Plugin skills come from .claude-plugin/marketplace.json and their English line from each SKILL.md
+    (the same function scripts/skill-table.py uses for the README). skills.json only assigns groups and
+    holds the Arabic text, plus a shorter English line where the SKILL.md sentence is too long for the page.
+    """
+    spec = importlib.util.spec_from_file_location("skill_table", ROOT / "scripts" / "skill-table.py")
+    st = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(st)
+    market = json.loads((ROOT / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))["plugins"][0]
+    plugin = {Path(s).name: ROOT / market["source"] / s / "SKILL.md" for s in market["skills"]}
+    data = json.loads(SKILLS.read_text(encoding="utf-8"))
+    grouped = [s for g in data["groups"] for s in g["skills"]]
+    errs = []
+    if sorted(grouped) != sorted(plugin):
+        errs.append(f"groups differ from marketplace.json: missing {sorted(set(plugin) - set(grouped))}, "
+                    f"unknown {sorted(set(grouped) - set(plugin))}, duplicated {sorted({s for s in grouped if grouped.count(s) > 1})}")
+    kit_dirs = {p.name for p in (ROOT / "nj-kit" / "bundled").iterdir() if p.is_dir()} - NOT_KIT_SKILLS
+    if kit_dirs != set(data["bundled"]["skills"]):
+        errs.append(f"bundled differs from nj-kit/bundled: {sorted(kit_dirs ^ set(data['bundled']['skills']))}")
+    errs += [f"no Arabic text for {s}" for s in plugin if not data["text"].get(s, {}).get("ar")]
+    errs += [f"new skill not in the plugin: {s}" for s in data["new"]["skills"] if s not in plugin]
+    if data["new"]["current"] != market["version"]:
+        errs.append(f'"current" is {data["new"]["current"]}, marketplace.json says {market["version"]}')
+    if errs:
+        raise SystemExit("skills.json: " + "; ".join(errs))
+    for s, md in plugin.items():
+        data["text"][s].setdefault("en", st.description(md).replace("`", ""))
+    data["counts"] = {"ALL": len(plugin) + len(data["bundled"]["skills"]), "PLUGIN": len(plugin),
+                      "KIT": len(data["bundled"]["skills"])}
+    return data
+
+
+def skills_ui(d: dict) -> str:
+    """Group tabs (both languages) and one panel per plugin group; the bundled panel stays in the template."""
+    groups = d["groups"] + [dict(d["bundled"], id="b", n=d["counts"]["KIT"])]
+
+    def tab(g, lang, first):
+        sel = ("true", "") if first else ("false", ' tabindex="-1"')
+        return (f'<button class="tab" role="tab" id="tab-{g["id"]}" aria-controls="p-{g["id"]}" aria-selected="{sel[0]}"{sel[1]}>'
+                f'<svg class="ic" aria-hidden="true"><use href="#{g["icon"]}"/></svg>{g[lang]}'
+                f'<span class="n">{g.get("n", len(g["skills"]))}</span></button>')
+
+    out = []
+    for lang, label in (("en", "Skill groups"), ("ar", "مجموعات المهارات")):
+        tabs = "\n".join("          " + tab(g, lang, i == 0) for i, g in enumerate(groups))
+        out.append(f'<div class="tabs" role="tablist" aria-label="{label}" data-l="{lang}">\n'
+                   f'          <span class="pill" aria-hidden="true"></span>\n{tabs}\n        </div>')
+    for i, g in enumerate(d["groups"]):
+        rows = "\n".join(
+            f'            <li><code>{s}</code><span data-l="en">{htmllib.escape(d["text"][s]["en"], quote=False)}</span>'
+            f'<span data-l="ar">{d["text"][s]["ar"]}</span></li>' for s in g["skills"])
+        out.append(f'<div class="panel" role="tabpanel" id="p-{g["id"]}" aria-labelledby="tab-{g["id"]}"{"" if i == 0 else " hidden"}>\n'
+                   f'          <ul class="skills">\n{rows}\n          </ul>\n        </div>')
+    return "\n        ".join(out)
+
+
+def skills_new(d: dict) -> str:
+    v, cur = d["new"]["version"], d["new"]["current"]
+    names = "".join(f"<li>{s}</li>" for s in d["new"]["skills"])
+    rel = f"https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v{cur}"
+    return "\n      ".join([
+        f'<p class="note" data-l="en">Current release: <a href="{rel}">v{cur}</a>. New skills in {v}:</p>',
+        f'<p class="note" data-l="ar">الإصدار الحالي: <a href="{rel}"><bdi dir="ltr">v{cur}</bdi></a>. مهارات جديدة في {v}:</p>',
+        f'<ul class="chipset" aria-label="New in {v}">{names}</ul>'])
+
+
+def groups_line(d: dict) -> str:
+    parts = [f'{g["en"]} ({len(g["skills"])})' for g in d["groups"]]
+    return ", ".join(parts + [f'{d["bundled"]["en"]} ({d["counts"]["KIT"]})'])
+
+
+def llms() -> str:
+    d = load_skills()
+    txt = (SITE / "_build" / "llms.txt.tpl").read_text(encoding="utf-8").replace("{GROUPS}", groups_line(d))
+    for k, v in d["counts"].items():
+        txt = txt.replace("{N_" + k + "}", str(v))
+    return txt
+
+
 def build(lang: str) -> str:
-    src = TPL.read_text(encoding="utf-8")
+    d = load_skills()
+    src = TPL.read_text(encoding="utf-8").replace("{SKILLS_UI}", skills_ui(d)).replace("{SKILLS_NEW}", skills_new(d))
     p = Keep(lang)
     p.feed(src)
     p.close()
@@ -109,6 +199,7 @@ def build(lang: str) -> str:
         "{DIR}": "rtl" if lang == "ar" else "ltr",
         "{R}": "../" if lang == "ar" else "",
         "{SELF}": BASE + ("ar/" if lang == "ar" else ""),
+        **{"{N_" + k + "}": str(v) for k, v in d["counts"].items()},
     }
     for k, v in sub.items():
         html = html.replace(k, v)
@@ -118,7 +209,7 @@ def build(lang: str) -> str:
 
 def check(lang: str, html: str) -> list[str]:
     bad = []
-    if re.search(r"\{(LANG|DIR|R|SELF)\}", html):
+    if re.search(r"\{(LANG|DIR|R|SELF|N_[A-Z]+|SKILLS_[A-Z]+)\}", html):
         bad.append("placeholder left")
     if "data-l=" in html:
         bad.append("data-l left")
@@ -140,6 +231,10 @@ def check(lang: str, html: str) -> list[str]:
             bad.append("script hash not in CSP")
     if re.search(r"<(?:script|link|img|iframe)[^>]+(?:src|href)=[\"']https?://(?![^\"']*(?:nj-burrito\.github\.io|github\.com|linkedin\.com))", html, re.I):
         bad.append("external subresource")
+    counts = load_skills()["counts"].values()
+    for m in re.finditer(r"(\d+)\s*(?:Claude Code\s+)?(?:plugin\s+)?(?:skills|مهارة)", html):
+        if int(m.group(1)) not in counts and m.group(1) != "22":   # 22 = third-party sources the installer lists
+            bad.append(f"stale skill count {m.group(0)!r}")
     if "—" in html:
         bad.append("em dash present")
     if f'<html lang="{lang}"' not in html:
@@ -149,6 +244,8 @@ def check(lang: str, html: str) -> list[str]:
 
 def main() -> int:
     fails = 0
+    (SITE / "llms.txt").write_text(llms(), encoding="utf-8", newline="\n")
+    print("llms.txt written")
     for lang, out in (("en", SITE / "index.html"), ("ar", SITE / "ar" / "index.html")):
         html = build(lang)
         problems = check(lang, html)
@@ -157,6 +254,10 @@ def main() -> int:
         status = "PASS" if not problems else "FAIL " + "; ".join(problems)
         print(f"{lang}: {out.relative_to(SITE)} {len(html.encode('utf-8'))} bytes {status}")
         fails += bool(problems)
+    if "--check" in sys.argv:   # CI: the committed site must equal a fresh build
+        stale = subprocess.run(["git", "diff", "--quiet", "--", "site"], cwd=ROOT).returncode
+        print("site stale: run python site/_build/build.py and commit" if stale else "site is current")
+        fails += bool(stale)
     return 1 if fails else 0
 
 

@@ -28,3 +28,4 @@ Leaders read this before planning. Each line came from a real wall. The director
 - **CDP ports:** never hard-code one. A tester attached to another tester's Chrome this way. Use `freshWindow`.
 - **Suite hooks:** a suite hook's throw is swallowed and «إرسال» is still pressed, so to stop before sending, use the fill step and decide.
 - **Read-only workers:** stop as soon as `tracker-live.md` says no ticket was filed, rather than waiting out the deadline.
+- **Evidence names are Arabic, `<المشكلة>-<الخدمة>-<التاريخ>-<الوقت>` (owner, 2026-11-09):** issue, service, `YYYY-MM-DD`, `HH.MM` in 24 hours, ≤150 characters, `-2` for a repeat in the same minute. Generate it with `evidence_name.py` / `evidenceName()`, never by hand; `report-check` and `preview-check` refuse anything else. Forward only: existing files keep their names.
