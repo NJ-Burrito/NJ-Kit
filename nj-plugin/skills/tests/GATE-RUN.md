@@ -6,7 +6,7 @@ $ nj-delegate/scripts/check_governance.py --selftest -> rc=0
 ok   --run: overlapping OWNED_PATHS (prefix) is caught
 $ nj-delegate/scripts/check_governance.py --tally -> rc=0
 tally: 8 gates, 8 habits, 0 naming a missing script
-$ nj-delegate/scripts/check_governance.py --project <PROJ_ROOT> -> rc=0
+$ nj-delegate/scripts/check_governance.py --project <project-root> -> rc=0
 governance check: 5/5 pass, 0 fail
 $ nj-delegate/scripts/check_governance.py --run .agent-ops/briefs/v3-build -> rc=0
 run check: 4 briefs, 0 overlap(s)

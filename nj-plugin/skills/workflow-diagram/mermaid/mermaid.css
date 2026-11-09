@@ -1,3 +1,3 @@
-/* Thmanyah Sans from the ENSERA brand folder (licence: no redistribution, no hosting: do not paste these into a shared SVG). */
-@font-face{font-family:'Thmanyah Sans';font-weight:400;src:url('thmanyah/thmanyah-sans-Regular.w400.woff2') format('woff2')}
-@font-face{font-family:'Thmanyah Sans';font-weight:700;src:url('thmanyah/thmanyah-sans-Bold.w700.woff2') format('woff2')}
+/* Thmanyah Sans: installed family via local(), else mermaid/fonts/ next to this file (not shipped), else sans-serif. To point at a font folder, drop the two .woff2 files in mermaid/fonts/ (licence: no redistribution, no hosting: do not paste these into a shared SVG). */
+@font-face{font-family:'Thmanyah Sans';font-weight:400;src:local('Thmanyah Sans'),local('Thmanyah Sans Regular'),url('fonts/thmanyah-sans-Regular.w400.woff2') format('woff2')}
+@font-face{font-family:'Thmanyah Sans';font-weight:700;src:local('Thmanyah Sans Bold'),local('Thmanyah Sans'),url('fonts/thmanyah-sans-Bold.w700.woff2') format('woff2')}

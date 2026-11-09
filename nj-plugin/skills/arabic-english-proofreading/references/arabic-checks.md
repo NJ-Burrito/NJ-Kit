@@ -31,7 +31,7 @@ is *-at-*, it is **ة**; if it is *-ah/-h*, it is **ه**.
 | الخدمه | الخدمــة | feminine noun |
 | المؤسسه | المؤسســة | feminine noun |
 | وثيقه | وثيقــة | feminine noun |
-| مديرية الاغذيه | مديرية الأغذيــة | feminine noun |
+| مديرية الماليه | مديرية الماليــة | feminine noun |
 
 **But `ه` is right** as a masculine possessive suffix: «طلبه» (*his request*),
 «موقعه» (*its site*). «طلبة» is a different word (*students*). So this cannot

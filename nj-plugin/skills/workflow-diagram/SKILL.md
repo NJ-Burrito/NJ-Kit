@@ -18,7 +18,7 @@ can tell by looking.
 
 ## Standard v5 summary (2026-09-15)
 
-The current figure rules for the 8 in-scope PROJ services are consolidated in
+Example (PROJ project; other projects substitute their own standard): the current figure rules for the 8 in-scope PROJ services are consolidated in
 `artifacts/srs/PROJ/srs-standard-v5.md` §3 — starts at «إرسال الطلب», compact
 style (box ≥ 21.5 mm), derived from the service's own Flowable model, one
 connected forward chain (no island/dangling/doubled edge), the solid black
@@ -48,7 +48,7 @@ Every diagram bug this project has shipped was one of these being broken.
    loops instead of one.» The sheet must be walkable from the start terminator
    to every shape on it. `flowable-to-desks.ts` walks the model along the
    **order-1 exit of each gateway**, so a routing gateway's other arm never
-   joins the spine: on `technical-consultation` the whole
+   joins the spine: on `service-d` the whole
    «رئيس قسم الأنظمة والخدمات → فني قسم الأنظمة والخدمات» branch of
    `REQUIRED_SECTION` arrived `detached` and was drawn with no edge into it
    from anywhere a reader could start. Every legibility gate passed — an island
@@ -59,7 +59,7 @@ Every diagram bug this project has shipped was one of these being broken.
    sheet cannot reach from «إرسال الطلب». Test **reachability**, never
    in-degree: the island had an incoming edge on every shape in it, from its
    own rework bubble. A shape the *model* gives no inbound flow at all
-   (`license-trade-cosmetics`'s «اللجنة») is reported, never repaired — the
+   (`service-b`'s «اللجنة») is reported, never repaired — the
    figure may not invent a route.
 5. **A rework bubble's way back carries the applicant's own word.** The
    «إعادة تقديم الطلب» bubble's return edge was pushed with an empty label, so
@@ -291,20 +291,22 @@ it was missing on this laptop on 2026-10-15 and a build agent silently shipped t
 diagrams as code blocks; `npm i -g @mermaid-js/mermaid-cli@12.0.0` fixed it). The hand-built workflow figure above stays authoritative
 for the workflow figure: Mermaid does not replace it, and the four checks above still apply.
 
+(`$SKILL_DIR` = this skill's folder.)
+
 ```
-mmdc -i d.mmd -o d.svg -c <NJ_PLUGIN_ROOT>/skills/workflow-diagram/mermaid/mermaid-config.json -C <NJ_PLUGIN_ROOT>/skills/workflow-diagram/mermaid/mermaid.css -b "#F3F8F9" -s 2
+mmdc -i d.mmd -o d.svg -c "$SKILL_DIR/mermaid/mermaid-config.json" -C "$SKILL_DIR/mermaid/mermaid.css" -b "#F3F8F9" -s 2
 ```
 
 Config `mermaid/mermaid-config.json` carries the brand palette (from `brand/tokens.json`);
-`mermaid/mermaid.css` loads Thmanyah Sans from ENSERA `brand/fonts/thmanyah/` by file URL.
+`mermaid/mermaid.css` loads Thmanyah Sans via `local()` (installed font) or from `mermaid/fonts/` (copy `thmanyah-sans-Regular.w400.woff2` and `thmanyah-sans-Bold.w700.woff2` there, e.g. from ACME `brand/fonts/thmanyah/`; not shipped, licence). With neither, text falls back to sans-serif.
 Extension `.png` or `.pdf` gives those. The fonts are referenced, not embedded: do not
 paste an SVG that embeds them into anything public (licence: no redistribution).
 **Arabic caveat:** labels render joined and in Thmanyah, and an all-Arabic diagram
-works with `flowchart RL`. Mixed Latin and Arabic in one label follows the bidi
+works with `flowchart LR`, the only allowed direction (the owner 2026-11-02: every diagram runs from the top left to the bottom right, in any language). Mixed Latin and Arabic in one label follows the bidi
 algorithm, so check word order. Edge labels sit on the line, so `visual_gate`'s
 overlap check flags them: run it on the SVG wrapped in minimal HTML, and read overlap
 hits on edge labels as inherent, not a fault. Smoke outputs and notes:
-ENSERA `documentation/10-Instagram-Reels-Review/mermaid/mermaid.md`.
+ACME `documentation/10-Instagram-Reels-Review/mermaid/mermaid.md`.
 
 ## When someone says "the diagram is wrong"
 

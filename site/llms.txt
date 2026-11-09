@@ -1,16 +1,16 @@
 # NJ-Kit
 
-> NJ-Kit is a free, open-source Claude Code plugin: one working method and 41 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, Arabic and English first-class, by Nader Alzghoul. Independent project, not affiliated with or endorsed by Anthropic.
+> NJ-Kit is a free, open-source Claude Code plugin: one working method and 44 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, Arabic and English first-class, by Nader Alzghoul. Independent project, not affiliated with or endorsed by Anthropic.
 
 - [Website, English](https://nj-burrito.github.io/NJ-Kit/): what is inside, one illustrated run, comparison, install, FAQ
 - [Website, Arabic](https://nj-burrito.github.io/NJ-Kit/ar/): the same page in Arabic
-- [Source and skill list](https://github.com/NJ-Burrito/NJ-Kit): all 41 skills, README, MIT licence
-- Install as a Claude Code plugin: `/plugin marketplace add NJ-Burrito/NJ-Kit` then `/plugin install nj-kit@nj-kit` (24 skills, about a minute); the kit installer adds the other 17
+- [Source and skill list](https://github.com/NJ-Burrito/NJ-Kit): all 44 skills, README, MIT licence
+- Install as a Claude Code plugin: `/plugin marketplace add NJ-Burrito/NJ-Kit` then `/plugin install nj-kit@nj-kit` (27 skills, about a minute); the kit installer adds the other 17
 - Any agent that reads `SKILL.md` can use the skill folders directly, no installer
 
 ## Answers
 
-- What is NJ-Kit? A free, open-source Claude Code plugin: one working method and 41 skills, each ending in a PASS or FAIL script gate.
+- What is NJ-Kit? A free, open-source Claude Code plugin: one working method and 44 skills, each ending in a PASS or FAIL script gate.
 - What are Claude Code skills? A skill is a folder with a SKILL.md file of instructions, plus any scripts it needs. Claude Code reads each skill's description and loads the skill when a task matches it.
 - What is a gate? A script at the end of a skill that checks the result and prints PASS or FAIL. On FAIL, the skill makes one fix and runs the gate again.
 - The method: analyse, find the skill, plan, execute, gate, review.

@@ -14,7 +14,7 @@
  * Usage:
  *   node pinterest_browse.cjs --query "motion design pitch deck" \
  *     --out artifacts/research/<project>/refs/pinterest/pins.jsonl \
- *     [--limit 40] [--thumbnails] [--ensera-tag <session-tag>] \
+ *     [--limit 40] [--thumbnails] [--session-tag <session-tag>] \
  *     [--profile "%LOCALAPPDATA%\nj-pinterest-profile"]
  *
  * Never signs in, never accepts a terms/checkpoint screen. If the loaded page
@@ -60,7 +60,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (!args.query || !args.out) {
     console.error(
-      "usage: pinterest_browse.cjs --query \"...\" --out pins.jsonl [--limit 40] [--thumbnails] [--ensera-tag TAG] [--profile PATH]"
+      "usage: pinterest_browse.cjs --query \"...\" --out pins.jsonl [--limit 40] [--thumbnails] [--session-tag TAG] [--profile PATH]"
     );
     process.exit(2);
   }
@@ -68,7 +68,7 @@ async function main() {
   const { chromium } = requirePlaywright();
   const profileDir =
     args.profile || path.join(os.homedir(), "AppData", "Local", "nj-pinterest-profile");
-  const tag = args["ensera-tag"] || "nj-pinterest";
+  const tag = args["session-tag"] || "nj-pinterest";
   const limit = Number(args.limit) || 40;
 
   fs.mkdirSync(path.dirname(args.out), { recursive: true });

@@ -169,7 +169,7 @@ KNOWN_SOURCES = {
     # heygen-com/hyperframes — the entry point plus its domain skills (core,
     # animation, creative, keyframes, cli). Installed 2026-09-16
     # with `npx skills add heygen-com/hyperframes -g`, for QA Wrap (thumbnails)
-    # and the ENSERA project in the same evening. Audited by nj-security-review:
+    # and the ACME project in the same evening. Audited by nj-security-review:
     # one medium finding, hyperframes-cli/references/lambda.md mentions
     # ~/.aws/credentials as a prerequisite of the optional Lambda renderer —
     # prose, not code; nothing reads the file. Hosts referenced are docs only.
@@ -284,7 +284,7 @@ WHY = {
 # of where each one lives and why it exists, and `install.py` links them.
 # Added 2026-09-06 (project-tests).
 PROJECT_SKILLS = {
-    # ENSERA (<ENSERA-root>/.claude/skills), 2026-09-16 -- the five
+    # ACME (<your-project>/.claude/skills), 2026-09-16 -- the five
     # sector skills; they read the project's kb.py, so they cannot live outside it.
     "nj-research",
     "nj-design",
@@ -430,7 +430,7 @@ def live_mcp_servers(previous: dict) -> dict:
         spec = dict(spec)
         if "args" in spec:
             # Store the portable form; install.py expands it again. Normalise separators first:
-            # a mixed "C:\\Users\\X/..." path never matched the forward-slash home and shipped verbatim.
+            # a mixed "<drive>:\\<home>/..." path never matched the forward-slash home and shipped verbatim.
             spec["args"] = [a.replace("\\", "/").replace(home, "~") if isinstance(a, str) and (home in a.replace("\\", "/")) else a
                             for a in spec["args"]]
         # Never ship a credential (2026-10-10: a Figma API key went out in env). Names only; the user sets values.

@@ -97,7 +97,7 @@ const TitleSlide: React.FC<Props> = ({ deck, lang }) => {
   const dir = deck.dir;
   return (
     <Fill style={{ background: C.navy, direction: dir, color: C.paper, padding: `0 ${PADX}px`, justifyContent: "center" }}>
-      <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 30, color: C.lime, ...enter(f, 0, dir, true, 24) }}>Ensera</div>
+      <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 30, color: C.lime, ...enter(f, 0, dir, true, 24) }}>Acme</div>
       <div style={{ fontFamily: DISPLAY, fontWeight: 900, fontSize: lang === "ar" ? 128 : 116, lineHeight: 1.15, marginTop: 14, ...enter(f, 6, dir) }}>{deck.title}</div>
       <div style={{ fontFamily: TEXT, fontSize: 40, marginTop: 26, color: "rgba(243,248,249,.85)", ...enter(f, 14, dir) }}>{deck.subtitle}</div>
       <div style={{ fontFamily: TEXT, fontSize: 30, marginTop: 12, color: "rgba(243,248,249,.62)", ...enter(f, 20, dir) }}><bdi>{deck.date}</bdi></div>

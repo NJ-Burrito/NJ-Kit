@@ -158,7 +158,7 @@ export async function renderPdf(opts) {
       // document set entirely in Amiri still ends up with Arial in its font
       // list, from six words of running head.
       const tplCss = `<style>${fontCss(headerFonts, { weights: [400], italics: false })}
- *{margin:0;font-size:8pt;color:#6B7280;-webkit-print-color-adjust:exact;` +
+ *{margin:0;font-size:6pt;color:#6B7280;-webkit-print-color-adjust:exact;` +
         `font-family:${headerFonts.map((f) => `'${f}'`).join(',')},serif}</style>`;
       templates.displayHeaderFooter = true;
       templates.headerTemplate = tplCss + (header ?? '<div></div>');

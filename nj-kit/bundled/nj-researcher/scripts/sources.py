@@ -4,7 +4,7 @@
 Why a script and not context: the registry holds 300+ sources. Loading that list
 into a model costs ~25-30k tokens EVERY time. A `query` returns 5-10 one-line
 rows, ~200-500 tokens. The model asks a question and gets the few rows it needs.
-Same pattern as ENSERA's scripts/kb.py ("the knowledge base is a script, not
+Same pattern as ACME's scripts/kb.py ("the knowledge base is a script, not
 context").
 
     sources.py init

@@ -95,8 +95,8 @@ what is on the sheet.
   band into the band **above** a return, which is right for the applicant's
   rework lane («إشعار مقدم الطلب» → «تعديل الطلب من مقدم الطلب» → «انتهاء مهلة
   الاستكمال») and wrong for a **detached desk** the chain branches out to —
-  رئيس الشعبة on `cosmetic-medical-disposal`, رئيس قسم الأنظمة والخدمات and
-  رئيس القسم on `technical-consultation`, التفتيش on `monitoring-side-effects`,
+  رئيس الشعبة on `service-e`, رئيس قسم الأنظمة والخدمات and
+  رئيس القسم on `service-d`, التفتيش on `monitoring-side-effects`,
   اللجنة on three more. A detached row has no spine index, so «backwards» has
   to be measured as **reach from the start over the model's own edges**; a
   staff desk the model reaches later is forward, and only a staff desk the

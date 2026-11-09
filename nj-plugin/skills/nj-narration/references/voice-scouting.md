@@ -17,7 +17,7 @@ to do and what they rejected. Then fill `templates/casting-brief.md`:
 
 Example that worked: "male MSA narrator, radio broadcaster (صوت إذاعي): deep, warm, calm, authoritative, studio-clean"
 became F0 90-115 Hz full score, F0 sd 1.8-3.5 st, decay20 <= 0.06 s, SNR >= 50 dB, centroid 450-750 Hz.
-the owner's earlier verdict "get another narrator voice type ... deep and sound like wisdom" is what moved the band down.
+The owner's earlier verdict "get another narrator voice type ... deep and sound like wisdom" is what moved the band down.
 
 ## 2. Write the rubric before you measure
 

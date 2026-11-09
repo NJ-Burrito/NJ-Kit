@@ -25,7 +25,7 @@ figure whose returns cross.
 
 «Readable» now has a **number**, and it is measured off the one figure the
 service owner signed off: `artifacts/srs/PROJ/figure-frozen/
-food-product-registration.svg` is 1711 × 460, fits the 269 × 140 mm art box at
+service-a.svg` is 1711 × 460, fits the 269 × 140 mm art box at
 0.1572, and prints its 140-unit box **22.0 mm** wide with the title at 7.58 pt.
 The floor in `workflow-figure.ts` is `REFERENCE_BOX_MM = 21.5` — the approved
 sheet's own size, less the 0.3 mm that service has drifted since the freeze,
@@ -58,7 +58,7 @@ The rule, in three parts:
 ### The straight shortcut that made it look impossible
 
 The search already varied the row count, and it already scored on printed type
-size — and it kept choosing **one row** for `change-distributor`, at 10.8 mm.
+size — and it kept choosing **one row** for `service-h`, at 10.8 mm.
 The cause was not the score. `route()` drew the drop from an «إجراء» onto the
 ending beneath it **without checking the run was clear**: right on a one-row
 sheet, where the ending stands directly under the diamond with nothing between,
@@ -75,14 +75,14 @@ collisions, and the search then chose the wrap on its own.
 
 | service | one row | chosen | box mm |
 |---|---|---|---|
-| change-distributor | 3490 × 500 | **2 rows** | 10.8 → **18.4** |
+| service-h | 3490 × 500 | **2 rows** | 10.8 → **18.4** |
 | monitoring-side-effects | 1811 × 369 | **2 rows** | 20.8 → **34.5** |
-| license-trade-cosmetics | 3274 × 471 | **3 rows** | 20.6 → **21.0** |
-| food-product-registration | 1738 × 471 | 1 row, unchanged | 21.7 |
-| personal-import-invoice, technical-consultation, cosmetic-medical-disposal | — | 1 row, unchanged | 24.1 / 27.4 / 23.6 |
-| invoice-name-approval, clinical-study-approval | — | 2 / 3 rows, unchanged | 24.3 / 19.7 |
+| service-b | 3274 × 471 | **3 rows** | 20.6 → **21.0** |
+| service-a | 1738 × 471 | 1 row, unchanged | 21.7 |
+| service-c, service-d, service-e | — | 1 row, unchanged | 24.1 / 27.4 / 23.6 |
+| service-f, service-g | — | 2 / 3 rows, unchanged | 24.3 / 19.7 |
 
-`change-distributor` and `clinical-study-approval` do not reach the floor at any
+`service-h` and `service-g` do not reach the floor at any
 row count; they take the best sheet available and that is stated rather than
 hidden. Nothing was scaled: the figure is fitted to the 269 × 140 mm art box as
 it always was, and no wrapped layout exceeded the sheet height.

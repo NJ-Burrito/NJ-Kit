@@ -1,6 +1,6 @@
 # jira-checks.ts skeleton
 
-Reference implementation: `Improvement Delivery/Automation Tests/services/مديرية الاجهزة الطبية و المستلزمات/طلب الموافقة على تعديل مستلزم طبي/jira-checks.ts` (form checks on a second page of the signed-in context).
+Reference implementation: `<suite>/services/<directorate>/<service>/jira-checks.ts` (form checks on a second page of the signed-in context).
 
 ```ts
 // Header: which Bugs, which harvest date, which environment (ids and dates, no secrets).
@@ -9,7 +9,7 @@ import { jiraCheck, jiraSkipped } from '../../../lib/jira';
 import type { StageHooks } from '../../../lib/journey';
 import { openForm } from '../../../lib/service';
 
-export const noteEnv = {} as Record<string, 'qa'>;      // since 2026-10-12 customs runs on staging; leave empty. Example for a future QA-only note: { 'PROJ-1 N3': 'qa' }
+export const noteEnv = {} as Record<string, 'qa'>;      // notes run on staging by default; leave empty. Example for a future QA-only note: { 'PROJ-1 N3': 'qa' }
 
 async function formChecks(page: Page) {
   const p = await page.context().newPage();             // second page: the filing page is never touched

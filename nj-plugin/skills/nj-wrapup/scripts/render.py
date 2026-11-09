@@ -284,8 +284,8 @@ def selftest():
         old = dict(t, generated="2020-01-01T00:00:00")
         assert "min old" in render(old, ctx)[1][0]
         # the v1 boss email carried an endpoint, a status+error body, serials, a personal name; the v1 QA message carried an account name
-        v1 = ("الخطأ: GET /services/general/sanad-auth/callback/sign_auth → 500 {\"error\":\"SIGNING_FAILED\"}\n"
-              "الطلب 123456789012 — المعيّن: assignee-name — الحساب test-account-name — C:\\Users\\x\\a.png")
+        v1 = ("الخطأ: GET /services/general/sso-auth/callback/sign_auth → 500 {\"error\":\"SIGNING_FAILED\"}\n"
+              "الطلب 123456789012 — المعيّن: assignee-name — الحساب test-account-name — D:\\shots\\a.png")
         found = {x.split(":")[0] for x in lint(v1, ["assignee-name", "test-account-name"])}
         assert {"api-path", "http-status", "raw-error-body", "request-serial", "deny-list", "file-path"} <= found, found
         # lint hits inside the context are caught before anything is written

@@ -14,7 +14,7 @@ components, palette or copy.** The reliability still comes from the gates in the
 build pipeline; most of what makes a deck "ugly" is skipping one of them.
 
 **Worked example (front stages + build):**
-`<ENSERA-root>\artifacts\research\kac-sentinel\v4\` (refs/, board/,
+`<your-project>\artifacts\research\kac-sentinel\v4\` (refs/, board/,
 devil/) and `delivery\kac-recurrence-map\deck-v4\` — read `v4/board/STYLE-DNA.md`
 and `v4/devil/devilB.md` before touching a new deck's storyboard; they show what a
 completed stage 2–6 pass looks like, not what to copy into the new deck.
@@ -44,7 +44,7 @@ than skipping straight to the ECONOMY model on faith. Never let Laya's raw bucke
 a slide un-reviewed (nj-laya rule 2: suggest-only).
 
 **Pinterest.** Primary route is `nj-pinterest` — a headed Playwright browse on
-the owner's own signed-in profile, under his verbal, personal, non-transferable
+The owner's own signed-in profile, under his verbal, personal, non-transferable
 permission from Pinterest HQ ("verbal, nothing in writing"). `scripts/pinterest_search.py`
 + `scripts/PINTEREST-SETUP.md` (the API route) still ship in this skill as the
 second path: the owner registers the Pinterest app and drops the token himself

@@ -1,1 +1,1 @@
-Moved to %NJ_LIBRARY%\sfx (<ENSERA-root>\library\sfx) -- old ids resolve via library.py find --alias.
+Moved to %NJ_LIBRARY%\sfx (<your-project>\library\sfx) -- old ids resolve via library.py find --alias.

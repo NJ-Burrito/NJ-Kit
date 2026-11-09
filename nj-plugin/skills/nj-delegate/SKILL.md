@@ -401,6 +401,25 @@ lead with two helpers end to end, then 4 × 4.
 | Model and effort pinned (§0.1) | `sonnet-lead.md` / `haiku-helper.md` frontmatter; `batch` records the runtime id | PENDING (B3) |
 | Lead writes admin files only (§0.1) | PreToolUse hook on Edit/Write for the main agent | PENDING (B3, partial) |
 | No polling, report once, risk-based review, decision quality (§0.3a, §0.10) | none: habit, KPI `lead-wakeups / worker-count` | HABIT |
+| Anti-slowness rules 1-5 (§0.22): targeted tests, wall ceiling, 3-lane cap, no sleep-loop, worktree hygiene | none: habit (brief lines `TESTS`, `WALL`, `PARALLEL`; `relay.py sweep` lists worktrees only once B3 lands) | HABIT |
+| Explicit model on every spawn (§0.22 rule 6) | `.agent-ops/spawns.jsonl` `model` field checked by the Lead at batch close; refusal hook | HABIT (hook PENDING B3) |
+
+### 0.22 Anti-slowness rules, measured 2026-10-29 [HABIT unless marked]
+
+Source: Business-Wrap fix batches, 41 workers = 43.3 agent-hours (2026-10-28 16:40 to 10-29 13:11):
+717 min (311 calls) in sleep-loop waits on test logs, 559 min in `npm test` / suite runs (42 suites, 46+ min serial);
+49 % of all agent time; up to 8 lanes ran browser suites at once on a 12-thread laptop (103 browsers, fork failures);
+no brief had a wall-clock ceiling; all 60 spawns ran on opus/inherit, 0 Haiku, 0 `relay.py batch` rows.
+Detail: `Business-Wrap-wt-speed/RECEIPT-speed.md`, `PROPOSAL-governance.md`.
+
+1. **Tests while iterating are targeted** [HABIT]: named suites or `test:changed`. The full suite runs ONCE per batch, after the Lead's merge, by one worker, which pastes its last line; the Lead re-runs only the touched suites. Measured: 559 min of tests.
+2. **Wall-clock ceiling per brief** [HABIT, brief line `WALL`]: default 45 min per lane, test time counts; at 80 % the worker stops and reports (QUESTION). A full run needing > 10 min is a tooling defect to report. Measured: 8 of 41 workers ran 90-205 min, no ceiling.
+3. **At most 3 lanes run browser/test suites at once on this machine** [HABIT, brief line `PARALLEL`]; other lanes queue that step (build and edit still run). Measured: 6-8 suites + ~100 browsers live while one serial run needed > 40 min.
+4. **No sleep-loop polling of logs** [HABIT]: run the command in ONE blocking call with a `timeout` (or background and end the step on its completion notice). Measured: 311 waits, 717 min.
+5. **Worktree hygiene** [HABIT]: `node_modules` by junction, not `npm ci` (10 min); the Lead removes finished worktrees at batch close (recycle bin); stale ones are named in the sweep report and nobody builds from them.
+6. **Every spawn sets `model` explicitly** [HABIT; hook PENDING B3]: sonnet for a lead, haiku for a helper. `inherit` or opus as a worker is refused, and the Lead greps `.agent-ops/spawns.jsonl` for any other `model` before the batch row. A Haiku helper running the one full suite costs a fraction of an Opus worker polling a log.
+
+Workers cannot run `git merge` or `git push` (hook; §0.17): the Lead merges.
 
 ## 1. The Lead loop
 
@@ -464,7 +483,7 @@ to the least expensive tier with demonstrated reliability for the class of work.
 **Gates are independent of the tier** — a cheaper tier never means a lighter
 gate. Which runtime serves each tier: `reference/runtime-map.md`, read only when
 a brief must name one. Skipping this procedure cost 15.8 % of the 2026-09-15
-worker day (audit: `<project>/artifacts/ops/model-routing-audit-2026-09-16.md`).
+worker day (audit: `<project>/project-tests/artifacts/ops/model-routing-audit-2026-09-16.md`).
 
 ### (a) The ladder — take the first rung that answers the question
 
@@ -590,13 +609,13 @@ The brief names the skill path; the worker reads it **before its first edit**.
 | Task | Skill |
 |---|---|
 | Any deliverable in this repo | the project's `CLAUDE.md`, then its `.claude/skills/*` |
-| SRS document, its chapters, tables, figure page | `project-srs` (project) + `workflow-diagram` |
+| SRS document, its chapters, tables, figure page | `acme-srs` (project) + `workflow-diagram` |
 | Verifying a document against the built system | `srs-verifier` |
 | The workflow figure itself | `workflow-diagram` |
 | PDF from HTML, fonts, copy-paste fidelity | `pdf-typography` |
 | Arabic/English wording, proofreading before delivery | `arabic-english-proofreading` |
-| Browser automation, portal/back-office walks | the project's e2e skill (e.g. `project-e2e`) |
-| Manuals, screenshots, narrated video | the project's manuals skill (e.g. `project-manuals`) |
+| Browser automation, portal/back-office walks | the project's e2e skill (e.g. `proj-e2e`) |
+| Manuals, screenshots, narrated video | the project's manuals skill (e.g. `proj-manuals`) |
 | Deleting anything | `safe-delete` (recycle bin, never rm) |
 | Closing or resuming a session | `session-handoff` + §8 here |
 | A lesson learned mid-task | `nj-learn` |
@@ -671,7 +690,7 @@ Numbered so a brief can cite them ("apply §5 rules 1–6").
   with sources plus mock-ups; it never edits the renderer.
 - Launch independent workers **in one message, before waiting on any**;
   sequential only on a real dependency. Then SUPERVISORY-IDLE (§0.4).
-- **Sonnet leads run in the background; helpers run in one foreground batch** (the owner,
+- **Sonnet leads run in the background; helpers run in one foreground batch** (owner,
   2026-10-16 v4; background-for-leads from 2026-10-11, which superseded the 2026-09-29
   foreground rule). The Lead dispatches each Sonnet lead with `run_in_background: true`; it never
   blocks on one and stays free for the owner's messages. **The trigger method:** a lead reports ONCE,
@@ -814,7 +833,7 @@ challenged.
 9. **Do not invoke heavy skills from the director.** A skill body loaded there
    sits in context for the rest of the session. Name it **in the brief** (§4).
    Never from the director: `workflow-diagram`, `artifact-design`,
-   `frontend-design`, `project-srs`, `pdf-typography`, `workflow-authoring`, the
+   `frontend-design`, `acme-srs`, `pdf-typography`, `workflow-authoring`, the
    project manuals skill, `safe-delete`. The director may invoke only
    `nj-delegate`, `session-handoff` and `nj-learn`. (measured: r9)
 

@@ -1,11 +1,11 @@
 This is the only narration guide. If you find a narration rule anywhere else,
 it is a bug: move it here and leave a pointer. (Retirement patches for every
-other location: `ENSERA/artifacts/production/narration-patches-2026-09-21.md`.)
+other location: `ACME/artifacts/production/narration-patches-2026-09-21.md`.)
 
 Built 2026-09-21, Phase 2, from the repaired knowledge
-(`ENSERA/artifacts/research/narration-knowledge-2026-09-21.json`, 38 findings,
+(`ACME/artifacts/research/narration-knowledge-2026-09-21.json`, 38 findings,
 27 sourced by verbatim quote, 11 unsourced) and the devil pass
-(`ENSERA/artifacts/ops/devil-narration-2026-09-21.md`). Every rule below ends
+(`ACME/artifacts/ops/devil-narration-2026-09-21.md`). Every rule below ends
 with a tag: `[f#]` (a finding id — check the id in the knowledge file),
 `[house default — tune by ear]`, `[the owner, 2026-09-21]` (his pace decision),
 or `[measured 2026-09-21]` (this run's own ffmpeg/voice.py measurement). A
@@ -20,7 +20,7 @@ Scope: commercial marketing, educational material, walkthroughs/tutorials,
 podcasts. `scripts/narration_brief.py` and `scripts/narration_check.py`
 parse the `## Matrix (machine-readable)` fenced block below — don't hand-edit
 numbers anywhere else. Sourced research checkpoint this guide is drawn from:
-`ENSERA/artifacts/research/narration-2026-09-21.md`.
+`ACME/artifacts/research/narration-2026-09-21.md`.
 
 ## Every request — one screen
 
@@ -217,19 +217,19 @@ words"*). `narration_check.py` FAILS a beat with no direction line. Two
 worked examples (used verbatim in the A/B test):
 
 **English, commercial, before (flat, no direction — version A style):**
-> Ensera builds AI and robotics training for students and companies across
+> Acme builds AI and robotics training for students and companies across
 > Jordan.
 
 **English, commercial, after (version B, directed):**
 > direction: confident, warm, lean in on the last three words
-> Ensera trains the people who will build the region's AI — starting now.
+> Acme trains the people who will build the region's AI — starting now.
 
 **Arabic, commercial, before (flat):**
-> تقدم إنسيرا تدريباً في الذكاء الاصطناعي والروبوتات للطلاب والشركات في الأردن.
+> تقدم أكمي تدريباً في الذكاء الاصطناعي والروبوتات للطلاب والشركات في الأردن.
 
 **Arabic, commercial, after (directed, stressed word placed last per §1):**
 > direction: دافئ وواثق، تمهّل على الكلمة الأخيرة
-> إنسيرا تُعِدّ جيلاً كاملاً لبناء الذكاء الاصطناعي — من الأردن.
+> أكمي تُعِدّ جيلاً كاملاً لبناء الذكاء الاصطناعي — من الأردن.
 
 ## 4. Bilingual pair
 
@@ -258,7 +258,7 @@ all, or whose expected-duration ratio exceeds this.
   mitigation. Percentages: "ثمانون بالمئة" not "80%". Currency: name the unit
   in full ("دينار أردني") after the spoken number. [house default — tune by ear]
 - **English terms/brand names inside Arabic:** transliterate into Arabic
-  script for a brand the audience should recognise by sound (إنسيرا), keep
+  script for a brand the audience should recognise by sound (أكمي), keep
   Latin-script acronyms that are read as letters (AI → إيه آي or "الذكاء
   الاصطناعي" depending on whether the brief wants the acronym or the
   translated term — state which in the brief; default: translate on first
@@ -451,19 +451,19 @@ do not build a checker rule around them. [measured 2026-09-21]
 ## 11. Voice & styles (Kore) — the rule every project inherits
 
 Registry: `voice-styles.json` beside this file (the one global copy; evidence and
-samples: ENSERA `documentation/11-Voice-Design/v2/`). Lister: `scripts/voice_style.py`.
+samples: ACME `documentation/11-Voice-Design/v2/`). Lister: `scripts/voice_style.py`.
 Gate: `scripts/voice_style_gate.py`. This section holds the rules; the registry holds
 the values, and **the registry wins** if the table below ever disagrees.
 
 - **Engine and voice:** Gemini 3.1 Flash TTS via OpenRouter (`google/gemini-3.1-flash-tts-preview`), voice **Kore** (Female, 25-35, warm and confident; Arabic MSA, English neutral American). The only engine.
-- **HARD RULE — one model, one take (the owner 2026-10-03, permanent):** `google/gemini-3.1-flash-tts-preview` is the ONLY model any voice pipeline may call. No other model of any kind — no transcriber/ASR, no LLM judge, no tashkeel checker, no second TTS. Each line is voiced ONCE: no verify, no re-voice, no best-of-N takes. the owner checks the finished product by ear. The 2026-10-01 verify/re-roll step (`tashkeel_verify.py`, gemini-3.6-flash) was removed for cost; never reintroduce it. Offline deterministic gates that make no model call (`voice_style_gate.py`) stay.
+- **HARD RULE — one model, one take (the owner 2026-10-03, permanent):** `google/gemini-3.1-flash-tts-preview` is the ONLY model any voice pipeline may call. No other model of any kind — no transcriber/ASR, no LLM judge, no tashkeel checker, no second TTS. Each line is voiced ONCE: no verify, no re-voice, no best-of-N takes. The owner checks the finished product by ear. The 2026-10-01 verify/re-roll step (`tashkeel_verify.py`, gemini-3.6-flash) was removed for cost; never reintroduce it. Offline deterministic gates that make no model call (`voice_style_gate.py`) stay.
 - **Pace:** Arabic 115 wpm (band 110-120), English 150 wpm (band 145-155): visible words / finished clip seconds x 60, per-clip atempo after the silence trim. Applied tempo never above **1.7**.
 - **Loudness:** `loudnorm=I=-14:TP=-2.0:LRA=11` single final pass (§7).
 - **Tashkeel (the owner 2026-10-01, binding):** Arabic text sent to TTS carries full tashkeel on EVERY word, on every letter that takes a mark and on case endings (إعراب), no exceptions, proofread with `arabic-english-proofreading` before voicing; visible text keeps only the marks the source itself writes. Only a letter that takes no mark (bare alif, madd و/ي after damma/kasra, ى, the lam of ال before a sun letter) goes bare. The manifest carries the marked text as `tts_text`; the gate fails the line otherwise.
 - **Where the marks live (the owner 2026-10-01):** website and PDF wording stays EXACTLY as the source writes it, its own tanween and shadda included. Tashkeel is added ONLY to the TTS input (`tts_text`), letters unchanged.
 - **How to send Arabic (measured, KB `reference/arabic-tashkeel/`, rules R-TASHKEEL-001..009):** `input = direction + tts_text`, one sentence per call. (1) Full marks stay: 96.2% of words voiced as sent vs 91.1% bare, and the take-to-take swing shrinks. (2) Marks in NFC order (vowel, then shadda); re-ordering to shadda-first measured no better. (3) Never split a shadda into letter+sukun+letter (89.9%, worse). (4) Write full case endings; Kore reads clause ends in waqf by itself, never force it with sukun. (5) Digits are voiced acceptably but cannot carry marks, so spell out a number whose case or gender matters; spell acronyms in Arabic letters in the TTS text (PDF as بِي دِي إِفْ). (6) **Voice is stochastic** (the same marked text can change vowels between calls) — accepted: one take, no verify/re-roll (hard rule above). Known gaps: shadda minimal pairs (مُعَلِّم / مُعَلَّم) came back as sent only 71% and no respelling fixed it; loanwords such as إلكترونيا follow the marks about 2 of 3 takes.
 - **Pre-voicing gates (the owner 2026-10-03):** `voice_style_gate.py --text-only` (every check that needs no audio) runs in compose before the first TTS call, and `tashkeel_fix_apply.py` (real apply or `--stamp`) writes `narration.ar.checked.json` {step id -> sha256 of ttsAr}; on a cache miss an AR line whose sha is not in the receipt is refused before any call. A refused line costs zero calls; cache hits are never refused.
-- **Brand in Arabic:** إنسيرا.
+- **Brand in Arabic:** أكمي.
 - **Direction syntax:** Direction is a natural-language English prefix to the input text, used for both languages; Gemini does not speak it (read-back checked). Send `direction + text` as `input`; one style per clip.
 - **Never invent or edit a direction.** Wording changes the audio. Need a delivery no style gives? Propose a new style (registry entry + sample + read-back), do not improvise one inline.
 

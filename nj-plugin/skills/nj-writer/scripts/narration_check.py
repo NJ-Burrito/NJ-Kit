@@ -7,7 +7,7 @@ stdlib only.
 Script format, one beat per block:
     direction: warm, confident, lean in on the last three words
     kb:12
-    Ensera trains the people who will build the region's AI.
+    Acme trains the people who will build the region's AI.
 
 Usage:
     PYTHONUTF8=1 python narration_check.py <script.md> <brief.md> [pair_script.md pair_brief.md]
@@ -176,7 +176,7 @@ def selftest():
                       any("word budget" in f for f in fails)))
 
     # 2. missing direction: line fails
-    script = "kb:1\nEnsera builds the future of AI training in Jordan and beyond today now."
+    script = "kb:1\nAcme builds the future of AI training in Jordan and beyond today now."
     fails, warns = check_script(script, base_slots, matrix)
     controls.append(("missing direction: line fails", any("no direction" in f for f in fails)))
 
@@ -188,7 +188,7 @@ def selftest():
 
     # 4. Arabic beat with a raw digit fails numeral policy
     ar_slots = {"genre": "commercial", "language": "ar", "destination": "social_video", "length_s": "15"}
-    script = "direction: دافئ\nإنسيرا تدرب 80 طالباً هذا العام."
+    script = "direction: دافئ\nأكمي تدرب 80 طالباً هذا العام."
     fails, warns = check_script(script, ar_slots, matrix)
     controls.append(("Arabic raw digit fails numeral policy", any("raw digit" in f for f in fails)))
 
@@ -199,7 +199,7 @@ def selftest():
     controls.append(("Arabic word count strips diacritics consistently", n1 == n2 and n1 == 2))
 
     # 6. digit/number with no kb id fails when sourcing required
-    script = "direction: calm\nEnsera trained five hundred students this year."
+    script = "direction: calm\nAcme trained five hundred students this year."
     fails, warns = check_script(script, base_slots, matrix, require_kb=True)
     controls.append(("number with no kb:#id fails when sourcing required",
                       any("kb:#id" in f for f in fails)))

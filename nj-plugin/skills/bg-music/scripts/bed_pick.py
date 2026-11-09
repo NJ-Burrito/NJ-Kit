@@ -21,7 +21,7 @@ import subprocess
 import sys
 
 LIB_ROOT = os.path.join(
-    os.environ.get("NJ_LIBRARY", os.path.join(os.path.expanduser("~"), "Desktop", "ENSERA", "library")), "music"
+    os.environ.get("NJ_LIBRARY", os.path.join(os.path.expanduser("~"), "Desktop", "ACME", "library")), "music"
 )  # cutover 2026-09-21: library.json/history.json here are library.py's projection + the migrated history
 LIBRARY_JSON = os.path.join(LIB_ROOT, "library.json")
 HISTORY_JSON = os.path.join(LIB_ROOT, "history.json")

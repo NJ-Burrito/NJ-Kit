@@ -17,13 +17,26 @@ Needs a suite built like `nj-automation-suite` (lib/jira.ts, tools/gen-jira-spec
 | 6 | explain + agent notes | `jira/explain.json`, `AGENT.md`, README-service section | every id has `{plain, notReflected, fix}` |
 | 7 | ONE non-filing run | `reports/jira-results.jsonl`, per-service Jira HTML | verdicts compared with stage 3 |
 
+## Evidence-bound, four-layer checks (owner, 2026-11-03, HARD RULE)
+**Nothing in a check comes from guessing.** Every desk name, button caption, field label, task key, action key and expected text traces to ONE of: (a) the ticket's own words (quoted, with KEY · date · author), (b) the workflow export (BPMN task / flow keys), (c) what the live portal showed in a harvest (screenshot + DOM + network, saved in `<RUN>/evidence.json`). A value with no source is not written into a check: the note stays `OBSERVED` («يحتاج دليلاً: <what is missing>») until a harvest supplies it.
+- **Harvest before checks (stage 3b):** one read-only pass (or the one filed request) records for every note's target: the desk's task key from the API (e.g. `lastTask`) next to its on-screen Arabic name, every button caption next to its action key (DOM attribute or the request it sends), field labels and control names, output text. File: `<RUN>/evidence.json`, each entry with screenshot path + where it was read. Checks bind to task/action KEYS (stable) and use names only as a second layer.
+- **Four layers per note, each independent; PASS only when all agree:**
+  1. **Visual**: viewport screenshot with a red ring on the exact element (or its absence area), in-viewport asserted.
+  2. **Code / inspect**: the DOM attribute or API answer (task key, action key, `formcontrolname`, disabled flag, the response body that carries the value).
+  3. **Locator**: Playwright locator by role + caption / control name, `toBeVisible` / `toBeEnabled` / count.
+  4. **Names**: the exact wording from the ticket (Arabic folding helper), and for outputs the PDF text.
+  A layer that cannot apply to a note says why in the result detail; a disagreement between layers is ❌ with each layer's reading.
+- **Never-ran guard:** every automatic note must produce a verdict. A note whose desk/stage was never reached is ❌ «لم يصل الفحص إلى شاشته» listing the desks met; silence is never a pass.
+- **Assert the scope, not the page:** look for a text inside the desk's own panel, section or button bar, never `body` text (values typed by the applicant must not satisfy a check).
+- **Oracle from the source:** the expected value is the ticket's, never what the screen shows today; a fix flips ❌ to ✅ by itself.
+
 `<RUN>` = `services/<dir>/<card>/jira-open-bugs-<date>/`. Do not read the service's older analysis (`jira/`, `latest-ticket-*`, old README Jira parts, an old `jira-checks.ts`): rename the old file `jira-checks.prev-<date>.ts` or recycle it, write the new one from `notes.md` only.
 
 ## Notes -> checks (the three shapes)
 - **Testable on card/form** -> `jiraCheck('<KEY> N<n>', title, '<KEY> · <date> · <author>', async () => {...})` in the `hooks.onForm` area. The body asserts exactly what "fixed" means in `notes.md`; locators come from the stage-3 evidence; buttons by caption, keyboard first, Arabic through the folding helper (`has()` / `foldedIncludes`). Returns a short detail string; throws to fail.
 - **Needs a filed request or a desk/output** -> put the check at the right `StageHooks` hook (`onSent / onDesk / onFinal / afterPress`) so the filing test runs it when it gets there. In its standalone per-note test it reports **«محجوب: يحتاج طلباً مقدَّماً»** instead of failing, unless `PROJ_RESUME_TICKET=<ticket>` is given: then it opens that ticket and gets a real verdict.
 - **Untestable** -> `jiraSkipped(['<KEY> N<n>: لا يمكن فحصه آلياً: <reason>'])`.
-- **QA-only (customs)**: since 2026-10-12: staging (was QA only). Customs notes run on staging like every other note; no `noteEnv` entry is needed. The `noteEnv` = 'qa' mechanism stays only as a tool for a future QA-only note.
+- **QA-only notes**: notes run on staging by default; no `noteEnv` entry is needed. The `noteEnv` = 'qa' mechanism stays only as a tool for a future QA-only note.
 - Zero open Bugs: `jiraSkipped([])`, empty per-note tests, and say so in the report.
 
 ## One standalone test per note
@@ -59,4 +72,4 @@ A generated check asserts the note's expected value from its cited source (ticke
 Verdict + chips first (`✅ n · ❌ n · محجوب n`), red first, one card per note, «الخطوة التالية» per item, the copyable one-note command on each card, detail collapsed. See `nj-qa-pipeline/references/adhd-standard.md`.
 
 ## References
-`references/check-shapes.md` (code skeleton for each shape) · your project profile (accounts classes, hooks, example services; not shipped) · siblings: `nj-jira`, `nj-automation-suite`, `nj-qa-pipeline`.
+`references/check-shapes.md` (code skeleton for each shape) · your project profile (`references/<project>.md`, written by you, not shipped) (account classes, hooks, example services) · siblings: `nj-jira`, `nj-automation-suite`, `nj-qa-pipeline`.

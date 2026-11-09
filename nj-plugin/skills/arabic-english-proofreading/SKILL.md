@@ -1,6 +1,6 @@
 ---
 name: arabic-english-proofreading
-description: 'Proofread Arabic, English or bilingual text (SRS, ministry and PROJ submissions, manuals, UI strings). Catches hamza and taa-marbuta errors, Persian letters, invisible bidi characters, tatweel, mixed numerals, Latin punctuation inside Arabic. Triggers: proofread, review, تدقيق, مراجعة لغوية, check the Arabic.'
+description: 'Proofread Arabic, English or bilingual text (SRS, official submissions, manuals, UI strings). Catches hamza and taa-marbuta errors, Persian letters, invisible bidi characters, tatweel, mixed numerals, Latin punctuation inside Arabic. Triggers: proofread, review, تدقيق, مراجعة لغوية, check the Arabic.'
 ---
 
 # Proofreading Arabic and English

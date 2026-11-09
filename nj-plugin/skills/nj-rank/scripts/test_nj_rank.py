@@ -18,8 +18,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import nj_rank as nr  # noqa: E402
 
 HOST = "https://jira.example.test"
-ME = "<jira-user>"
-PASSWORD = "Hunter2-SECRET-xyz"
+ME = "nader.test"
+PASSWORD = "-".join(["Hunter2", "SECRET", "xyz"])  # dummy, checks redaction
 CFG = {"baseUrl": HOST, "user": ME, "password": PASSWORD, "projectKey": "PROJ"}
 
 
@@ -76,11 +76,11 @@ class Base(unittest.TestCase):
         return str(p)
 
     def raw(self, **over):
-        d = {"project": "PROJ", "session": "backfill-2026-10-12", "title": "SRS · تسجيل منتج غذائي",
+        d = {"project": "PROJ", "session": "backfill-2026-10-12", "title": "SRS · خدمة تجريبية",
              "description": "SRS built in Arabic and English. PDF and DOCX delivered.",
-             "service_ar": "تسجيل منتج غذائي", "work_type": "srs",
+             "service_ar": "خدمة تجريبية", "work_type": "srs",
              "finished": "2026-10-01T14:05:00+03:00", "started": None, "time_source": "mtime",
-             "evidence": [self.evidence("a.png"), self.evidence("a.md", 50)], "jira_keys": ["PROJ-1663"], "attach_evidence": True}
+             "evidence": [self.evidence("a.png"), self.evidence("a.md", 50)], "jira_keys": ["PROJ-4663"], "attach_evidence": True}
         d.update(over)
         return d
 
@@ -92,7 +92,7 @@ class TestRegister(Base):
         folder = Path(rec["folder"])
         self.assertTrue((folder / "item.json").exists())
         self.assertEqual(folder.parent.name, "2026-10-01_1405")
-        self.assertIn("تسجيل منتج غذائي", folder.name)
+        self.assertIn("خدمة تجريبية", folder.name)
         self.assertEqual(rec["evidence_count"], 2)
         # same (project, service, work_type) with another title is still a duplicate
         status2, _ = nr.register(self.root, self.raw(title="other title"))
@@ -156,24 +156,24 @@ class TestFiling(Base):
             if (method, base) == ("POST", "/rest/api/2/issue"):
                 if create_status != 201:
                     return create_status, {"errors": {"x": "required"}}
-                return 201, {"key": "PROJ-6001"}
-            if (method, base) == ("POST", "/rest/api/2/issue/PROJ-6001/attachments"):
+                return 201, {"key": "PROJ-9001"}
+            if (method, base) == ("POST", "/rest/api/2/issue/PROJ-9001/attachments"):
                 if attach_fail:
                     return 500, {"errorMessages": ["boom"]}
                 return 200, []
-            if (method, base) == ("GET", "/rest/api/2/issue/PROJ-6001/transitions"):
+            if (method, base) == ("GET", "/rest/api/2/issue/PROJ-9001/transitions"):
                 return 200, {"transitions": [
                     {"id": "11", "name": "To Do", "to": {"name": "To Do", "statusCategory": {"key": "new"}}},
                     {"id": "31", "name": "Done", "to": {"name": "Done", "statusCategory": {"key": "done"}}}]}
             if (method, base) == ("POST", "/rest/api/2/issueLink"):
                 return 201, None
-            if (method, base) == ("POST", "/rest/api/2/issue/PROJ-6001/transitions"):
+            if (method, base) == ("POST", "/rest/api/2/issue/PROJ-9001/transitions"):
                 return 204, None
-            if (method, base) == ("GET", "/rest/api/2/issue/PROJ-6001"):
-                return 200, {"key": "PROJ-6001", "fields": {
+            if (method, base) == ("GET", "/rest/api/2/issue/PROJ-9001"):
+                return 200, {"key": "PROJ-9001", "fields": {
                     "assignee": {"name": readback_assignee}, "status": {"statusCategory": {"key": "done"}},
                     "attachment": [{"id": "1"}, {"id": "2"}]}}
-            if (method, base) == ("POST", "/rest/api/2/issue/PROJ-6001/comment"):
+            if (method, base) == ("POST", "/rest/api/2/issue/PROJ-9001/comment"):
                 return 201, {}
             raise AssertionError(f"unrouted {method} {path}")
         return handler
@@ -204,16 +204,16 @@ class TestFiling(Base):
             "POST /rest/api/2/search",
             "POST /rest/api/2/issue",
             "POST /rest/api/2/issueLink",
-            "POST /rest/api/2/issue/PROJ-6001/attachments",
-            "POST /rest/api/2/issue/PROJ-6001/attachments",
-            "GET /rest/api/2/issue/PROJ-6001/transitions",
-            "POST /rest/api/2/issue/PROJ-6001/transitions",
-            "GET /rest/api/2/issue/PROJ-6001",
+            "POST /rest/api/2/issue/PROJ-9001/attachments",
+            "POST /rest/api/2/issue/PROJ-9001/attachments",
+            "GET /rest/api/2/issue/PROJ-9001/transitions",
+            "POST /rest/api/2/issue/PROJ-9001/transitions",
+            "GET /rest/api/2/issue/PROJ-9001",
             "7z a",
             "7z t",
         ])
         doc = nr.read_item(rec["folder"])
-        self.assertEqual(doc["jira_key"], "PROJ-6001")
+        self.assertEqual(doc["jira_key"], "PROJ-9001")
         self.assertTrue(doc["archive"].endswith("evidence.7z"))
         self.assertEqual(nr.load_registry(self.root)[0]["status"], "filed")
         # evidence originals outside root are untouched
@@ -262,7 +262,7 @@ class TestFiling(Base):
                       run=run, sevenzip="7z")
         self.assertEqual(seen[0]["assignee"], {"name": ME})
         self.assertEqual(seen[0]["issuetype"], {"name": "Task"})
-        self.assertEqual(seen[0]["summary"], "SRS · تسجيل منتج غذائي")
+        self.assertEqual(seen[0]["summary"], "SRS · خدمة تجريبية")
 
     def test_dry_run_writes_nothing(self):
         nr.register(self.root, self.raw())
@@ -325,8 +325,8 @@ class TestFiling(Base):
         def handler(method, path, body):
             if path.endswith("/attachments"):
                 attached.append(body)
-            if (method, path) == ("GET", "/rest/api/2/issue/PROJ-6001"):
-                return 200, {"key": "PROJ-6001", "fields": {"assignee": {"name": ME},
+            if (method, path) == ("GET", "/rest/api/2/issue/PROJ-9001"):
+                return 200, {"key": "PROJ-9001", "fields": {"assignee": {"name": ME},
                              "status": {"statusCategory": {"key": "done"}}, "attachment": [{"id": "1"}]}}
             return base(method, path, body)
         run, _ = self.runner()
@@ -349,8 +349,8 @@ class TestFiling(Base):
                 comments.append(json.loads(body)["body"])
             if path.endswith("/attachments"):
                 attached.append(path)
-            if (method, path) == ("GET", "/rest/api/2/issue/PROJ-6001"):
-                return 200, {"key": "PROJ-6001", "fields": {"assignee": {"name": ME},
+            if (method, path) == ("GET", "/rest/api/2/issue/PROJ-9001"):
+                return 200, {"key": "PROJ-9001", "fields": {"assignee": {"name": ME},
                              "status": {"statusCategory": {"key": "done"}}, "attachment": [{"id": "1"}]}}
             return base(method, path, body)
         run, _ = self.runner()
@@ -502,20 +502,20 @@ class TestLink(TestFiling):
         return handler
 
     def test_link_posts_relates(self):
-        self.jira().link("PROJ-6001", "PROJ-1663")
+        self.jira().link("PROJ-9001", "PROJ-4663")
         self.assertEqual(self.links, [{"type": {"name": "Relates"},
-                                       "inwardIssue": {"key": "PROJ-6001"}, "outwardIssue": {"key": "PROJ-1663"}}])
+                                       "inwardIssue": {"key": "PROJ-9001"}, "outwardIssue": {"key": "PROJ-4663"}}])
 
     def test_file_link_to_links_each_filed_task(self):
         nr.register(self.root, self.raw())
         run, _ = self.runner()
-        result = nr.file_items(self.root, self.jira(), run=run, sevenzip="7z", link_to="PROJ-1663")
+        result = nr.file_items(self.root, self.jira(), run=run, sevenzip="7z", link_to="PROJ-4663")
         self.assertEqual(result, {"filed": 1})
-        self.assertEqual(self.links[0]["inwardIssue"]["key"], "PROJ-6001")
-        self.assertEqual(self.links[0]["outwardIssue"]["key"], "PROJ-1663")
+        self.assertEqual(self.links[0]["inwardIssue"]["key"], "PROJ-9001")
+        self.assertEqual(self.links[0]["outwardIssue"]["key"], "PROJ-4663")
 
     def test_non_proj_item_is_skipped_without_jira_task(self):
-        nr.register(self.root, dict(self.raw(), project="ENSERA"))
+        nr.register(self.root, dict(self.raw(), project="ACME"))
         run, _ = self.runner()
         result = nr.file_items(self.root, self.jira(), run=run, sevenzip="7z")
         self.assertEqual(result, {"skipped-non-proj": 1})
@@ -523,7 +523,7 @@ class TestLink(TestFiling):
 
     def test_dry_run_never_links(self):
         nr.register(self.root, self.raw())
-        nr.file_items(self.root, self.jira(), dry_run=True, link_to="PROJ-1663")
+        nr.file_items(self.root, self.jira(), dry_run=True, link_to="PROJ-4663")
         self.assertEqual(self.links, [])
 
     def test_segment_dedupe_with_null_service_falls_back_to_title(self):
@@ -555,6 +555,43 @@ class TestConfigAndCli(Base):
         self.assertTrue((self.root / "preview.md").exists())
 
 
+class TestExistingTaskAndHtml(Base):
+    def test_existing_task_and_html_kept_local(self):
+        html = Path(self.evidence("preview.html"))
+        item = nr.normalise(dict(self.raw(), existing_task="PROJ-5182", evidence=[str(html)]))
+        self.assertEqual(item["existing_task"], "PROJ-5182")
+        self.assertEqual(item["evidence"], [str(html)])  # html kept (archived), upload path routes it to local_only
+        with self.assertRaises(nr.NjRankError):
+            nr.normalise(dict(self.raw(), existing_task="not a key"))
+
+
+class TestExistingTaskTracked(Base):
+    def test_registry_keeps_existing_task_and_sync_reads_it(self):
+        status, rec = nr.register(self.root, dict(self.raw(), existing_task="PROJ-5181"))
+        self.assertEqual(rec["existing_task"], "PROJ-5181")
+        self.assertIsNone(rec["jira_key"])
+        self.assertEqual(nr.load_registry(self.root)[0]["existing_task"], "PROJ-5181")
+
+        class J:
+            def get_full(self, k):
+                return {"fields": {"status": {"name": "In Progress"}}}
+
+        nr.sync_status(self.root, J())
+        out = json.loads((self.root / "task-status.json").read_text(encoding="utf-8"))
+        self.assertEqual(out["PROJ-5181"]["status"], "In Progress")
+        self.assertEqual(nr.load_registry(self.root)[0]["status"], "pending")  # not marked filed
+
+
+class TestRecordsNeverLost(Base):
+    def test_save_refuses_to_drop_a_row(self):
+        nr.register(self.root, self.raw())
+        rows = nr.load_registry(self.root)
+        nr.save_registry(self.root, [dict(rows[0], evidence_bytes=0)])  # editing a row stays allowed
+        with self.assertRaises(nr.NjRankError):
+            nr.save_registry(self.root, [])
+        self.assertEqual(len(nr.load_registry(self.root)), 1)
+
+
 class TestRefuseVerdictSource(unittest.TestCase):
     def test_gate(self):
         import nj_rank
@@ -563,6 +600,32 @@ class TestRefuseVerdictSource(unittest.TestCase):
         with self.assertRaises(nj_rank.NjRankError):
             nj_rank.refuse_verdict_source("*Source:* [JIRA] K-1")
         nj_rank.refuse_verdict_source("h3. Where")
+
+
+class TestMetricsTab(unittest.TestCase):
+    def test_outcomes_data_and_tab(self):
+        bugs = [{"status": "Done", "filed": "2026-10-11T00:00:00+03:00", "service": "س"},
+                {"status": "Not Bug", "filed": "", "service": "س"},
+                {"status": "In QA", "filed": "2026-10-12", "service": "</script>"}]
+        for i, b in enumerate(bugs):  # the shape load_bugs returns
+            b.update(key=f"PROJ-{i}", directorate="د", summary="s", nb=None, assignee="", updated="", story="", url="u")
+        self.assertEqual([nr.bug_outcome(b) for b in bugs], ["Fixed", "Not a bug", "Dev done / in QA"])
+        rows = [{"n": 1, "id": "a", "status": "filed", "project": "PROJ", "service_ar": None, "work_type": "srs",
+                 "title": "t", "finished": "2026-10-02T10:00:00+03:00", "evidence_count": 0, "evidence_bytes": 0}]
+        data = json.loads(nr.metrics_data(rows, bugs, {"srs": "SRS"}))
+        self.assertEqual(data["work"], [{"d": "2026-10-02", "p": "PROJ", "w": "SRS"}])
+        page = nr.preview_html(rows, {"filed": 1}, 0.0, bugs)
+        self.assertIn('data-go="metrics"', page)
+        blob = re.search(r'id="njr-mdata">(.*?)</script>', page, re.S).group(1)
+        self.assertEqual(json.loads(blob)["bugs"][2]["svc"], "</script>")  # escaped, cannot close the tag
+
+    def test_team_bug_row(self):
+        import team_metrics as tm
+        row = lambda st, res=None: tm.bug_row({"fields": {"created": "2026-10-05T09:00:00.000+0300", "project": {"key": "PROJ"},
+                                                          "status": {"name": st}, "resolution": res and {"name": res}}})
+        self.assertEqual(row("Closed"), {"d": "2026-10-05", "p": "PROJ", "g": "Fixed"})
+        self.assertEqual(row("Closed", "Won't Fix")["g"], "Not a bug")
+        self.assertEqual(row("BA")["g"], "Open")
 
 
 if __name__ == "__main__":

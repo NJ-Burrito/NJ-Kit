@@ -17,7 +17,7 @@ from _matrix import load_matrix  # noqa: E402
 
 KNOWLEDGE_PATH = (
     Path(__file__).resolve().parents[4]
-    / "ENSERA" / "artifacts" / "research" / "narration-knowledge-2026-09-21.json"
+    / "ACME" / "artifacts" / "research" / "narration-knowledge-2026-09-21.json"
 )
 
 TAG_RE = re.compile(
@@ -36,8 +36,7 @@ BULLET_RE = re.compile(r"^\s*-\s+\*\*")
 def load_knowledge():
     if not KNOWLEDGE_PATH.exists():
         # fall back: caller may pass a path via env or the file may have moved
-        research_dir = os.environ.get("ENSERA_RESEARCH_DIR", "")
-        candidates = list(Path(research_dir).glob("narration-knowledge-*.json")) if research_dir else []
+        candidates = list((Path.home()/"Desktop"/"ACME"/"artifacts"/"research").glob("narration-knowledge-*.json"))
         if not candidates:
             raise FileNotFoundError(f"knowledge file not found: {KNOWLEDGE_PATH}")
         path = candidates[0]

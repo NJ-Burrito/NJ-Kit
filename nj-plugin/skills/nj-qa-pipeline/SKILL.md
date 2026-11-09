@@ -12,7 +12,7 @@ Combines `nj-jira` (read/file/re-check/track), `nj-jira-to-automation` (notes ->
 |---|---|---|---|---|
 | 1 | harvest open Bugs per service | nj-jira §3 | `<RUN>/<KEY>.md` | only To Do / In Progress / In QA, this service only |
 | 2 | notes N1..Nn | nj-jira §2 | `notes.md` | count; latest dated wins |
-| 3 | staging check, each note once | nj-jira-to-automation | `latest-ticket.json` + evidence | every note has a verdict; customs on staging (since 2026-10-12: staging (was QA only)) |
+| 3 | staging check, each note once | nj-jira-to-automation | `latest-ticket.json` + evidence | every note has a verdict |
 | 4 | acceptance report (PDF) | nj-automation-suite | run-report PDF | `gates.ts` pass; **the owner accepts the report** |
 | 5 | automation: one test per note | nj-jira-to-automation | `jira-checks.ts`, `*.jira.spec.ts` | tsc 0, `--list`, one non-filing run |
 | 6 | full route walks | this file §3 | `filed-requests.csv`, `<card>-routes-K.md` | every route run once; no «لم يُشغَّل» left |
@@ -25,6 +25,8 @@ Stage 4 is the one hard stop: automation is built from the notes the owner accep
 
 Lessons of each run, with the rule each one produced: `references/lessons-2026-10-12.md` (read it before a run; new lessons are appended there).
 
+UAT notes email from the client (ملاحظات جلسة قبول المستخدم): follow `nj-jira/references/uat-notes-standard.md` (2026-10-22 standard); do not restate it here.
+
 ## 1b. Verdict rules (2026-10-12, lesson 2)
 - A note's verdict is `fixed | not-fixed | blocked | dropped | no-system-change | cannot-test` (`cannot-test` = real technical inability, reason required).
 - **Dropped / no-action notes are never "untestable" (the owner 2026-10-18).** A Jira note dropped in discussion or marked no-action keeps its place as a planned check. Label it, everywhere (tracker, page, report, Jira), with exactly one of: `DROPPED` (dropped in discussion) or `NO SYSTEM CHANGE` (internal/technical follow-up). The why goes in the evidence: ticket, comment id, author, date, verbatim quote. Still check the note on the system: requested behaviour not reflected -> Bug with evidence, and the Bug/report HEADER states «مكان النقاش وما قيل» (where the note was discussed and what was said). `DROPPED`: absent = "confirmed not implemented, current behaviour stays" (not a Bug); present unexpectedly = the finding. `NO SYSTEM CHANGE`: check the area the dev comment names, or source confirmation only if it names none (say so). `cannot test` is kept only for a real technical inability, always with its reason.
@@ -32,7 +34,7 @@ Lessons of each run, with the rule each one produced: `references/lessons-2026-1
 - «No ready check», «cannot test: no suite spec» and «time left» are never reasons. Write the check and run it, or check by hand.
 - Payment («الفوترة») reachable only from the office network: record the environment block with the exact error, not a verdict.
 
-## 1. Orchestration rules (the owner, 2026-10-11)
+## 1. Orchestration rules (owner, 2026-10-11)
 - **Lead = sole orchestrator**, woken by events (worker complete, blocker, decision), never by progress. No model polling: the runtime delivers the completion; a script waits (`Monitor` with an until-loop, never a sleep loop).
 - **Background workers with completion triggers:** every Sonnet worker runs in the background (v4: its Haiku helpers run as one foreground batch inside it); its completion (receipt + report <= 25 lines on STATUS / FINDING / EVIDENCE / FILES-SYMBOLS / RISK / NEXT ACTION, detail to a file) wakes the Lead. A worker never ends its turn while anything of its own still runs. (Superseded 2026-10-16 (v4): the old exception that a builder may run foreground; Sonnet workers always background.)
 - **AMEND for mid-run changes:** every brief carries a `FOCUS` line; a mid-run message that does not start `AMEND:` is not a task. To stop or change a worker: `SendMessage` `AMEND: ...`; the worker records where it stopped in its detail file. Stopped workers leave partial records: read them before re-dispatching (no double filing).
@@ -53,7 +55,7 @@ Lessons of each run, with the rule each one produced: `references/lessons-2026-1
 ## 3. Full route walks
 Per route, once, no retry: `npm run stage -- "<service>" "<test>" all --yes` (send -> payment -> every desk -> final approval). Data-blocked route = BLOCKED-BY-DATA with the exact message, try the other working account ONCE. Then the per-note Jira spec with `PROJ_RESUME_TICKET=<ticket>`. Triage every ❌ into TEST / PORTAL-KNOWN / PORTAL-NEW / LIB / STAGING; PORTAL-NEW -> Bug (dedupe, re-search right before create).
 
-## 3b. Capture, findings, review, recheck (the owner, 2026-10-12)
+## 3b. Capture, findings, review, recheck (owner, 2026-10-12)
 Every draft passes these stages between a filing run and Jira (suite: `tools/findings`, `tools/review`, `tools/recheck`, `lib/findings`):
 1. **Capture text:** each screenshot writes masked page text `<name>.txt` beside the PNG (`lib/evidence.ts` `snap()`), saved locally for the scan only and never put on a ticket as evidence (uploader allowlist, the owner 2026-10-19: png/jpg/jpeg/mp4/webm/gif/md/pdf only). The scan reads the text, not the picture.
 2. **Findings scan:** `npm run findings -- <folder> [--service X] [--build B] [--out file]` writes `findings.jsonl` (rules: raw-iso-date, wrong-year, empty-dash, raw-boolean, untranslated-ui, raw-enum). No model call. `npm run selftest:findings` must show 9 of 12 known drafts caught and 0 false positives. A clean scan is not a pass: the 3 misses need a UI or role check.
@@ -64,22 +66,22 @@ Every draft passes these stages between a filing run and Jira (suite: `tools/fin
 Build and run id (`lib/build.ts`) sit on evidence, `run-meta.json` and `filed-requests.csv` (columns `build`, `run_id`), so every row names its build.
 
 ## 3c. Output inspection at the signing desk (2026-10-12, lessons 8–9)
-- **Signing (single statement; other skills cite this section, never restate it): The signing step itself is never a defect or blocker; a reproducible signing failure (5xx with an error body, e.g. SIGN_HERE not found in PDF) is a process-blocker Bug, routed to the operations owner (the owner, 2026-10-15).** Do not stop at the step itself; a failure Bug carries serial type, timestamp, endpoint, HTTP status and the one-line error body (masked), plus screenshots (main + Sanad popup), console errors and exact time.
+- **Signing (single statement; other skills cite this section, never restate it): The signing step itself is never a defect or blocker; a reproducible signing failure (5xx with an error body, e.g. SIGN_HERE not found in PDF) is a process-blocker Bug, routed to the operations owner (owner, 2026-10-15).** Do not stop at the step itself; a failure Bug carries serial type, timestamp, endpoint, HTTP status and the one-line error body (masked), plus screenshots (main + SSO popup), console errors and exact time.
 - Inspect the output: «عرض المخرج» in the back-office request view (approved requests), and «معاينة المخرج» at the open signing desk. Screenshot it, check names, dates, numbers and Arabic wording, and file only what the output shows.
-- Check the known not-a-bug list (your project's known-not-a-bug list) before every draft.
+- Check the known not-a-bug list (your project profile (not shipped)) before every draft.
 
 ## 3d. Model-change watch (Phase 4, 2026-10-12)
-After every Flowable export (`export.py`, `flowable_facts.py`, `diff.py`, then `watch.py`, in `<project>/reference/flowable`), `CHANGES-since-last.md` lists each service whose BPMN changed, its suite folder and the command `npm run recheck -- --service "<card>"`. Recheck those services on staging before the next batch. A model with no suite folder is listed; the service has to be added first. Nothing is filed from the change list alone: a `broken` or `new` row goes through §3b review, and the §4a Bug-or-design check runs first.
+After every Flowable export (`export.py`, `flowable_facts.py`, `diff.py`, then `watch.py`, in `project-tests/reference/flowable`), `CHANGES-since-last.md` lists each service whose BPMN changed, its suite folder and the command `npm run recheck -- --service "<card>"`. Recheck those services on staging before the next batch. A model with no suite folder is listed; the service has to be added first. Nothing is filed from the change list alone: a `broken` or `new` row goes through §3b review, and the §4a Bug-or-design check runs first.
 
 ## 4. Closing the batch
 1. `npm run jira:track`; `npm run sweep-chrome` (0 orphans of yours; peers' are named, not killed); `relay.py sweep` per project CLAUDE.md.
 2. Rebuild report PDFs + `reports/index.html`; ADHD pass over each output.
 3. Docker image + share + 7z (nj-automation-suite): no fonts, no credentials, no Jira attachments.
 4. Update the service READMEs (verdict line first), write the handoff, report once: table of services (stages ✅/❌/⛔, new Bug keys, QA actions) with the report paths.
-5. **Report and email (lessons 17–18):** the report step reads the current rule file, not a copy in the builder; a Sonnet worker greps the output for retired rules (e.g. «QA only») and the Lead decides on any hit before handing it over. Email text is pasted into Outlook: plain text, no markdown bold or tables; Arabic, signed «المالك»; a 3-line summary, one line per service, «ما يلزم» last.
+5. **Report and email (lessons 17–18):** the report step reads the current rule file, not a copy in the builder; a Sonnet worker greps the output for retired rules (e.g. «QA only») and the Lead decides on any hit before handing it over. Email text is pasted into Outlook: plain text, no markdown bold or tables; Arabic, signed with the sender's name; a 3-line summary, one line per service, «ما يلزم» last.
 
 ## 5. Test oracles and self-healing (the owner 2026-10-18; canonical here, other skills point to it)
-Sources, cite as `[id]`/`[KB#id]` like the files do: `QA-handover/self-healing-tests.md` (H/G rules, metrics), `QA Engineer/research/project-e2e-baseline/oracle-integrity.md` (R rules). Read-only inputs.
+Sources, cite as `[id]`/`[KB#id]` like the files do: `QA-handover/self-healing-tests.md` (H/G rules, metrics), `QA Engineer/research/proj-e2e-baseline/oracle-integrity.md` (R rules). Read-only inputs.
 
 **The one sentence.** Never change an expected value to match what the system does. If actual differs from expected the result is a **defect** (expected is right), a **question** (nobody knows which is right) or an **expectation fix with a cited source** (the rule changed); the last one needs a person.
 
@@ -126,15 +128,14 @@ Sources, cite as `[id]`/`[KB#id]` like the files do: `QA-handover/self-healing-t
 
 ## References
 - `references/adhd-standard.md`: the output standard
-- a project run log (numbers, accounts classes, what each brief was, lessons): keep your own
-- Briefs of that day (templates for the worker prompts): `<project>/.agent-ops/briefs/jt-*-2026-10-11.md`
+- Briefs of that day (templates for the worker prompts): `project-tests/.agent-ops/briefs/jt-*-2026-10-11.md`
 
-## Screenshots: viewport only (the owner, 2026-10-18, global)
+## Screenshots: viewport only (owner, 2026-10-18, global)
 
-## Jira stage label (the owner, 2026-10-19)
+## Jira stage label (owner, 2026-10-19)
 Every Bug/Task carries the fixed label `phase2-uat`; rule in `nj-jira/SKILL.md` § Jira stage label.
 
 Evidence method (the owner 2026-10-18): follow `nj-jira/references/bug-template.md` § Evidence rules (viewport + red ring + minimal mask, no .txt/.json, named shots); Suite helper `shotOf(page, target, path)` (`tests/PROJ/_shared/shot.ts` in project-tests, `lib/shot.ts` in Automation Tests) does the scroll + in-viewport assert. Tools `nj-jira/scripts/evidence-shot.ts`, `ring-pdf.py`.
 
-## Ticket wording (the owner, 2026-10-20)
-Bug = five short blocks only (المشكلة / الخطوات / المتوقع / الفعلي / الدليل, each <= 3 lines), no `*Verdict:*` / `*Source:*` line, no [JIRA]/[ASSUMED] label (those stay in QA reports). Task = the owner's own work only, 2-3 labelled blocks, one line per Bug key, "Relates" links, no agent counts, no report attachments by default (canonical PROJ-2169; `nj-jira/SKILL.md` § Task wording). Layout only, no added review step.
+## Ticket wording (owner, 2026-10-20)
+Bug = five short blocks only (المشكلة / الخطوات / المتوقع / الفعلي / الدليل, each <= 3 lines), no `*Verdict:*` / `*Source:*` line, no [JIRA]/[ASSUMED] label (those stay in QA reports). Task = the owner's own work only, 2-3 labelled blocks, one line per Bug key, "Relates" links, no agent counts, no report attachments by default (canonical PROJ-5169; `nj-jira/SKILL.md` § Task wording). Layout only, no added review step.

@@ -212,7 +212,7 @@ flows, axes), `[engine: theatre]` (one hand-curved hero move), or `[engine:
 remotion]` (a data-driven template scene, many rows, same layout) is built the
 way `reference/motion-engines.md` says. Tag a
 scene only when the default would cost real hand-placing; most films need none
-of the four. Remotion's licence is confirmed for Ensera's headcount —
+of the four. Remotion's licence is confirmed for Acme's headcount —
 `reference/motion-engines.md` has the record; re-check if headcount changes.
 
 ## Stage 4 — build (LOW freedom on structure, HIGH on drawing)

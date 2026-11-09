@@ -1,7 +1,7 @@
 # The noise window before or after a line
 
 > "When the voicing of a sentence starts, a small window sometimes appears before or after with noise only, no words;
-> it is distracting and makes the sound quality poor." (the owner, 2026-10-26)
+> it is distracting and makes the sound quality poor." (owner, 2026-10-26)
 
 The rule: remove it, and prevent it, **without cutting any sound or word short.** Proof that it can be done:
 the calibration project's edge proof (33 takes: noise-only tail 5450 ms before, 0 ms after; the edge gate

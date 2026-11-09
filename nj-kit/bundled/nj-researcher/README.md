@@ -51,7 +51,7 @@ the 307 seeded rows are like this. Confirm before citing.
 ## What it deliberately does not do
 
 - **Does not plan.** It hands the plan step a file.
-- **Does not publish.** The ENSERA gate still applies: tier-1/2 primary, or two
+- **Does not publish.** The ACME gate still applies: tier-1/2 primary, or two
   genuinely independent sources on different hosts, plus a retrieval date and a
   verifier who is not the author.
 - **Does not decide truth.** `check` reads structure — host, TLD, path, whether

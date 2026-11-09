@@ -137,7 +137,7 @@ PYTHONUTF8=1 python scripts/sources.py add --name "Jordan DoS labour survey" \
   --why "the national statistics office collects the series"
 ```
 `--for` and `--why` are required by the CLI. That is the "no reliability claim
-without a recorded reason" rule enforced in code, the way ENSERA's `kb.py`
+without a recorded reason" rule enforced in code, the way ACME's `kb.py`
 enforces its verify gate.
 
 ## Arabic and English are both first-class
@@ -151,7 +151,7 @@ neutral one. Arabic PDFs are extracted with **poppler `pdftotext`** only.
 ## What this skill does not do
 
 - It does not decide the plan. It supplies the file the plan is built on.
-- It does not publish. The ENSERA gate (tier-1/2 primary **or** two independent
+- It does not publish. The ACME gate (tier-1/2 primary **or** two independent
   hosts + retrieval date + a verifier who is not the author) still applies.
 - It does not score truth. `check` scores *structure* and lists what a human
   must still confirm.

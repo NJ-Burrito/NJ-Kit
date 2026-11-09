@@ -5,7 +5,7 @@ description: Stand up or query a gated, script-verified knowledge base — a KB 
 
 # nj-evidence
 
-Named by the owner, 2026-09-22, first built in the ENSERA repo. Two layers:
+Named by the owner, 2026-09-22, first built in the ACME repo. Two layers:
 
 1. **KB** — every fact is an entry tied to at least one source, with a status
    (`draft` / `recheck` / `verified`). Nothing ships off a `draft` entry.
@@ -24,7 +24,7 @@ Three things this method assumes will happen, because they already have:
 - **A rule outlives its evidence.** A source goes stale, an entry gets
   demoted, but the rule built on it keeps being quoted. Discipline says
   "remember to check" — code says `rules.py check` fails the build until the
-  citation is fixed. In ENSERA this caught a rule ("24 fps always") that had
+  citation is fixed. In ACME this caught a rule ("24 fps always") that had
   no evidence at all once the gate demanded a citation.
 - **Absence gets guessed instead of recorded as a gap.** An agent asked "does
   this platform want captions burned in?" will produce an answer either way.
@@ -126,9 +126,9 @@ note needed.
    before starting, and every publication step runs `kb.py query --status
    verified` (or the specific entry) before the claim goes out.
 
-## Worked example (ENSERA, not itself part of the method)
+## Worked example (ACME, not itself part of the method)
 
-ENSERA runs five sectors in one `kb/ensera.db` and ten rule packs in
+ACME runs five sectors in one `kb/acme.db` and ten rule packs in
 `kb/rules/`. The 2026-09-22 run found three wrong numbers this way — one
 entry citing $72B where the source said $172B, one citing "est. 2005" where
 the source said 2006, one citing the wrong dollar figure entirely for a

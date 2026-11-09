@@ -78,7 +78,7 @@ adopting Laya anywhere; do not re-argue it, encode it.
 
 ## Evidence outside the envelope: style-triage measurement, 2026-09-25
 
-`kacs-v4` (ENSERA, `artifacts/research/kac-sentinel/v4/refs/`) measured Laya on an
+`kacs-v4` (ACME, `artifacts/research/kac-sentinel/v4/refs/`) measured Laya on an
 8-bucket style classification with 45 refs, 15 hand-labelled — an **out-of-envelope**
 call (>10 options, rule 5) run anyway as a gate before committing to Laya for a real
 triage. **Laya accuracy = 0.40 on the 15 labelled rows (`triage.json`), below the 0.70

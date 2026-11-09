@@ -53,7 +53,7 @@ class SecretRule(unittest.TestCase):
 
     def test_house_credential_paths_denied(self):
         # regression: ~/.config/linkedin/li.env did not match
-        self.assertTrue(self.denied("Read", file_path="C:\\Users\\x\\.config\\linkedin\\li.env"))
+        self.assertTrue(self.denied("Read", file_path="D:\\home\\x\\.config\\linkedin\\li.env"))
         self.assertTrue(self.denied("Read", file_path="/home/x/.config/pinterest/pinterest.env"))
         self.assertTrue(self.denied("Bash", command="cat ~/.config/linkedin/li.env"))
         self.assertTrue(self.denied("PowerShell", command="Get-Content $HOME\\.config\\linkedin\\li.env"))
@@ -62,7 +62,7 @@ class SecretRule(unittest.TestCase):
         self.assertTrue(self.denied("Read", file_path="/repo/.env"))
         self.assertTrue(self.denied("Read", file_path="/repo/.env.local"))
         self.assertTrue(self.denied("Grep", path="/repo/credentials/", pattern="x"))
-        self.assertTrue(self.denied("Read", file_path="C:/Users/x/.claude/secrets/a"))
+        self.assertTrue(self.denied("Read", file_path="D:/home/x/.claude/secrets/a"))
         self.assertTrue(self.denied("Read", file_path="/home/x/.git-credentials"))
         self.assertTrue(self.denied("Read", file_path="/home/x/.ssh/id_rsa"))
 

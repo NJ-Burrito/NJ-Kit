@@ -28,7 +28,7 @@ setContent + data:     →  every family loaded
 goto('file:///…')      →  every family loaded
 ```
 
-It is also how a client SRS shipped 31 pages set in **Segoe UI** while its
+It is also how the PROJ SRS shipped 31 pages set in **Segoe UI** while its
 stylesheet asked for IBM Plex Sans Arabic — never the chosen typeface, and a
 Microsoft font embedded in a file a Windows licence does not cover to redistribute.
 
@@ -129,7 +129,7 @@ pandoc -f docx -t markdown --wrap=none "…docx"  # structure, tables intact
 pandoc -f docx -t html   "…docx" -o body.html   # entry point to the renderer
 ```
 
-Arabic, RTL and table structure survive all three — verified on a real a client SRS.
+Arabic, RTL and table structure survive all three — verified on a real PROJ SRS.
 
 **Convert to HTML, then render through this skill — never `pandoc -o out.pdf`.**
 Pandoc's PDF writer goes through LaTeX, which knows nothing about the vault,
@@ -227,11 +227,11 @@ No CSS lever changes any of it: `font-variant-ligatures:none`,
 `font-feature-settings` on `liga`/`clig`/`calt`, `font-kerning:none` and
 `text-rendering:geometricPrecision` all score identically. The typeface is the
 lever. **Do not set Arabic body text in Cairo or IBM Plex Sans Arabic** — and
-note that IBM Plex Sans Arabic is what the client manuals have been using.
+note that IBM Plex Sans Arabic is what the PROJ manuals have been using.
 
 **3. Bidi order, which is the reader's job and not a defect.** A PDF stores a
-mixed line in *visual* order: `رقم الطلب <request-no> ضمن…` comes back as
-`… ضمن مديرية78202600026 رقم الطلب`. Every real viewer — Acrobat, Chrome's
+mixed line in *visual* order: `رقم الطلب 1234567890 ضمن…` comes back as
+`… ضمن مديرية1234567890 رقم الطلب`. Every real viewer — Acrobat, Chrome's
 viewer, Word — runs the Unicode bidi algorithm on copy and recovers it; crude
 extractors do not. `<bdi dir="ltr">`, `dir` attributes and U+2066 isolates
 change nothing about extraction (tested) — they matter for *rendering*, so
@@ -753,4 +753,6 @@ editor it is not. If a client chooses Cairo anyway, that is their call — recor
 the numbers beside the choice so nobody is surprised by it later, and say plainly
 what the one command to revert is.
 
-Client house rules (type scale, page size, figure rules) belong in your own project profile, not in this skill.
+**Every font size is -2 on this machine (owner, 2026-11-02), in every pipeline; diagram labels excepted.**
+
+A project with its own type scale keeps it in its own `references/<project>-house-rules.md` (not shipped); it is not a portable part of this skill.

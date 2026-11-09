@@ -67,7 +67,7 @@ def main() -> int:
                "head": [both("F8", k) for k in ("step", "days", "owner", "cash")],
                "rows": [{"step": both("F8", s), "days": both("F8", d), "from": a, "to": b,
                          "owner": both("F8", o), "cash": both("F8", c)} for s, d, a, b, o, c in [
-                   ("Introduction to JVA", "1-30", 1, 30, "Ensera leadership", "0"),
+                   ("Introduction to JVA", "1-30", 1, 30, "Acme leadership", "0"),
                    ("Desk checks (5 items)", "1-30", 1, 30, "the owner", "0"),
                    ("Sentinel-2 corridor demo", "running", 0, 90, "satdemo worker", "0"),
                    ("JVA Internal Control meeting", "30-60", 30, 60, "the owner + leader", "travel"),

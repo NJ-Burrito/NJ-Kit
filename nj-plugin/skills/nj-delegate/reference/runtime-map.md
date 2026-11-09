@@ -67,7 +67,7 @@ are kept from spawning by an agent definition without the `Agent` tool (`PENDING
 `helpers_spawned` comes from the spawn log `.agent-ops/spawns.jsonl` (`ts, parent, child_type, model, depth`; checked by `relay.py verify` with `delegation_legal`), not from the receipt.
 
 **Measured ratios that justify the ladder** (derived, see
-`<project>/artifacts/ops/model-routing-audit-2026-09-16.md` — per-run
+`<project>/project-tests/artifacts/ops/model-routing-audit-2026-09-16.md` — per-run
 tokens there are estimated from tool calls, not counter-measured):
 ECONOMY ≈ 350 tok/tool-call, STANDARD ≈ 878, FRONTIER ≈ 2015. On 2026-09-15,
 14 of 22 FRONTIER runs (61 % of FRONTIER spend, 28 % of the day) were scoring,
@@ -91,6 +91,7 @@ Canonical policy: `SKILL.md` §0 (not restated here). Grades: [DOC] Claude Code 
 | background vs foreground | lead background, helper foreground is a **measured workaround [M]**, not a documented rule; docs say background subagents get a smaller tool set [DOC] and fork mode removes `run_in_background` [DOC]: keep the probe in the pilot |
 | worktree | `isolation: "worktree"` branches from the default branch, is auto-removed if unchanged, and holds a lock while running [DOC]; the branch name the Agent result returns is [U] until the pilot |
 | hooks | `SubagentStart` (writes the spawn log `.agent-ops/spawns.jsonl`; whether the input carries a parent id is [U], fallback: count `Agent` tool_use in the lead transcript), `SubagentStop` (receipt ≤ 25 lines, CHANGED vs claim; exit 2 can block) [DOC], `PreToolUse` (deny `git push`/`git merge`/`checkout main`/`reset --hard` for non-Lead agents; deny secrets paths for helpers): all `PENDING (B3)` |
+| speed rules (2026-10-29, [M] Business-Wrap, 43.3 agent-hours) | `SKILL.md` §0.22: always pass `model: "sonnet"` / `"haiku"` on `Agent` (omitted = inherit, refused); ≤ 3 lanes with browser suites on this 12-thread laptop; wait with one blocking call + `timeout`, never a sleep loop; workers never `git merge` (hook), the Lead merges and removes finished worktrees |
 
 ## Claude Code mechanics that change what the Lead or a worker does (2026-09-29)
 

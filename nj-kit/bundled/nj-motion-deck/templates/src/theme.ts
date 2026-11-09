@@ -1,7 +1,7 @@
 import React from "react";
 import { continueRender, delayRender, staticFile, interpolate, Easing, useCurrentFrame, Img } from "remotion";
 
-// Ensera tokens (brand/tokens.json). Contrast measured 2026-09-25 with the WCAG formula:
+// Acme tokens (brand/tokens.json). Contrast measured 2026-09-25 with the WCAG formula:
 // paper/navy 15.76 · lime/navy 13.49 · teal/navy 5.07 · mute/paper 5.95 · teal/paper 3.11 (large bold only)
 // Data colours (blue, green, amber, coral) are drawn on navy2 only: coral/paper is 2.59, refused.
 export const C = {
