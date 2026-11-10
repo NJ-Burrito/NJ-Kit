@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.3 — 2026-11-10
+
+- `nj-writer` voice gate: a product name registered in `voice-styles.json` under `latin_brands` (an entry lists the forms of one name, e.g. `QA Wrap` and `QA-Wrap`) may stay Latin in `tts_text` of an Arabic narration line, so it is said exactly as in English. `voice_style_gate.py` (`tts_fails(n, vis, tts, brands=())`) exempts such a name from the spell-it-out rule (R-TASHKEEL-008); an unregistered Latin word still fails, and a missing Arabic word still fails. Four self-test asserts added.
+- `nj-writer/reference/arabic-tashkeel/kb/rules/tashkeel.md`: R-TASHKEEL-008 names the exception.
+- Known, not changed: `voice_style_gate.py --selftest` fails in this repo on the placeholder brand in the sample lines (the visible text says `Acme`, the tashkeel sample still has the original name); it passes on the author's machine. CI does not run it.
+
 ## 2.3.2 — 2026-11-10
 
 - `nj-jira/references/bug-template.md`: the evidence rules now say what 2.3.1 changed in `nj-qa` and `nj-jira/SKILL.md`: file names are Arabic `<المشكلة>-<الخدمة>-<التاريخ>-<الوقت>`, made by `nj-qa/scripts/evidence_name.py` (the template still told readers to name files by what they show).

@@ -61,7 +61,7 @@ Entry ids refer to `kb/tashkeel.db` (`scripts/kb.py query --sector tashkeel --fu
 **Tags:** tashkeel, numbers
 
 ### R-TASHKEEL-008 · Latin tokens: spell them in Arabic letters
-**Rule:** Write PDF as بِي دِي إِفْ in the TTS text so it can carry marks; the visible text keeps the Latin form.
+**Rule:** Write PDF as بِي دِي إِفْ in the TTS text so it can carry marks; the visible text keeps the Latin form. **Exception (the owner 2026-11-10):** a product name registered in `voice-styles.json` → `latin_brands` (e.g. QA Wrap) stays Latin in the TTS text so it is said exactly as in English; the gate accepts it.
 **When:** an acronym or Latin word in Arabic narration.
 **Because:** #11
 **Strength:** advisory

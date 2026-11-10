@@ -4,7 +4,7 @@ Manifest: {"lines":[{"id","lang":"ar|en","style","direction","text"(visible),"tt
 Fails on: no style, unregistered style, direction not byte-equal to the registry, wpm outside the
 registry band (words of visible text / seconds * 60), tempo > max_tempo, visible text that looks like the TTS text pasted in
 (more than 50% of its Arabic words marked; the source's OWN marks, e.g. فتحاً, are allowed), and for Arabic: no tts_text, any word of tts_text
-with no mark, any markable letter (final letter included) without a mark, tts_text letters != visible letters,
+with no mark, any markable letter (final letter included) without a mark, tts_text letters != visible letters (a registry latin_brands name may stay Latin in tts_text),
 a shadda split into letter+sukun+same letter (R-TASHKEEL-002, measured worse), a control character in tts_text
 (a mark-rewriting helper once injected U+0001 and dropped a vowel). Mark ORDER is not checked: vowel-then-shadda (NFC) measured as good as shadda-first (R-TASHKEEL-001).
 Exempt from needing a mark: ا آ ٱ ى; و after damma and ي after kasra (madd); the lam of ال before a
@@ -67,7 +67,7 @@ def bare_ok(w, i):
     return w[i - 1][0] in "اٱ" or (w[i - 1][0] == "ل" and KASRA in w[i - 1][1])
 
 
-def tts_fails(n, vis, tts):
+def tts_fails(n, vis, tts, brands=()):
     if not tts or not tts.strip():
         return [f"line {n}: Arabic line has no tts_text"]
     f = []
@@ -86,6 +86,10 @@ def tts_fails(n, vis, tts):
             end = " (case ending/final letter)" if not w[-1][1] and not bare_ok(w, len(w) - 1) else ""
             f.append(f"line {n}: word {word!r} unmarked letter(s) {''.join(miss)}{end}")
     ww = ["".join(c for c, _ in w) for w in tw]
+    for forms in brands:  # registered Latin brand kept Latin in tts_text: not spelled out (R-TASHKEEL-008 exemption)
+        if any(b in tts for b in forms):
+            for b in sorted(forms, key=len, reverse=True):
+                vis = vis.replace(b, " ")
     return f + align_fails(n, vis, ww)
 
 
@@ -122,6 +126,7 @@ def check(manifest, text_only=False):
     reg = load()
     by = {s["id"]: s for s in reg["styles"]}
     band, mt = reg["pace_target_wpm"]["band"], reg["max_tempo"]
+    brands = [v for k, v in (reg.get("latin_brands") or {}).items() if not k.startswith("_")]
     fails = []
     lines = manifest.get("lines") or []
     if not lines:
@@ -140,7 +145,7 @@ def check(manifest, text_only=False):
             fails.append(f"line {n}: visible text looks like the TTS text pasted in ({marked_share(text):.0%} of Arabic words marked; the source's own marks are fine, TTS tashkeel goes in tts_text)")
         lang, sec = l.get("lang"), l.get("seconds")
         if lang == "ar":
-            fails += tts_fails(n, text, l.get("tts_text"))
+            fails += tts_fails(n, text, l.get("tts_text"), brands)
         if lang not in band:
             fails.append(f"line {n}: lang must be ar or en")
         elif text_only:
@@ -210,6 +215,12 @@ def selftest():
     assert tts_fails(1, lv, "مِلَفُّ بِي دِي إِفْ الْآنَ") == [], tts_fails(1, lv, "مِلَفُّ بِي دِي إِفْ الْآنَ")
     assert any("words" in x for x in tts_fails(1, lv, "مِلَفُّ بِي دِي إِفْ الْآنَ جِدًّا"))
     assert any("words" in x for x in tts_fails(1, "ملف الآن", "مِلَفُّ جِدًّا الْآنَ"))
+    # registered Latin brand (the owner 2026-11-10): kept Latin in tts_text passes; unregistered Latin still fails
+    qb = [["QA Wrap", "QA-Wrap"]]
+    assert tts_fails(1, "احصل على QA-Wrap.", "اِحْصُلْ عَلَى QA Wrap.", qb) == [], tts_fails(1, "احصل على QA-Wrap.", "اِحْصُلْ عَلَى QA Wrap.", qb)
+    assert any("words" in x for x in tts_fails(1, "احصل على QA-Wrap.", "اِحْصُلْ عَلَى QA Wrap.")), "no registry: still fails"
+    assert any("words" in x for x in tts_fails(1, lv, "مِلَفُّ PDF الْآنَ", qb)), "unregistered Latin still fails"
+    assert any("words" in x for x in tts_fails(1, "احصل على QA-Wrap الآن", "اِحْصُلْ عَلَى QA Wrap", qb)), "missing Arabic word still fails"
     # --text-only: no seconds/tempo needed; text faults still fail; audio faults are not looked at
     to = lambda **k: check({"lines": [{k2: v for k2, v in dict(ar(), **k).items() if k2 not in ("seconds", "tempo")}]}, text_only=True)  # noqa: E731
     assert to() == [], to()

@@ -171,5 +171,6 @@
   "ar_tashkeel": "تَبْنِي إِنْسِيرَا رُوبُوتَاتٍ تُسَاعِدُ النَّاسَ. الْأَوَّلُ جَاهِزٌ، وَهُوَ يَسْتَطِيعُ الْآنَ أَنْ يَلْتَقِطَ كُوبًا.",
   "note": "Same text through every style, ar and en, so styles compare on equal text."
  },
- "max_tempo": 1.7
+ "max_tempo": 1.7,
+ "latin_brands": {"_rule": "The owner 2026-11-10: product names said exactly as in English, also in Arabic narration. A registered name stays Latin in tts_text and is exempt from R-TASHKEEL-008; the forms of one name are one entry.", "QA Wrap": ["QA Wrap", "QA-Wrap"]}
 }
