@@ -1,6 +1,6 @@
 import React from "react";
 import { Composition } from "remotion";
-import "./theme";
+import { FPS } from "./theme";
 import { Slide, Deck } from "./Slide";
 import AR from "./data/ar.json";
 import EN from "./data/en.json";
@@ -20,7 +20,7 @@ export const RemotionRoot: React.FC = () => (
         const fig = i > 0 && deck.slides[i - 1].figure;
         return (
           <Composition key={`${code}-${i}`} id={`${code}-${String(i).padStart(2, "0")}`} component={Slide}
-            width={1920} height={1080} fps={30} durationInFrames={fig ? 180 : 150} defaultProps={{ deck, index: i, lang }} />
+            width={1920} height={1080} fps={FPS} durationInFrames={fig ? 180 : 150} defaultProps={{ deck, index: i, lang }} />
         );
       }),
     )}

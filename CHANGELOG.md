@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.4.3 — 2026-11-12
+
+- Dead-code sweep. Knip 5 (JS/TS) and vulture (Python, confidence ≥ 90) over the whole repo; every finding checked by hand before a change.
+- `pdf-typography`: removed `scripts/--help` and `scripts/--help.pages.json`, a PDF and its page map written by running the renderer with `--help` as the output name; they had shipped since 2.0.0.
+- `nj-motion-deck` template: `Root.tsx` takes the frame rate from `theme.ts`'s `FPS` instead of a second literal `30`; `Slide.tsx`'s `Props` type is module-private (only that file uses it).
+- `nj-evidence/scripts/kb.py`: two `… if False else None` statements that never ran removed from the self-test.
+- `nj-writer/reference/arabic-tashkeel/evidence/corpus.py`: a `re.sub` whose replacement always returned the match (a no-op) removed.
+- `tests/test_v3.py`: an unused `import re as _re` removed.
+- Left as they are: `arabic-english-proofreading/scripts/pdf-structure.py` `render_page(..., has_table)` keeps its unused parameter (callers pass it; signature kept); the Knip notes from 2.4.2 still hold.
+
 ## 2.4.2 — 2026-11-12
 
 - `nj-method` and `nj-kit`: the delegation sections now state the plain working mode (2026-10-30) that replaced NJ Governance v3/v4: the session does the work itself on the normal model; subagents only for real parallel work or a crew a skill defines; `nj-delegate`, `nj-agent-ops`, `nj-supervise` and `nj-director` stay in the kit and run only when the owner names them.

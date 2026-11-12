@@ -117,6 +117,12 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
+## 🆕 What's new in 2.4.3
+
+Release: [v2.4.3 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.3). 27 plugin skills, 45 with the kit installer.
+
+- 🧹 Dead-code sweep: Knip on the JS/TS, vulture on the Python; a stray PDF named `--help` removed from `pdf-typography`; details in the changelog.
+
 ## 🆕 What's new in 2.4.2
 
 Release: [v2.4.2 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.2). 27 plugin skills, 45 with the kit installer.

@@ -53,7 +53,6 @@ VARIANTS={'asis':lambda t:t,'nfc':nfc,'bare':bare,'nocase':nocase,'waqf':waqf}
 # --- scoring ---
 def parse(t):
     t=nfc(t); t=re.sub("ـ","",t)
-    t=re.sub("([ا])([ً])", lambda m: "ً"+m.group(1) if False else m.group(0), t)
     words=[]
     for tok in re.split(r"\s+",t):
         w=[]

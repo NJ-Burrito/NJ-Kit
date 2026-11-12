@@ -1276,7 +1276,6 @@ def selftest():
         assert refused(vm, mc(), [sp1, "short span"], [m1, m2]), "G11: every span needs the length floor"
         assert refused(vm, mc(), [sp1, sp2], [m1, raw2f]), "G11: a raw file fetched for another source must refuse the whole quote"
         assert refused(vm, mc(), [sp1, sp2], [m1, os.path.join(tdir, "nope.txt")]), "G11: a missing raw file was accepted"
-        vm(mc(), sp1 + " " + "", [m1]) if False else None
         wbp = os.path.join(tdir, "g11.jsonl")
         eb = mc()
         with open(wbp, "w", encoding="utf-8", newline="") as f:
@@ -1294,7 +1293,6 @@ def selftest():
               newe("Pass mark is 26 points (retrieved 2026-10-15).", by="hyg-0001-author"),
               newe("A clean claim with 40 questions in the text.", by="hyg-0001-author"),
               newe("Duration is 60 minutes, section 7.1", by="hyg-0001-author")]
-        vq(hy[3], "x" * 10) if False else None
         c.execute("UPDATE entries SET topic='hyg' WHERE id IN (%s)" % ",".join(map(str, hy))); c.commit()
         cmd_verify(types.SimpleNamespace(id=hy[1], by="auditor-0012-verify", second_source=None, allow_root=None, derived="presence of both figures", quote=QT, raw=rawf))
         before = c.execute("SELECT claim,status FROM entries WHERE id IN (%s) ORDER BY id" % ",".join(map(str, hy))).fetchall()

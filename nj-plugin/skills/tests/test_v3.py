@@ -636,7 +636,6 @@ def test_verify_calibration_not_visible_when_nothing_scored():
 
 def test_telemetry_docs_drift():
     """An undocumented BATCH_FIELD must fail --project. v3 lost this check once already."""
-    import re as _re
     doc = ROOT / "nj-agent-ops" / "SKILL.md"
     original = doc.read_text(encoding="utf-8")
     victim = None
