@@ -117,6 +117,13 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
+## 🆕 What's new in 2.4.2
+
+Release: [v2.4.2 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.2). 27 plugin skills, 45 with the kit installer.
+
+- 🧭 `nj-method` and `nj-kit` describe the plain working mode: the session does the work; subagents only for real parallel work.
+- 🧹 Knip scan of all JS/TS: no unused files or dependencies; details in the changelog.
+
 ## 🆕 What's new in 2.4.1
 
 Release: [v2.4.1 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.1). 27 plugin skills, 45 with the kit installer.

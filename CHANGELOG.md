@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.4.2 — 2026-11-12
+
+- `nj-method` and `nj-kit`: the delegation sections now state the plain working mode (2026-10-30) that replaced NJ Governance v3/v4: the session does the work itself on the normal model; subagents only for real parallel work or a crew a skill defines; `nj-delegate`, `nj-agent-ops`, `nj-supervise` and `nj-director` stay in the kit and run only when the owner names them.
+- Knip 5 scan of every JS/TS file (temporary config, scripts treated as entry points, vendored code ignored): no unused files, no unused dependencies. Findings left as they are, with the reason: unlisted `playwright` / `react` / `remotion` / `@receptron/laya` imports are by design (each skill's scripts run inside the user's own project, which supplies them); unused entry exports are public functions the skill docs call or template examples; `general-video/scripts/frame-packets.mjs` imports `../../hyperframes/scripts/lib/frame-packets-core.mjs`, which the pinned upstream `hyperframes` no longer ships — third-party code, reported upstream-side, not patched here.
+
 ## 2.4.1 — 2026-11-12
 
 - `nj-method`: the routing table sends commercials, promos, launch and brand films to `nj-multimedia`; other video still starts at `hyperframes` (or `nj-style-film` for a narrated style film). The checkpoint list names the crew folders a commercial adds before the script.
