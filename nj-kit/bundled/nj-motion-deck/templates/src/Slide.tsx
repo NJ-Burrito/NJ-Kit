@@ -8,7 +8,7 @@ export type SlideData = {
   body: string[]; note: string; figure: string | null;
 };
 export type Deck = { title: string; subtitle: string; date: string; dir: "rtl" | "ltr"; internalLabel: string; slides: SlideData[] };
-export type Props = { deck: Deck; index: number; lang: Lang };
+type Props = { deck: Deck; index: number; lang: Lang };
 
 const PADX = 112;
 
