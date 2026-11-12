@@ -292,26 +292,16 @@ driving real Chrome** for frame capture and every extension suite, `fontTools`
 for the Cairo faces, and `PYTHONUTF8=1` on every python call. Remotion is
 installed as documentation and is **not** what builds these films.
 
-### Least-cost execution and delegation — NJ Governance v3 (2026-09-22)
+### Working mode: plain Claude Code (2026-10-30; supersedes NJ Governance v3/v4)
 
-**`nj-delegate/SKILL.md` §0 is the one canonical statement; this is a pointer,
-not a copy.** v3 in one breath: the main session is the **Lead**, the sole
-orchestrator; workers own a bounded phase, report once and never delegate to or
-instruct each other; the Lead wakes on events and nothing polls through a
-model; deterministic tools and existing evidence come first, then the least
-expensive reliable tier; **minimum-sufficient workers for the critical path —
-zero, one or many, no quota — with useful parallelism looked for**; compact
-briefs, artefact handoff by path, risk-based review, budgets as ceilings,
-batch telemetry via `relay.py batch`. Model names live only in
-`nj-delegate/reference/runtime-map.md`. `nj-agent-ops` is the transport and
-keeps the trigger-based interpreter (§4 there); `nj-supervise` (in the nj-kit
-plugin since 2026-09-29, no longer a personal skill) holds the brief clauses and
-artefact checks. Every worker, builders and editors included, is dispatched in
-the background (`run_in_background: true`) and its completion is the trigger that
-wakes the Lead (owner, 2026-10-11; supersedes the 2026-09-29 foreground rule);
-every brief carries a `FOCUS` line; a worker report is a receipt of at most 25
-lines plus the stage detail file. `nj-delegate/scripts/check_governance.py` is the
-gate that keeps superseded wording from coming back.
+The session does the work itself on the normal model (Sonnet 5.5): reads,
+builds, fixes, runs scripts and tests. No Lead/worker split, no Haiku helpers,
+no receipts, `relay.py`, ledger or telemetry rows, no interpreter or FOCUS
+protocol. Subagents only when a task really needs parallel work, or when a skill
+defines a crew (`nj-multimedia`; `nj-qa` when the owner names it).
+`nj-delegate`, `nj-agent-ops`, `nj-supervise` and `nj-director` stay in the kit
+and run only when the owner asks for them by name. `nj-method` § "The session
+does the work" is the one statement of this.
 
 
 ## Keeping the kit current

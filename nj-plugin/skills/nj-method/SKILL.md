@@ -22,43 +22,30 @@ the method running. Two things are never skipped, whatever the size:
 
 A method performed rather than followed costs attention and buys nothing.
 
-## The Lead decides; workers build
+## The session does the work (plain mode, 2026-10-30)
 
-The main session owns analysis, routing, planning, review and the answer. Under
-`nj-delegate` §0 (NJ Governance v4) it writes **admin files only** (handoff, logs,
-CLAUDE.md, memory, trackers): anything that builds, fixes or scripts goes to a worker, and
-a question one context answers it answers itself. The roles, the helper rule, the 20-agent
-ceiling and the git policy are stated once, in `nj-delegate` §0 — do not restate them here.
+The main session analyses, routes, plans, builds, fixes, runs the scripts and
+reviews, itself, on the normal model (Sonnet 5.5 unless the owner sets
+another). There is no Lead/worker split, no helper tier, no receipts, relay,
+ledger or interpreter. `nj-delegate`, `nj-agent-ops`, `nj-supervise` and
+`nj-director` run only when the owner names them.
 
-Order before briefing a worker:
+Order of work:
 
-1. **Deterministic first** — scripts, CLI, parsers, tests, static analysis,
+1. **Deterministic first**: scripts, CLI, parsers, tests, static analysis and
    focused greps when no model judgement is needed.
-2. **Reuse evidence** — existing handoffs, gate logs, diffs, prior artefacts.
-3. **Brief a Sonnet lead** for the build or fix (`nj-delegate` §0.1, §0.6); it briefs Haiku
-   helpers by the ITEMS rule (`ITEMS` < 6 → one lead, no helpers). Multi-item build → the
-   Lead briefs leads and never writes. A worker may **challenge** a fact the brief got
-   wrong (§0.2).
+2. **Reuse evidence**: existing handoffs, gate logs, diffs, prior artefacts.
+3. **Do it in this context.** A subagent is used only when the task really
+   needs parallel work (independent pieces, a broad search, or a crew a skill
+   defines, such as `nj-multimedia` or a named `nj-qa` run). Its brief carries
+   exact paths, commands, constraints and the standing rules it needs;
+   evidence already extracted is handed over by path; it leaves a checkpoint
+   on disk; the session checks the smallest diff or gate line that settles a
+   claim, never repeats the subagent's exploration.
 
-**Tier choice comes from the REASONING the stage requires**, not from the fact
-that code is edited, that the prose is Arabic, or that the output goes to a
-client (2026-09-16, the owner: *lowest-cost tier that is good enough + effort*).
-Tiers: **DETERMINISTIC / FREE-LOCAL / ECONOMY / STANDARD / FRONTIER** (FRONTIER is the
-Lead's own tier) — route to the least expensive one with demonstrated reliability, and keep
-quality gates independent of the tier that produced the output. Every brief names an **effort**
-level (`low` / `medium` / `high`, set by the stage, not the tier) and a **token
-and context budget**; tool calls are a runaway cap only. **`nj-delegate` §3 is
-the single source of truth** for the ladder, the two proved downgrades (scoring
-reviews and authoring-to-a-spec are STANDARD), the two upgrades, and the class
-budgets — do not restate it here.
-
-When briefing a worker, the brief carries only the context it needs: exact
-paths (sections, symbols or line ranges, not whole files), commands,
-constraints, budgets, the relevant standing rules. Evidence already extracted is
-handed over by path; two workers never rediscover the same structure. The worker
-leaves a checkpoint on disk. The director verifies proportionally to risk: the
-smallest targeted diff, gate line or evidence needed to adjudicate a material
-claim, never a repeat of the worker's exploration.
+Pick effort from the reasoning the stage needs (2026-09-16: lowest cost that
+is good enough), and keep quality gates independent of whoever produced the
+output.
 
 ## 1. Analyse before reaching for anything
 
@@ -144,8 +131,7 @@ an artefact the next stage reads, so a correction re-runs one stage.
 
 Name where each artefact is when handing work back, so a revision request can
 point at a stage. Before any checkpoint that is expensive to redo (a recording, a
-filing, a long render), rehearse at the cheapest fidelity — nj-delegate
-`reference/high-rework.md` § "Rehearse before the expensive stage". Inside
+filing, a long render), rehearse at the cheapest fidelity first. Inside
 The owner's deliverable pipelines the Owner exception in `~/.claude/CLAUDE.md` governs
 instead: one run, and one private rehearsal only when the pipeline itself is new or
 changed (2026-09-29); the machine gates still run.
