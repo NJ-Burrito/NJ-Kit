@@ -2,7 +2,7 @@
  "_doc": "Site skill list. Membership is checked against .claude-plugin/marketplace.json; a skill with no 'en' uses the first sentence of its SKILL.md. Arabic is required for every plugin skill.",
  "new": {
   "version": "2.3.0",
-  "current": "2.3.3",
+  "current": "2.4.0",
   "skills": [
    "nj-chart",
    "nj-qa",
@@ -187,6 +187,7 @@
    "nj-knowledge-book",
    "nj-researcher",
    "nj-style-film",
+   "nj-multimedia",
    "nj-motion-deck",
    "nj-laya",
    "nj-pinterest",

@@ -4,14 +4,14 @@
 
 # NJ-Kit: Claude Code skills that end in PASS or FAIL
 
-### ✅ One working method and 44 skills for Claude Code. Every skill ends in a script that checks the work.
+### ✅ One working method and 45 skills for Claude Code. Every skill ends in a script that checks the work.
 
 **NJ-Kit by [Nader Alzghoul](https://nj-burrito.github.io/) (NJ-Burrito)**: free, open-source Claude Code skills and plugin, in Arabic and English. [Website](https://nj-burrito.github.io/NJ-Kit/) · [LinkedIn](https://www.linkedin.com/in/nader-alzghoul)
 
 [![Website](https://img.shields.io/badge/website-nj--burrito.github.io%2FNJ--Kit-c2ea4e?labelColor=0e1311)](https://nj-burrito.github.io/NJ-Kit/)
 [![CI](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml/badge.svg)](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-c2ea4e?labelColor=0e1311)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-44-c2ea4e?labelColor=0e1311)](#whats-inside)
+[![Skills](https://img.shields.io/badge/skills-45-c2ea4e?labelColor=0e1311)](#whats-inside)
 
 <details>
 <summary>🏷️ More badges</summary>
@@ -26,7 +26,7 @@
 </div>
 
 > ### ⚡ In 10 seconds
-> 🧠 **What:** a free method and 44 skills for Claude Code.\
+> 🧠 **What:** a free method and 45 skills for Claude Code.\
 > ✅ **Why:** a script prints **PASS** or **FAIL**. No "should work".\
 > 🚀 **Start:** paste 2 lines into Claude Code. [Go ↓](#plugin)\
 > 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) · [بالعربية](https://nj-burrito.github.io/NJ-Kit/ar/)
@@ -42,7 +42,7 @@
 | You want… | Take this | Time |
 |---|---|---|
 | 🧩 Claude Code, fastest | [Plugin ↓](#plugin) · 27 skills | ⏱️ 1 min |
-| 🧰 All 44 on a new machine | [Kit installer ↓](#kit) | ⏱️ 5 min |
+| 🧰 All 45 on a new machine | [Kit installer ↓](#kit) | ⏱️ 5 min |
 | 📂 Another agent that reads `SKILL.md` | [Copy one skill ↓](#whats-inside) | ⏱️ 1 folder |
 | 🔤 The typeface | [NJ-Font ↓](#nj-font) (coming soon) | ⏱️ soon |
 
@@ -117,6 +117,12 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
+## 🆕 What's new in 2.4.0
+
+Release: [v2.4.0 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.0). 27 plugin skills, 45 with the kit installer.
+
+- 🎬 New kit skill `nj-multimedia`: commercials made the way an agency makes them. A creative crew and a marketing crew work in parallel, a director merges them into one storyboard, a devil pass attacks it, the owner approves once on the proposal plus keyframe boards, then sound and motion crews build in parallel and machine gates check the result before one render per deliverable. Motion graphics only, story before features, every claim sourced. Scripts: `mm.py` (stage gates, a pre-voice fit check, a render probe with loudness and language-pair parity, contact sheets) and `frame_probe.mjs` (1 px axis alignment, the fonts Chrome really rendered, Arabic on-screen text rules); both self-tested.
+
 ## 🆕 What's new in 2.3.3
 
 Release: [v2.3.3 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.3). Still 27 plugin skills, 44 with the kit installer.
@@ -154,9 +160,9 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 
 <a id="whats-inside"></a>
 
-## 📦 44 Claude Code skills · tap a row to open
+## 📦 45 Claude Code skills · tap a row to open
 
-27 come with the plugin. The kit installer adds 17. Every one ends in a PASS or FAIL gate.
+27 come with the plugin. The kit installer adds 18. Every one ends in a PASS or FAIL gate.
 
 <details open>
 <summary>🧩 <b>In the plugin</b> · 27 skills · generated from each <code>SKILL.md</code></summary>
@@ -198,11 +204,11 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 </details>
 
 <details>
-<summary>🧰 <b>Bundled with the kit</b> · 17 more · research, design, decks</summary>
+<summary>🧰 <b>Bundled with the kit</b> · 18 more · research, design, decks</summary>
 
 | Group | Skills |
 |---|---|
-| 🔬 By NJ · 9 | nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-motion-deck · nj-laya · nj-pinterest · srs-verifier · safe-delete |
+| 🔬 By NJ · 10 | nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-multimedia · nj-motion-deck · nj-laya · nj-pinterest · srs-verifier · safe-delete |
 | 🎨 Third-party design · 7 | brandkit · design-taste-frontend · high-end-visual-design · minimalist-ui · redesign-existing-projects · hyperframes-studio · general-video |
 | 🕸️ Third-party graph · 1 | graphify |
 
@@ -222,7 +228,7 @@ You can combine them. NJ-Kit skills are plain `SKILL.md` folders, so they work n
 
 | Project | What it is | Reach for it when |
 |---|---|---|
-| ✅ **NJ-Kit** | A working method and 44 skills. Every skill ends in a PASS or FAIL script. Arabic and English | You want the agent to prove a task is done |
+| ✅ **NJ-Kit** | A working method and 45 skills. Every skill ends in a PASS or FAIL script. Arabic and English | You want the agent to prove a task is done |
 | [anthropics/skills](https://github.com/anthropics/skills) | Anthropic's public repository for Agent Skills | You want the skills Anthropic publishes itself |
 | [obra/superpowers](https://github.com/obra/superpowers) | An agentic skills framework and software development methodology | You want a software development methodology built from skills |
 | [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | A hand-picked list of Claude Code resources: skills, agents, plugins, tools | You want to browse what exists |
@@ -298,7 +304,7 @@ Get-ChildItem NJ-Font\ttf\*.ttf | ForEach-Object {
 
 <details><summary>🧠 What is NJ-Kit?</summary>
 
-A free, open-source Claude Code plugin: one working method and 44 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, by Nader Alzghoul.
+A free, open-source Claude Code plugin: one working method and 45 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, by Nader Alzghoul.
 </details>
 
 <details><summary>📂 What are Claude Code skills?</summary>
@@ -451,13 +457,14 @@ Details: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 <div dir="rtl" lang="ar">
 
-**NJ-Kit** منهج عمل مجاني و44 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يفحص النتيجة ويطبع PASS أو FAIL، فتعني «تم» أن فحصًا جرى فعلًا.
+**NJ-Kit** منهج عمل مجاني و45 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يفحص النتيجة ويطبع PASS أو FAIL، فتعني «تم» أن فحصًا جرى فعلًا.
 
 - 🚀 **ابدأ:** الصق السطرين في Claude Code، فتحصل على 27 مهارة في نحو دقيقة. [السطران ↑](#plugin)
-- 🧰 **الحزمة كاملة:** يضيف مثبّت الحزمة الـ17 الباقية. [المثبّت ↑](#kit)
+- 🧰 **الحزمة كاملة:** يضيف مثبّت الحزمة الـ18 الباقية. [المثبّت ↑](#kit)
 - 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
 - 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
 - 🎙️ **NJ-Narration** (ضمن الإضافة، `nj-narration`): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
+- 🆕 **جديد في 2.4.0** ([الإصدار v2.4.0 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.0)): مهارة جديدة في الحزمة `nj-multimedia` لصناعة الإعلانات كما تصنعها وكالة: فريق إبداعي وفريق تسويق بالتوازي، ومخرج يجمع عملهما في لوحة قصة واحدة، وموافقة واحدة من المالك على المقترح ولوحات اللقطات، ثم فريقا الصوت والحركة، وبوابات آلية قبل التصيير.
 - 🆕 **جديد في 2.3.3** ([الإصدار v2.3.3 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.3)): بوابة الصوت في `nj-writer` تسمح لاسم منتج مسجّل في `latin_brands` أن يبقى بالأحرف اللاتينية في نص التعليق العربي فيُنطق كما هو بالإنجليزية. وفي 2.3.2 ([الإصدار v2.3.2 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.2)): قالب البلاغ في `nj-jira` يذكر الآن قاعدة أسماء ملفات الأدلة بالعربية، واختبار `nj-qa` الذاتي يغطي قواعد هذه الأسماء. وفي 2.3.1 ([الإصدار v2.3.1](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.1)): أسماء ملفات الأدلة بالعربية في `nj-qa` و`nj-jira`، وقائمة المهارات في الموقع تُولَّد من ملفات `SKILL.md`. وفي 2.3.0 ([الإصدار v2.3.0](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.0)): ‏`nj-chart` للرسوم البيانية ولوحات المؤشرات (على محرك Flint من Microsoft برخصة MIT)، و‏`nj-qa` لاختبار ملاحظات Jira بفريق من الوكلاء، و‏`agent-halo` لإطار ملوّن يميّز نافذة كل وكيل.
 - 🔐 **لا بيانات خاصة:** يمرّ كل إصدار على `scripts/publish-check.py` قبل النشر، فلا كلمات مرور ولا بيانات مشاريع ولا مسارات أجهزة ولا ملفات خطوط.
 - 💸 **مجانية** ومفتوحة المصدر برخصة MIT، وغير تابعة لشركة Anthropic ولا معتمدة منها.

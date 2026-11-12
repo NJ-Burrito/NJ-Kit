@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.0 — 2026-11-12
+
+- New kit skill `nj-multimedia` (kit now 18 bundled skills; 45 with the installer): an agency-crew method for commercials, launch and brand films. Eight stages, each leaving files a gate checks: intake with a deliverables matrix (aspects × languages decided up front), creative and marketing crews in parallel (measured reference breakdown, style DNA, drawn metaphors, sound plan; positioning, three scripts, a `claims.md` with a source per claim), a director merge plus a devil pass, one owner stop on the proposal and keyframe boards, sound and motion crews in parallel (one take per voice line, fitted deterministically), review, render, release kit. Ready-to-fill crew briefs, a craft reference (stage, shot, motion grammar per object type, pacing profile, voice and captions, Arabic and RTL, 9:16, end card), review checklists and lessons from the reference runs.
+- `scripts/mm.py` (stdlib + ffmpeg): `init`, `gate` (refuses a stage whose inputs are missing, a brief with empty required slots, a claim without a source, an unapproved storyboard, an unpassed review or render), `fit` (each line's spoken length against its window before any voice call), `probe` (duration ±1 frame, size, fps, audio, loudness, language-pair parity), `sheet`, `selftest`.
+- `scripts/frame_probe.mjs` (Playwright): seeks a HyperFrames composition and fails on an element more than 1 px off its declared axis, a rendered face outside the house font (Chrome's platform fonts, not the CSS), Arabic on-screen text with tashkeel, tatweel, Persian letters, Latin punctuation or Arabic-Indic digits, or a page error. Fixture and self-test included.
+
 ## 2.3.3 — 2026-11-10
 
 - `nj-writer` voice gate: a product name registered in `voice-styles.json` under `latin_brands` (an entry lists the forms of one name, e.g. `QA Wrap` and `QA-Wrap`) may stay Latin in `tts_text` of an Arabic narration line, so it is said exactly as in English. `voice_style_gate.py` (`tts_fails(n, vis, tts, brands=())`) exempts such a name from the spell-it-out rule (R-TASHKEEL-008); an unregistered Latin word still fails, and a missing Arabic word still fails. Four self-test asserts added.

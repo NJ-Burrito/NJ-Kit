@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+html,body{margin:0;background:#171a1d;color:#ecebe7;font-family:Arial}
+#stage{position:relative;width:1280px;height:720px;overflow:hidden}
+.t{position:absolute;top:0;white-space:nowrap;font-size:48px}
+</style></head>
+<body><div id="stage" data-composition-id="fixture" data-width="1280" data-height="720">
+  <div id="title" class="t" data-axis="center" style="top:200px">QA Wrap</div>
+  <div id="byline" class="t" data-axis="center" style="top:300px;font-size:28px">Made by NJ-Burrito</div>
+  <div id="ar" class="t" dir="rtl" data-axis="right:80" style="top:450px">مجاني ومفتوح المصدر</div>
+</div>
+<script>
+  // Fake HyperFrames timeline: at t>=1 the byline drifts 3 px off centre (FAIL case selected by #bad).
+  const bad = location.hash.includes("bad");
+  const place = (el, cx) => { el.style.left = (cx - el.getBoundingClientRect().width / 2) + "px"; };
+  window.__timelines = { main: { seek(t) {
+    place(document.getElementById("title"), 640);
+    place(document.getElementById("byline"), 640 + (bad && t >= 1 ? 3 : 0));
+    const ar = document.getElementById("ar"); ar.style.left = (1280 - 80 - ar.getBoundingClientRect().width) + "px";
+    ar.textContent = bad ? "مَجاني ومفتوح المصدر" : "مجاني ومفتوح المصدر";
+  } } };
+</script></body></html>
