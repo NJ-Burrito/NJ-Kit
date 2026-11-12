@@ -1,12 +1,10 @@
 {
  "_doc": "Site skill list. Membership is checked against .claude-plugin/marketplace.json; a skill with no 'en' uses the first sentence of its SKILL.md. Arabic is required for every plugin skill.",
  "new": {
-  "version": "2.3.0",
-  "current": "2.4.3",
+  "version": "2.4.4",
+  "current": "2.4.4",
   "skills": [
-   "nj-chart",
-   "nj-qa",
-   "agent-halo"
+   "nj-listen"
   ]
  },
  "groups": [
@@ -63,6 +61,7 @@
    "en": "Audio and video",
    "ar": "الصوت والفيديو",
    "skills": [
+    "nj-listen",
     "voice-clean",
     "nj-narration",
     "bg-music",
@@ -176,6 +175,10 @@
   },
   "nj-chart": {
    "ar": "رسوم بيانية ولوحات مؤشرات ومقاييس تُقرأ بنظرة واحدة، بالعربية أو الإنجليزية، فاتحة أو داكنة، على محرك <bdi dir=\"ltr\">Flint</bdi>."
+  },
+  "nj-listen": {
+   "en": "Give Claude ears: a meeting recording becomes who said what and when, locally, free, Arabic dialects included.",
+   "ar": "امنح Claude أذنين: يتحول تسجيل الاجتماع إلى من قال ماذا ومتى، محليًا ومجانًا، مع اللهجات العربية."
   }
  },
  "bundled": {

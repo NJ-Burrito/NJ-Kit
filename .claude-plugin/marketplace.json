@@ -11,7 +11,7 @@
       "name": "nj-kit",
       "source": "./nj-plugin",
       "description": "A working method and 27 Claude Code skills that end in a script gate printing PASS or FAIL: delegation and agent ops, session handoff, QA and Jira, PDF and Arabic-English proofreading.",
-      "version": "2.4.3",
+      "version": "2.4.4",
       "strict": false,
       "skills": [
         "./skills/agent-halo",
@@ -40,7 +40,8 @@
         "./skills/session-handoff",
         "./skills/voice-clean",
         "./skills/website-fine-print",
-        "./skills/workflow-diagram"
+        "./skills/workflow-diagram",
+        "./skills/nj-listen"
       ],
       "author": {
         "name": "Nader Alzghoul (NJ-Burrito)",

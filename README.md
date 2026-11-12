@@ -117,7 +117,13 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
-## 🆕 What's new in 2.4.3
+## 🆕 What's new in 2.4.4
+
+Release: [v2.4.4 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.4). 28 plugin skills.
+
+- **New skill `nj-listen`:** gives Claude ears. A meeting recording (audio or video, multitrack, minutes to hours) becomes a timed, speaker-labelled transcript, locally, free and open source, with no cloud call. Built for Arabic dialects with English words mid-sentence: Whisper large-v3-turbo on the Intel iGPU through OpenVINO, sherpa-onnx speakers, names from each attendee's self-introduction. Measured on a laptop with no graphics card: 49.8 minutes of audio in 18.8 minutes.
+
+## What was new in 2.4.3
 
 Release: [v2.4.3 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.3). 27 plugin skills, 45 with the kit installer.
 
@@ -203,6 +209,7 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 | [nj-jira](nj-plugin/skills/nj-jira) | Open the owner's Jira, analyse a ticket into a report and an automation, file Bugs with evidence (screenshots, related Story, assignee), QA re-check our Bugs (verify -> comment + Done, or Re Opened) and keep the tracker |
 | [nj-jira-to-automation](nj-plugin/skills/nj-jira-to-automation) | Turn a Jira ticket (or a service's open Bugs) into a runnable automation: analyse into notes, check each on the portal, write one standalone test per note (jiraCheck / jiraSkipped / noteEnv), mark filed-request notes blocked, resume on a ticket, run once |
 | [nj-learn](nj-plugin/skills/nj-learn) | Capture a lesson the moment work teaches one and write it where it will be read: the owning skill, CLAUDE.md, memory, or the nj-kit manifest |
+| [nj-listen](nj-plugin/skills/nj-listen) | Give Claude ears: turn a meeting recording (audio or video, multitrack, minutes to hours) into who said what and when, locally, free and open source, no cloud |
 | [nj-method](nj-plugin/skills/nj-method) | A default method for every request: analyse the ask, look up installed skills before improvising, plan with named checkpoints, execute, review against what was asked |
 | [nj-narration](nj-plugin/skills/nj-narration) | Cast and engineer a TTS voice for any story: casting brief from the character, licensed sources, signal-only rubric, top 3 for the ear; direction sheet, pronunciation lexicon, reference prep, commissioned-talent consent; engine, caps, one take; edge clean, mastering chain, loudness, gates, healing |
 | [nj-qa](nj-plugin/skills/nj-qa) | NJ-QA: the owner's agent-crew method for testing a service's Jira notes on the live system, with one Opus leader per service, Haiku harvesters, one Sonnet tester per route and Haiku scavengers hunting unlisted defects, ending in a preview he decides on |
