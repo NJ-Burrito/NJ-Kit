@@ -117,6 +117,12 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
+## 🆕 What's new in 2.4.1
+
+Release: [v2.4.1 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.1). 27 plugin skills, 45 with the kit installer.
+
+- 🧭 `nj-method` routes commercials, promos, launch and brand films to `nj-multimedia`.
+
 ## 🆕 What's new in 2.4.0
 
 Release: [v2.4.0 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.0). 27 plugin skills, 45 with the kit installer.

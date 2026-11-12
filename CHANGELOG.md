@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.1 — 2026-11-12
+
+- `nj-method`: the routing table sends commercials, promos, launch and brand films to `nj-multimedia`; other video still starts at `hyperframes` (or `nj-style-film` for a narrated style film). The checkpoint list names the crew folders a commercial adds before the script.
+
 ## 2.4.0 — 2026-11-12
 
 - New kit skill `nj-multimedia` (kit now 18 bundled skills; 45 with the installer): an agency-crew method for commercials, launch and brand films. Eight stages, each leaving files a gate checks: intake with a deliverables matrix (aspects × languages decided up front), creative and marketing crews in parallel (measured reference breakdown, style DNA, drawn metaphors, sound plan; positioning, three scripts, a `claims.md` with a source per claim), a director merge plus a devil pass, one owner stop on the proposal and keyframe boards, sound and motion crews in parallel (one take per voice line, fitted deterministically), review, render, release kit. Ready-to-fill crew briefs, a craft reference (stage, shot, motion grammar per object type, pacing profile, voice and captions, Arabic and RTL, 9:16, end card), review checklists and lessons from the reference runs.
