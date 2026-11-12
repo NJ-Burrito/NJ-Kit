@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""build_report.py -- pages -> one HTML -> one PDF per language (pandoc + mmdc + the pdf-typography renderer).
+"""build_report.py -- pages -> one HTML -> one PDF per language (pandoc + mmdc + the nj-pdf-typography renderer).
 
     build_report.py [--twin] [--no-render]
     build_report.py --selftest
@@ -22,10 +22,10 @@ Order of work, each step a gate:
   7. renderPdf({outline:true}); a PDF without bookmarks is reported (older renderer ignores the option).
   8. banks (<practice>/*.md) print as a "Practice banks" part (opt out: banks.print=false); answer keys are a separate part
      after them. The cover prints the OLDEST `retrieved` date of the cited facts.
-Needs pandoc, node + playwright chromium (via pdf-typography), mmdc (only when a page has a mermaid fence), poppler.
+Needs pandoc, node + playwright chromium (via nj-pdf-typography), mmdc (only when a page has a mermaid fence), poppler.
 """
 import html as H
-import json, math, os, re, shutil, sqlite3, subprocess, sys, tempfile, unicodedata
+import json, os, re, shutil, sqlite3, subprocess, sys, tempfile, unicodedata
 from datetime import date
 from pathlib import Path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -35,8 +35,8 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = cp.ROOT
 HOME = Path.home()
-RENDERER = HOME / ".claude" / "skills" / "pdf-typography" / "scripts" / "render-pdf.mjs"
-REPAIR = HOME / ".claude" / "skills" / "pdf-typography" / "scripts" / "repair-tounicode.py"
+RENDERER = HOME / ".claude" / "skills" / "nj-pdf-typography" / "scripts" / "render-pdf.mjs"
+REPAIR = HOME / ".claude" / "skills" / "nj-pdf-typography" / "scripts" / "repair-tounicode.py"
 FONTS = ["Thmanyah Serif Display", "Thmanyah Sans"]  # Thmanyah only, everywhere -- not configurable
 MMDC_BLOCK = re.compile(r"```mermaid\n(.*?)```", re.S)
 
@@ -110,7 +110,7 @@ pre, .sourceCode, .ltr-block { direction:ltr; text-align:left; unicode-bidi:isol
 """
 
 
-# ---------------------------------------------------------------- bidi (port of pdf-typography rtl.mjs)
+# ---------------------------------------------------------------- bidi (port of nj-pdf-typography rtl.mjs)
 LATIN_RUN = re.compile(r"(?:[+\u00b1-](?=\d))?[A-Za-z0-9][A-Za-z0-9 _@#%&/\\.,:;=+*'\"()\[\]{}<>|-]*[A-Za-z0-9)\]}%]|(?:[+\u00b1-](?=\d))?[A-Za-z0-9]")
 PAIRS = {")": "(", "]": "[", "}": "{"}
 
@@ -173,7 +173,7 @@ def key(s):
 def tools_missing(need_mermaid=True):
     miss = [t for t in ("pandoc", "node", "pdftotext") + (("mmdc",) if need_mermaid else ()) if not shutil.which(t)]
     if not RENDERER.is_file():
-        miss.append("pdf-typography renderer")
+        miss.append("nj-pdf-typography renderer")
     else:
         probe = subprocess.run(["node", "-e", "const {createRequire}=require('module');const r=createRequire(process.argv[1]);"
                                 "const c=r('playwright').chromium;process.exit(require('fs').existsSync(c.executablePath())?0:3)",
@@ -219,7 +219,7 @@ def uniq_svg(svg, pre):
 
 
 def mermaid_cfg_dir():
-    for d in (os.environ.get("MERMAID_CFG"), str(HOME / "Desktop" / "nj-plugin" / "skills" / "workflow-diagram" / "mermaid")):
+    for d in (os.environ.get("MERMAID_CFG"), str(HOME / "Desktop" / "nj-plugin" / "skills" / "nj-workflow-diagram" / "mermaid")):
         if d and (Path(d) / "mermaid-config.json").is_file():
             return Path(d)
     return None
@@ -431,7 +431,6 @@ def build(cfg, twin=False, render=True, root=None):
     bfiles = [p for p in sorted(bdir.glob("*.md")) if not p.name.startswith("_") and not p.name.endswith(".key.md")] if (banks_on and bdir.is_dir()) else []
     if banks_on and twin and cp.bank_files(cfg, root) and not bfiles:
         raise SystemExit(f"FAIL the twin has no practice banks in {bdir} (set banks.print=false to leave banks out)")
-    extras = []
     if bfiles:
         pid += 1; bid = f"part{pid}"
         entries.append(("part", L["banks"]))

@@ -29,7 +29,7 @@ Study, measured (load `watch` for video; WebFetch or a throwaway headless browse
 1. Reference video(s): {reference URLs}. Shot by shot: cuts per second, the lead move and ease per object type, camera moves, transitions, colours sampled from frames (hex), the music BPM and the hit points, all with timestamps. Write the table first; prose second.
 2. The owner's own work: {portfolio, sites, posts}. Name his signature moves (each with where it appears).
 3. The product's brand files: {brand paths} (logo, tokens, the logo's own animation timings if any).
-Load: hyperframes-animation, hyperframes-creative, hyperframes-keyframes, high-end-visual-design. Every idea must be buildable in HyperFrames (GSAP timeline, SVG draw/morph, masks, depth layers, particles; seek-safe, no random without a seed).
+Load: hyperframes-animation, hyperframes-creative, hyperframes-keyframes, nj-premium-design. Every idea must be buildable in HyperFrames (GSAP timeline, SVG draw/morph, masks, depth layers, particles; seek-safe, no random without a seed).
 
 Deliver:
 - creative/reference-breakdown.md: the measured table per reference.
@@ -47,7 +47,7 @@ You are the MARKETING AGENCY crew lead: strategist, copywriter, brand marketer, 
 Why: {why}. The film must show why the viewer needs {product} and what it changes, not list features. Emphasis from the owner: {emphasis}.
 
 Read the product truth first: {truth sources: README, CHANGELOG, site, shipped UI strings}. Research (WebSearch, standard): the audience's real pain with sources (studies, public issue trackers, forums; never an invented statistic), how launch films in this category hook in the first 2 s, and any language-specific pain ({e.g. Arabic/RTL}). Read the owner's tone in {posts}.
-Load: nj-kit:impact-copy, nj-kit:nj-writer (NARRATION.md: pace EN {wpm_en} wpm, AR {wpm_ar} wpm, so about {max words} words for {length} s with breathing room), no-ai-slop.
+Load: nj-kit:nj-impact-copy, nj-kit:nj-writer (NARRATION.md: pace EN {wpm_en} wpm, AR {wpm_ar} wpm, so about {max words} words for {length} s with breathing room), no-ai-slop.
 
 Deliver:
 - marketing/claims.md: a table: claim (as it would be said) | source (repo file:line, or URL + date fetched) | exact or paraphrase | allowed on screen? Mark every claim that is true only under a condition and write the condition.
@@ -73,7 +73,7 @@ Deliver:
 Then run: PYTHONUTF8=1 python <SKILL_DIR>/scripts/mm.py fit proposal/script.json — fix the words until PASS. Quote the PASS line.
 ```
 
-The lead then runs `nj-kit:devil` on `PROPOSAL.md`, writes `proposal/DEVIL.md`, and sends the objections back to the director for one answer round.
+The lead then runs `nj-kit:nj-devil` on `PROPOSAL.md`, writes `proposal/DEVIL.md`, and sends the objections back to the director for one answer round.
 
 ## 3 · Boards (motion crew, cheap)
 
@@ -88,7 +88,7 @@ You are the SOUND crew for "{concept}", approved {date}. Inputs: proposal/script
 1. Narration manifest with the style per line; run nj-writer narration_check.py and voice_style_gate.py (offline); quote both result lines.
 2. Voice: ONE call per line to {voice model} ({voice}), key from {key location} (never printed). No verify, no re-voice, no transcriber or judge.
 3. Fit each take to its window deterministically, in this order: tighten pauses (> 0.18 s → 0.18 s, 0.30 s at a full stop), then atempo (pitch kept) up to {tempo cap}, then let a start slide up to 0.15 s early if the previous line has ended. List any line that still cannot fit; never voice it again.
-4. Music: {length} s at {bpm} BPM, drop at {drop} s, resolve at {resolve} s, a riser into silence before the drop. CC0 library first (nj-kit:bg-music bed_pick.py), ffmpeg synthesis fallback, never a music model.
+4. Music: {length} s at {bpm} BPM, drop at {drop} s, resolve at {resolve} s, a riser into silence before the drop. CC0 library first (nj-kit:nj-music bed_pick.py), ffmpeg synthesis fallback, never a music model.
 5. SFX on every storyboard hit point; the product's own sounds first, CC0 next; licence line per file.
 6. Mix: bed about 12 dB under the voice, about -14 LUFS integrated, tail faded by {length-0.5} s.
 Deliver: audio/vo/LNN.wav, audio/timing.json ({"lines":[{"id","start","end"}],"sfx":[{"t","id"}]}), audio/music/bed.wav, audio/sfx/*, audio/mix.wav, audio/LICENCES.md. Then run all of the above for each language in the matrix.

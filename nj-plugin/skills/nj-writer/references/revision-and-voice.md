@@ -107,4 +107,4 @@ The pair is the unit. A fix to the English side that leaves the Arabic stale is
 worse than the original error, because now the two disagree and the disagreement
 is invisible until someone bilingual watches. Revise both sides in the same
 pass, re-run **both** timing tables, and re-run the recycled-line audit on both.
-Proofread with `arabic-english-proofreading` before delivery; `PYTHONUTF8=1`.
+Proofread with `nj-proofread` before delivery; `PYTHONUTF8=1`.

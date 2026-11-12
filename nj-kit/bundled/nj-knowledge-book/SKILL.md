@@ -1,6 +1,6 @@
 ---
 name: nj-knowledge-book
-description: Builds a sourced, gated knowledge book on one domain: research checkpoints, a verified fact DB (nj-evidence), numbered pages that cite only verified entries, practice banks that teach, rules of work, an optional Arabic twin and one PDF per language. Use when the deliverable is a multi-page book, study guide, certification-prep set, handbook or mentor path, even if the user only says "everything about X for a new engineer" or «دليل دراسة، كتاب معرفة، دليل للمبتدئ». Not for: a fact DB or one claim check with no pages (nj-evidence), one research note (nj-researcher), one document (doc-coauthoring), a PDF from existing HTML (pdf-typography).
+description: Builds a sourced, gated knowledge book on one domain: research checkpoints, a verified fact DB (nj-evidence), numbered pages that cite only verified entries, practice banks that teach, rules of work, an optional Arabic twin and one PDF per language. Use when the deliverable is a multi-page book, study guide, certification-prep set, handbook or mentor path, even if the user only says "everything about X for a new engineer" or «دليل دراسة، كتاب معرفة، دليل للمبتدئ». Not for: a fact DB or one claim check with no pages (nj-evidence), one research note (nj-researcher), one document (doc-coauthoring), a PDF from existing HTML (nj-pdf-typography).
 ---
 
 # nj-knowledge-book
@@ -10,7 +10,7 @@ pages teach rather than summarise, and whose gates are exit codes. It adapts to
 the domain: page kinds, team size and reviewers are derived, not configured.
 
 **Needs:** `nj-evidence` (owns `kb.py`, `rules.py`), pandoc, `mmdc`,
-`pdf-typography` (headless Chrome), poppler. pymupdf and fontTools turn two
+`nj-pdf-typography` (headless Chrome), poppler. pymupdf and fontTools turn two
 report checks on; without them those checks print SKIP and the gate exits 3, never 0.
 `PYTHONUTF8=1`, uv never pip.
 
@@ -54,7 +54,7 @@ Phases A → V → B are separate dispatches; the Lead is the hand-off between t
 | 3d | Audit banks | `audit/banks.md` | `audit_sample.py draw --banks` → `check` exit 0 (both audits needed by the report) |
 | 4 | Rules | `kb/rules/*.md` | `rules.py check` exit 0 |
 | 5 | Samples | `samples/RESULTS.md` per code block | habit, no script: 0 STILL-FAILING in the run's own counts; billable blocks `not run: reason` |
-| 6 | Twin | twin pages + banks, term map first; `check_pages.py --stamp` after each revision | `check_pages.py --pair --terms` 0 failing + `arabic-english-proofreading/scripts/scan.py` exit 0 |
+| 6 | Twin | twin pages + banks, term map first; `check_pages.py --stamp` after each revision | `check_pages.py --pair --terms` 0 failing + `nj-proofread/scripts/scan.py` exit 0 |
 | 7 | Report | `report/<slug>.{md,html,pdf}` + Method page | `build_report.py` (refuses without both audits passing), `check_report.py` PASS |
 
 Failing gate: `heal.py <stage>` (below). Resume: `book_status.py` marks a stage done only when its gate passes; re-brief
@@ -123,5 +123,5 @@ Never pre-populate the KB speculatively.
 | `reference/known-failures.md` | before each stage; after any surprise |
 | `reference/worked-example-qa.md` | you want the first run's numbers |
 
-Neighbours own their topics: `pdf-typography`, `arabic-english-proofreading`,
-`nj-evidence`, `nj-delegate`, `devil`. This skill adds only the book-level gates.
+Neighbours own their topics: `nj-pdf-typography`, `nj-proofread`,
+`nj-evidence`, `nj-delegate`, `nj-devil`. This skill adds only the book-level gates.

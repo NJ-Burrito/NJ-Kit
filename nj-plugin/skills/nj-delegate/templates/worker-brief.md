@@ -94,7 +94,7 @@ pass or fail (R-CI-001), and a red required check sends the work back to the sam
 - **Point to rule files, never restate them.** A brief names the rule file by path; it does not copy the rule into prose.
 - **Rule-change protocol (the Lead, in this order):** (a) update every shared brief and every report builder that carries the old rule, in the run folders too; (b) `SendMessage` `AMEND: <new rule, path to the rule file>` to every running lead; (c) only then dispatch. A stale copy in one brief is how two workers kept stopping on a retired rule.
 - **Credentials are read in memory only.** Never write a credentials scratch file, to the repo or anywhere on disk; never echo them in a receipt; never hand a path to one to a helper.
-- **Deletions go through `safe-delete`** (recycle bin), never `rm`/`rm -f`/`rmtree`.
+- **Deletions go through `nj-safe-delete`** (recycle bin), never `rm`/`rm -f`/`rmtree`.
 
 ## Effort, pasteable
 

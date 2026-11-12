@@ -64,7 +64,7 @@ one action, and the viewer can tell what happens next.**
 
 ## Product copy (not spoken)
 
-Taglines, store listing, release notes, brag docs: `impact-copy` governs — bold
+Taglines, store listing, release notes, brag docs: `nj-impact-copy` governs — bold
 anchor, separator, outcome with one true number. Do not restate it here and do
 not invent a second house style. The claims table above still applies: the
-number in an impact-copy line is a claim and needs its source row.
+number in an nj-impact-copy line is a claim and needs its source row.

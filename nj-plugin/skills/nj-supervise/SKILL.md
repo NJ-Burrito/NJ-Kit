@@ -6,7 +6,7 @@ description: How to brief a delegated worker and how to know it is actually work
 # Supervising delegated workers
 
 Derived from one measured session (PROJ, 2026-09-20, 9 Sonnet workers, 46 videos),
-then attacked by `nj-kit:devil` and grounded by `nj-researcher`. It exists so the
+then attacked by `nj-kit:nj-devil` and grounded by `nj-researcher`. It exists so the
 same four failures are not rediscovered per project.
 
 ## The four failures this prevents
@@ -74,7 +74,7 @@ Nine clauses. Omit one and you get the matching failure back.
    supervision standard that only watches workers will never catch that one.
 9. **Rules by path, changed in every brief.** The brief names the rule file; it does not restate
    it. A rule change goes to every shared brief and every running worker (`AMEND:`) before any new
-   dispatch. Credentials are never written to disk; deletions go through `safe-delete`. Full protocol:
+   dispatch. Credentials are never written to disk; deletions go through `nj-safe-delete`. Full protocol:
    `nj-delegate/templates/worker-brief.md` § "Rule changes, secrets, deletions". (2026-10-12 lessons 1, 16)
 
 ## Part 2 — the checks
@@ -141,5 +141,5 @@ visibility-timeout and dead-letter practice; Erlang/OTP supervision trees (noted
 as *not* transferring — no death signal from an LLM worker); Goodhart/Campbell,
 Strathern 1997; Flyvbjerg on reference-class forecasting and the planning
 fallacy; small-sample limits of median/MAD (derived, not cited). Adversarial
-pass: `nj-kit:devil`, same date — it is what removed the three effort metrics
+pass: `nj-kit:nj-devil`, same date — it is what removed the three effort metrics
 and forced the director section.

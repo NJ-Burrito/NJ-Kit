@@ -8,8 +8,8 @@ description: 'Cast and engineer a TTS voice for any story: casting brief from th
 Version 2.2.0.
 
 From "who is this character?" to a clean, mastered take the owner approves by ear.
-Words of the script belong to `nj-writer`; a quick master of a human recording is `voice-clean`; music and SFX
-sourcing is `bg-music`. This skill owns the voice: who it is, how it is directed, made, mastered and healed.
+Words of the script belong to `nj-writer`; a quick master of a human recording is `nj-voice-clean`; music and SFX
+sourcing is `nj-music`. This skill owns the voice: who it is, how it is directed, made, mastered and healed.
 
 ## How a session runs (the checklist)
 

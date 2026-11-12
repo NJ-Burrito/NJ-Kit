@@ -107,7 +107,7 @@ Reusing a rejected deck's look was exactly how deck-v3 landed at −3/10.
    terms and numbers in `<bdi>` or isolated chips; keep Western digits when the
    project says so. Time axes, real geography and real photos stay LTR/un-mirrored
    even inside an RTL slide — record which the project chose. Run
-   `arabic-english-proofreading` before the storyboard locks (dual numbers, month
+   `nj-proofread` before the storyboard locks (dual numbers, month
    names for the actual audience's Arabic, calques — kacs-v4 devilB caught "يوم 2"
    instead of "يومين" and Egyptian month names for a Jordanian room; the pair is the
    unit, so an Arabic fix without its English counterpart is unfinished).

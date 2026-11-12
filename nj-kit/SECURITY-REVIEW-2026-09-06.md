@@ -121,7 +121,7 @@ the narration leaves the machine.
 
 | Skill | Source | Caveat |
 | --- | --- | --- |
-| `pdf-typography` | **ours** | `scripts/fetch-fonts.mjs` fetches CSS and font binaries from `fonts.googleapis.com`/`fonts.gstatic.com` with a legacy UA. Data, never executed. Carries a `node_modules` with Playwright, so its real surface is that dependency tree, not the 11 scripts. |
+| `nj-pdf-typography` | **ours** | `scripts/fetch-fonts.mjs` fetches CSS and font binaries from `fonts.googleapis.com`/`fonts.gstatic.com` with a legacy UA. Data, never executed. Carries a `node_modules` with Playwright, so its real surface is that dependency tree, not the 11 scripts. |
 | `nj-security-review` | **ours** | `audit.py` is read-only and never executes what it reads, but its pattern catalogue quotes every attack string it hunts, so it excludes itself from scanning (`SELF`). It therefore cannot audit itself — read it by hand, as was done here. |
 | `task-observer` | rebelytics/one-skill-to-rule-them-all | **Trigger hijack by design.** `SKILL.md` line 12: "invoke this skill before the FIRST tool call of any session". `references/environments.md` walks the user through adding a `SessionStart` hook and a `CLAUDE.md` line to enforce it. Nothing is self-installed and no network is touched (the six external hosts are citation links in `README.md`), but it is asking for standing attention in every session — grant that deliberately or not at all. |
 | `skill-creator` | anthropics/skills | Spawns `claude -p` as a subprocess (`run_eval.py`, `improve_description.py`, `generate_review.py`) — an agent invoking an agent, with your auth. Also packages and installs skills. Local, documented, bounded. |
@@ -133,7 +133,7 @@ the narration leaves the machine.
 | `ui-ux-pro-max` | nextlevelbuilder | 72 files, 17 scripts — all local search over a bundled offline dataset (styles, palettes, fonts, guidelines). `subprocess` appears only in its own test suite. The `evil.example` host is an XSS documentation example. |
 | `tlc-spec-driven` | tech-leads-club | 5 validation scripts; the Verifier phase creates temporary git worktrees and injects mutations into a scratch copy. It is explicit that it never uses `git stash` and restores porcelain — but it does drive git on your repo. |
 | `cco` | egorfedorov/claude-context-optimizer | **Inert as installed.** `SKILL.md` is a plugin skill whose every command is `node ${CLAUDE_PLUGIN_ROOT}/src/…`; only `SKILL.md` is on disk, so `CLAUDE_PLUGIN_ROOT` does not resolve and nothing runs. `allowed-tools: [Bash, Read]` is appropriately narrow. Harmless, and also non-functional — decide whether to complete or drop it. |
-| `design-taste-frontend` · `framer-motion-animator` · `i-have-adhd` | leonxlnx, patricio0312rev, ayghri | Prompt-only, but each instructs `npm install` of project dependencies. Ordinary developer advice; listed so the install-time column is honest. |
+| `nj-taste-frontend` · `framer-motion-animator` · `i-have-adhd` | leonxlnx, patricio0312rev, ayghri | Prompt-only, but each instructs `npm install` of project dependencies. Ordinary developer advice; listed so the install-time column is honest. |
 
 ## SAFE — 32 skills
 
@@ -141,18 +141,18 @@ No scripts that run against this machine, no network egress, no credential or
 environment read, no install-time action, and no injection, concealment,
 authority-claim or permission-bypass language.
 
-**Ours (5):** `arabic-english-proofreading` (2 offline python scripts),
-`nj-learn`, `nj-method`, `safe-delete` (one script; subprocess to the Windows
+**Ours (5):** `nj-proofread` (2 offline python scripts),
+`nj-learn`, `nj-method`, `nj-safe-delete` (one script; subprocess to the Windows
 Shell, which is the only call that yields a restorable Recycle Bin item),
-`workflow-diagram` (one offline `.mjs`).
+`nj-workflow-diagram` (one offline `.mjs`).
 
-**Third-party (30):** `brandkit`, `chrome-extension-development`,
+**Third-party (30):** `nj-brandkit`, `chrome-extension-development`,
 `competitive-landscape`, `competitor-analysis`, `doc-coauthoring`,
-`frontend-design`, `high-end-visual-design`, `image-to-code`,
+`frontend-design`, `nj-premium-design`, `image-to-code`,
 `keyword-clustering`, `keyword-research`, `link-prospecting`, `local-seo`,
-`minimalist-ui`, `no-ai-slop`, `ponytail`, `ponytail-review`,
+`nj-minimalist-ui`, `no-ai-slop`, `ponytail`, `ponytail-review`,
 `professional-proofreader`, `prompt-engineering-patterns`,
-`redesign-existing-projects`, `seo-audit`, `seo-coach`, `seo-project-setup`,
+`nj-redesign`, `seo-audit`, `seo-coach`, `seo-project-setup`,
 `simple-issue-description`, `skill-inspector`, `test-fixing`, `theme-factory`,
 `web-design-guidelines`. Ten of those are the single-file `every-app/open-seo`
 set; five are `leonxlnx/taste-skill`.
@@ -230,7 +230,7 @@ a minute instead of an afternoon.
 
 ---
 
-## Addendum — `website-fine-print`, added later the same day
+## Addendum — `nj-site-audit`, added later the same day
 
 A skill written here, not fetched. Audited with the same tool and the same
 rubric before it was bundled, because "we wrote it" is a claim about provenance,
@@ -259,7 +259,7 @@ One caution that belongs to the *use* of the skill rather than its safety: the
 audit it produces is not a compliance certificate, and the skill says so twice in
 its own text. Do not let a report generated from it leave the building as one.
 
-### 2026-09-07 — `website-fine-print` re-rated after the Group D extension
+### 2026-09-07 — `nj-site-audit` re-rated after the Group D extension
 
 **Still SAFE.** The skill grew a second source and a fourth group — twenty
 site-hygiene points from a second Instagram reel (`DcKiRe3TvdB`, transcribed at
@@ -437,11 +437,11 @@ is not counted in that total.
 
 ---
 
-# Addendum, 7 September 2026 — `session-handoff`, ours — new skill
+# Addendum, 7 September 2026 — `nj-handoff`, ours — new skill
 
 Written here from the fifth Instagram reel (Maven `@mavenhq`, `reel/DYNWWdiMiH7`,
 transcribed in QA Wrap's `research/57-reel-5-brief.md`), and audited before it was
-bundled, on the same principle as `website-fine-print`: *"we wrote it" is a claim
+bundled, on the same principle as `nj-site-audit`: *"we wrote it" is a claim
 about provenance, not a security property.*
 
 | | |
@@ -512,7 +512,7 @@ was run with `--no-llm`.
 
 | Skill | Origin | audit.py | skillspector | Verdict |
 | --- | --- | --- | --- | --- |
-| `devil` | **ours**, authored 2026-09-10 | 0 findings | 0/100 LOW, no executables | SAFE |
+| `nj-devil` | **ours**, authored 2026-09-10 | 0 findings | 0/100 LOW, no executables | SAFE |
 | `10x` | **ours**, authored 2026-09-10 | 0 findings | 0/100 LOW, no executables | SAFE |
 | `scout` | **ours**, authored 2026-09-10 | 0 findings | 0/100 LOW, no executables | SAFE |
 | `script-your-tools` | **ours**, authored 2026-09-10 | 0 findings | 24/100 MEDIUM, no executables | SAFE — see below |
@@ -527,7 +527,7 @@ The folder is one `SKILL.md` — **`Executable scripts: No`** — so there is
 nothing here that runs. The scripts it teaches you to write are the reader's,
 run under the reader's own permissions, and the skill's guard rules are
 stricter than the default: dry-run before any destructive batch, idempotence,
-`safe-delete` for every deletion, and an explicit ban on loops that spawn tools,
+`nj-safe-delete` for every deletion, and an explicit ban on loops that spawn tools,
 agents or browsers.
 
 **`pitch-deck`, one HIGH.** `P2 Hidden Instructions` at
@@ -540,7 +540,7 @@ snippets rather than something fetched. A grep of all four reference files for
 injection, concealment, credential, remote-execution and self-installing
 patterns returned nothing. Chosen over `ailabs-393/ai-labs-claude-skills@pitch-deck`
 (1.6K installs) because that one fails Agent Trust Hub; the other candidates for
-`devil`, `10x` and `scout` were rejected on reputation or shape, not on a
+`nj-devil`, `10x` and `scout` were rejected on reputation or shape, not on a
 finding, and those reasons are written next to each entry in `export.py`.
 
 **The comment-vs-instruction limit, again.** Both non-zero scores above are the

@@ -113,8 +113,8 @@ The first reel came back with five notes. They are defaults now, not options:
 | rule | how it is met |
 | --- | --- |
 | **No dead air.** Rests between lines are 0.35 s, not what the estimate left over | `voice.py` places lines back to back on the REAL takes (`gap` in beats.json). Target: silence under 15 % of the film. A take far over its word count is redrawn by itself (the TTS sometimes performs an imperative line: reword it as a statement) |
-| **Music under everything** | `bg-music/scripts/bed_pick.py <project>/PROJECT.md --commit <film-id>` FIRST. **`--commit` does not copy the file** — land it yourself at `<project>/hf/assets/bed.wav` (`reference/hyperframes-contract.md` has the exact steps and why). `scripts/bed.py` (generated) is the named fallback only when `bed_pick.py` finds no match |
-| **A sound for: scene/beat boundary (always), a hard cut on the story's turn (usually), a hero word on the line's point (sometimes) — never every element** | write `sfx(12.3, "swish")` or a real `%NJ_LIBRARY%/INDEX.json` sfx id beside the tween it belongs to. **Copy `scripts/mix.py` into the project first**, like `voice.py`/`words.py` (`reference/hyperframes-contract.md` has why). `python mix.py <project>/hf/index.html` resolves `bed.wav`, resolves SFX ids through the library, masters to -14 LUFS into `assets/mix.m4a`. `bg-music/scripts/sfx_check.py --manifest <rows>` gates it (`reference/hyperframes-contract.md` for building `<rows>`); ≤6 cues/10s, ≤1 per beat unless a boundary, no cue inside a spoken word's window. The page plays ONE `<audio>`: the mix |
+| **Music under everything** | `nj-music/scripts/bed_pick.py <project>/PROJECT.md --commit <film-id>` FIRST. **`--commit` does not copy the file** — land it yourself at `<project>/hf/assets/bed.wav` (`reference/hyperframes-contract.md` has the exact steps and why). `scripts/bed.py` (generated) is the named fallback only when `bed_pick.py` finds no match |
+| **A sound for: scene/beat boundary (always), a hard cut on the story's turn (usually), a hero word on the line's point (sometimes) — never every element** | write `sfx(12.3, "swish")` or a real `%NJ_LIBRARY%/INDEX.json` sfx id beside the tween it belongs to. **Copy `scripts/mix.py` into the project first**, like `voice.py`/`words.py` (`reference/hyperframes-contract.md` has why). `python mix.py <project>/hf/index.html` resolves `bed.wav`, resolves SFX ids through the library, masters to -14 LUFS into `assets/mix.m4a`. `nj-music/scripts/sfx_check.py --manifest <rows>` gates it (`reference/hyperframes-contract.md` for building `<rows>`); ≤6 cues/10s, ≤1 per beat unless a boundary, no cue inside a spoken word's window. The page plays ONE `<audio>`: the mix |
 | **The narration is the whole product** | read it as a new user first (README, every tool's own label, every report tab), then `nj-writer`. One feature only when the user names one |
 | **Every element enters and exits on purpose; one hero per scene, unmissable; one caption system** | `reference/choreography.md` — no bare appear/vanish (unless `data-hold` names a cut), hero ≥35% of frame's short side and tone-separated from its ground, `captions:` in PROJECT.md (`kinetic` default, `subtitle` only for footage-led) — never both in one film |
 | **Aspects** | a commercial ships 9x16 AND 16x9; a feature short (about 20 s) ships 16x9 only. Both come from ONE `film.html`: copy `templates/film.html` and `templates/build.py`. Every scene is a words box and a 960x900 prop box; the aspect only moves the two boxes (CSS variables on `body.v` / `body.h`). `build.py` fills the word times from words.json and writes `hf-v/` and `hf-h/`. `init`, `BRIEF.md`, `check`, one snapshot pass and one render happen per folder |
@@ -224,11 +224,11 @@ Read `hyperframes-core` (SKILL.md body only) and `reference/hyperframes-contract
 npx hyperframes init hf --non-interactive --example=blank --skill=general-video
 ```
 
-**Straight after `init`, write `hf/BRIEF.md`** with `workflow: general-video`,
+**Straight after `init`, write `hf/BRIEF.md`** with `workflow: nj-video`,
 `flow: automation`, `storyboard: no`, and the message, aspect, language and
 length from PROJECT.md. The HyperFrames router's own rule is "BRIEF.md exists →
 ask no brief questions": this file is what stops it pulling you into its
-interview. Do not invoke `/hyperframes` or `/general-video`; you are already
+interview. Do not invoke `/hyperframes` or `/nj-video`; you are already
 past everything they would ask.
 
 - ONE `index.html`, scenes as `<section class="clip scene">`. Sub-compositions
@@ -331,7 +331,7 @@ the user asking for it by name:
 - `scripts/gate.py` · `scripts/intake_check.py` · `scripts/cues.py` · `scripts/ref_sheets.py` — run, do not read
 - `scripts/stage_hf.py` — run once, right after `hyperframes init`; stages gsap.min.js + mix/voice/words.py into the project
 - `scripts/voice.py` · `scripts/words.py` — only for a new narration; copied into the project (by `stage_hf.py`), run once
-- `scripts/bed.py` · `scripts/mix.py` — the generated bed, the mixer, six legacy generated house sounds (no licence to clear, `%NJ_LIBRARY%/sfx/` post-cutover); category-matched SFX now come from `%NJ_LIBRARY%/INDEX.json` (`library.py find --alias <old-id>` resolves an old seed id, CC0, per-file provenance), gated by `bg-music/scripts/sfx_check.py`
+- `scripts/bed.py` · `scripts/mix.py` — the generated bed, the mixer, six legacy generated house sounds (no licence to clear, `%NJ_LIBRARY%/sfx/` post-cutover); category-matched SFX now come from `%NJ_LIBRARY%/INDEX.json` (`library.py find --alias <old-id>` resolves an old seed id, CC0, per-file provenance), gated by `nj-music/scripts/sfx_check.py`
 - `templates/film.html` · `templates/build.py` · `templates/bed.cues.json` — the two-aspect film, worked: copy, then replace the scenes
 - `evals/scenarios.json` — four scenarios to run a FRESH agent through before trusting a change to this file
 - `reference/motion-engines.md` · `templates/manim_scene.py` · `templates/theatre_scene.html` ·

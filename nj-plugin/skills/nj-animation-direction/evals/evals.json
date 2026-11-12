@@ -1,0 +1,58 @@
+{
+  "how": "Generate each answer in a fresh session; grade in a separate session against the assertions only (EX-025).",
+  "cases": [
+    {
+      "id": "acting-brief",
+      "prompt": "Direct one shot: a tired nurse finds a note from a patient she thought had died.",
+      "assert": [
+        "contains 'objective' and 'obstacle'",
+        "the objective is a doing (verb), not an emotion word",
+        "names a thinking beat (eye move, blink or hold) before the reaction",
+        "names an end state for the action",
+        "no hold over 2 s without movement",
+        "under 25 lines (response size rule)"
+      ]
+    },
+    {
+      "id": "lip-sync",
+      "prompt": "How many frames should the mouth lead the sound?",
+      "assert": [
+        "does not state a single number as a rule",
+        "mentions testing by shifting 1-3 frames",
+        "mentions head or body leading the accent",
+        "cites the disagreement between sources"
+      ]
+    },
+    {
+      "id": "rive-seek",
+      "prompt": "Render a Rive character state machine frame-accurately inside HyperFrames.",
+      "assert": [
+        "says no seek is documented and treats the state machine as unseekable until tested",
+        "uses fixed advance(1/fps) steps with replay from frame 0 on a backward seek, or a pre-render",
+        "does not use @remotion/rive for state machines",
+        "mentions the free-plan splash or licence check"
+      ]
+    },
+    {
+      "id": "theatre-seek",
+      "prompt": "Drive a Three.js camera move with Theatre.js in a render pipeline.",
+      "assert": [
+        "imports @theatre/core only, not studio",
+        "seeks with sequence.position",
+        "waits for project.ready",
+        "mentions the maintenance risk or GSAP as an alternative"
+      ]
+    },
+    {
+      "id": "animatic-30s",
+      "prompt": "Plan the animatic for a 30 second product ad from these 7 boards.",
+      "assert": [
+        "times shots in integer frames at a stated fps",
+        "first cut by about 3 s or flags it",
+        "every adjacent pair has a transition",
+        "runs or names scripts/shotlist.py check before the animatic",
+        "scratch sound laid before timing"
+      ]
+    }
+  ]
+}

@@ -24,7 +24,7 @@ holding a number that none of the cited claims (or a [calc: ...] tag) contains. 
 makes both counts failures; the default "warn" prints them. A line tagged [calc] is exempt (derived).
 Prints one line per item; exit 0 ok, 1 any failure.
 """
-import collections, glob, hashlib, json, os, re, sqlite3, sys
+import glob, hashlib, json, os, re, sqlite3, sys
 from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 

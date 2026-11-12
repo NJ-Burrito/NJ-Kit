@@ -81,7 +81,7 @@ never had to write. Get it free."* — claim, proof, ask, twelve words.
    asserting it over an edge-on plate. Alternative: grow beat 7 to 10.0 s off
    beats 5/6 slack — never off beat 9.
 2. "Nineteen tools" → 8 words. **Cost:** the only hard number, which
-   `impact-copy` wants. Restorable the day nineteen tiles are drawn.
+   `nj-impact-copy` wants. Restorable the day nineteen tiles are drawn.
 3. Beat 3's line goes, its 2.8 s of picture stays. **Cost:** the three-step
    dread becomes two steps plus an action. **Gain:** the first silence in the
    film, in the nine seconds whose whole justification is silence. Rev 3 keeps

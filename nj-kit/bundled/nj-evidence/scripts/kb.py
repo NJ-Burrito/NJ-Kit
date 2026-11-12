@@ -1239,7 +1239,6 @@ def selftest():
         vb1 = draft_srcs("vb-0001-author", "1")
         vb2 = draft_srcs("vb-0001-author", "1")
         c.execute("UPDATE entries SET claim='pass mark 26 of 40' WHERE id IN (?,?)", (vb1, vb2)); c.commit()
-        rel = os.path.relpath(rawf, tdir).replace(os.sep, "/")
         def vbatch(rows, by="vbaud-0001-verify"):
             p = os.path.join(tdir, "vb.jsonl")
             with open(p, "w", encoding="utf-8", newline="") as f:

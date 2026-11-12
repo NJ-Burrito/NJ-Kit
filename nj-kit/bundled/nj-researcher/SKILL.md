@@ -120,7 +120,7 @@ disagree on a claim, write both readings under it — do not silently pick one.*
 The plan step reads this file. Nothing else needs to be in the conversation.
 
 Higher-stakes claim (it drives a publication decision, not just a plan)?
-Opt-in: run the kit's `devil` skill against the exported file as an
+Opt-in: run the kit's `nj-devil` skill against the exported file as an
 independent challenge pass before you trust it — one extra model call,
 FRONTIER tier if available, stated cost. Default stays zero extra calls.
 
@@ -164,7 +164,7 @@ neutral one. Arabic PDFs are extracted with **poppler `pdftotext`** only.
 - DB at `data/sources.db` (override with `NJ_SOURCES_DB`). Rebuild:
   `python scripts/sources.py seed --reset`.
   The kit ships `data/seed.tsv` only; `python nj-kit/scripts/fetch_assets.py researcher-sources-db` fetches the full registry (optional).
-- Deletions go to the recycle bin (`safe-delete`), never `rm -rf`.
+- Deletions go to the recycle bin (`nj-safe-delete`), never `rm -rf`.
 
 ## Files
 

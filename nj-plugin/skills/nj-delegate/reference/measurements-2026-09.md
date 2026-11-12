@@ -94,9 +94,9 @@ director's own habits were 14 % of that day; the briefs it wrote were 88 %.**
 9. **Do not invoke heavy skills from the director.** A skill body loaded there
    sits in context for the rest of the session and is re-injected after a
    compaction. Name it **in the brief** (§4). Never from the director:
-   `workflow-diagram`, `artifact-design`, `frontend-design`, `project-srs`,
-   `pdf-typography`, the project manuals skill, `safe-delete`. The director may
-   invoke only `nj-delegate`, `session-handoff` and `nj-learn`.
+   `nj-workflow-diagram`, `artifact-design`, `frontend-design`, `project-srs`,
+   `nj-pdf-typography`, the project manuals skill, `nj-safe-delete`. The director may
+   invoke only `nj-delegate`, `nj-handoff` and `nj-learn`.
 
 ### 11.2 One request to the user
 

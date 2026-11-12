@@ -4,7 +4,7 @@
  "voice": "Kore",
  "model": "google/gemini-3.1-flash-tts-preview",
  "persona": "Female, 25-35, warm and confident; Arabic MSA, English neutral American",
- "tashkeel_rule": "Arabic text sent to TTS carries full tashkeel on EVERY word, on every letter that takes a mark and on case endings (إعراب), no exceptions, proofread with arabic-english-proofreading before voicing; visible text never does. The manifest carries it as tts_text and voice_style_gate.py enforces it.",
+ "tashkeel_rule": "Arabic text sent to TTS carries full tashkeel on EVERY word, on every letter that takes a mark and on case endings (إعراب), no exceptions, proofread with nj-proofread before voicing; visible text never does. The manifest carries it as tts_text and voice_style_gate.py enforces it.",
  "direction_rule": "Direction is a natural-language English prefix to the input text, used for both languages; Gemini does not speak it (read-back checked).",
  "styles": [
   {

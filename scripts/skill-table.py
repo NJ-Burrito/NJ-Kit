@@ -29,12 +29,22 @@ def description(skill_md: Path) -> str:
 
 
 def table() -> str:
+    """One table per purpose group, in the site's group order (site/_build/skills.json)."""
     market = json.loads((ROOT / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     plugin = market["plugins"][0]
     base = ROOT / plugin["source"]
-    rows = [f"| [{Path(s).name}](nj-plugin/skills/{Path(s).name}) | {description(base / s / 'SKILL.md')} |"
-            for s in sorted(plugin["skills"])]
-    return "\n".join([START, "", "| Skill | What it does |", "|---|---|", *rows, "", END])
+    names = sorted(Path(s).name for s in plugin["skills"])
+    groups = json.loads((ROOT / "site" / "_build" / "skills.json").read_text(encoding="utf-8"))["groups"]
+    out, seen = [START, ""], set()
+    for g in groups + [{"en": "Other", "skills": [n for n in names if not any(n in x["skills"] for x in groups)]}]:
+        rows = [n for n in g["skills"] if n in names and n not in seen]
+        if not rows:
+            continue
+        seen |= set(rows)
+        out += [f"**{g['en']}**", "", "| Skill | What it does |", "|---|---|"]
+        out += [f"| [{n}](nj-plugin/skills/{n}) | {description(base / 'skills' / n / 'SKILL.md')} |" for n in rows]
+        out.append("")
+    return "\n".join([*out, END])
 
 
 def main() -> int:

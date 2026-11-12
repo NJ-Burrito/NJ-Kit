@@ -22,7 +22,7 @@ Wilson otherwise) -- the numbers the report's Method page prints. What it proves
 claim. What it does not: the source is right.
 """
 import hashlib, json, math, os, random, re, sqlite3, sys
-from datetime import date, datetime
+from datetime import datetime
 from pathlib import Path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import check_pages as cp
@@ -605,7 +605,7 @@ def selftest():
         f3.write_text(re.sub(r"\| \|\n", "| held |\n", f3.read_text(encoding="utf-8")), encoding="utf-8")
         assert summarize(d3, "entries")["ok"]
         # a sampled entry edited after the draw: a top-up must refuse instead of re-signing it
-        c3.execute("UPDATE entries SET claim='edited after the draw' WHERE id=?", (old_ids3 := int(parse_sample(f3.read_text(encoding='utf-8'))[0]["ids"].split(",")[0]),)); c3.commit()
+        c3.execute("UPDATE entries SET claim='edited after the draw' WHERE id=?", (int(parse_sample(f3.read_text(encoding='utf-8'))[0]["ids"].split(",")[0]),)); c3.commit()
         assert "changed since the draw" in (topup(db3, {}, "aud-5", d3, f3.read_text(encoding="utf-8"))[2] or ""), "T5: a changed sampled entry must block the top-up"
         c3.close()
         import shutil as _sh3

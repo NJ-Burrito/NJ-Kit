@@ -31,7 +31,7 @@ repo instead; that adds them to `.gitignore` unless you also pass `--commit`.
    and the ones that belong to a repository **linked, never copied** (a junction
    on Windows, a symlink elsewhere). If that repo is not on the machine the link
    is skipped and said so; nothing is copied in its place.
-3. **Refills `pdf-typography`** — the font vault and playwright are excluded
+3. **Refills `nj-pdf-typography`** — the font vault and playwright are excluded
    from the zip to keep it ~186 KB, so they are re-fetched here. Without this
    step the PDF pipeline arrives unable to render anything.
 4. **Writes `~/.claude/CLAUDE.md`** — the standing instructions that make

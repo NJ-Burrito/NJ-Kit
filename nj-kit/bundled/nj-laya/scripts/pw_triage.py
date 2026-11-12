@@ -107,7 +107,6 @@ def _self_test():
         ("expect(received).toBe(expected) // received: 1, expected: 2", "assertion"),
         ("some unrelated stack trace with no known shape", "unclassified"),
     ]
-    ok = True
     for text, want in cases:
         got = classify(text)
         assert got == want, f"FAIL: {text!r} -> {got}, want {want}"

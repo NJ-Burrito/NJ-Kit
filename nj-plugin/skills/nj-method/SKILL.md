@@ -58,19 +58,19 @@ picking silently.
 
 | Deliverable | Reach for |
 | --- | --- |
-| Document, SRS, manual | `doc-coauthoring` → `pdf-typography` → `arabic-english-proofreading` |
-| Arabic anything | `arabic-english-proofreading` before delivery, always |
-| Workflow figure | `workflow-diagram` |
-| Diagram from code (architecture, sequence, ER, state) | `workflow-diagram` § Mermaid: write `.mmd` from the code, render with `mmdc` in Thmanyah and the brand palette |
-| Verifying a document against the built system | `srs-verifier` |
+| Document, SRS, manual | `doc-coauthoring` → `nj-pdf-typography` → `nj-proofread` |
+| Arabic anything | `nj-proofread` before delivery, always |
+| Workflow figure | `nj-workflow-diagram` |
+| Diagram from code (architecture, sequence, ER, state) | `nj-workflow-diagram` § Mermaid: write `.mmd` from the code, render with `mmdc` in Thmanyah and the brand palette |
+| Verifying a document against the built system | `nj-doc-verifier` |
 | Knowledge book, study guide, certification prep, handbook, mentor path (multi-page, sourced, PDF) | `nj-knowledge-book` (on `nj-evidence`; runs its own 5-POV devil council) |
-| Commercial, promo, launch or brand film, ad, teaser, reel made to sell (إعلان، فيديو تسويقي، كوميرشال) | `nj-multimedia` (kit): creative ∥ marketing crews → director + `devil` → one owner stop (proposal + keyframe boards) → sound ∥ motion → `mm.py` / `frame_probe.mjs` gates → render; builds on `hyperframes`, `nj-writer`, `bg-music`, `impact-copy` |
+| Commercial, promo, launch or brand film, ad, teaser, reel made to sell (إعلان، فيديو تسويقي، كوميرشال) | `nj-multimedia` (kit): creative ∥ marketing crews → director + `nj-devil` → one owner stop (proposal + keyframe boards) → sound ∥ motion → `mm.py` / `frame_probe.mjs` gates → render; builds on `hyperframes`, `nj-writer`, `nj-music`, `nj-impact-copy` |
 | Video, film, animation (not a commercial) | `hyperframes` (entry point); a narrated style film from references: `nj-style-film` |
-| Narration, voiceover | `nj-writer` § voice styles (`NARRATION.md` §11): Kore on Gemini 3.1 Flash TTS via OpenRouter, registered style from `voice-styles.json`, `voice_style_gate.py` before delivery; then `voice-clean` (`nj-kit` `house_style.tts_engine`) |
+| Narration, voiceover | `nj-writer` § voice styles (`NARRATION.md` §11): Kore on Gemini 3.1 Flash TTS via OpenRouter, registered style from `voice-styles.json`, `voice_style_gate.py` before delivery; then `nj-voice-clean` (`nj-kit` `house_style.tts_engine`) |
 | Cut recorded footage | faster-whisper transcript → Claude cut list → `auto-editor` / ffmpeg (`house_style.footage_cut`) |
 | Scan a web app we own | ZAP baseline (zaproxy docker image), then Strix (Claude, `STRIX_TELEMETRY=0`, owned targets only) — `nj-security-review` § Scanning a live web app we own |
 | Image to video | not available on this laptop; animate stills with HyperFrames / Remotion (`house_style.image_to_video`) |
-| Music or SFX under a render | `bg-music` |
+| Music or SFX under a render | `nj-music` |
 | QA automation | `playwright-best-practices`, Playwright MCP, the project's own e2e skill |
 | Jira: read / analyse a ticket, file Bugs, QA re-check, tracker | `nj-jira` |
 | Jira ticket or open Bugs into runnable checks | `nj-jira-to-automation` |
@@ -78,14 +78,15 @@ picking silently.
 | Create an automation-tests folder (portable, reports, PDF, Docker) | `nj-automation-suite` |
 | Whole QA round: Jira -> notes -> walks -> Bugs -> re-check -> Docker | `nj-qa-pipeline` |
 | Agent crew testing a service's notes, only when the owner names NJ-QA | `nj-qa` |
-| An agent opens a browser window, in any project | `agent-halo` |
+| An agent opens a browser window, in any project | `nj-agent-halo` |
 | Any chart, dashboard, KPI row or report with charts | `nj-chart` |
 | UI, design, theming | `frontend-design`, `ui-ux-pro-max`; check with the project's own deterministic gates (layout probe, contrast script, glyph coverage) and `web-design-guidelines` |
 | UI with no set direction | name the defaults to avoid (e.g. cream background, italic accent words, "01/02/03" labels, monospace labels, pill buttons) and extend the list from the first result; never just "avoid a generic look" |
-| Captions, text cards, feature lists, pitch or summary copy | `impact-copy` — bold anchor, separator, one true number |
-| A website before it ships | `website-fine-print` |
+| Captions, text cards, feature lists, pitch or summary copy | `nj-impact-copy` — bold anchor, separator, one true number |
+| A website before it ships | `nj-site-audit` |
 | Social media (Instagram, X, YouTube, TikTok, Reddit…) | `agent-reach doctor`, then that channel; logged-out only, never its `transcribe`; Instagram = yt-dlp + local faster-whisper (`nj-kit` manifest `house_style.social_media`) |
 | Library docs | `context7` MCP — current, not remembered |
+| Directing animation: shot brief, character acting, animatic, beat timing, Rive / Theatre.js direction | `nj-animation-direction` |
 | Nothing fits | `skill-creator`, if the thing is worth keeping |
 
 If a search turns up nothing usable, say so instead of pretending a generic

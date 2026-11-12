@@ -26,7 +26,7 @@ BASE = "https://nj-burrito.github.io/NJ-Kit/"
 ROOT = SITE.parent
 SKILLS = SITE / "_build" / "skills.json"
 # nj-kit/bundled folders that are not kit-only skills: the v4 agent files, and a copy of a plugin skill
-NOT_KIT_SKILLS = {"claude-v4", "pdf-typography"}
+NOT_KIT_SKILLS = {"claude-v4", "nj-pdf-typography"}
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 
 

@@ -1,4 +1,4 @@
-import h,corpus as C,json,re,concurrent.futures as cf
+import h,corpus as C,json,concurrent.futures as cf
 from sent import SENT
 M1='google/gemini-3.6-flash'
 V={'vf':lambda t:C.nfc(t),'sf':lambda t:C.shadda_first(C.nfc(t)),'bare':C.bare}

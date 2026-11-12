@@ -62,7 +62,7 @@ script that refuses the violation.
   in the brief (tool calls are a runaway cap only), the STATUS / FINDING /
   EVIDENCE / FILES-SYMBOLS / RISK / NEXT ACTION receipt of ≤ 25 lines plus the
   stage detail file for everything else (`worker-rules.md` R11), minimum-sufficient
-  verification, `safe-delete` for deletions, no images to the director unless
+  verification, `nj-safe-delete` for deletions, no images to the director unless
   visual adjudication is material.
 
 ## 2. Agent control — activate / deactivate / monitor
@@ -216,7 +216,7 @@ the Lead from its own turns and the workers' `delegations` field.
   environment-sensitive workflows is read on its own, never mixed with reasoning
   failures.
 - `relay.py stale` finds result files older than 7 days — sweep them via
-  `safe-delete` so a run-id's digest never mixes stale and current results.
+  `nj-safe-delete` so a run-id's digest never mixes stale and current results.
 
 ## 6. Errors: two questions, then skip and mark
 

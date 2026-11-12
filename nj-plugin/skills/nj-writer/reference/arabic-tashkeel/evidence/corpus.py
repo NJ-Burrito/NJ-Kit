@@ -1,4 +1,4 @@
-import re,unicodedata,sys,importlib.util
+import re,unicodedata,sys
 sys.stdout.reconfigure(encoding='utf-8')
 M="ً-ْٰ"
 SH="ّ"

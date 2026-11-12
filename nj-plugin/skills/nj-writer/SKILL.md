@@ -103,7 +103,7 @@ decision number, or a counted thing. No source, no claim.
 The ask is one verb, one concrete action, checkable in the frame. An end card
 lost its tagline, ask and URL once and no gate said so (decision 108/110), so:
 **write the end-card strings verbatim into the script file**, and hand
-`nj-director` an assertion list. Product copy (not spoken) is `impact-copy`'s
+`nj-director` an assertion list. Product copy (not spoken) is `nj-impact-copy`'s
 job — bold anchor, then an outcome with one true number. Do not restate it here.
 
 Full method, weasel-word list and the substantiation table: `references/claims-and-cta.md`.
@@ -137,8 +137,8 @@ to time. `PYTHONUTF8=1` for anything that touches Arabic on this machine.
 (commercial/educational/walkthrough/podcast/event/recruitment/investor):
 fill `templates/NARRATION-BRIEF.md`, run `scripts/narration_brief.py`, write
 to the rule sheet, run `scripts/narration_check.py`, `no-ai-slop` +
-`brand/COPY-CHECKS.md`, `arabic-english-proofreading` for Arabic, voice,
-`voice-clean`. Not restated here.
+`brand/COPY-CHECKS.md`, `nj-proofread` for Arabic, voice,
+`nj-voice-clean`. Not restated here.
 
 ## Run order
 

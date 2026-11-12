@@ -1,14 +1,14 @@
 # The council — five points of view, devil mode, three rounds
 
 Agreement is the default failure of a single reviewer. The council puts five
-adversarial readers on the work, each through `devil` (restate, load-bearing
+adversarial readers on the work, each through `nj-devil` (restate, load-bearing
 assumptions, 3–6 objections ranked by cost-if-true with a kill criterion,
 strongest alternative, what survives, verdict), three times, at the cheapest
 fidelity that can still fail.
 
 ## Pick the five (dynamic, from the book's profile)
 
-**Size:** ≤ 5 items — one `devil` pass on the plan, no council; ≤ 12 items —
+**Size:** ≤ 5 items — one `nj-devil` pass on the plan, no council; ≤ 12 items —
 three members; larger — five. Always: **auditor** (provenance, independence,
 what the gate proves) and **learner** (the reader: does it teach, can they act
 on it). Fill the remaining seats from the pool **in this priority order**; a

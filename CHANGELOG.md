@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.0 — 2026-11-13
+
+- **Breaking: skill names.** Every skill this repo ships is named `nj-<what it does>` and belongs to a purpose group. Plugin: `devil`→`nj-devil`, `session-handoff`→`nj-handoff`, `agent-halo`→`nj-agent-halo`, `pdf-typography`→`nj-pdf-typography`, `arabic-english-proofreading`→`nj-proofread`, `workflow-diagram`→`nj-workflow-diagram`, `impact-copy`→`nj-impact-copy`, `voice-clean`→`nj-voice-clean`, `bg-music`→`nj-music`, `website-fine-print`→`nj-site-audit`. Kit: `srs-verifier`→`nj-doc-verifier`, `safe-delete`→`nj-safe-delete`, `general-video`→`nj-video`, `hyperframes-studio`→`nj-hyperframes-studio`, `graphify`→`nj-codebase-graph`, `brandkit`→`nj-brandkit`, `design-taste-frontend`→`nj-taste-frontend`, `high-end-visual-design`→`nj-premium-design`, `minimalist-ui`→`nj-minimalist-ui`, `redesign-existing-projects`→`nj-redesign`. Every reference and `~/.claude/skills/<name>` path inside the repo follows. Third-party skills fetched by the installer keep their upstream names (their licences and the re-fetch need them).
+- **New plugin skill `nj-animation-direction`.** Beat sheet with pressure arithmetic, blocking, character-acting briefs, animatic, review checklists, engine hand-off (GSAP/HyperFrames, Rive, Theatre.js, Remotion, Lottie). `kb/` holds 312 confidence-labelled entries from four research lanes (character acting, animatics and shot grammar, Rive and Theatre.js, existing direction skills); `scripts/shotlist.py` gates a shot list and renders an animatic with ffmpeg (21-assertion self-test, including dissolve overlaps, Arabic VO band and malformed input); `evals/evals.json`; `NOTICE.md` credits the adapted ideas.
+- **Kit: `nj-untangle-codebase`** (caldoai/skills, MIT, licence included).
+- **README and website grouped by purpose**: `scripts/skill-table.py` writes one table per group from `site/_build/skills.json`.
+- **Cleanup:** ruff F401/F541/F841 over the Python (unused imports, empty f-strings, unused variables), one dead statement in `nj-evidence/scripts/kb.py`; all self-tests pass.
+
 ## 2.4.3 — 2026-11-12
 
 - Dead-code sweep. Knip 5 (JS/TS) and vulture (Python, confidence ≥ 90) over the whole repo; every finding checked by hand before a change.

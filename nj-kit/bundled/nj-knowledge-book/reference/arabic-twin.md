@@ -32,20 +32,20 @@ URLs and `[KB#]` ids · "not confirmed" count equals «غير مؤكد» count �
 multiset of numbers in prose · no Eastern digits, Persian letters, bidi controls,
 tashkeel or tatweel in prose · no detached one-letter prefix (`ب Gherkin`) ·
 `<!-- en-sha: <sha1> -->` on line 1 matches the English page (else "stale twin")
-· no `avoid` variant from the term map. Then run `arabic-english-proofreading`'s
+· no `avoid` variant from the term map. Then run `nj-proofread`'s
 `scan.py` on every Arabic page.
 
 **Not checked by any script:** semantic fidelity. If revisers spot-read pages
 rather than reading them whole, the report says so.
 
 Arabic checks live in Python: a grep with an Arabic class silently matches
-nothing in Git Bash on this machine (`arabic-english-proofreading` has the detail).
+nothing in Git Bash on this machine (`nj-proofread` has the detail).
 
 ## Diagrams
 
 Mermaid is translated per language: the Arabic `.mmd` holds Arabic labels and
 `flowchart RL`, rendered with `mmdc` and the Thmanyah config; Latin inside an
-Arabic node is isolated like prose (`pdf-typography` § Latin inside Arabic).
+Arabic node is isolated like prose (`nj-pdf-typography` § Latin inside Arabic).
 Never reuse the English SVG in the Arabic book.
 
 ## Two traps the pair gate enforces
