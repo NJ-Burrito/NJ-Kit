@@ -268,7 +268,7 @@ WHY = {
     "devil": "Adversarial critique of a plan or decision before it is acted on — ranked objections, the assumption each attacks, and the cheapest test that would settle it.",
     "10x": "Senior-engineer discipline for work someone else will run: read before writing, small-and-complete changes, a check that could have failed, and a report that says what is not done.",
     "scout": "Read-only reconnaissance of an unfamiliar repository, delivered as a one-page brief — how it builds and runs, what a change will drag with it, and where the traps are.",
-    "script-your-tools": "The token rule: more than ~3 tool calls of one kind become one script, run as a single action, printing only the summary — with dry-run, idempotence and safe-delete as the guards.",
+    "script-your-tools": "The token rule: more than ~3 tool calls of one kind become one script, run as a single action, printing only the summary — with dry-run, idempotence and nj-safe-delete as the guards.",
     "pitch-deck": "Populating an investment-banking pitch-deck template from source data — the client's «pitch». Template population only, not decks from scratch.",
 }
 
@@ -307,30 +307,30 @@ PROJECT_SKILLS = {
 # KNOWN_SOURCES — but they are exempt from bundling in both directions below,
 # because bundling one would freeze a copy of a file the repo tracks.
 OURS = {
-    "arabic-english-proofreading",
+    "nj-proofread",
     "nj-kit",
     "nj-delegate",  # added 2026-09-08: the director/worker modes (Standard, Eco, Max), routing table, worker brief, per-project handoff.md
     "nj-learn",
     "nj-method",
     "nj-security-review",
-    "pdf-typography",
-    "safe-delete",
+    "nj-pdf-typography",
+    "nj-safe-delete",
     # added 2026-09-09: auditing a document against the built system — the
     # client's Arabic method (references/method-ar.md, verbatim) generalised to
     # manuals, training material, README/API docs, plus the ISO 29148 / INCOSE
     # / traceability / docs-as-code additions. Ours: written here, in no repo.
-    "srs-verifier",
-    # website-fine-print — added 2026-09-06. Ours, deliberately NOT in
+    "nj-doc-verifier",
+    # nj-site-audit — added 2026-09-06. Ours, deliberately NOT in
     # KNOWN_SOURCES: the nineteen-point list it is built on came off a public
     # Instagram reel (research/46-reel-brief.md), but the skill — the split into
     # machine-checkable / delegated / judgement, the DECLARED-OBSERVED-GAP-MANUAL
     # vocabulary, the bilingual report and the standards mapping — is written
     # here and exists in no repository. Bundled, so it travels.
-    "website-fine-print",
-    "workflow-diagram",
+    "nj-site-audit",
+    "nj-workflow-diagram",
     # Added 2026-09-10. Four skills the client asked for by short name. Three of
     # them were searched for on skills.sh first and authored here instead,
-    # because nothing published cleared the bar: `devil` — the best
+    # because nothing published cleared the bar: `nj-devil` — the best
     # devils-advocate skill had 258 installs from an unknown author, the rest
     # under 130; `10x` — no published skill answers "senior-engineer quality
     # guidance" (the 10x-cli hits are a different product, and the 2.3K

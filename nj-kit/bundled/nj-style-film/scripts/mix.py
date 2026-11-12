@@ -12,9 +12,9 @@ a no-op in the page; it sits next to the tween it belongs to, so the sound and
 the motion cannot drift apart. Writes mix.wav, and assets/mix.m4a beside every
 index.html named.
 
-Levels (bg-music rule): voice -16 LUFS, bed -24 LUFS and ducked a further
+Levels (nj-music rule): voice -16 LUFS, bed -24 LUFS and ducked a further
 ~8 dB under speech, whole mix -14 LUFS, true peak -1 dB. SFX are loudness-
-matched per category (bg-music/reference/sfx-practice.md), ducked under the
+matched per category (nj-music/reference/sfx-practice.md), ducked under the
 voice with a fast attack/short release, and carry a shared short room
 reverb -- fixed per the devil-sfx pass (artifacts/ops/devil-sfx-2026-09-21.md);
 the original patch (artifacts/production/sfx-style-film-patch-2026-09-21.md)
@@ -22,8 +22,8 @@ had three fatal defects (wrong-sign gain, an unparseable filter graph, ids
 that did not resolve) -- see artifacts/production/sfx-fix-2026-09-21.md.
 
 `sfx(t, name)` still accepts the six old synthetic names (mapped below to a
-category, at SFX_TRIM_DB, unchanged) so films that predate the bg-music seed
-still mix. A name that resolves in the bg-music manifest instead picks its
+category, at SFX_TRIM_DB, unchanged) so films that predate the nj-music seed
+still mix. A name that resolves in the nj-music manifest instead picks its
 file and category from there.
 """
 import hashlib
@@ -40,7 +40,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SFX_DIR = os.environ.get("SFX_DIR", os.path.expanduser("~/.claude/skills/nj-style-film/assets/sfx"))
 SEED_DIR = os.environ.get(
     "SFX_SEED_DIR",
-    os.path.join(os.environ.get("NJ_PLUGIN_ROOT", os.path.join(os.path.expanduser("~"), "Desktop", "nj-plugin")), "skills", "bg-music", "assets", "sfx-seed"),
+    os.path.join(os.environ.get("NJ_PLUGIN_ROOT", os.path.join(os.path.expanduser("~"), "Desktop", "nj-plugin")), "skills", "nj-music", "assets", "sfx-seed"),
 )
 SEED_MANIFEST = os.path.join(SEED_DIR, "manifest.json")
 SR = 48000
@@ -53,7 +53,7 @@ LEGACY_CATEGORY = {
     "success": "stinger", "swish": "whoosh", "tick": "tick",
 }
 
-# Per-category target, RMS dBFS (bg-music/reference/sfx-practice.md). This
+# Per-category target, RMS dBFS (nj-music/reference/sfx-practice.md). This
 # is the target a manifest file was already prepped TO (sfx_prep.py); the
 # per-cue gain below is therefore RELATIVE (target - the file's own
 # measured level), never this table applied a second time as an absolute
@@ -66,11 +66,11 @@ SFX_DUCK_DB = -3.5   # under voice, shallower/faster than the bed's ~8 dB
 
 
 def load_seed_manifest():
-    """rehearsal-0921: this used to read ONLY the pre-cutover bg-music seed
+    """rehearsal-0921: this used to read ONLY the pre-cutover nj-music seed
     manifest and return {} (silently, no error) once library-cutover-0921
     moved SFX into %NJ_LIBRARY%/INDEX.json -- any real library id
     (`SFX-000004`, resolved by `library.py find`) then fell through to
-    `elif name in LEGACY_CATEGORY` and crashed with 'not in bg-music
+    `elif name in LEGACY_CATEGORY` and crashed with 'not in nj-music
     manifest and not a legacy name', on the very first real film to use a
     library.py SFX id instead of a legacy synthetic name. Merge in
     %NJ_LIBRARY%/INDEX.json's kind==sfx rows, reshaped to the same
@@ -112,7 +112,7 @@ def cues(html, manifest):
         elif name in LEGACY_CATEGORY:
             out.append((float(t), name, LEGACY_CATEGORY[name], float(db or 0), None))
         else:
-            raise SystemExit("sfx id %r not in bg-music manifest and not a legacy name" % name)
+            raise SystemExit("sfx id %r not in nj-music manifest and not a legacy name" % name)
     return sorted(out)
 
 

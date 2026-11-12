@@ -71,7 +71,7 @@ fallback_aspects: commercial = 9x16 AND 16x9 from one film.html; feature short (
 narration_scope:
 fallback_scope: the WHOLE product, read as a new user meets it; one feature only when the user names it
 kind:
-fallback_kind: product-explainer (see bg-music/reference/music-beds.md for the full list)
+fallback_kind: product-explainer (see nj-music/reference/music-beds.md for the full list)
 theme:
 fallback_theme: none — bed_pick.py uses `kind` alone
 music: auto

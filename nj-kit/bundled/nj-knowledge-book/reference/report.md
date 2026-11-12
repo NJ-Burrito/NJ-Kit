@@ -1,8 +1,8 @@
 # The report (one PDF per language)
 
 Chain: pages (md) → pandoc fragments → one HTML (parts from `book.json`) →
-`pdf-typography` renderer (headless Chrome, Thmanyah, tagged) → PDF. Then
-`repair-tounicode.py` on the Arabic PDF per `pdf-typography`'s definition of done.
+`nj-pdf-typography` renderer (headless Chrome, Thmanyah, tagged) → PDF. Then
+`repair-tounicode.py` on the Arabic PDF per `nj-pdf-typography`'s definition of done.
 
 `build_report.py` does all of it; `check_report.py` gates it.
 

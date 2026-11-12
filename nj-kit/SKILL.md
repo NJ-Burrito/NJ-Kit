@@ -9,6 +9,10 @@ One folder that reproduces this setup somewhere else. Drop it in, run one
 command, get the same behaviour: the same skills, the same MCP servers, Thmanyah,
 Arabic that survives extraction, and a typecheck that runs when a turn ends.
 
+## Naming and groups (3.0.0)
+
+Every skill this kit ships is named `nj-<what it does>` and belongs to one purpose group (method, QA, documents, writing, audio, film, design, research, business, code). The README table and the website are grouped the same way. Third-party skills that `install.py` fetches keep their upstream names: the re-fetch and their licences depend on them.
+
 ## Where it is
 
 | | |
@@ -281,7 +285,7 @@ draft, not a source.
 - **The audio never leaves the machine.** There is no local STT here, and where
   a reel burns in word-by-word captions, montaging that strip at each landing
   time corroborates the list for free.
-- Recycle the download and the frames with `safe-delete` when the transcript is
+- Recycle the download and the frames with `nj-safe-delete` when the transcript is
   written. **The transcript is the checkpoint**, not the video.
 
 ### The film toolchain
@@ -324,7 +328,7 @@ instead, which is exactly the thing the check is supposed to catch.
 $zip = '<NJ_KIT_ROOT>.zip'; $dst = '<NJ_KIT_ROOT>'
 $i = Get-Item $dst -ErrorAction SilentlyContinue
 if ($i -and $i.Attributes -band [IO.FileAttributes]::ReparsePoint) { $i.Delete() }  # the LINK only
-elseif ($i) { $env:PYTHONUTF8 = '1'; python "$HOME\.claude\skills\safe-delete\scripts\trash.py" $dst }  # recycle bin, restorable
+elseif ($i) { $env:PYTHONUTF8 = '1'; python "$HOME\.claude\skills\nj-safe-delete\scripts\trash.py" $dst }  # recycle bin, restorable
 Expand-Archive $zip -DestinationPath (Split-Path $dst) -Force   # the zip's root entry is nj-kit\
 ```
 
@@ -381,7 +385,7 @@ claude plugin install nj-kit@nj-kit
 ## The media library
 
 One root, `library/` at the top of ACME (env `NJ_LIBRARY`), replacing
-`production/library/`, `production/music-library/`, `bg-music/assets/`,
+`production/library/`, `production/music-library/`, `nj-music/assets/`,
 `nj-style-film/assets/sfx/` — all retired 2026-09-21 (`manifest.json`'s
 `libraries` block has the counts). Kind-first (`images/`, `sfx/`, `music/`,
 `styles/`, `fonts/`, `vfx/`). **Search it first; intake only through
@@ -402,7 +406,7 @@ python <path-to>/nj-kit/scripts/install.py --scope project
 ```
 
 Then, for a TypeScript project, the typecheck Stop hook: the manifest names it,
-and `pdf-typography` needs its font vault refilled with
+and `nj-pdf-typography` needs its font vault refilled with
 `node scripts/fetch-fonts.mjs Cairo` since `bundled/` deliberately omits fonts.
 
 ### Skills that belong to the repo — linked, never copied
@@ -454,9 +458,9 @@ binary; install it with `irm https://astral.sh/uv/install.ps1 | iex`.
 
 - 2026-10-19: Jira rules (the owner): nj-rank one Task per (service, work type), never per note; only PROJ work is tasked (`file` skips other projects, test added); nj-jira Bug description carries no Priority/Severity/Labels/Assignee/related/Environment lines or sections (fields and links only).
 
-- 2026-10-16 (later, overnight): `nj-knowledge-book` hardened while upgrading its own first book: stem-less probe (`probe_bank.py`, stage 3c), bank audit 3d, `calc:` in key files (`move_calc.py`), objective-id prefixes, `twin_front`, ordinal labels, whole-word Arabic avoid rules, `kb.py verify` refuses retracted entries; 124-assertion selftest. Lessons in its `reference/known-failures.md`. safe-delete gained the percent-name / directory-watcher note; pdf-typography documents `outline`.
+- 2026-10-16 (later, overnight): `nj-knowledge-book` hardened while upgrading its own first book: stem-less probe (`probe_bank.py`, stage 3c), bank audit 3d, `calc:` in key files (`move_calc.py`), objective-id prefixes, `twin_front`, ordinal labels, whole-word Arabic avoid rules, `kb.py verify` refuses retracted entries; 124-assertion selftest. Lessons in its `reference/known-failures.md`. nj-safe-delete gained the percent-name / directory-watcher note; nj-pdf-typography documents `outline`.
 
-- 2026-10-16: new skill `nj-knowledge-book` (sourced, gated knowledge book: page kinds, teaching gate, quote-bound verification, blind audit, Arabic twin, PDF with outline, `plan`, council stage; 86-assertion selftest) from the QA Engineer repo, built through a 5-POV devil council over 3 rounds. nj-evidence now ships `scripts/kb.py` + `rules.py` (run in place, `kb/kb.json` required) and lost the "build a knowledge base" trigger to it. pdf-typography `renderPdf` gained `outline` (bookmarks). Manifest: skill_notes for both, tooling optional pymupdf.
+- 2026-10-16: new skill `nj-knowledge-book` (sourced, gated knowledge book: page kinds, teaching gate, quote-bound verification, blind audit, Arabic twin, PDF with outline, `plan`, council stage; 86-assertion selftest) from the QA Engineer repo, built through a 5-POV devil council over 3 rounds. nj-evidence now ships `scripts/kb.py` + `rules.py` (run in place, `kb/kb.json` required) and lost the "build a knowledge base" trigger to it. nj-pdf-typography `renderPdf` gained `outline` (bookmarks). Manifest: skill_notes for both, tooling optional pymupdf.
 
 - 2026-10-09: project skill `project-automation-tests` (pipeline of the Automation Tests suite) listed in manifest `project_skills`, export.py OURS, and junctioned into `<project-root>/.claude/skills`.
 

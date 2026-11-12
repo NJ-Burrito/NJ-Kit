@@ -104,7 +104,7 @@ lead move, ease, depth, palette tokens, grid positions, hit points; the times
 sum exactly to the length) and `script.json` (format below). Every conflict
 the crews flagged is settled in writing with the line that replaces it.
 
-Then run **`nj-kit:devil`** on the proposal (objections ranked by risk, each
+Then run **`nj-kit:nj-devil`** on the proposal (objections ranked by risk, each
 with its cheapest test) and write `proposal/DEVIL.md` with the director's
 answer to each objection. This replaces the owner's first round of notes. In
 the reference run, every note the owner gave after the render (a misaligned
@@ -139,7 +139,7 @@ and writes the reason in `APPROVAL.md`. The gate accepts either.
   line** (house voice, see the defaults below). The takes are then fitted
   deterministically: pauses tightened, then atempo up to the cap, then a start
   allowed to slide up to 0.15 s; never voiced again. Then the music bed (CC0
-  library first via `nj-kit:bg-music`, ffmpeg synthesis as the fallback, never
+  library first via `nj-kit:nj-music`, ffmpeg synthesis as the fallback, never
   a music model), SFX on the storyboard's hit points, the mix at about −14 LUFS
   with the bed about 12 dB under the voice. Outputs: `timing.json` (start and
   end of each line, each SFX hit), `mix.wav`, `LICENCES.md`.

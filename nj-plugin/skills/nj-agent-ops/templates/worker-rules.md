@@ -64,7 +64,7 @@ CHANGED list and the receipt line, in your final message and the result JSON. Ev
 RESUME line names; it is a listed deliverable, not a stray report. No other report or summary
 file. `detail_path` names that file, or "none". Say "not verified" plainly where nothing checked it.
 
-**R12 — Deletions go to the recycle bin** (`safe-delete`), never `rm -rf`.
+**R12 — Deletions go to the recycle bin** (`nj-safe-delete`), never `rm -rf`.
 
 **R13 — Leave nothing running.** Close every browser, server and background job you started,
 and name any you found but did not start. Tag browsers at launch (`--user-data-dir` containing

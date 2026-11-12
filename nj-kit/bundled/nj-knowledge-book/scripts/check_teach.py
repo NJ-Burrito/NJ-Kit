@@ -30,7 +30,7 @@ tag (recall prompt, drill) or a Try-it / Now-alone block under the heading that 
 `## Recall answers`. `--resemble FILE...` (G5): no bank item may share >= 35 % of its 5-word shingles with the given sample-exam texts.
 Prints one line per page; exit 0 ok, 1 any failure.
 """
-import ast, json, math, os, re, sqlite3, sys
+import ast, os, re, sqlite3, sys
 from pathlib import Path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import check_pages as cp  # profiles, bank parser, config loading
@@ -591,7 +591,7 @@ def selftest():
     unit = path.replace("| read | 200 |", "| read | 100 min |").replace("| drill | 100 |", "| drill | 1.5 h |")
     assert check_path(unit, {"b": 2})[0] == [], "B13: '300 min' / '1.5 h' cells must parse"
     assert any("not durations" in x for x in check_path(path.replace("| read | 200 |", "| read | a lot |"), {"b": 2})[0])
-    tot = path + "| Total | 300 |\n"
+    path + "| Total | 300 |\n"
     assert check_path(path.replace("| drill | 100 |", "| drill | 100 |\n| Total | 300 |"), {"b": 2})[0] == [], "B15: a Total row was summed"
     assert check_path(path + "You are on week 2 of 12.\n", {"b": 10})[0] == [], "B16: 'week 2 of 12' is not a target"
     t17 = path + "Mock: score 30 of 40 on CTAL [bank: ctal-at]\n"

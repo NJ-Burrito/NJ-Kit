@@ -371,7 +371,7 @@ only; helpers are a foreground batch) · self-reported `delegations`/`nested-spa
 control (replaced by the spawn-log `helpers_spawned`) · a Haiku interpreter agent.
 Kept from v3: trigger-only reporting, graded facts and CHALLENGE (§0.2), single writers and
 claims, budgets as ceilings (§0.13), classify before retry (§0.12), never leave leftovers
-(§0.16), credentials never printed, deletions to the recycle bin (`safe-delete`), the
+(§0.16), credentials never printed, deletions to the recycle bin (`nj-safe-delete`), the
 run-once Owner exception (§0.11).
 
 ### 0.21 The gates table: what is enforced by which machine [GATE: check_governance, relay.py]
@@ -609,20 +609,20 @@ The brief names the skill path; the worker reads it **before its first edit**.
 | Task | Skill |
 |---|---|
 | Any deliverable in this repo | the project's `CLAUDE.md`, then its `.claude/skills/*` |
-| SRS document, its chapters, tables, figure page | `acme-srs` (project) + `workflow-diagram` |
-| Verifying a document against the built system | `srs-verifier` |
-| The workflow figure itself | `workflow-diagram` |
-| PDF from HTML, fonts, copy-paste fidelity | `pdf-typography` |
-| Arabic/English wording, proofreading before delivery | `arabic-english-proofreading` |
+| SRS document, its chapters, tables, figure page | `acme-srs` (project) + `nj-workflow-diagram` |
+| Verifying a document against the built system | `nj-doc-verifier` |
+| The workflow figure itself | `nj-workflow-diagram` |
+| PDF from HTML, fonts, copy-paste fidelity | `nj-pdf-typography` |
+| Arabic/English wording, proofreading before delivery | `nj-proofread` |
 | Browser automation, portal/back-office walks | the project's e2e skill (e.g. `proj-e2e`) |
 | Manuals, screenshots, narrated video | the project's manuals skill (e.g. `proj-manuals`) |
-| Deleting anything | `safe-delete` (recycle bin, never rm) |
-| Closing or resuming a session | `session-handoff` + §8 here |
+| Deleting anything | `nj-safe-delete` (recycle bin, never rm) |
+| Closing or resuming a session | `nj-handoff` + §8 here |
 | A lesson learned mid-task | `nj-learn` |
 | Installing or auditing a third-party skill / MCP | `nj-security-review` |
-| A website before it ships | `website-fine-print` |
+| A website before it ships | `nj-site-audit` |
 | Setting up a new repo or machine | `nj-kit` |
-| Challenging a plan before it is acted on | `devil` |
+| Challenging a plan before it is acted on | `nj-devil` |
 
 ## 5. Context and token economy — every mode
 
@@ -832,10 +832,10 @@ challenged.
    Close the session, do not park it past the cache TTL. (measured: r8)
 9. **Do not invoke heavy skills from the director.** A skill body loaded there
    sits in context for the rest of the session. Name it **in the brief** (§4).
-   Never from the director: `workflow-diagram`, `artifact-design`,
-   `frontend-design`, `acme-srs`, `pdf-typography`, `workflow-authoring`, the
-   project manuals skill, `safe-delete`. The director may invoke only
-   `nj-delegate`, `session-handoff` and `nj-learn`. (measured: r9)
+   Never from the director: `nj-workflow-diagram`, `artifact-design`,
+   `frontend-design`, `acme-srs`, `nj-pdf-typography`, `workflow-authoring`, the
+   project manuals skill, `nj-safe-delete`. The director may invoke only
+   `nj-delegate`, `nj-handoff` and `nj-learn`. (measured: r9)
 
 ### 11.2 One request to the user
 

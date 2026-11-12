@@ -1,4 +1,4 @@
-import json,base64,subprocess,hashlib,os,sys,time,urllib.request,unicodedata,re
+import json,base64,subprocess,hashlib,os,sys,urllib.request
 sys.stdout.reconfigure(encoding='utf-8')
 HERE=os.path.dirname(os.path.abspath(__file__))
 TOK=os.environ['OPENROUTER_API_KEY']  # from the environment; never stored in the repo

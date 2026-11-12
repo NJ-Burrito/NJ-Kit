@@ -30,7 +30,7 @@ import build_report as br
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = cp.ROOT
-FONT_DIR = Path.home() / ".claude" / "skills" / "pdf-typography" / "fonts" / "licensed"
+FONT_DIR = Path.home() / ".claude" / "skills" / "nj-pdf-typography" / "fonts" / "licensed"
 ALLOWED = ["thmanyah"]  # the house rule: Thmanyah only. Cairo/Arial/Times fall out because nothing else is allowed.
 INVISIBLE = re.compile("[​-‏‪-‮⁦-⁩﻿︎️­]")
 

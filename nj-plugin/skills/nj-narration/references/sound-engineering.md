@@ -2,7 +2,7 @@
 
 Reference implementation: a production pipeline with a take chain and a mix script
 preset `phone-first` (episode mix), `tools/audio_checks.py`, `tools/sound_profile.json`. Measurements behind it:
-`research/sound-e01c.md`. For a one-off recording (not TTS) the quick ffmpeg chain is the `voice-clean` skill.
+`research/sound-e01c.md`. For a one-off recording (not TTS) the quick ffmpeg chain is the `nj-voice-clean` skill.
 
 ## 1. One profile file for every number
 
@@ -41,7 +41,7 @@ Contract on every stage: same length out, no new digital silence, never clips.
 |---|---|---|---|---|
 | Instagram / Facebook Reels | -14 LUFS | 1 LU | -1.0 dBTP | measured on delivered reels |
 | YouTube | -14 LUFS | 1 LU | -1.0 dBTP | measured on delivered files |
-| Podcast / web | -16 LUFS | 1 LU | -1.5 dBTP | `voice-clean` presets |
+| Podcast / web | -16 LUFS | 1 LU | -1.5 dBTP | `nj-voice-clean` presets |
 | EBU broadcast | -23 LUFS | 1 LU | -1.0 dBTP | EBU R128 |
 | Social / film masters (house) | -14 LUFS | | -1 dBTP | house default |
 

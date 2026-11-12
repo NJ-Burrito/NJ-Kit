@@ -1,10 +1,10 @@
 {
  "_doc": "Site skill list. Membership is checked against .claude-plugin/marketplace.json; a skill with no 'en' uses the first sentence of its SKILL.md. Arabic is required for every plugin skill.",
  "new": {
-  "version": "2.4.4",
-  "current": "2.4.4",
+  "version": "3.0.0",
+  "current": "3.0.0",
   "skills": [
-   "nj-listen"
+   "nj-animation-direction"
   ]
  },
  "groups": [
@@ -18,12 +18,12 @@
     "nj-delegate",
     "nj-agent-ops",
     "nj-supervise",
-    "session-handoff",
+    "nj-handoff",
     "nj-learn",
     "nj-wrapup",
-    "devil",
+    "nj-devil",
     "nj-security-review",
-    "agent-halo"
+    "nj-agent-halo"
    ]
   },
   {
@@ -46,26 +46,27 @@
    "en": "Documents, charts and writing",
    "ar": "المستندات والرسوم والكتابة",
    "skills": [
-    "pdf-typography",
-    "arabic-english-proofreading",
-    "workflow-diagram",
+    "nj-pdf-typography",
+    "nj-proofread",
+    "nj-workflow-diagram",
     "nj-writer",
-    "impact-copy",
-    "website-fine-print",
+    "nj-impact-copy",
+    "nj-site-audit",
     "nj-chart"
    ]
   },
   {
    "id": "a",
    "icon": "i-clapperboard",
-   "en": "Audio and video",
-   "ar": "الصوت والفيديو",
+   "en": "Audio, video and animation",
+   "ar": "الصوت والفيديو والرسوم المتحركة",
    "skills": [
     "nj-listen",
-    "voice-clean",
+    "nj-voice-clean",
     "nj-narration",
-    "bg-music",
-    "nj-director"
+    "nj-music",
+    "nj-director",
+    "nj-animation-direction"
    ]
   }
  ],
@@ -86,7 +87,7 @@
    "en": "How to brief a worker and know it is actually working.",
    "ar": "كيف تكلّف عاملًا وتتأكد أنه يعمل فعلًا."
   },
-  "session-handoff": {
+  "nj-handoff": {
    "en": "Close a session with a handoff.md the next one reads first.",
    "ar": "أغلق الجلسة بملف <bdi dir=\"ltr\">handoff.md</bdi> تقرؤه الجلسة التالية أولًا."
   },
@@ -98,7 +99,7 @@
    "en": "Close a session or a tested service end to end, through gates.",
    "ar": "أغلق جلسة أو خدمة مُختبَرة من أولها إلى آخرها، عبر بوابات فحص."
   },
-  "devil": {
+  "nj-devil": {
    "en": "Ranked objections to a plan before you act on it.",
    "ar": "اعتراضات مرتّبة على الخطة قبل أن تنفّذها."
   },
@@ -126,15 +127,15 @@
    "en": "Register finished work with its evidence and file it as Done.",
    "ar": "سجّل العمل المنجز مع أدلته وأغلقه بحالة <bdi dir=\"ltr\">Done</bdi>."
   },
-  "pdf-typography": {
+  "nj-pdf-typography": {
    "en": "PDFs whose text stays real: selectable, searchable, then audited.",
    "ar": "ملفات <bdi dir=\"ltr\">PDF</bdi> يبقى نصها حقيقيًا: قابلًا للتحديد والبحث، ثم يُدقَّق."
   },
-  "arabic-english-proofreading": {
+  "nj-proofread": {
    "en": "Hamza, taa marbuta, bidi characters, mixed numerals, Latin punctuation in Arabic.",
    "ar": "الهمزة، والتاء المربوطة، ورموز الاتجاه الخفية، والأرقام المختلطة، وعلامات الترقيم اللاتينية داخل النص العربي."
   },
-  "workflow-diagram": {
+  "nj-workflow-diagram": {
    "en": "Workflow figures drawn from evidence, BPMN-correct.",
    "ar": "مخططات سير عمل مرسومة من الأدلة ومتوافقة مع <bdi dir=\"ltr\">BPMN</bdi>."
   },
@@ -142,15 +143,15 @@
    "en": "Narration and script words, Arabic or English.",
    "ar": "نصوص التعليق الصوتي والسيناريو، بالعربية أو الإنجليزية."
   },
-  "impact-copy": {
+  "nj-impact-copy": {
    "en": "Impact-first, metric-driven copy.",
    "ar": "نصوص تبدأ بالأثر وتستند إلى الأرقام."
   },
-  "website-fine-print": {
+  "nj-site-audit": {
    "en": "Pre-ship site audit: privacy, hygiene, policy pages.",
    "ar": "تدقيق الموقع قبل إطلاقه: الخصوصية، وسلامة الصفحات، وصفحات السياسات."
   },
-  "voice-clean": {
+  "nj-voice-clean": {
    "en": "Master a voiceover to broadcast loudness with ffmpeg only.",
    "ar": "اضبط التعليق الصوتي على مستوى ارتفاع البث باستخدام <bdi dir=\"ltr\">ffmpeg</bdi> وحده."
   },
@@ -158,7 +159,7 @@
    "en": "Cast a licensed TTS voice, engineer it once, clean the noise around each line.",
    "ar": "اختر صوتًا مرخّصًا، وهندسه مرة واحدة، ونظّف الضجيج حول كل جملة."
   },
-  "bg-music": {
+  "nj-music": {
    "en": "Licence-cleared music beds and sound effects, with credit lines.",
    "ar": "موسيقى خلفية ومؤثرات صوتية مرخّصة، مع سطور الإسناد."
   },
@@ -166,7 +167,7 @@
    "en": "Plan the picture of a 30 to 90 second film: beat sheet, shots.",
    "ar": "خطّط صورة فيلم مدته من 30 إلى 90 ثانية: تسلسل اللحظات واللقطات."
   },
-  "agent-halo": {
+  "nj-agent-halo": {
    "ar": "إطار ملوّن واسم نوع الوكيل على كل نافذة متصفح يفتحها، لتميّز النوافذ بعضها عن بعض."
   },
   "nj-qa": {
@@ -179,6 +180,10 @@
   "nj-listen": {
    "en": "Give Claude ears: a meeting recording becomes who said what and when, locally, free, Arabic dialects included.",
    "ar": "امنح Claude أذنين: يتحول تسجيل الاجتماع إلى من قال ماذا ومتى، محليًا ومجانًا، مع اللهجات العربية."
+  },
+  "nj-animation-direction": {
+   "en": "Direct animation before anyone animates it: beats, blocking, character acting, a gated animatic, then Rive, Theatre.js or GSAP.",
+   "ar": "أخرِج الرسوم المتحركة قبل تحريكها: الإيقاع والحركة على المسرح وتمثيل الشخصيات وأنيماتيك مضبوط، ثم Rive أو Theatre.js أو GSAP."
   }
  },
  "bundled": {
@@ -194,16 +199,17 @@
    "nj-motion-deck",
    "nj-laya",
    "nj-pinterest",
-   "srs-verifier",
-   "safe-delete",
-   "brandkit",
-   "design-taste-frontend",
-   "high-end-visual-design",
-   "minimalist-ui",
-   "redesign-existing-projects",
-   "hyperframes-studio",
-   "general-video",
-   "graphify"
+   "nj-doc-verifier",
+   "nj-safe-delete",
+   "nj-brandkit",
+   "nj-taste-frontend",
+   "nj-premium-design",
+   "nj-minimalist-ui",
+   "nj-redesign",
+   "nj-hyperframes-studio",
+   "nj-video",
+   "nj-codebase-graph",
+   "nj-untangle-codebase"
   ]
  }
 }

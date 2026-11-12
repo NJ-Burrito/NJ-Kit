@@ -519,7 +519,7 @@ def provision_pdf_typography(target: Path, check_only: bool) -> None:
 
     Both are re-creatable from the network, so they are re-created here.
     """
-    skill = target / "pdf-typography"
+    skill = target / "nj-pdf-typography"
     if not skill.exists():
         return
     print("\npdf-typography (fonts and renderer are not bundled — refilling)")

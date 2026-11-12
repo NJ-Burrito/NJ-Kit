@@ -15,8 +15,8 @@ This list comes from reading the scripts in `nj-plugin/skills/`. Anything not li
 
 | Skill | Network call | What is sent |
 |---|---|---|
-| `bg-music` (`fetch_music.py`) | `https://api.openverse.org/v1/audio/` | A search query for music or sound effects, and the download of the track you choose. Only when you run the fetch script. |
-| `pdf-typography` (`fetch-fonts.mjs`) | `https://fonts.googleapis.com` | A request for the open-licence font family you name. Only when you run the font fetch. |
+| `nj-music` (`fetch_music.py`) | `https://api.openverse.org/v1/audio/` | A search query for music or sound effects, and the download of the track you choose. Only when you run the fetch script. |
+| `nj-pdf-typography` (`fetch-fonts.mjs`) | `https://fonts.googleapis.com` | A request for the open-licence font family you name. Only when you run the font fetch. |
 | `nj-rank`, `nj-jira`, `nj-wrapup`, `nj-qa-pipeline`, `nj-jira-to-automation` | Your own Jira server, at the address you give | The tickets, comments and attachments you tell the skill to file, using the user and password you supply through environment variables or a credentials file on your machine (`~/.claude/secrets/jira.json` for `nj-rank`). The skills are written not to print, log or store the password, and send it only to your Jira server. These skills are for people who run a Jira instance; do not install them if you do not. |
 | `nj-agent-ops` (`relay.py`) | None | Writes a run ledger and result files in the project folder you run it in. Nothing leaves the machine. |
 | All other skills | None | Instructions and local scripts only (for example proofreading, PDF checks, ffmpeg voice cleaning). |

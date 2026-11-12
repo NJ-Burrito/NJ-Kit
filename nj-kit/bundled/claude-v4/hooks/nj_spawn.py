@@ -8,7 +8,7 @@ Hook input has NO parent/depth field (SubagentStart: session_id, agent_id, agent
 parent comes from the PreToolUse(Agent) caller fields, matched FIFO by child type (ambiguous only if two parents
 spawn the same type in the same instant).
 """
-import json, os, sys, time, re
+import json, sys, time, re
 from pathlib import Path
 
 HOME = Path.home() / ".claude"

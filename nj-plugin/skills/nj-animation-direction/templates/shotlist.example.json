@@ -1,0 +1,89 @@
+{
+  "project": {
+    "fps": 24,
+    "width": 1920,
+    "height": 1080,
+    "target_seconds": 3,
+    "version": "v001",
+    "lang": "en"
+  },
+  "tracks": {
+    "vo": [
+      {
+        "id": "vo01",
+        "src": "vo.wav",
+        "start_f": 0,
+        "dur_f": 48,
+        "text": "the kettle starts to sing"
+      }
+    ]
+  },
+  "beats": [
+    {
+      "id": "B1",
+      "turn": "the kettle threatens her reading time",
+      "state_in": 3,
+      "state_out": 6,
+      "deltas": [
+        {
+          "delta": 3,
+          "agent": "kettle"
+        }
+      ]
+    }
+  ],
+  "shots": [
+    {
+      "id": "Sc01_Sh01",
+      "beat": "B1: establish the kitchen",
+      "job": "where are we",
+      "start_f": 0,
+      "dur_f": 48,
+      "size": "WS",
+      "axis_side": "A",
+      "action": "kettle on the stove",
+      "board": [
+        "b1.png"
+      ],
+      "camera": {
+        "move": "push-in",
+        "from_scale": 1.0,
+        "to_scale": 1.2,
+        "motivation": "the kettle starts to shake"
+      },
+      "transition_out": {
+        "type": "cut"
+      }
+    },
+    {
+      "id": "Sc01_Sh02",
+      "beat": "B1: she decides",
+      "job": "she decides",
+      "start_f": 48,
+      "dur_f": 24,
+      "size": "CU",
+      "axis_side": "A",
+      "action": "Mona looks up from the book",
+      "board": [
+        "b2.png"
+      ],
+      "characters": [
+        "Mona"
+      ],
+      "acting": {
+        "objective": "to finish the chapter before the kettle boils",
+        "action": "reads faster",
+        "obstacle": "the kettle whistles",
+        "thought_before": "eyes dart to the stove, blink",
+        "end_state": "book closed on her thumb, eyes on the stove",
+        "holds": [
+          {
+            "start_f": 60,
+            "dur_f": 10,
+            "moving": true
+          }
+        ]
+      }
+    }
+  ]
+}

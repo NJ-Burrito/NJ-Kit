@@ -152,7 +152,6 @@ def main(argv):
 def selftest():
     import tempfile, os
     matrix, _ = load_matrix()
-    ok = True
 
     # 1. missing required slots -> exit 1
     with tempfile.NamedTemporaryFile("w", suffix=".md", delete=False, encoding="utf-8") as f:

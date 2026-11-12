@@ -1,4 +1,4 @@
-import json,corpus as C,collections,re
+import json,corpus as C,collections
 M1,M2='google/gemini-3.6-flash','google/gemini-3.5-flash-lite'
 R1=json.load(open('json/run1.json',encoding='utf-8')); R2=json.load(open('json/run2.json',encoding='utf-8'))
 # A. demo/hard variants, both models, excl-final (waqf-tolerant) and exact

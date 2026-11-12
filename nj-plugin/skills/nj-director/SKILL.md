@@ -79,11 +79,11 @@ to pass 1 rather than nudging.
   `references/revision-and-voice.md` §3), `OPENAI_API_KEY` set. It must leave
   one audio file per beat (or one file with beat-timestamped markers) named in
   the treatment, plus the measured per-line durations `timing.md` requires fed
-  back into `density.py` before pass 8. Then invoke `voice-clean` on that
+  back into `density.py` before pass 8. Then invoke `nj-voice-clean` on that
   output — its own gate refuses a result off the loudness target by more than
   1 LU, so its pass is what "the voice session is done" means, not a listen.
 - **Music and the bed.** Once pass 4 (camera plan) is locked, so the runtime
-  and per-beat mood are fixed, invoke `bg-music` for tracks by mood
+  and per-beat mood are fixed, invoke `nj-music` for tracks by mood
   (`informational` / `challenge` / `motivational` / `deep` / `arabic` /
   `corporate` / `cinematic`, picked per beat from § 2's On-screen column) at
   `--bed-lufs` well under the mastered voice level. It must leave
@@ -107,7 +107,7 @@ previous one's reasoning.
 | 4 | **Camera plan** — position keyframes on one path parameter | § 4 | `p` monotonic, no repeated key, rate table re-derivable in one line |
 | 5 | **Artwork + asset list** | § 5–6 | Every named object in § 2 has an asset row |
 | 6 | **End-card assertion** — exact strings, sampled frames | § 7 | Written before a frame is authored. Non-negotiable |
-| 7 | **Adversarial pass** — run `devil` on your own treatment | `NN-devil-*.md` | Each objection answered in writing or accepted as a named deviation |
+| 7 | **Adversarial pass** — run `nj-devil` on your own treatment | `NN-devil-*.md` | Each objection answered in writing or accepted as a named deviation |
 | 8 | **Render** | the film | Machine gates inside the run: density, end card, determinism seek-diff |
 
 Pass 7 is not optional politeness. On the QA Wrap commercial it found five of
@@ -133,8 +133,8 @@ seek — all before a frame cost anything.
 ## Related
 
 - `nj-writer` — the script, the caption text, the ask. Everything verbal.
-- `impact-copy` — the shape of a spoken line and its one true number.
-- `devil` — pass 7.
+- `nj-impact-copy` — the shape of a spoken line and its one true number.
+- `nj-devil` — pass 7.
 - the project's own deterministic gates (contrast script, glyph coverage, layout
   probe) and `web-design-guidelines` — the still-frame defects (contrast, font
   fallback, Arabic coverage) this skill does not look for. (`design-gate` was

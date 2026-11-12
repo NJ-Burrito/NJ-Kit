@@ -24,7 +24,7 @@ done by you; nothing is submitted automatically. Model: the Profile-Wrap checkli
 | Directory fields | `documentationUrl`, `supportUrl`, `privacyPolicyUrl`, `termsOfServiceUrl`, `homepage`, `repository` set; no `icon` yet (add one only if the portal asks) |
 
 Not verified by the build agent: file counts and sizes against the portal limits (Profile-Wrap's checklist cites under 512 files,
-each under 256 KiB, no binaries). `nj-plugin` has about 465 files and carries bundled audio in `bg-music`, so check the portal's
+each under 256 KiB, no binaries). `nj-plugin` has about 465 files and carries bundled audio in `nj-music`, so check the portal's
 report; if it objects, tell the Lead before changing anything.
 
 ## C. Submit, click by click

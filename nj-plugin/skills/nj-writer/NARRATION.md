@@ -35,11 +35,11 @@ numbers anywhere else. Sourced research checkpoint this guide is drawn from:
    silent line.
 4. `PYTHONUTF8=1 python scripts/narration_check.py <script> <brief.md>` →
    FAILS before a word is voiced (§6 for the full list).
-5. `no-ai-slop` + `brand/COPY-CHECKS.md` on the text; `arabic-english-proofreading`
+5. `no-ai-slop` + `brand/COPY-CHECKS.md` on the text; `nj-proofread`
    on the Arabic side.
 6. Voice: `nj-style-film/scripts/voice.py`, one request per line, DIRECTION
    from the script, not the old fixed constant (§4 "what replaces the rest").
-7. `voice-clean` masters the take to the matrix's `loudness_target_lufs`.
+7. `nj-voice-clean` masters the take to the matrix's `loudness_target_lufs`.
 8. You cannot hear. Every "does this sound right" question goes to the owner with
    the measurable proxies from §7, not a claim that it sounds good.
 
@@ -317,13 +317,13 @@ aliveness proxy; RMS-variability flag is guidance only, never a hard fail]
 
 ## 7. Loudness and mastering
 
-Matrix's `loudness_target_lufs` per destination; `voice-clean` runs the
+Matrix's `loudness_target_lufs` per destination; `nj-voice-clean` runs the
 actual chain (EQ, De-Esser, De-Noise, Compressor, Amplify, Limiter) — not
 restated here. `-14 LUFS integrated / -1 dBTP` for social video is the
 existing house master target (`nj-kit house_style.film.masters`, kept,
 pointed to, not duplicated). **All masters were landing 2-3 LU hot until
-2026-09-21** — cause was `voice-clean`'s mono->dual-mono pan step measuring
-louder under BS.1770, not the loudness engine; fixed in `voice-clean`, not
+2026-09-21** — cause was `nj-voice-clean`'s mono->dual-mono pan step measuring
+louder under BS.1770, not the loudness engine; fixed in `nj-voice-clean`, not
 restated here. [measured 2026-09-21]
 
 ## 8. Ceilings — say what this machine really cannot measure
@@ -459,7 +459,7 @@ the values, and **the registry wins** if the table below ever disagrees.
 - **HARD RULE — one model, one take (the owner 2026-10-03, permanent):** `google/gemini-3.1-flash-tts-preview` is the ONLY model any voice pipeline may call. No other model of any kind — no transcriber/ASR, no LLM judge, no tashkeel checker, no second TTS. Each line is voiced ONCE: no verify, no re-voice, no best-of-N takes. The owner checks the finished product by ear. The 2026-10-01 verify/re-roll step (`tashkeel_verify.py`, gemini-3.6-flash) was removed for cost; never reintroduce it. Offline deterministic gates that make no model call (`voice_style_gate.py`) stay.
 - **Pace:** Arabic 115 wpm (band 110-120), English 150 wpm (band 145-155): visible words / finished clip seconds x 60, per-clip atempo after the silence trim. Applied tempo never above **1.7**.
 - **Loudness:** `loudnorm=I=-14:TP=-2.0:LRA=11` single final pass (§7).
-- **Tashkeel (the owner 2026-10-01, binding):** Arabic text sent to TTS carries full tashkeel on EVERY word, on every letter that takes a mark and on case endings (إعراب), no exceptions, proofread with `arabic-english-proofreading` before voicing; visible text keeps only the marks the source itself writes. Only a letter that takes no mark (bare alif, madd و/ي after damma/kasra, ى, the lam of ال before a sun letter) goes bare. The manifest carries the marked text as `tts_text`; the gate fails the line otherwise.
+- **Tashkeel (the owner 2026-10-01, binding):** Arabic text sent to TTS carries full tashkeel on EVERY word, on every letter that takes a mark and on case endings (إعراب), no exceptions, proofread with `nj-proofread` before voicing; visible text keeps only the marks the source itself writes. Only a letter that takes no mark (bare alif, madd و/ي after damma/kasra, ى, the lam of ال before a sun letter) goes bare. The manifest carries the marked text as `tts_text`; the gate fails the line otherwise.
 - **Where the marks live (the owner 2026-10-01):** website and PDF wording stays EXACTLY as the source writes it, its own tanween and shadda included. Tashkeel is added ONLY to the TTS input (`tts_text`), letters unchanged.
 - **How to send Arabic (measured, KB `reference/arabic-tashkeel/`, rules R-TASHKEEL-001..009):** `input = direction + tts_text`, one sentence per call. (1) Full marks stay: 96.2% of words voiced as sent vs 91.1% bare, and the take-to-take swing shrinks. (2) Marks in NFC order (vowel, then shadda); re-ordering to shadda-first measured no better. (3) Never split a shadda into letter+sukun+letter (89.9%, worse). (4) Write full case endings; Kore reads clause ends in waqf by itself, never force it with sukun. (5) Digits are voiced acceptably but cannot carry marks, so spell out a number whose case or gender matters; spell acronyms in Arabic letters in the TTS text (PDF as بِي دِي إِفْ). (6) **Voice is stochastic** (the same marked text can change vowels between calls) — accepted: one take, no verify/re-roll (hard rule above). Known gaps: shadda minimal pairs (مُعَلِّم / مُعَلَّم) came back as sent only 71% and no respelling fixed it; loanwords such as إلكترونيا follow the marks about 2 of 3 takes.
 - **Pre-voicing gates (the owner 2026-10-03):** `voice_style_gate.py --text-only` (every check that needs no audio) runs in compose before the first TTS call, and `tashkeel_fix_apply.py` (real apply or `--stamp`) writes `narration.ar.checked.json` {step id -> sha256 of ttsAr}; on a cache miss an AR line whose sha is not in the receipt is refused before any call. A refused line costs zero calls; cache hits are never refused.

@@ -65,7 +65,7 @@ ARS's cross-model verification sends the draft to a second vendor (OpenAI /
 Gemini) for a blind critique. ACME runs 100% free besides Claude tokens —
 no second vendor key — so that folds only as: an opt-in pass using a
 *different Claude tier* on the exported checkpoint file, via the kit's
-existing `devil` skill (not duplicated here). State the cost when you invoke
+existing `nj-devil` skill (not duplicated here). State the cost when you invoke
 it: one extra model call, FRONTIER tier if available. Default path takes
 zero extra calls.
 

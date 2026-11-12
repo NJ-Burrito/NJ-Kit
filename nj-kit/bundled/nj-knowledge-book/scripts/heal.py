@@ -25,7 +25,7 @@ SAFE = {"‟": "“", "→": "->", "←": "<-", "≥": ">=", "≤": "<=", "≈":
 # (class, stage, regex on gate output, advice). First match wins. The advise classes are never auto-edited.
 CLASSES = [
     ("glyph-gap", "pdf", r"glyphs: not covered", "SAFE chars (%s) are mapped in pages, backed up; other chars: replace by hand with a Thmanyah-covered form. Then rebuild the report and run `check_pages.py --stamp` for the twin."),
-    ("tounicode", "pdf", r"(?i)tounicode|pdftotext|extract", "Arabic PDF extraction broken: re-extract with poppler `pdftotext`; if copy-text is wrong, repair the ToUnicode map via pdf-typography, rebuild, re-run check_report.py."),
+    ("tounicode", "pdf", r"(?i)tounicode|pdftotext|extract", "Arabic PDF extraction broken: re-extract with poppler `pdftotext`; if copy-text is wrong, repair the ToUnicode map via nj-pdf-typography, rebuild, re-run check_report.py."),
     ("rtl-title", "pdf", r"(?i)locate_pages|title.*(not found|match)|bookmark", "RTL title not matched: fix build_report.locate_pages to compare titles in logical order (strip bidi marks), rebuild, re-run check_report.py."),
     ("bank-basis", "banks", r"(?i)miss|FAIL", "Each missed item: rewrite `basis:` so it names the fact that picks the key (page-template section 4), basis first, then the item; never edit the key. Redraw only per the stop rule (no third draw)."),
     ("verifier-weak", "entries", r"(?i)weak", "Verifier says claim is wider than its quote: amend the claim NARROWER or leave it draft/retract and add a new entry; never keep the wide claim."),

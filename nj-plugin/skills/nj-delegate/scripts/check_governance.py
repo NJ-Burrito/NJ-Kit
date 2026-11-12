@@ -434,7 +434,7 @@ def selftest():
     broken_gate = csec.replace("[GATE: relay.py]", "[GATE: no_such_script.py]")
     results["GATE naming a missing script is caught"] = bool(gate_script_violations(broken_gate))
 
-    good_brief = f"""```
+    good_brief = """```
 GOVERNANCE   v3 · rules: r.md (read once, first)
 FOCUS        your only deliverable is the test file
 TASK         t1 · class · worker A of 1

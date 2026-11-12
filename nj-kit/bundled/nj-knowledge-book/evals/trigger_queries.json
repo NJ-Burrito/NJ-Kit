@@ -18,8 +18,8 @@
     {"q": "research the EU MDR transition timeline", "expect": "nj-researcher", "split": "train"},
     {"q": "is this source reliable?", "expect": "nj-researcher", "split": "validation"},
     {"q": "write the user manual for our app", "expect": "doc-coauthoring", "split": "train"},
-    {"q": "turn this HTML into a PDF with Thmanyah", "expect": "pdf-typography", "split": "train"},
-    {"q": "proofread this Arabic page", "expect": "arabic-english-proofreading", "split": "validation"},
+    {"q": "turn this HTML into a PDF with Thmanyah", "expect": "nj-pdf-typography", "split": "train"},
+    {"q": "proofread this Arabic page", "expect": "nj-proofread", "split": "validation"},
     {"q": "write one explainer document on how our CI works", "expect": "doc-coauthoring", "split": "validation"},
     {"q": "remember this: the ISTQB site rate-limits fast fetches", "expect": "nj-learn", "split": "train"}
   ],

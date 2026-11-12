@@ -4,7 +4,7 @@
 
 # NJ-Kit: Claude Code skills that end in PASS or FAIL
 
-### ✅ One working method and 45 skills for Claude Code. Every skill ends in a script that checks the work.
+### ✅ One working method and 48 skills for Claude Code. Every skill ends in a script that checks the work.
 
 **NJ-Kit by [Nader Alzghoul](https://nj-burrito.github.io/) (NJ-Burrito)**: free, open-source Claude Code skills and plugin, in Arabic and English. [Website](https://nj-burrito.github.io/NJ-Kit/) · [LinkedIn](https://www.linkedin.com/in/nader-alzghoul)
 
@@ -17,7 +17,7 @@
 <summary>🏷️ More badges</summary>
 
 [![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-c2ea4e?labelColor=0e1311)](.claude-plugin/marketplace.json)
-[![Arabic and English](https://img.shields.io/badge/Arabic%20%2B%20English-first--class-c2ea4e?labelColor=0e1311)](nj-plugin/skills/arabic-english-proofreading)
+[![Arabic and English](https://img.shields.io/badge/Arabic%20%2B%20English-first--class-c2ea4e?labelColor=0e1311)](nj-plugin/skills/nj-proofread)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-c2ea4e?labelColor=0e1311)](nj-kit/scripts/install.py)
 [![Stars](https://img.shields.io/github/stars/NJ-Burrito/NJ-Kit?style=social)](https://github.com/NJ-Burrito/NJ-Kit/stargazers)
 
@@ -26,7 +26,7 @@
 </div>
 
 > ### ⚡ In 10 seconds
-> 🧠 **What:** a free method and 45 skills for Claude Code.\
+> 🧠 **What:** a free method and 48 skills for Claude Code.\
 > ✅ **Why:** a script prints **PASS** or **FAIL**. No "should work".\
 > 🚀 **Start:** paste 2 lines into Claude Code. [Go ↓](#plugin)\
 > 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) · [بالعربية](https://nj-burrito.github.io/NJ-Kit/ar/)
@@ -41,7 +41,7 @@
 
 | You want… | Take this | Time |
 |---|---|---|
-| 🧩 Claude Code, fastest | [Plugin ↓](#plugin) · 27 skills | ⏱️ 1 min |
+| 🧩 Claude Code, fastest | [Plugin ↓](#plugin) · 29 skills | ⏱️ 1 min |
 | 🧰 All 45 on a new machine | [Kit installer ↓](#kit) | ⏱️ 5 min |
 | 📂 Another agent that reads `SKILL.md` | [Copy one skill ↓](#whats-inside) | ⏱️ 1 folder |
 | 🔤 The typeface | [NJ-Font ↓](#nj-font) (coming soon) | ⏱️ soon |
@@ -78,7 +78,7 @@ All free. 👆 Pick one and skip the rest.
 /plugin install nj-kit@nj-kit
 ```
 
-**2.** Say: **"use nj-method"** ✅ Done. You have 27 skills.
+**2.** Say: **"use nj-method"** ✅ Done. You have 29 skills.
 
 ---
 
@@ -117,7 +117,16 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
-## 🆕 What's new in 2.4.4
+## 🆕 What's new in 3.0.0
+
+Release: [v3.0.0 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.0.0). 29 plugin skills, 48 with the kit installer.
+
+- 🏷️ **Every skill this repo ships is now named `nj-<what it does>`** and sits in a purpose group (the README table and the website are grouped). Renamed: `devil` → `nj-devil`, `session-handoff` → `nj-handoff`, `agent-halo` → `nj-agent-halo`, `pdf-typography` → `nj-pdf-typography`, `arabic-english-proofreading` → `nj-proofread`, `workflow-diagram` → `nj-workflow-diagram`, `impact-copy` → `nj-impact-copy`, `voice-clean` → `nj-voice-clean`, `bg-music` → `nj-music`, `website-fine-print` → `nj-site-audit`; in the kit: `srs-verifier` → `nj-doc-verifier`, `safe-delete` → `nj-safe-delete`, `general-video` → `nj-video`, `graphify` → `nj-codebase-graph`, and the design skills to `nj-taste-frontend`, `nj-premium-design`, `nj-minimalist-ui`, `nj-redesign`, `nj-brandkit`, `nj-hyperframes-studio`. **Breaking:** say the new names. Third-party skills the installer fetches keep their upstream names.
+- 🎬 **New skill `nj-animation-direction`:** directs animation before anyone animates it: a beat sheet whose pressure adds up, blocking in numbers, character-acting briefs (objective, action, obstacle, the thought before, the end state), a gated animatic built from stills and scratch sound, review checklists, and hand-off rules for GSAP/HyperFrames, Rive state machines, Theatre.js and Remotion. Built on a 312-entry knowledge base researched in four parallel lanes; `shotlist.py` gate with a 21-assertion self-test.
+- 🧶 **Kit gains `nj-untangle-codebase`** (from caldoai/skills, MIT): one-pass restructuring of a tangled codebase.
+- 🧹 Cleanup: unused imports, empty f-strings, unused variables and one dead statement removed across the Python.
+
+## What was new in 2.4.4
 
 Release: [v2.4.4 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.4). 28 plugin skills.
 
@@ -127,7 +136,7 @@ Release: [v2.4.4 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2
 
 Release: [v2.4.3 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.3). 27 plugin skills, 45 with the kit installer.
 
-- 🧹 Dead-code sweep: Knip on the JS/TS, vulture on the Python; a stray PDF named `--help` removed from `pdf-typography`; details in the changelog.
+- 🧹 Dead-code sweep: Knip on the JS/TS, vulture on the Python; a stray PDF named `--help` removed from `nj-pdf-typography`; details in the changelog.
 
 ## 🆕 What's new in 2.4.2
 
@@ -177,7 +186,7 @@ Release: [v2.3.0 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2
 |---|---|
 | 📊 [nj-chart](nj-plugin/skills/nj-chart) | Charts, dashboards and KPI rows that read at a glance, in Arabic or English, light or dark. Built on [Flint](https://github.com/microsoft/flint-chart) by Microsoft (MIT) |
 | 🧪 [nj-qa](nj-plugin/skills/nj-qa) | A crew of agents tests a service's Jira notes on the live system: one leader per service, a tester per route, scavengers for defects nobody listed. Scripts enforce the limits (`nj_qa.py`) |
-| 🟠 [agent-halo](nj-plugin/skills/agent-halo) | Every browser window an agent opens gets a coloured border and the agent's name, so you can tell windows apart. Screenshots and page text never see it |
+| 🟠 [nj-agent-halo](nj-plugin/skills/nj-agent-halo) | Every browser window an agent opens gets a coloured border and the agent's name, so you can tell windows apart. Screenshots and page text never see it |
 
 Also: `scripts/publish-check.py`, the gate every release now passes before it is pushed (no credentials, no private project data, no machine paths, no font files). Full list: [CHANGELOG.md](CHANGELOG.md).
 
@@ -190,40 +199,58 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 27 come with the plugin. The kit installer adds 18. Every one ends in a PASS or FAIL gate.
 
 <details open>
-<summary>🧩 <b>In the plugin</b> · 27 skills · generated from each <code>SKILL.md</code></summary>
+<summary>🧩 <b>In the plugin</b> · 29 skills · generated from each <code>SKILL.md</code></summary>
 
 <!-- skills:start -->
 
+**Method and agents**
+
 | Skill | What it does |
 |---|---|
-| [agent-halo](nj-plugin/skills/agent-halo) | Every browser window an agent opens carries a coloured border and the agent's type at the top, so a person can tell agent windows apart |
-| [arabic-english-proofreading](nj-plugin/skills/arabic-english-proofreading) | Proofread Arabic, English or bilingual text (SRS, official submissions, manuals, UI strings) |
-| [bg-music](nj-plugin/skills/bg-music) | Holds a bundled licence-cleared CC0 SFX library and music beds with cue presets, and sources from Openverse, Jamendo, Freesound, ccMixter, Wikimedia with licence, credit line and retrieval date per track |
-| [devil](nj-plugin/skills/devil) | Adversarial critique of a plan, design, architecture or vendor choice before it is acted on: ranked objections, the assumption each attacks, the cheapest settling test |
-| [impact-copy](nj-plugin/skills/impact-copy) | House style since 17 Sept 2026: impact-first, metric-driven copy for commercials, captions, brag docs, release notes |
-| [nj-agent-ops](nj-plugin/skills/nj-agent-ops) | NJ Governance v4 (v3 briefs still accepted) transport under nj-delegate: telemetry refused at write time (relay.py), path claims that enforce single-writer, KPI audit via verify, results through files, one wake per batch, a low-effort interpreter spawned on a trigger |
-| [nj-automation-suite](nj-plugin/skills/nj-automation-suite) | Create an automation-tests folder (a portable, self-contained Playwright suite): layout, lib/paths.ts portability (env vars, auto-discovery, no absolute paths), HTML report + per-service Jira HTML, AI-RUN-NOTES.md, AGENT.md, PDFs (Thmanyah TrueType only), launchers, Docker image-only share, sweep-chrome, sign-in lock |
-| [nj-chart](nj-plugin/skills/nj-chart) | Charts, dashboards and metric reports that read at a glance, in Arabic or English, light or dark, built on the Flint chart engine (MCP server `flint`) |
+| [nj-method](nj-plugin/skills/nj-method) | A default method for every request: analyse the ask, look up installed skills before improvising, plan with named checkpoints, execute, review against what was asked |
 | [nj-delegate](nj-plugin/skills/nj-delegate) | NJ Governance v4: the Lead (Opus) administers and decides, Sonnet leads build in their own worktrees, Haiku helpers do bounded mechanical work (depth 2, at most 20 agents counted, helpers required by the ITEMS rule) |
-| [nj-director](nj-plugin/skills/nj-director) | Film direction (not agent delegation — see nj-delegate for that) |
+| [nj-agent-ops](nj-plugin/skills/nj-agent-ops) | NJ Governance v4 (v3 briefs still accepted) transport under nj-delegate: telemetry refused at write time (relay.py), path claims that enforce single-writer, KPI audit via verify, results through files, one wake per batch, a low-effort interpreter spawned on a trigger |
+| [nj-supervise](nj-plugin/skills/nj-supervise) | How to brief a delegated worker and how to know it is actually working |
+| [nj-handoff](nj-plugin/skills/nj-handoff) | Close a session by writing a handoff.md the next session reads first, instead of dragging degraded context through /compact |
+| [nj-learn](nj-plugin/skills/nj-learn) | Capture a lesson the moment work teaches one and write it where it will be read: the owning skill, CLAUDE.md, memory, or the nj-kit manifest |
+| [nj-wrapup](nj-plugin/skills/nj-wrapup) | Close a work session or a tested service end to end: discover what already exists, classify results through gates, file Bugs and Tasks with evidence (clean rows only, risky rows held), reconcile every count against Jira, register the work in nj-rank, and render the boss email (Arabic + English) and the QA-team message from the reconciled trace |
+| [nj-devil](nj-plugin/skills/nj-devil) | Adversarial critique of a plan, design, architecture or vendor choice before it is acted on: ranked objections, the assumption each attacks, the cheapest settling test |
+| [nj-security-review](nj-plugin/skills/nj-security-review) | Review third-party skills, plugins and MCP servers for prompt injection, concealment, permission bypass, self-installing hooks, credential access, exfiltration, obfuscation |
+| [nj-agent-halo](nj-plugin/skills/nj-agent-halo) | Every browser window an agent opens carries a coloured border and the agent's type at the top, so a person can tell agent windows apart |
+
+**QA and Jira**
+
+| Skill | What it does |
+|---|---|
 | [nj-jira](nj-plugin/skills/nj-jira) | Open the owner's Jira, analyse a ticket into a report and an automation, file Bugs with evidence (screenshots, related Story, assignee), QA re-check our Bugs (verify -> comment + Done, or Re Opened) and keep the tracker |
 | [nj-jira-to-automation](nj-plugin/skills/nj-jira-to-automation) | Turn a Jira ticket (or a service's open Bugs) into a runnable automation: analyse into notes, check each on the portal, write one standalone test per note (jiraCheck / jiraSkipped / noteEnv), mark filed-request notes blocked, resume on a ticket, run once |
-| [nj-learn](nj-plugin/skills/nj-learn) | Capture a lesson the moment work teaches one and write it where it will be read: the owning skill, CLAUDE.md, memory, or the nj-kit manifest |
-| [nj-listen](nj-plugin/skills/nj-listen) | Give Claude ears: turn a meeting recording (audio or video, multitrack, minutes to hours) into who said what and when, locally, free and open source, no cloud |
-| [nj-method](nj-plugin/skills/nj-method) | A default method for every request: analyse the ask, look up installed skills before improvising, plan with named checkpoints, execute, review against what was asked |
-| [nj-narration](nj-plugin/skills/nj-narration) | Cast and engineer a TTS voice for any story: casting brief from the character, licensed sources, signal-only rubric, top 3 for the ear; direction sheet, pronunciation lexicon, reference prep, commissioned-talent consent; engine, caps, one take; edge clean, mastering chain, loudness, gates, healing |
-| [nj-qa](nj-plugin/skills/nj-qa) | NJ-QA: the owner's agent-crew method for testing a service's Jira notes on the live system, with one Opus leader per service, Haiku harvesters, one Sonnet tester per route and Haiku scavengers hunting unlisted defects, ending in a preview he decides on |
 | [nj-qa-pipeline](nj-plugin/skills/nj-qa-pipeline) | End-to-end QA pipeline that combines the Jira skills: Jira -> notes -> staging check -> acceptance report -> automation -> full route walks (one agent per service, extra agents per route share) -> Bug filing -> QA re-check -> tracker -> Docker + share + 7z |
+| [nj-automation-suite](nj-plugin/skills/nj-automation-suite) | Create an automation-tests folder (a portable, self-contained Playwright suite): layout, lib/paths.ts portability (env vars, auto-discovery, no absolute paths), HTML report + per-service Jira HTML, AI-RUN-NOTES.md, AGENT.md, PDFs (Thmanyah TrueType only), launchers, Docker image-only share, sweep-chrome, sign-in lock |
 | [nj-rank](nj-plugin/skills/nj-rank) | Register finished work, keep its evidence paths, and file it to Jira as Done Tasks assigned to the user; close the user's own open Tasks |
-| [nj-security-review](nj-plugin/skills/nj-security-review) | Review third-party skills, plugins and MCP servers for prompt injection, concealment, permission bypass, self-installing hooks, credential access, exfiltration, obfuscation |
-| [nj-supervise](nj-plugin/skills/nj-supervise) | How to brief a delegated worker and how to know it is actually working |
-| [nj-wrapup](nj-plugin/skills/nj-wrapup) | Close a work session or a tested service end to end: discover what already exists, classify results through gates, file Bugs and Tasks with evidence (clean rows only, risky rows held), reconcile every count against Jira, register the work in nj-rank, and render the boss email (Arabic + English) and the QA-team message from the reconciled trace |
+| [nj-qa](nj-plugin/skills/nj-qa) | NJ-QA: the owner's agent-crew method for testing a service's Jira notes on the live system, with one Opus leader per service, Haiku harvesters, one Sonnet tester per route and Haiku scavengers hunting unlisted defects, ending in a preview he decides on |
+
+**Documents, charts and writing**
+
+| Skill | What it does |
+|---|---|
+| [nj-pdf-typography](nj-plugin/skills/nj-pdf-typography) | PDFs whose text stays real: selectable and searchable |
+| [nj-proofread](nj-plugin/skills/nj-proofread) | Proofread Arabic, English or bilingual text (SRS, official submissions, manuals, UI strings) |
+| [nj-workflow-diagram](nj-plugin/skills/nj-workflow-diagram) | Draw or fix an SRS workflow figure «مخطط سير العمل» from evidence: one box per element the model walks, left-to-right, an «إجراء» decision after any multi-exit task |
 | [nj-writer](nj-plugin/skills/nj-writer) | Writes narration and script words: commercials, e-learning, walkthroughs, podcasts, event/recruitment/investor pieces, Arabic or English |
-| [pdf-typography](nj-plugin/skills/pdf-typography) | PDFs whose text stays real: selectable and searchable |
-| [session-handoff](nj-plugin/skills/session-handoff) | Close a session by writing a handoff.md the next session reads first, instead of dragging degraded context through /compact |
-| [voice-clean](nj-plugin/skills/voice-clean) | Clean and master spoken voice (voiceover, narration, podcast, reel) to broadcast loudness with ffmpeg only: the Premiere chain EQ, DeEsser, DeNoise, Compressor, Amplify, Limiter in one command |
-| [website-fine-print](nj-plugin/skills/website-fine-print) | Pre-ship site audit: privacy exposure, hygiene (broken links, overflow, favicon, titles, 404, copyright year), policy claims versus third parties contacted, page-observable security |
-| [workflow-diagram](nj-plugin/skills/workflow-diagram) | Draw or fix an SRS workflow figure «مخطط سير العمل» from evidence: one box per element the model walks, left-to-right, an «إجراء» decision after any multi-exit task |
+| [nj-impact-copy](nj-plugin/skills/nj-impact-copy) | House style since 17 Sept 2026: impact-first, metric-driven copy for commercials, captions, brag docs, release notes |
+| [nj-site-audit](nj-plugin/skills/nj-site-audit) | Pre-ship site audit: privacy exposure, hygiene (broken links, overflow, favicon, titles, 404, copyright year), policy claims versus third parties contacted, page-observable security |
+| [nj-chart](nj-plugin/skills/nj-chart) | Charts, dashboards and metric reports that read at a glance, in Arabic or English, light or dark, built on the Flint chart engine (MCP server `flint`) |
+
+**Audio, video and animation**
+
+| Skill | What it does |
+|---|---|
+| [nj-listen](nj-plugin/skills/nj-listen) | Give Claude ears: turn a meeting recording (audio or video, multitrack, minutes to hours) into who said what and when, locally, free and open source, no cloud |
+| [nj-voice-clean](nj-plugin/skills/nj-voice-clean) | Clean and master spoken voice (voiceover, narration, podcast, reel) to broadcast loudness with ffmpeg only: the Premiere chain EQ, DeEsser, DeNoise, Compressor, Amplify, Limiter in one command |
+| [nj-narration](nj-plugin/skills/nj-narration) | Cast and engineer a TTS voice for any story: casting brief from the character, licensed sources, signal-only rubric, top 3 for the ear; direction sheet, pronunciation lexicon, reference prep, commissioned-talent consent; engine, caps, one take; edge clean, mastering chain, loudness, gates, healing |
+| [nj-music](nj-plugin/skills/nj-music) | Holds a bundled licence-cleared CC0 SFX library and music beds with cue presets, and sources from Openverse, Jamendo, Freesound, ccMixter, Wikimedia with licence, credit line and retrieval date per track |
+| [nj-director](nj-plugin/skills/nj-director) | Film direction (not agent delegation — see nj-delegate for that) |
+| [nj-animation-direction](nj-plugin/skills/nj-animation-direction) | Direct animation before anyone animates it: beat sheet with pressure arithmetic, blocking in numbers, shot list with character-acting briefs (objective, action, obstacle, thinking beat, end state), a gated animatic built from stills and scratch sound, review checklists, then hand-off rules for GSAP/HyperFrames, Rive state machines, Theatre.js and Remotion |
 
 <!-- skills:end -->
 
@@ -234,8 +261,8 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 
 | Group | Skills |
 |---|---|
-| 🔬 By NJ · 10 | nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-multimedia · nj-motion-deck · nj-laya · nj-pinterest · srs-verifier · safe-delete |
-| 🎨 Third-party design · 7 | brandkit · design-taste-frontend · high-end-visual-design · minimalist-ui · redesign-existing-projects · hyperframes-studio · general-video |
+| 🔬 By NJ · 10 | nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-multimedia · nj-motion-deck · nj-laya · nj-pinterest · nj-doc-verifier · nj-safe-delete |
+| 🎨 Third-party design · 7 | brandkit · nj-taste-frontend · nj-premium-design · nj-minimalist-ui · nj-redesign · nj-hyperframes-studio · nj-video |
 | 🕸️ Third-party graph · 1 | graphify |
 
 - 🧰 The kit installer puts them in place.
@@ -254,7 +281,7 @@ You can combine them. NJ-Kit skills are plain `SKILL.md` folders, so they work n
 
 | Project | What it is | Reach for it when |
 |---|---|---|
-| ✅ **NJ-Kit** | A working method and 45 skills. Every skill ends in a PASS or FAIL script. Arabic and English | You want the agent to prove a task is done |
+| ✅ **NJ-Kit** | A working method and 48 skills. Every skill ends in a PASS or FAIL script. Arabic and English | You want the agent to prove a task is done |
 | [anthropics/skills](https://github.com/anthropics/skills) | Anthropic's public repository for Agent Skills | You want the skills Anthropic publishes itself |
 | [obra/superpowers](https://github.com/obra/superpowers) | An agentic skills framework and software development methodology | You want a software development methodology built from skills |
 | [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | A hand-picked list of Claude Code resources: skills, agents, plugins, tools | You want to browse what exists |
@@ -330,7 +357,7 @@ Get-ChildItem NJ-Font\ttf\*.ttf | ForEach-Object {
 
 <details><summary>🧠 What is NJ-Kit?</summary>
 
-A free, open-source Claude Code plugin: one working method and 45 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, by Nader Alzghoul.
+A free, open-source Claude Code plugin: one working method and 48 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, by Nader Alzghoul.
 </details>
 
 <details><summary>📂 What are Claude Code skills?</summary>
@@ -416,7 +443,7 @@ VOICE-EDGE-NOISE  PASS  speech samples identical
 NEXT     the top 3 voices go to your ear. You decide.
 ```
 
-**Install:** the same two lines as NJ-Kit ([Plugin ↑](#plugin)). `nj-narration` is one of the 27 plugin skills; after installing, say **"use nj-narration"**.
+**Install:** the same two lines as NJ-Kit ([Plugin ↑](#plugin)). `nj-narration` is one of the 29 plugin skills; after installing, say **"use nj-narration"**.
 
 Plugin only: `/plugin install nj-kit@nj-kit`. Any other agent that reads `SKILL.md`: copy the folder [`nj-plugin/skills/nj-narration`](nj-plugin/skills/nj-narration).
 

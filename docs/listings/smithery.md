@@ -16,10 +16,10 @@ NJ-Kit is a set of 24 skills written by one working QA and automation engineer f
 
 What is inside:
 
-- Working method: `nj-method` (analyse, look up skills, plan, execute, review), `nj-learn` (write a lesson where it will be read), `session-handoff` (close a session with a handoff file instead of dragging old context along), `devil` (adversarial critique before you act on a plan).
+- Working method: `nj-method` (analyse, look up skills, plan, execute, review), `nj-learn` (write a lesson where it will be read), `nj-handoff` (close a session with a handoff file instead of dragging old context along), `nj-devil` (adversarial critique before you act on a plan).
 - Agents: `nj-delegate`, `nj-agent-ops` and `nj-supervise` describe a lead, team agent and helper tree with briefs, receipts and a result ledger.
-- Writing and language: `arabic-english-proofreading` for Arabic, English and bilingual text, `impact-copy`, `nj-writer`, `workflow-diagram`.
-- Documents and media: `pdf-typography` (PDFs whose text stays real), `voice-clean` (ffmpeg voice mastering), `bg-music` (licence-cleared beds and sound effects), `nj-director`, `website-fine-print`.
+- Writing and language: `nj-proofread` for Arabic, English and bilingual text, `nj-impact-copy`, `nj-writer`, `nj-workflow-diagram`.
+- Documents and media: `nj-pdf-typography` (PDFs whose text stays real), `nj-voice-clean` (ffmpeg voice mastering), `nj-music` (licence-cleared beds and sound effects), `nj-director`, `nj-site-audit`.
 - QA and Jira: `nj-jira`, `nj-jira-to-automation`, `nj-qa-pipeline`, `nj-automation-suite`, `nj-rank`, `nj-wrapup`. These need your own Jira server and credentials; skip them if you do not use Jira.
 
 Arabic and English are both first-class: where a skill has a bilingual output, the pair is the unit.
