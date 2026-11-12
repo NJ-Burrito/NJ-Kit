@@ -585,7 +585,7 @@ footer a:hover{text-decoration:underline}
           <p class="note" data-l="en">Research, design and decks, plus third-party design skills and graphify. Among them:</p>
           <p class="note" data-l="ar">البحث والتصميم والعروض، إضافة إلى مهارات تصميم من أطراف خارجية و<bdi dir="ltr">graphify</bdi>. منها:</p>
           <ul class="chipset">
-            <li>nj-evidence</li><li>nj-knowledge-book</li><li>nj-researcher</li><li>nj-style-film</li><li>nj-motion-deck</li><li>nj-laya</li><li>nj-pinterest</li><li>srs-verifier</li><li>safe-delete</li><li>brandkit</li><li>design-taste-frontend</li><li>high-end-visual-design</li><li>minimalist-ui</li><li>redesign-existing-projects</li><li>hyperframes-studio</li><li>general-video</li><li>graphify</li>
+            <li>nj-evidence</li><li>nj-knowledge-book</li><li>nj-researcher</li><li>nj-style-film</li><li>nj-multimedia</li><li>nj-motion-deck</li><li>nj-laya</li><li>nj-pinterest</li><li>srs-verifier</li><li>safe-delete</li><li>brandkit</li><li>design-taste-frontend</li><li>high-end-visual-design</li><li>minimalist-ui</li><li>redesign-existing-projects</li><li>hyperframes-studio</li><li>general-video</li><li>graphify</li>
           </ul>
         </div>
         <p class="foot"><svg class="ic" aria-hidden="true"><use href="#i-circle-check-big"/></svg><span data-l="en">Every skill ends with a script gate: PASS or FAIL.</span><span data-l="ar">كل مهارة تنتهي ببوابة فحص من سكربت: <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>.</span></p>
