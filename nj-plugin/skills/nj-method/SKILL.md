@@ -77,7 +77,8 @@ picking silently.
 | Diagram from code (architecture, sequence, ER, state) | `workflow-diagram` § Mermaid: write `.mmd` from the code, render with `mmdc` in Thmanyah and the brand palette |
 | Verifying a document against the built system | `srs-verifier` |
 | Knowledge book, study guide, certification prep, handbook, mentor path (multi-page, sourced, PDF) | `nj-knowledge-book` (on `nj-evidence`; runs its own 5-POV devil council) |
-| Video, film, animation | `hyperframes` (entry point) |
+| Commercial, promo, launch or brand film, ad, teaser, reel made to sell (إعلان، فيديو تسويقي، كوميرشال) | `nj-multimedia` (kit): creative ∥ marketing crews → director + `devil` → one owner stop (proposal + keyframe boards) → sound ∥ motion → `mm.py` / `frame_probe.mjs` gates → render; builds on `hyperframes`, `nj-writer`, `bg-music`, `impact-copy` |
+| Video, film, animation (not a commercial) | `hyperframes` (entry point); a narrated style film from references: `nj-style-film` |
 | Narration, voiceover | `nj-writer` § voice styles (`NARRATION.md` §11): Kore on Gemini 3.1 Flash TTS via OpenRouter, registered style from `voice-styles.json`, `voice_style_gate.py` before delivery; then `voice-clean` (`nj-kit` `house_style.tts_engine`) |
 | Cut recorded footage | faster-whisper transcript → Claude cut list → `auto-editor` / ffmpeg (`house_style.footage_cut`) |
 | Scan a web app we own | ZAP baseline (zaproxy docker image), then Strix (Claude, `STRIX_TELEMETRY=0`, owned targets only) — `nj-security-review` § Scanning a live web app we own |
@@ -134,7 +135,9 @@ an artefact the next stage reads, so a correction re-runs one stage.
 - Documents: source → `.md` → styled HTML → PDF. Fixing wording re-runs the
   render, not the research.
 - Video: script → storyboard → composition → render. The render is the expensive
-  step and must never be where edits are made.
+  step and must never be where edits are made. A commercial adds the crew
+  folders before the script (`nj-multimedia`: `creative/`, `marketing/`,
+  `proposal/`, `boards/`, then `audio/` and `build/`).
 - Voiceover: script file → audio. Keep the script; regenerate audio freely.
 - QA: page objects separate from specs, so a selector fix is one file.
 - Anything long: write it down before building on it.
