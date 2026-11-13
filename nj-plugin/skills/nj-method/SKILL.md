@@ -1,6 +1,6 @@
 ---
 name: nj-method
-description: 'A default method for every request: analyse the ask, look up installed skills before improvising, plan with named checkpoints, execute, review against what was asked. Its routing table answers which skill applies, Arabic or English. Checkpoints are files, not messages.'
+description: 'Nader''s default method for every request: analyse the ask, look up installed skills before improvising, plan with named checkpoints, execute, review against what was asked. Its routing table answers which skill applies, Arabic or English. Checkpoints are files, not messages.'
 ---
 
 # The method
@@ -22,7 +22,7 @@ the method running. Two things are never skipped, whatever the size:
 
 A method performed rather than followed costs attention and buys nothing.
 
-## The session does the work (plain mode, 2026-10-30)
+## The session does the work (plain mode, Nader 2026-10-30)
 
 The main session analyses, routes, plans, builds, fixes, runs the scripts and
 reviews, itself, on the normal model (Sonnet 5.5 unless the owner sets
@@ -58,35 +58,41 @@ picking silently.
 
 | Deliverable | Reach for |
 | --- | --- |
-| Document, SRS, manual | `doc-coauthoring` → `nj-pdf-typography` → `nj-proofread` |
+| Document, SRS, manual | `nj-doc-coauthoring` → `nj-pdf-typography` → `nj-proofread` |
 | Arabic anything | `nj-proofread` before delivery, always |
 | Workflow figure | `nj-workflow-diagram` |
 | Diagram from code (architecture, sequence, ER, state) | `nj-workflow-diagram` § Mermaid: write `.mmd` from the code, render with `mmdc` in Thmanyah and the brand palette |
 | Verifying a document against the built system | `nj-doc-verifier` |
 | Knowledge book, study guide, certification prep, handbook, mentor path (multi-page, sourced, PDF) | `nj-knowledge-book` (on `nj-evidence`; runs its own 5-POV devil council) |
-| Commercial, promo, launch or brand film, ad, teaser, reel made to sell (إعلان، فيديو تسويقي، كوميرشال) | `nj-multimedia` (kit): creative ∥ marketing crews → director + `nj-devil` → one owner stop (proposal + keyframe boards) → sound ∥ motion → `mm.py` / `frame_probe.mjs` gates → render; builds on `hyperframes`, `nj-writer`, `nj-music`, `nj-impact-copy` |
-| Video, film, animation (not a commercial) | `hyperframes` (entry point); a narrated style film from references: `nj-style-film` |
+| Commercial, promo, launch or brand film, ad, teaser, reel made to sell (إعلان، فيديو تسويقي، كوميرشال) | `nj-multimedia`: creative ∥ marketing crews → director + `nj-devil` → one owner stop (proposal + keyframe boards) → sound ∥ motion → `mm.py` / `frame_probe.mjs` gates → render; builds on `hyperframes`, `nj-writer`, `nj-music`, `nj-impact-copy` |
+| Video, film, animation (not a commercial) | `nj-hyperframes` (entry point); a narrated style film from references: `nj-style-film` |
 | Narration, voiceover | `nj-writer` § voice styles (`NARRATION.md` §11): Kore on Gemini 3.1 Flash TTS via OpenRouter, registered style from `voice-styles.json`, `voice_style_gate.py` before delivery; then `nj-voice-clean` (`nj-kit` `house_style.tts_engine`) |
 | Cut recorded footage | faster-whisper transcript → Claude cut list → `auto-editor` / ffmpeg (`house_style.footage_cut`) |
 | Scan a web app we own | ZAP baseline (zaproxy docker image), then Strix (Claude, `STRIX_TELEMETRY=0`, owned targets only) — `nj-security-review` § Scanning a live web app we own |
 | Image to video | not available on this laptop; animate stills with HyperFrames / Remotion (`house_style.image_to_video`) |
 | Music or SFX under a render | `nj-music` |
-| QA automation | `playwright-best-practices`, Playwright MCP, the project's own e2e skill |
+| QA automation | `nj-playwright-practices`, Playwright MCP, the project's own e2e skill |
 | Jira: read / analyse a ticket, file Bugs, QA re-check, tracker | `nj-jira` |
 | Jira ticket or open Bugs into runnable checks | `nj-jira-to-automation` |
 | After testing a service / end of a work session: file Bugs + untestable Tasks + blocker, nj-rank Done Tasks, outputs to QA, boss email AR+EN (سكّر الشغل، ارفع النتائج) | `nj-wrapup` |
 | Create an automation-tests folder (portable, reports, PDF, Docker) | `nj-automation-suite` |
 | Whole QA round: Jira -> notes -> walks -> Bugs -> re-check -> Docker | `nj-qa-pipeline` |
-| Agent crew testing a service's notes, only when the owner names NJ-QA | `nj-qa` |
+| Agent crew testing a service's notes, only when Nader names NJ-QA | `nj-qa` |
 | An agent opens a browser window, in any project | `nj-agent-halo` |
 | Any chart, dashboard, KPI row or report with charts | `nj-chart` |
-| UI, design, theming | `frontend-design`, `ui-ux-pro-max`; check with the project's own deterministic gates (layout probe, contrast script, glyph coverage) and `web-design-guidelines` |
+| UI, design, theming | `frontend-design`, `ui-ux-pro-max`; check with the project's own deterministic gates (layout probe, contrast script, glyph coverage) and `nj-ui-guidelines` |
 | UI with no set direction | name the defaults to avoid (e.g. cream background, italic accent words, "01/02/03" labels, monospace labels, pill buttons) and extend the list from the first result; never just "avoid a generic look" |
 | Captions, text cards, feature lists, pitch or summary copy | `nj-impact-copy` — bold anchor, separator, one true number |
 | A website before it ships | `nj-site-audit` |
 | Social media (Instagram, X, YouTube, TikTok, Reddit…) | `agent-reach doctor`, then that channel; logged-out only, never its `transcribe`; Instagram = yt-dlp + local faster-whisper (`nj-kit` manifest `house_style.social_media`) |
 | Library docs | `context7` MCP — current, not remembered |
 | Directing animation: shot brief, character acting, animatic, beat timing, Rive / Theatre.js direction | `nj-animation-direction` |
+| UI motion and UX laws: micro-interactions, hover/press feedback, timing, easing, hit areas, menus, reduced motion (حركة الواجهة) | `nj-ui-motion-laws` |
+| Casting or engineering a TTS voice for a story or character | `nj-narration` (within the one-model voice rule) |
+| Judging sound you cannot hear: pick SFX/music, check a mix or sync | `nj-sound-judge` |
+| Untangle or restructure a whole codebase; dead code, needless links | `nj-untangle-codebase`, then `nj-refactor` for local cleanups |
+| Product launch: competitors, personas, pricing, go-to-market, landing copy | `nj-competitors`, `nj-personas`, `nj-pricing`, `nj-go-to-market`, `nj-landing-copy` |
+| Which skill exists for a purpose | nj-kit `manifest.json` → `categories` (ten purpose groups) |
 | Nothing fits | `skill-creator`, if the thing is worth keeping |
 
 If a search turns up nothing usable, say so instead of pretending a generic
@@ -133,7 +139,7 @@ an artefact the next stage reads, so a correction re-runs one stage.
 Name where each artefact is when handing work back, so a revision request can
 point at a stage. Before any checkpoint that is expensive to redo (a recording, a
 filing, a long render), rehearse at the cheapest fidelity first. Inside
-The owner's deliverable pipelines the Owner exception in `~/.claude/CLAUDE.md` governs
+Nader's deliverable pipelines the Owner exception in `~/.claude/CLAUDE.md` governs
 instead: one run, and one private rehearsal only when the pipeline itself is new or
 changed (2026-09-29); the machine gates still run.
 

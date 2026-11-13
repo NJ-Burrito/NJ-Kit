@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.1.0 — 2026-11-13
+
+- **New plugin skill `nj-ui-motion-laws`.** Twenty UI motion and UX laws as build rules with a before/after and a numeric check each; `scripts/motion_lint.py` (M1 duration over 300 ms, delays and infinite loops excluded; M2 `linear`; M3 `transition: all`; M4 no `prefers-reduced-motion`), 11-case self-test; `NOTICE.md` credits the source reel and the works it cites.
+- `nj-method` routes UI motion work to it.
+
 ## 3.0.0 — 2026-11-13
 
 - **Breaking: skill names.** Every skill this repo ships is named `nj-<what it does>` and belongs to a purpose group. Plugin: `devil`→`nj-devil`, `session-handoff`→`nj-handoff`, `agent-halo`→`nj-agent-halo`, `pdf-typography`→`nj-pdf-typography`, `arabic-english-proofreading`→`nj-proofread`, `workflow-diagram`→`nj-workflow-diagram`, `impact-copy`→`nj-impact-copy`, `voice-clean`→`nj-voice-clean`, `bg-music`→`nj-music`, `website-fine-print`→`nj-site-audit`. Kit: `srs-verifier`→`nj-doc-verifier`, `safe-delete`→`nj-safe-delete`, `general-video`→`nj-video`, `hyperframes-studio`→`nj-hyperframes-studio`, `graphify`→`nj-codebase-graph`, `brandkit`→`nj-brandkit`, `design-taste-frontend`→`nj-taste-frontend`, `high-end-visual-design`→`nj-premium-design`, `minimalist-ui`→`nj-minimalist-ui`, `redesign-existing-projects`→`nj-redesign`. Every reference and `~/.claude/skills/<name>` path inside the repo follows. Third-party skills fetched by the installer keep their upstream names (their licences and the re-fetch need them).

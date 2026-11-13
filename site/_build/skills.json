@@ -1,10 +1,10 @@
 {
  "_doc": "Site skill list. Membership is checked against .claude-plugin/marketplace.json; a skill with no 'en' uses the first sentence of its SKILL.md. Arabic is required for every plugin skill.",
  "new": {
-  "version": "3.0.0",
-  "current": "3.0.0",
+  "version": "3.1.0",
+  "current": "3.1.0",
   "skills": [
-   "nj-animation-direction"
+   "nj-ui-motion-laws"
   ]
  },
  "groups": [
@@ -66,7 +66,8 @@
     "nj-narration",
     "nj-music",
     "nj-director",
-    "nj-animation-direction"
+    "nj-animation-direction",
+    "nj-ui-motion-laws"
    ]
   }
  ],
@@ -184,6 +185,10 @@
   "nj-animation-direction": {
    "en": "Direct animation before anyone animates it: beats, blocking, character acting, a gated animatic, then Rive, Theatre.js or GSAP.",
    "ar": "أخرِج الرسوم المتحركة قبل تحريكها: الإيقاع والحركة على المسرح وتمثيل الشخصيات وأنيماتيك مضبوط، ثم Rive أو Theatre.js أو GSAP."
+  },
+  "nj-ui-motion-laws": {
+   "en": "The 20 laws of UI motion and UX, each with a rule, a before and after, and a check; motion_lint.py fails slow, linear or unguarded CSS motion.",
+   "ar": "عشرون قانونًا لحركة الواجهة وتجربة المستخدم، لكل قانون قاعدة ومثال قبل وبعد وفحص؛ ويُفشل motion_lint.py الحركة البطيئة أو الخطية أو التي تتجاهل تقليل الحركة."
   }
  },
  "bundled": {
