@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.3 — 2026-11-13
+
+- `nj-agent-halo` ported from NJ-QA 3.0: only windows opened by NJ-QA carry the halo, no other window gets one. The style is the dusk ribbon with a light outline and dark keyline (Nader, 2026-11-13), with the crew member's clay face (`faces/`). The crew grew to 10 coloured members (scavenger, tester, leader, director, harvester, monitor, judge, scribe, regression, data); the silver catch-all is gone, so a role outside the crew draws nothing. The keeper draws only on windows listed in NJ-QA's engine registry (`$NJQA_HALO_DIR`, else `<tmp>/njqa-halo/<pid>.json`), with no profile-scan fallback, so the skill draws nothing outside NJ-QA. Plugin 2.4.6.
+
 ## 3.1.2 — 2026-11-13
 
 - `nj-agent-halo`: the halo is drawn only on windows the NJ-QA tool opens. The keeper ignores any other Chrome (an `nj-qa` profile or script path is required; `AGENT_ROLE` no longer counts), `installHalo` reads `NJ_QA_ROLE` only, and the keeper ends after 2 minutes when no NJ-QA window has appeared instead of idling 30. Plugin 2.4.5.

@@ -39,7 +39,7 @@ The method exists to test every note in one go: notes are ordered by the stage w
 
 ## Window colours (cosmetic, for the owner's eyes)
 
-Machine rule, skill `agent-halo`. Every agent sets `NJ_QA_ROLE` and `AGENT_NAME` (its name plus the ticket key) when running a browser script and `freshWindow` draws the halo and the agent type at the top: Scavenger blue, Tester orange, Leader green, Director red, Harvester purple, any other agent silver with its agent-map name. The text reads «TESTER: tester-r1 PROJ-4285». It has no effect on the process: clicks pass through, page text never includes it, and `page.screenshot` and `locator.screenshot` hide it, including whole-window captures (`lib/halo.ts`, proof in `selftest/halo-check.ts`). Other capture methods are allowed and may show it.
+Machine rule, skill `nj-agent-halo`. Only windows opened by NJ-QA carry the halo; no other window gets one. Every agent sets `NJ_QA_ROLE` and `AGENT_NAME` (its name plus the ticket key) when running a browser script and `freshWindow` draws the halo and the agent type at the top: Scavenger blue, Tester orange, Leader green, Director red, Harvester purple, Batch Monitor teal, Evidence judge gold, Scribe indigo, Regression keeper magenta, Test-data keeper olive; other agents (Awn) get none. The style is the dusk ribbon with a light outline and dark keyline (Nader, 2026-11-13). The text reads «TESTER: tester-r1 PROJ-4285». It has no effect on the process: clicks pass through, page text never includes it, and `page.screenshot` and `locator.screenshot` hide it, including whole-window captures (`lib/halo.ts`, proof in `selftest/halo-check.ts`). Other capture methods are allowed and may show it.
 
 ## Harvest order (owner, 2026-11-09)
 

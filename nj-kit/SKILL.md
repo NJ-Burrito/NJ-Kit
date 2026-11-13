@@ -462,6 +462,7 @@ binary; install it with `irm https://astral.sh/uv/install.ps1 | iex`.
 
 ## Changelog
 
+- 2026-11-13 (3.1.3): `nj-agent-halo` carries NJ-QA 3.0's halo: dusk ribbon with outline, crew faces, engine registry, no silver; only NJ-QA windows get one.
 - 2026-11-13 (3.1.2): `nj-agent-halo` draws only on windows the NJ-QA tool opens; the keeper ends after 2 minutes with no NJ-QA window.
 - 2026-11-13 (3.1.1): naming and category rule documented here; `manifest.json` gains `categories` and a `category` per skill.
 - 2026-11-13 (3.1.0): new plugin skill `nj-ui-motion-laws` (20 UI motion and UX laws, `motion_lint.py` gate).

@@ -1,28 +1,41 @@
 ---
 name: nj-agent-halo
-description: "Every browser window the NJ-QA tool opens, and only those, carries a coloured border and the agent's type at the top, so a person can tell agent windows apart. Use whenever an NJ-QA agent opens a headed browser through Playwright, a script or the Playwright MCP; no other window gets one. Cosmetic: no effect on clicks, page text or screenshots."
+description: "Only windows opened by NJ-QA carry the halo, a coloured edge and the crew member's type at the top, so a person can tell them apart. No other window gets one. Use whenever an NJ-QA agent opens a headed browser through Playwright, a script or the Playwright MCP. Cosmetic: no effect on clicks, page text or screenshots."
 ---
 
 # Agent halo: which agent owns this window
 
-| Agent | Colour |
-|---|---|
-| Scavenger | 🔵 blue |
-| Tester | 🟠 orange |
-| Leader | 🟢 green |
-| Director | 🔴 red |
-| Harvester | 🟣 purple (chosen, the owner did not assign one) |
-| Any other NJ-QA agent | ⚪ silver, with its name as shown in the agent map |
+**Only windows opened by NJ-QA carry the halo. No other window gets one.** The style is the dusk ribbon with a light outline and dark keyline (Nader, 2026-11-13).
+
+| Agent | Name (EN / AR) | Halo key | Colour |
+|---|---|---|---|
+| Scavenger | Kashif / كاشف | `scavenger` | 🔵 blue `#38B6FF` |
+| Tester | Burhan / برهان | `tester` | 🟠 orange `#FF8A1F` |
+| Leader | Bonanza / بونانزا | `leader` | 🟢 green `#2EDB82` |
+| Director | Farid / فريد | `director` | 🔴 red `#FF4D4D` |
+| Harvester | Rasid / راصد | `harvester` | 🟣 purple `#B87CFF` |
+| Batch Monitor | Nader / نادر | `monitor` | 🩵 teal `#17D4C0` |
+| Evidence judge | Adil / عادل | `judge` | 🟡 gold `#FFE23A` |
+| Scribe | Katib / كاتب | `scribe` | 🔷 indigo `#4046EE` |
+| Regression keeper | Hafiz / حافظ | `regression` | 🟣 magenta `#EE3FDA` |
+| Test-data keeper | Amin / أمين | `data` | 🫒 olive `#B5E61D` |
+| Awn / عون | | none | no halo |
+
+The hues come from NJ-QA's `brand/palette.md` and live in `scripts/halo.js` (`COLOURS`). A role outside the crew draws nothing, and a name change never changes a key. Each crew member's clay face is in `faces/<key>.webp`.
+
+## The look: one switch
+
+`STYLE` in `scripts/halo.js` picks one of three directions (`a` lit glow edge with the face in a glass tab, `b` corner tab badge, `c` dusk ribbon with an outline). `c` is the default. Every direction stays at the window edge (rim at most 28 px deep, label at most 28 px tall), uses Thmanyah when installed, and is `pointer-events:none`. `NJ_QA_HALO_STYLE=a|b|c` overrides it for one run.
 
 ## The text
 
-`TYPE: name` in the page's serif face (Thmanyah when installed, else the system serif). **TYPE** is capitals, bold, 20px. The name, as in the agent map, is small letters, not bold, 14px, except codes such as PROJ-5494, which stay in capitals: **TESTER:** tester-r1 PROJ-4285. An agent with no assigned type shows **AGENT:** and its name.
+`TYPE: name`. **TYPE** is capitals, bold. The name, as in the agent map, is small letters, not bold, except codes such as PROJ-5494, which stay in capitals: **TESTER:** tester-r1 PROJ-4285.
 
 ## It is automatic (the keeper)
 
-`scripts/halo_keeper.js` runs in the background and draws the halo from outside on every Chrome the NJ-QA tool opened (its profile folder or launching script path contains `nj-qa`), however the agent launched it. Every other Chrome stays plain, agent or not. A new window gets it within about 10 seconds, and it comes back within about 2 seconds after a page loads. It names the window from the script's path or the profile folder. Agents named `tester-*`, `t-*`, `scav*`, `harvest*`, `leader*` and `director*` get their colours, and any other folder name gets silver.
+`scripts/halo_keeper.js` redraws the halo from outside on the windows NJ-QA launched, so it comes back within about 2 seconds after a page loads. Which windows: only those in the registry NJ-QA's engine writes when it starts a Chrome (`<dir>/<pid>.json`: pid, port, profile, role, name; `<dir>` is `$NJQA_HALO_DIR`, else `njqa-halo` in the system temp folder). A Chrome that is not in the registry, such as your everyday Chrome or another tool's, never gets one, so without NJ-QA the skill draws nothing.
 
-Start it with `node scripts/halo_keeper.js` (or from a hook of your own on Bash and PowerShell calls); it keeps running while agents have windows open, and it ends itself after 30 minutes with no NJ-QA window, or after 2 minutes if none has appeared since it started. Runs a person starts (the Playwright runner, your own menus) stay plain, and so does your everyday Chrome. A profile folder named for the agent gives the window its name, so agents should name theirs that way.
+NJ-QA's engine starts the keeper itself (`halo_keeper.js --ensure`); there is no machine hook. It ends by itself about 20 seconds after the last NJ-QA window is gone. Runs a person starts stay plain.
 
 The Playwright MCP's browser has no debugging port, so inside an NJ-QA run it needs the manual call below; outside NJ-QA, don't add one.
 
@@ -43,8 +56,6 @@ These can also come from the environment: `NJ_QA_ROLE=tester AGENT_NAME="tester-
 node <plugin>/skills/nj-agent-halo/scripts/halo.js tester "tester-r1 PROJ-4285"
 ```
 
-**Your own test suite:** call `installHalo` from the helper that opens a fresh window, gated on `AGENT_ROLE`, so a person's runs stay plain.
-
 ## Evidence
 
 Every capture method is allowed; use whichever suits the job (owner, 2026-11-09).
@@ -54,7 +65,5 @@ Every capture method is allowed; use whichever suits the job (owner, 2026-11-09)
 | `page.screenshot`, `locator.screenshot`, helpers built on them such as `shotOf` | Hidden automatically |
 | Page text, DOM queries, text scans | Never included |
 | A script's own `page.screenshot` when it doesn't use `freshWindow`, Playwright MCP screenshot, raw CDP capture, video, OS screen capture | Visible, and that's fine |
-
-The manual recorder (`project-tests/src/manual/recorder.ts`) doesn't draw it, so client videos stay plain.
 
 Why it can't disturb anything: clicks pass through (`pointer-events: none`), its text sits in a closed shadow root that page queries and text scans never see, and any failure to draw is swallowed.
