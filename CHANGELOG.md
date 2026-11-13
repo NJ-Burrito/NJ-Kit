@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.1.1 — 2026-11-13
+
+- `nj-kit/manifest.json`: `categories` block (11 purpose groups, the skills this repo ships) and a `category` on each of our skill entries.
+- `nj-kit/SKILL.md`: naming and category rule; changelog for 3.0.0 to 3.1.1.
+
 ## 3.1.0 — 2026-11-13
 
 - **New plugin skill `nj-ui-motion-laws`.** Twenty UI motion and UX laws as build rules with a before/after and a numeric check each; `scripts/motion_lint.py` (M1 duration over 300 ms, delays and infinite loops excluded; M2 `linear`; M3 `transition: all`; M4 no `prefers-reduced-motion`), 11-case self-test; `NOTICE.md` credits the source reel and the works it cites.
