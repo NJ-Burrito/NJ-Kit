@@ -117,6 +117,12 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
+## 🆕 What's new in 3.1.3
+
+Release: [v3.1.3 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.3).
+
+- 🎀 **New halo:** `nj-agent-halo` carries NJ-QA 3.0's look: a dusk ribbon with a light outline and dark keyline, the crew member's face, one colour per crew member (10), and no silver. Only windows opened by NJ-QA carry it; no other window gets one.
+
 ## 🆕 What's new in 3.1.2
 
 Release: [v3.1.2 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.2).
@@ -234,7 +240,7 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 | [nj-wrapup](nj-plugin/skills/nj-wrapup) | Close a work session or a tested service end to end: discover what already exists, classify results through gates, file Bugs and Tasks with evidence (clean rows only, risky rows held), reconcile every count against Jira, register the work in nj-rank, and render the boss email (Arabic + English) and the QA-team message from the reconciled trace |
 | [nj-devil](nj-plugin/skills/nj-devil) | Adversarial critique of a plan, design, architecture or vendor choice before it is acted on: ranked objections, the assumption each attacks, the cheapest settling test |
 | [nj-security-review](nj-plugin/skills/nj-security-review) | Review third-party skills, plugins and MCP servers for prompt injection, concealment, permission bypass, self-installing hooks, credential access, exfiltration, obfuscation |
-| [nj-agent-halo](nj-plugin/skills/nj-agent-halo) | Every browser window the NJ-QA tool opens, and only those, carries a coloured border and the agent's type at the top, so a person can tell agent windows apart |
+| [nj-agent-halo](nj-plugin/skills/nj-agent-halo) | Only windows opened by NJ-QA carry the halo, a coloured edge and the crew member's type at the top, so a person can tell them apart |
 
 **QA and Jira**
 
@@ -536,6 +542,7 @@ Details: [CONTRIBUTING.md](CONTRIBUTING.md).
 - 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
 - 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
 - 🎙️ **NJ-Narration** (ضمن الإضافة، `nj-narration`): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
+- 🆕 **جديد في 3.1.3** ([الإصدار v3.1.3 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.3)): صار إطار `nj-agent-halo` شريطًا غسقيًا بحدّ فاتح وخط داكن مع وجه عضو الفريق ولونه (10 ألوان) بلا لون فضي، ولا تحمله إلا نوافذ NJ-QA.
 - 🆕 **جديد في 3.1.2** ([الإصدار v3.1.2 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.2)): صار `nj-agent-halo` يرسم الإطار الملوّن على نوافذ أداة NJ-QA فقط، وتبقى كل نافذة أخرى بلا إطار، ويتوقف المراقب بعد دقيقتين إن لم تظهر نافذة من NJ-QA.
 - 🆕 **جديد في 3.1.1** ([الإصدار v3.1.1 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.1)): يحمل ملف `nj-kit/manifest.json` فئات المهارات حسب الغرض، ويذكر `nj-kit/SKILL.md` قاعدة التسمية: كل مهارة جديدة تأخذ اسم `nj-<ما تفعله>` وفئة في التغيير نفسه.
 - 🆕 **جديد في 3.1.0** ([الإصدار v3.1.0 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.0)): مهارة جديدة `nj-ui-motion-laws` تجمع عشرين قانونًا لحركة الواجهة وتجربة المستخدم، لكل قانون قاعدة ومثال قبل وبعد وفحص برقم، ويفحص `motion_lint.py` ملفات CSS فيُفشل المدة الأطول من 300 ملي ثانية والحركة الخطية و`transition: all` وغياب قاعدة تقليل الحركة.
