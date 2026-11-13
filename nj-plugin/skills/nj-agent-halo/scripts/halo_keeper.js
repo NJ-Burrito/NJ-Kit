@@ -11,6 +11,7 @@ const { haloScript } = require('./halo.js');
 const SCAN_MS = 10000;
 const DRAW_MS = 2000;
 const IDLE_MIN = 30;
+const QUICK_MIN = 2; // no NJ-QA window seen yet: end soon (the hook starts it again on the next call)
 const LOCK = path.join(os.tmpdir(), 'agent-halo-keeper.pid');
 
 /** Which agent owns a window, from its Chrome command line and its parent's. null = a person's run: stays plain. */
@@ -19,8 +20,8 @@ function identify(chromeCmd, parentCmd) {
   if (/tools\/run-(menu|ui)|playwright[/ ].*test|test-server/i.test(parentCmd)) return null;
   // client deliverables are filmed: the manual recorder and its profiles never get a halo (devil review 2026-11-09)
   if (/src\/manual|manuals?\/|recorder|rehearse|record-|\/flows\//i.test(text)) return null;
-  // only agent work: an NJ-QA run folder, or an explicit AGENT_ROLE; never a person's own Chrome
-  if (!/nj-qa|AGENT_ROLE/i.test(text)) return null;
+  // only windows the NJ-QA tool opened: never another agent's or a person's own Chrome
+  if (!/nj-qa/i.test(text)) return null;
   const key = (text.match(/PROJ-\d+/i) || [''])[0];
   const fromDir = (chromeCmd.replace(/\\/g, '/').match(/user-data-dir="?[^"]*?([^/" ]+)"?(?: |$)/) || [])[1] || '';
   const fromPath = (text.match(/\/scripts\/([^/ ]+)\//) || [])[1] || '';
@@ -92,12 +93,13 @@ async function main() {
   let windows = [];
   let lastSeen = Date.now();
   let lastScan = 0;
+  let seen = false;
   for (;;) {
     if (Date.now() - lastScan >= SCAN_MS) { windows = await chromes(); lastScan = Date.now(); }
     const drawn = await draw(windows);
-    if (windows.some((w) => w.who)) lastSeen = Date.now();
+    if (windows.some((w) => w.who)) { lastSeen = Date.now(); seen = true; }
     if (process.argv.includes('--once')) { console.log(JSON.stringify({ windows, drawn })); return; }
-    if (Date.now() - lastSeen > IDLE_MIN * 60000) { console.log('idle: ending'); return; }
+    if (Date.now() - lastSeen > (seen ? IDLE_MIN : QUICK_MIN) * 60000) { console.log('idle: ending'); return; }
     await new Promise((r) => setTimeout(r, DRAW_MS));
   }
 }

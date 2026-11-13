@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.2 — 2026-11-13
+
+- `nj-agent-halo`: the halo is drawn only on windows the NJ-QA tool opens. The keeper ignores any other Chrome (an `nj-qa` profile or script path is required; `AGENT_ROLE` no longer counts), `installHalo` reads `NJ_QA_ROLE` only, and the keeper ends after 2 minutes when no NJ-QA window has appeared instead of idling 30. Plugin 2.4.5.
+
 ## 3.1.1 — 2026-11-13
 
 - `nj-kit/manifest.json`: `categories` block (11 purpose groups, the skills this repo ships) and a `category` on each of our skill entries.
