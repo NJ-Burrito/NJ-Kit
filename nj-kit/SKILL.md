@@ -93,6 +93,18 @@ python scripts/install.py              # private install (default)
 python scripts/install.py --scope project --commit   # share with the repo
 ```
 
+## Naming and categories (owner, 2026-11-12)
+
+Every skill this repo ships is named `nj-<what it does>` and carries one purpose
+category. `manifest.json` holds a `categories` block (Method & sessions; QA, Jira
+& tests; Documents & SRS; Writing & copy; Voice & audio; Film & motion; Design &
+UI; Research & evidence; Business & launch; Code & machine; Social, SEO &
+career) and a `category` on each of our skill entries. **A new skill gets an nj-
+name and a category in the same change.** Third-party skills the installer
+re-fetches keep their upstream names: the re-fetch needs them, and some licences
+forbid republishing a renamed copy. The README skill table and the website are
+grouped by purpose (`scripts/skill-table.py`, `site/_build/skills.json`).
+
 ## Social media starts with Agent Reach (owner, 2026-10-01)
 
 Binding rule, recorded in `manifest.json` `house_style.social_media` and the
@@ -450,6 +462,9 @@ binary; install it with `irm https://astral.sh/uv/install.ps1 | iex`.
 
 ## Changelog
 
+- 2026-11-13 (3.1.1): naming and category rule documented here; `manifest.json` gains `categories` and a `category` per skill.
+- 2026-11-13 (3.1.0): new plugin skill `nj-ui-motion-laws` (20 UI motion and UX laws, `motion_lint.py` gate).
+- 2026-11-13 (3.0.0): every shipped skill renamed `nj-<what it does>` and grouped by purpose; new `nj-animation-direction` (plugin) and `nj-untangle-codebase` (kit).
 - 2026-11-09: release gate `scripts/publish-check.py` in the public repo: fails on credentials, private project data, machine paths and font files before any push (PASS/FAIL, `--selftest`).
 
 - 2026-10-19 (evening): Jira attachment allowlist (the owner): png/jpg/jpeg/mp4/webm/gif/md only; `ALLOWED_EXT` + `check_attachable` in `nj_rank.py` (+ .pdf, per the owner; `register` also drops non-allowed files and prints them; refuses at `attach`, `file_one` keeps others local as `local_only`); tests added; docs in nj-rank, nj-jira (SKILL, bug-template, rest-recipes), nj-qa-pipeline

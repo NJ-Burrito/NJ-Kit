@@ -515,97 +515,116 @@
       {
         "skill": "nj-brandkit",
         "from": "local",
-        "why": "Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems, identity decks, and visual-world presentations. Trained fo"
+        "why": "Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems, identity decks, and visual-world presentations. Trained fo",
+        "category": "design"
       },
       {
         "skill": "nj-taste-frontend",
         "from": "local",
-        "why": "Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that d"
+        "why": "Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that d",
+        "category": "design"
       },
       {
         "skill": "nj-video",
         "from": "local",
-        "why": "Author or edit a custom HyperFrames composition when no specialized workflow fits, or when BRIEF.md sets flow: companion. Use for longer or multi-scene pieces, "
+        "why": "Author or edit a custom HyperFrames composition when no specialized workflow fits, or when BRIEF.md sets flow: companion. Use for longer or multi-scene pieces, ",
+        "category": "film"
       },
       {
         "skill": "nj-codebase-graph",
         "from": "local",
-        "why": "Use for any question about a codebase, its architecture, file relationships, or project content — especially when graphify-out/ exists, where the question shoul"
+        "why": "Use for any question about a codebase, its architecture, file relationships, or project content — especially when graphify-out/ exists, where the question shoul",
+        "category": "research"
       },
       {
         "skill": "nj-premium-design",
         "from": "local",
-        "why": "Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. "
+        "why": "Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. ",
+        "category": "design"
       },
       {
         "skill": "nj-hyperframes-studio",
         "from": "local",
-        "why": "Use when building or editing a HyperFrames project that people open in Studio: how the timeline should be laid out so it reads well (one caption track, one elem"
+        "why": "Use when building or editing a HyperFrames project that people open in Studio: how the timeline should be laid out so it reads well (one caption track, one elem",
+        "category": "film"
       },
       {
         "skill": "nj-minimalist-ui",
         "from": "local",
-        "why": "Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels. No gradients, no heavy shadows."
+        "why": "Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels. No gradients, no heavy shadows.",
+        "category": "design"
       },
       {
         "skill": "nj-evidence",
         "from": "local",
-        "why": "Stand up or query a gated, script-verified knowledge base — a KB of facts plus a rules layer derived only from verified facts, each rule citing the entry ids it"
+        "why": "Stand up or query a gated, script-verified knowledge base — a KB of facts plus a rules layer derived only from verified facts, each rule citing the entry ids it",
+        "category": "research"
       },
       {
         "skill": "nj-knowledge-book",
         "from": "local",
-        "why": "Builds a sourced, gated knowledge book on one domain: research checkpoints, a verified fact DB (nj-evidence), numbered pages that cite only verified entries, pr"
+        "why": "Builds a sourced, gated knowledge book on one domain: research checkpoints, a verified fact DB (nj-evidence), numbered pages that cite only verified entries, pr",
+        "category": "research"
       },
       {
         "skill": "nj-laya",
         "from": "local",
-        "why": "Decide whether a local, token-free classifier (Laya) applies before reaching for it — for routing a free-text choice, triaging a Playwright/test failure, or pic"
+        "why": "Decide whether a local, token-free classifier (Laya) applies before reaching for it — for routing a free-text choice, triaging a Playwright/test failure, or pic",
+        "category": "research"
       },
       {
         "skill": "nj-motion-deck",
         "from": "local",
-        "why": "'Animated slide decks with Remotion: references → triage → style pick → devil rounds → build. One motion clip per slide in an autoplay PPTX, plus a real-text PD"
+        "why": "'Animated slide decks with Remotion: references → triage → style pick → devil rounds → build. One motion clip per slide in an autoplay PPTX, plus a real-text PD",
+        "category": "film"
       },
       {
         "skill": "nj-pinterest",
         "from": "local",
-        "why": "'Browse Pinterest as the owner, headed, on his own signed-in profile, to gather motion/design reference images and metadata under his verbal HQ permission (personal"
+        "why": "'Browse Pinterest as the owner, headed, on his own signed-in profile, to gather motion/design reference images and metadata under his verbal HQ permission (personal",
+        "category": "design"
       },
       {
         "skill": "nj-researcher",
         "from": "local",
-        "why": "Research a subject BEFORE the plan step, and produce a sourced checkpoint file the plan reads. Use when asked to research a topic, find sources or evidence, che"
+        "why": "Research a subject BEFORE the plan step, and produce a sourced checkpoint file the plan reads. Use when asked to research a topic, find sources or evidence, che",
+        "category": "research"
       },
       {
         "skill": "nj-multimedia",
         "from": "local",
-        "why": "Agency-crew commercials: creative and marketing crews in parallel, a director merge and devil pass, one owner stop on proposal plus keyframe boards, sound and motion crews, machine gates (mm.py, frame_probe.mjs), one render per deliverable."
+        "why": "Agency-crew commercials: creative and marketing crews in parallel, a director merge and devil pass, one owner stop on proposal plus keyframe boards, sound and motion crews, machine gates (mm.py, frame_probe.mjs), one render per deliverable.",
+        "category": "film"
       },
       {
         "skill": "nj-style-film",
         "from": "local",
-        "why": "'Builds a narrated kinetic-typography film in a visual style taken from supplied references: per-project intake form, Style DNA, storyboard on the voice clock, "
+        "why": "'Builds a narrated kinetic-typography film in a visual style taken from supplied references: per-project intake form, Style DNA, storyboard on the voice clock, ",
+        "category": "film"
       },
       {
         "skill": "nj-pdf-typography",
         "from": "local",
-        "why": "'PDFs whose text stays real: selectable and searchable. Self-hosted open-licence fonts as base64 @font-face, printed by headless Chrome, then audited. Use for P"
+        "why": "'PDFs whose text stays real: selectable and searchable. Self-hosted open-licence fonts as base64 @font-face, printed by headless Chrome, then audited. Use for P",
+        "category": "docs"
       },
       {
         "skill": "nj-redesign",
         "from": "local",
-        "why": "Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and applies high-end design standards without bre"
+        "why": "Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and applies high-end design standards without bre",
+        "category": "design"
       },
       {
         "skill": "nj-safe-delete",
         "from": "local",
-        "why": "'Delete files and folders to the operating system''s recycle bin instead of destroying them, so anything removed can be restored. Use for every deletion: rm, Re"
+        "why": "'Delete files and folders to the operating system''s recycle bin instead of destroying them, so anything removed can be restored. Use for every deletion: rm, Re",
+        "category": "code"
       },
       {
         "skill": "nj-doc-verifier",
         "from": "local",
-        "why": "'Audit a document against the system it describes (SRS, requirements, user or staff manual «دليل المستخدم»، «دليل الموظف», README, API reference, release notes)"
+        "why": "'Audit a document against the system it describes (SRS, requirements, user or staff manual «دليل المستخدم»، «دليل الموظف», README, API reference, release notes)",
+        "category": "docs"
       }
     ]
   },
@@ -755,5 +774,101 @@
       }
     ]
   },
-  "assets": "assets-manifest.json: heavy optional parts fetched on demand with nj-kit/scripts/fetch_assets.py (graphify package, researcher sources.db, tashkeel evidence runs)"
+  "assets": "assets-manifest.json: heavy optional parts fetched on demand with nj-kit/scripts/fetch_assets.py (graphify package, researcher sources.db, tashkeel evidence runs)",
+  "categories": {
+    "method": {
+      "title": "Method & sessions",
+      "skills": [
+        "nj-agent-halo",
+        "nj-agent-ops",
+        "nj-delegate",
+        "nj-devil",
+        "nj-handoff",
+        "nj-learn",
+        "nj-method",
+        "nj-supervise",
+        "nj-wrapup"
+      ]
+    },
+    "qa": {
+      "title": "QA, Jira & tests",
+      "skills": [
+        "nj-automation-suite",
+        "nj-jira",
+        "nj-jira-to-automation",
+        "nj-qa",
+        "nj-qa-pipeline",
+        "nj-rank"
+      ]
+    },
+    "docs": {
+      "title": "Documents & SRS",
+      "skills": [
+        "nj-chart",
+        "nj-doc-verifier",
+        "nj-pdf-typography",
+        "nj-proofread",
+        "nj-workflow-diagram"
+      ]
+    },
+    "writing": {
+      "title": "Writing & copy",
+      "skills": [
+        "nj-impact-copy",
+        "nj-writer"
+      ]
+    },
+    "audio": {
+      "title": "Voice & audio",
+      "skills": [
+        "nj-listen",
+        "nj-music",
+        "nj-narration",
+        "nj-voice-clean"
+      ]
+    },
+    "film": {
+      "title": "Film & motion",
+      "skills": [
+        "nj-animation-direction",
+        "nj-director",
+        "nj-hyperframes-studio",
+        "nj-motion-deck",
+        "nj-multimedia",
+        "nj-style-film",
+        "nj-video"
+      ]
+    },
+    "design": {
+      "title": "Design & UI",
+      "skills": [
+        "nj-brandkit",
+        "nj-minimalist-ui",
+        "nj-pinterest",
+        "nj-premium-design",
+        "nj-redesign",
+        "nj-taste-frontend",
+        "nj-ui-motion-laws"
+      ]
+    },
+    "research": {
+      "title": "Research & evidence",
+      "skills": [
+        "nj-codebase-graph",
+        "nj-evidence",
+        "nj-knowledge-book",
+        "nj-laya",
+        "nj-researcher"
+      ]
+    },
+    "code": {
+      "title": "Code & machine",
+      "skills": [
+        "nj-safe-delete",
+        "nj-security-review",
+        "nj-site-audit",
+        "nj-untangle-codebase"
+      ]
+    }
+  }
 }
