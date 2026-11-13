@@ -103,7 +103,7 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 - 🎯 `--scope project` puts them in one repo instead.
 - 📦 **NJ-Kit assets v1** is a GitHub release (tag `assets-v1`).
 - It holds the heavy parts kept out of git:
-  - the graphify package
+  - the graphify package (used by `nj-codebase-graph`)
   - the nj-researcher source registry
   - the tashkeel evidence runs
 - 🔐 `fetch_assets.py` checks each file's sha256 before writing it.
@@ -257,13 +257,13 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 </details>
 
 <details>
-<summary>🧰 <b>Bundled with the kit</b> · 18 more · research, design, decks</summary>
+<summary>🧰 <b>Bundled with the kit</b> · 19 more · research, design, decks, code</summary>
 
 | Group | Skills |
 |---|---|
 | 🔬 By NJ · 10 | nj-evidence · nj-knowledge-book · nj-researcher · nj-style-film · nj-multimedia · nj-motion-deck · nj-laya · nj-pinterest · nj-doc-verifier · nj-safe-delete |
-| 🎨 Third-party design · 7 | brandkit · nj-taste-frontend · nj-premium-design · nj-minimalist-ui · nj-redesign · nj-hyperframes-studio · nj-video |
-| 🕸️ Third-party graph · 1 | graphify |
+| 🎨 Third-party design · 7 | nj-brandkit · nj-taste-frontend · nj-premium-design · nj-minimalist-ui · nj-redesign · nj-hyperframes-studio · nj-video |
+| 🕸️ Third-party code · 2 | nj-codebase-graph (graphify) · nj-untangle-codebase |
 
 - 🧰 The kit installer puts them in place.
 - 📦 Heavy parts come from **NJ-Kit assets v1**: `python nj-kit/scripts/fetch_assets.py --all`
@@ -510,13 +510,14 @@ Details: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 <div dir="rtl" lang="ar">
 
-**NJ-Kit** منهج عمل مجاني و45 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يفحص النتيجة ويطبع PASS أو FAIL، فتعني «تم» أن فحصًا جرى فعلًا.
+**NJ-Kit** منهج عمل مجاني و48 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يفحص النتيجة ويطبع PASS أو FAIL، فتعني «تم» أن فحصًا جرى فعلًا.
 
-- 🚀 **ابدأ:** الصق السطرين في Claude Code، فتحصل على 27 مهارة في نحو دقيقة. [السطران ↑](#plugin)
-- 🧰 **الحزمة كاملة:** يضيف مثبّت الحزمة الـ18 الباقية. [المثبّت ↑](#kit)
+- 🚀 **ابدأ:** الصق السطرين في Claude Code، فتحصل على 29 مهارة في نحو دقيقة. [السطران ↑](#plugin)
+- 🧰 **الحزمة كاملة:** يضيف مثبّت الحزمة الـ19 الباقية. [المثبّت ↑](#kit)
 - 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
 - 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
 - 🎙️ **NJ-Narration** (ضمن الإضافة، `nj-narration`): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
+- 🆕 **جديد في 3.0.0** ([الإصدار v3.0.0 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.0.0)): كل مهارة يحملها هذا المستودع صار اسمها `nj-<ما تفعله>` وتقع في مجموعة حسب الغرض، والجدول والموقع مجمّعان كذلك. **تغيير غير متوافق:** استعمل الأسماء الجديدة، مثل `devil` ← `nj-devil` و`session-handoff` ← `nj-handoff` و`pdf-typography` ← `nj-pdf-typography`. مهارة جديدة `nj-animation-direction` تُخرج الرسوم المتحركة قبل تحريكها: إيقاع المشاهد، والحركة على المسرح بالأرقام، وتمثيل الشخصيات، وأنيماتيك مضبوط ببوابة، ثم التسليم إلى GSAP أو Rive أو Theatre.js، على قاعدة معرفة من 312 مدخلًا. وتضيف الحزمة `nj-untangle-codebase` لإعادة هيكلة شيفرة متشابكة في تمريرة واحدة. تحتفظ مهارات الأطراف الخارجية التي يجلبها المثبّت بأسمائها الأصلية.
 - 🆕 **جديد في 2.4.0** ([الإصدار v2.4.0 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.0)): مهارة جديدة في الحزمة `nj-multimedia` لصناعة الإعلانات كما تصنعها وكالة: فريق إبداعي وفريق تسويق بالتوازي، ومخرج يجمع عملهما في لوحة قصة واحدة، وموافقة واحدة من المالك على المقترح ولوحات اللقطات، ثم فريقا الصوت والحركة، وبوابات آلية قبل التصيير.
 - 🆕 **جديد في 2.3.3** ([الإصدار v2.3.3 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.3)): بوابة الصوت في `nj-writer` تسمح لاسم منتج مسجّل في `latin_brands` أن يبقى بالأحرف اللاتينية في نص التعليق العربي فيُنطق كما هو بالإنجليزية. وفي 2.3.2 ([الإصدار v2.3.2 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.2)): قالب البلاغ في `nj-jira` يذكر الآن قاعدة أسماء ملفات الأدلة بالعربية، واختبار `nj-qa` الذاتي يغطي قواعد هذه الأسماء. وفي 2.3.1 ([الإصدار v2.3.1](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.1)): أسماء ملفات الأدلة بالعربية في `nj-qa` و`nj-jira`، وقائمة المهارات في الموقع تُولَّد من ملفات `SKILL.md`. وفي 2.3.0 ([الإصدار v2.3.0](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.0)): ‏`nj-chart` للرسوم البيانية ولوحات المؤشرات (على محرك Flint من Microsoft برخصة MIT)، و‏`nj-qa` لاختبار ملاحظات Jira بفريق من الوكلاء، و‏`agent-halo` لإطار ملوّن يميّز نافذة كل وكيل.
 - 🔐 **لا بيانات خاصة:** يمرّ كل إصدار على `scripts/publish-check.py` قبل النشر، فلا كلمات مرور ولا بيانات مشاريع ولا مسارات أجهزة ولا ملفات خطوط.
