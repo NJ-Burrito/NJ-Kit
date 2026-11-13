@@ -234,7 +234,7 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 | [nj-wrapup](nj-plugin/skills/nj-wrapup) | Close a work session or a tested service end to end: discover what already exists, classify results through gates, file Bugs and Tasks with evidence (clean rows only, risky rows held), reconcile every count against Jira, register the work in nj-rank, and render the boss email (Arabic + English) and the QA-team message from the reconciled trace |
 | [nj-devil](nj-plugin/skills/nj-devil) | Adversarial critique of a plan, design, architecture or vendor choice before it is acted on: ranked objections, the assumption each attacks, the cheapest settling test |
 | [nj-security-review](nj-plugin/skills/nj-security-review) | Review third-party skills, plugins and MCP servers for prompt injection, concealment, permission bypass, self-installing hooks, credential access, exfiltration, obfuscation |
-| [nj-agent-halo](nj-plugin/skills/nj-agent-halo) | Every browser window an agent opens carries a coloured border and the agent's type at the top, so a person can tell agent windows apart |
+| [nj-agent-halo](nj-plugin/skills/nj-agent-halo) | Every browser window the NJ-QA tool opens, and only those, carries a coloured border and the agent's type at the top, so a person can tell agent windows apart |
 
 **QA and Jira**
 
