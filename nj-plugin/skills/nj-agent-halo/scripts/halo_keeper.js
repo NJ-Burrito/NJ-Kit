@@ -13,7 +13,7 @@ const { haloScript } = require('./halo.js');
 const DRAW_MS = 2000;
 const GRACE_MS = 20000;
 const REGISTRY = () => process.env.NJQA_HALO_DIR || path.join(os.tmpdir(), 'njqa-halo');
-const LOCK = () => path.join(REGISTRY(), 'agent-halo-keeper.pid'); // beside the registry entries (never read as one: not a .json)
+const LOCK = () => path.join(path.dirname(REGISTRY()), 'agent-halo-keeper.pid'); // beside the registry
 
 /** The windows the engine registered and that are still alive. */
 function registered() {
@@ -75,7 +75,7 @@ async function main() {
     return;
   }
   if (keeperAlive()) { console.log('already running'); return; }
-  fs.mkdirSync(REGISTRY(), { recursive: true });
+  fs.mkdirSync(path.dirname(REGISTRY()), { recursive: true });
   fs.writeFileSync(LOCK(), String(process.pid));
   process.on('exit', () => { try { if (Number(fs.readFileSync(LOCK(), 'utf8')) === process.pid) fs.unlinkSync(LOCK()); } catch { /* gone */ } });
   let lastSeen = Date.now();
