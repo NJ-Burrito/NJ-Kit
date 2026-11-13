@@ -4,7 +4,7 @@
 
 # NJ-Kit: Claude Code skills that end in PASS or FAIL
 
-### ✅ One working method and 48 skills for Claude Code. Every skill ends in a script that checks the work.
+### ✅ One working method and 49 skills for Claude Code. Every skill ends in a script that checks the work.
 
 **NJ-Kit by [Nader Alzghoul](https://nj-burrito.github.io/) (NJ-Burrito)**: free, open-source Claude Code skills and plugin, in Arabic and English. [Website](https://nj-burrito.github.io/NJ-Kit/) · [LinkedIn](https://www.linkedin.com/in/nader-alzghoul)
 
@@ -26,7 +26,7 @@
 </div>
 
 > ### ⚡ In 10 seconds
-> 🧠 **What:** a free method and 48 skills for Claude Code.\
+> 🧠 **What:** a free method and 49 skills for Claude Code.\
 > ✅ **Why:** a script prints **PASS** or **FAIL**. No "should work".\
 > 🚀 **Start:** paste 2 lines into Claude Code. [Go ↓](#plugin)\
 > 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) · [بالعربية](https://nj-burrito.github.io/NJ-Kit/ar/)
@@ -41,7 +41,7 @@
 
 | You want… | Take this | Time |
 |---|---|---|
-| 🧩 Claude Code, fastest | [Plugin ↓](#plugin) · 29 skills | ⏱️ 1 min |
+| 🧩 Claude Code, fastest | [Plugin ↓](#plugin) · 30 skills | ⏱️ 1 min |
 | 🧰 All 45 on a new machine | [Kit installer ↓](#kit) | ⏱️ 5 min |
 | 📂 Another agent that reads `SKILL.md` | [Copy one skill ↓](#whats-inside) | ⏱️ 1 folder |
 | 🔤 The typeface | [NJ-Font ↓](#nj-font) (coming soon) | ⏱️ soon |
@@ -78,7 +78,7 @@ All free. 👆 Pick one and skip the rest.
 /plugin install nj-kit@nj-kit
 ```
 
-**2.** Say: **"use nj-method"** ✅ Done. You have 29 skills.
+**2.** Say: **"use nj-method"** ✅ Done. You have 30 skills.
 
 ---
 
@@ -116,6 +116,12 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 ---
 
 <a id="new"></a>
+
+## 🆕 What's new in 3.1.0
+
+Release: [v3.1.0 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.0). 30 plugin skills, 49 with the kit installer.
+
+- 🎛️ **New skill `nj-ui-motion-laws`:** the 20 laws of UI motion and UX (Disney's principles applied to interfaces, plus Fitts, Hick, Miller, Doherty, Postel, Jakob and frequency of use), each with a rule, a before and after, and a check with a number. `scripts/motion_lint.py` is the gate: it fails durations over 300 ms, `linear` easing, `transition: all`, and motion with no `prefers-reduced-motion` rule (11-case self-test). Built from Charles Liu's reel "20 Principles of UX & Animation" and the works it credits; see `NOTICE.md`.
 
 ## 🆕 What's new in 3.0.0
 
@@ -199,7 +205,7 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 27 come with the plugin. The kit installer adds 18. Every one ends in a PASS or FAIL gate.
 
 <details open>
-<summary>🧩 <b>In the plugin</b> · 29 skills · generated from each <code>SKILL.md</code></summary>
+<summary>🧩 <b>In the plugin</b> · 30 skills · generated from each <code>SKILL.md</code></summary>
 
 <!-- skills:start -->
 
@@ -207,7 +213,7 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 
 | Skill | What it does |
 |---|---|
-| [nj-method](nj-plugin/skills/nj-method) | A default method for every request: analyse the ask, look up installed skills before improvising, plan with named checkpoints, execute, review against what was asked |
+| [nj-method](nj-plugin/skills/nj-method) | Nader's default method for every request: analyse the ask, look up installed skills before improvising, plan with named checkpoints, execute, review against what was asked |
 | [nj-delegate](nj-plugin/skills/nj-delegate) | NJ Governance v4: the Lead (Opus) administers and decides, Sonnet leads build in their own worktrees, Haiku helpers do bounded mechanical work (depth 2, at most 20 agents counted, helpers required by the ITEMS rule) |
 | [nj-agent-ops](nj-plugin/skills/nj-agent-ops) | NJ Governance v4 (v3 briefs still accepted) transport under nj-delegate: telemetry refused at write time (relay.py), path claims that enforce single-writer, KPI audit via verify, results through files, one wake per batch, a low-effort interpreter spawned on a trigger |
 | [nj-supervise](nj-plugin/skills/nj-supervise) | How to brief a delegated worker and how to know it is actually working |
@@ -251,6 +257,7 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 | [nj-music](nj-plugin/skills/nj-music) | Holds a bundled licence-cleared CC0 SFX library and music beds with cue presets, and sources from Openverse, Jamendo, Freesound, ccMixter, Wikimedia with licence, credit line and retrieval date per track |
 | [nj-director](nj-plugin/skills/nj-director) | Film direction (not agent delegation — see nj-delegate for that) |
 | [nj-animation-direction](nj-plugin/skills/nj-animation-direction) | Direct animation before anyone animates it: beat sheet with pressure arithmetic, blocking in numbers, shot list with character-acting briefs (objective, action, obstacle, thinking beat, end state), a gated animatic built from stills and scratch sound, review checklists, then hand-off rules for GSAP/HyperFrames, Rive state machines, Theatre.js and Remotion |
+| [nj-ui-motion-laws](nj-plugin/skills/nj-ui-motion-laws) | The 20 laws of UI motion and UX (Disney's animation principles applied to interfaces, plus Fitts, Hick, Miller, Doherty, Postel, Jakob and frequency of use) as build rules with numbers, a before/after for each, and motion_lint.py that fails slow, linear or unguarded CSS motion |
 
 <!-- skills:end -->
 
@@ -281,7 +288,7 @@ You can combine them. NJ-Kit skills are plain `SKILL.md` folders, so they work n
 
 | Project | What it is | Reach for it when |
 |---|---|---|
-| ✅ **NJ-Kit** | A working method and 48 skills. Every skill ends in a PASS or FAIL script. Arabic and English | You want the agent to prove a task is done |
+| ✅ **NJ-Kit** | A working method and 49 skills. Every skill ends in a PASS or FAIL script. Arabic and English | You want the agent to prove a task is done |
 | [anthropics/skills](https://github.com/anthropics/skills) | Anthropic's public repository for Agent Skills | You want the skills Anthropic publishes itself |
 | [obra/superpowers](https://github.com/obra/superpowers) | An agentic skills framework and software development methodology | You want a software development methodology built from skills |
 | [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | A hand-picked list of Claude Code resources: skills, agents, plugins, tools | You want to browse what exists |
@@ -357,7 +364,7 @@ Get-ChildItem NJ-Font\ttf\*.ttf | ForEach-Object {
 
 <details><summary>🧠 What is NJ-Kit?</summary>
 
-A free, open-source Claude Code plugin: one working method and 48 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, by Nader Alzghoul.
+A free, open-source Claude Code plugin: one working method and 49 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, by Nader Alzghoul.
 </details>
 
 <details><summary>📂 What are Claude Code skills?</summary>
@@ -443,7 +450,7 @@ VOICE-EDGE-NOISE  PASS  speech samples identical
 NEXT     the top 3 voices go to your ear. You decide.
 ```
 
-**Install:** the same two lines as NJ-Kit ([Plugin ↑](#plugin)). `nj-narration` is one of the 29 plugin skills; after installing, say **"use nj-narration"**.
+**Install:** the same two lines as NJ-Kit ([Plugin ↑](#plugin)). `nj-narration` is one of the 30 plugin skills; after installing, say **"use nj-narration"**.
 
 Plugin only: `/plugin install nj-kit@nj-kit`. Any other agent that reads `SKILL.md`: copy the folder [`nj-plugin/skills/nj-narration`](nj-plugin/skills/nj-narration).
 
@@ -510,13 +517,14 @@ Details: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 <div dir="rtl" lang="ar">
 
-**NJ-Kit** منهج عمل مجاني و48 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يفحص النتيجة ويطبع PASS أو FAIL، فتعني «تم» أن فحصًا جرى فعلًا.
+**NJ-Kit** منهج عمل مجاني و49 مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يفحص النتيجة ويطبع PASS أو FAIL، فتعني «تم» أن فحصًا جرى فعلًا.
 
-- 🚀 **ابدأ:** الصق السطرين في Claude Code، فتحصل على 29 مهارة في نحو دقيقة. [السطران ↑](#plugin)
+- 🚀 **ابدأ:** الصق السطرين في Claude Code، فتحصل على 30 مهارة في نحو دقيقة. [السطران ↑](#plugin)
 - 🧰 **الحزمة كاملة:** يضيف مثبّت الحزمة الـ19 الباقية. [المثبّت ↑](#kit)
 - 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
 - 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
 - 🎙️ **NJ-Narration** (ضمن الإضافة، `nj-narration`): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
+- 🆕 **جديد في 3.1.0** ([الإصدار v3.1.0 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.0)): مهارة جديدة `nj-ui-motion-laws` تجمع عشرين قانونًا لحركة الواجهة وتجربة المستخدم، لكل قانون قاعدة ومثال قبل وبعد وفحص برقم، ويفحص `motion_lint.py` ملفات CSS فيُفشل المدة الأطول من 300 ملي ثانية والحركة الخطية و`transition: all` وغياب قاعدة تقليل الحركة.
 - 🆕 **جديد في 3.0.0** ([الإصدار v3.0.0 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.0.0)): كل مهارة يحملها هذا المستودع صار اسمها `nj-<ما تفعله>` وتقع في مجموعة حسب الغرض، والجدول والموقع مجمّعان كذلك. **تغيير غير متوافق:** استعمل الأسماء الجديدة، مثل `devil` ← `nj-devil` و`session-handoff` ← `nj-handoff` و`pdf-typography` ← `nj-pdf-typography`. مهارة جديدة `nj-animation-direction` تُخرج الرسوم المتحركة قبل تحريكها: إيقاع المشاهد، والحركة على المسرح بالأرقام، وتمثيل الشخصيات، وأنيماتيك مضبوط ببوابة، ثم التسليم إلى GSAP أو Rive أو Theatre.js، على قاعدة معرفة من 312 مدخلًا. وتضيف الحزمة `nj-untangle-codebase` لإعادة هيكلة شيفرة متشابكة في تمريرة واحدة. تحتفظ مهارات الأطراف الخارجية التي يجلبها المثبّت بأسمائها الأصلية.
 - 🆕 **جديد في 2.4.0** ([الإصدار v2.4.0 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.4.0)): مهارة جديدة في الحزمة `nj-multimedia` لصناعة الإعلانات كما تصنعها وكالة: فريق إبداعي وفريق تسويق بالتوازي، ومخرج يجمع عملهما في لوحة قصة واحدة، وموافقة واحدة من المالك على المقترح ولوحات اللقطات، ثم فريقا الصوت والحركة، وبوابات آلية قبل التصيير.
 - 🆕 **جديد في 2.3.3** ([الإصدار v2.3.3 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.3)): بوابة الصوت في `nj-writer` تسمح لاسم منتج مسجّل في `latin_brands` أن يبقى بالأحرف اللاتينية في نص التعليق العربي فيُنطق كما هو بالإنجليزية. وفي 2.3.2 ([الإصدار v2.3.2 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.2)): قالب البلاغ في `nj-jira` يذكر الآن قاعدة أسماء ملفات الأدلة بالعربية، واختبار `nj-qa` الذاتي يغطي قواعد هذه الأسماء. وفي 2.3.1 ([الإصدار v2.3.1](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.1)): أسماء ملفات الأدلة بالعربية في `nj-qa` و`nj-jira`، وقائمة المهارات في الموقع تُولَّد من ملفات `SKILL.md`. وفي 2.3.0 ([الإصدار v2.3.0](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v2.3.0)): ‏`nj-chart` للرسوم البيانية ولوحات المؤشرات (على محرك Flint من Microsoft برخصة MIT)، و‏`nj-qa` لاختبار ملاحظات Jira بفريق من الوكلاء، و‏`agent-halo` لإطار ملوّن يميّز نافذة كل وكيل.
