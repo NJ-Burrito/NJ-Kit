@@ -3,47 +3,24 @@
 // Usage: node halo_keeper.js [--once|--ensure]
 //   --ensure  starts one in the background if none is running. The ENGINE calls it when it launches a Chrome (engine/lib/halo.ts); no machine hook, no global start.
 //   default   a singleton: it ends by itself, GRACE_MS after the last NJ-QA window is gone.
-// Which windows: the registry the engine writes, <tmp>/njqa-halo/<pid>.json {pid, port, profile, role, name} (preferred), and, as a fallback, a Chrome whose
-// --user-data-dir is an NJ-QA engine profile with a debugging port and a known agent in its parent's script path. Nothing else: not the user's Chrome,
-// not the hub's --app window, not another tool's Playwright Chrome. It only evaluates the (idempotent) drawing script in page targets: it can't press, type or navigate.
-const { execFile } = require('child_process');
+// Which windows: ONLY those in the registry NJ-QA's engine writes, <dir>/<pid>.json {pid, port, profile, role, name}, <dir> = $NJQA_HALO_DIR or <tmp>/njqa-halo.
+// Nothing else: not the user's Chrome, not the hub's --app window, not another tool's Playwright Chrome. It only evaluates the (idempotent) drawing script in page targets: it can't press, type or navigate.
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { haloScript } = require('./halo.js');
 
-const SCAN_MS = 10000;
 const DRAW_MS = 2000;
 const GRACE_MS = 20000;
-// the engine's name for itself, written in two parts so the repo's publish check sees no project term
-const ENGINE = ('jf' + 'da').toUpperCase();
-const stateDir = () => process.env[ENGINE + '_TMP'] || os.tmpdir(); // the same root as the engine's tmpRoot()
-const REGISTRY = () => path.join(stateDir(), 'njqa-halo');
-const LOCK = () => path.join(stateDir(), 'agent-halo-keeper.pid');
-
-const ROLE_OF = (agent) => (/^(t-|tester)/i.test(agent) ? 'tester' : /^scav/i.test(agent) ? 'scavenger' : /^harvest/i.test(agent) ? 'harvester' : /^leader/i.test(agent) ? 'leader'
-  : /^director/i.test(agent) ? 'director' : /^(judge|adil)/i.test(agent) ? 'judge' : /^(scribe|katib)/i.test(agent) ? 'scribe' : /^(regress|hafiz)/i.test(agent) ? 'regression'
-  : /^(data|amin)/i.test(agent) ? 'data' : /^(monitor|batch-monitor)/i.test(agent) ? 'monitor' : '');
-
-/** Fallback for an engine window with no registry entry: its role from the parent's script path. null = no halo (a person's run, another tool, an unknown agent). */
-function identify(chromeCmd, parentCmd) {
-  const text = `${chromeCmd} ${parentCmd}`.replace(/\\/g, '/');
-  if (!new RegExp('user-data-dir="?[^"]*/' + ENGINE.toLowerCase() + '-chrome-[\\w-]+').test(chromeCmd.replace(/\\/g, '/'))) return null; // not an engine profile
-  if (/tools\/run-(menu|ui)|playwright[/ ].*test|test-server/i.test(parentCmd)) return null;
-  // client deliverables are filmed: the manual recorder and its profiles never get a halo (devil review 2026-11-09)
-  if (/src\/manual|manuals?\/|recorder|rehearse|record-|\/flows\//i.test(text)) return null;
-  const key = (text.match(/\b[A-Z]{2,10}-\d+\b/) || [''])[0];
-  const agent = (text.match(/\/scripts\/([^/ ]+)\//) || [])[1] || '';
-  const role = ROLE_OF(agent);
-  return role ? { role, name: `${agent === role ? '' : agent} ${key}`.trim() } : null;
-}
+const REGISTRY = () => process.env.NJQA_HALO_DIR || path.join(os.tmpdir(), 'njqa-halo');
+const LOCK = () => path.join(REGISTRY(), 'agent-halo-keeper.pid'); // beside the registry entries (never read as one: not a .json)
 
 /** The windows the engine registered and that are still alive. */
 function registered() {
   const out = [];
   let files = [];
   try { files = fs.readdirSync(REGISTRY()); } catch { return out; }
-  for (const f of files) {
+  for (const f of files.filter((n) => n.endsWith('.json'))) {
     const file = path.join(REGISTRY(), f);
     try {
       const r = JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -64,22 +41,6 @@ function evaluate(wsUrl, expression) {
     ws.onopen = () => ws.send(JSON.stringify({ id: 1, method: 'Runtime.evaluate', params: { expression } }));
     ws.onmessage = () => { clearTimeout(timer); done(true); };
     ws.onerror = () => { clearTimeout(timer); done(false); };
-  });
-}
-
-/** The fallback scan: engine-profile Chromes with a debugging port. Only runs while the registry has nothing for that port. */
-function scanned() {
-  const ps = "Get-CimInstance Win32_Process | Where-Object { $_.Name -in 'chrome.exe','node.exe' } | Select-Object ProcessId,ParentProcessId,Name,CommandLine | ConvertTo-Json -Compress";
-  return new Promise((resolve) => {
-    execFile('powershell', ['-NoProfile', '-Command', ps], { maxBuffer: 64 * 1024 * 1024, windowsHide: true }, (e, out) => {
-      if (e) return resolve([]);
-      let list;
-      try { list = [].concat(JSON.parse(out)); } catch { return resolve([]); }
-      const byId = new Map(list.map((p) => [p.ProcessId, p]));
-      resolve(list.filter((p) => p.Name === 'chrome.exe' && /--remote-debugging-port=\d+/.test(p.CommandLine || '') && !/--type=/.test(p.CommandLine || ''))
-        .map((p) => ({ port: p.CommandLine.match(/--remote-debugging-port=(\d+)/)[1], who: identify(p.CommandLine, (byId.get(p.ParentProcessId) || {}).CommandLine || '') }))
-        .filter((w) => w.who));
-    });
   });
 }
 
@@ -114,17 +75,13 @@ async function main() {
     return;
   }
   if (keeperAlive()) { console.log('already running'); return; }
-  fs.mkdirSync(stateDir(), { recursive: true });
+  fs.mkdirSync(REGISTRY(), { recursive: true });
   fs.writeFileSync(LOCK(), String(process.pid));
   process.on('exit', () => { try { if (Number(fs.readFileSync(LOCK(), 'utf8')) === process.pid) fs.unlinkSync(LOCK()); } catch { /* gone */ } });
-  let extra = [];
   let lastSeen = Date.now();
-  let lastScan = 0;
   for (;;) {
     const windows = registered();
-    if (Date.now() - lastScan >= SCAN_MS) { extra = await scanned(); lastScan = Date.now(); }
-    const ports = new Set(windows.map((w) => w.port));
-    const all = windows.concat(extra.filter((w) => !ports.has(w.port)));
+    const all = windows;
     const drawn = await draw(all);
     if (all.length) lastSeen = Date.now();
     if (process.argv.includes('--once')) { console.log(JSON.stringify({ windows: all, drawn })); return; }
@@ -133,5 +90,5 @@ async function main() {
   }
 }
 
-module.exports = { identify, registered, REGISTRY, ROLE_OF };
+module.exports = { registered, REGISTRY };
 if (require.main === module) main();

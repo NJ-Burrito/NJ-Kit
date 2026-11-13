@@ -33,7 +33,7 @@ The hues come from NJ-QA's `brand/palette.md` and live in `scripts/halo.js` (`CO
 
 ## It is automatic (the keeper)
 
-`scripts/halo_keeper.js` redraws the halo from outside on the windows NJ-QA launched, so it comes back within about 2 seconds after a page loads. Which windows: the registry NJ-QA's engine writes when it starts a Chrome (`<tmp>/njqa-halo/<pid>.json`: pid, port, profile, role, name; the engine's temp folder, else the system temp folder), and, as a fallback, a Chrome whose profile is an NJ-QA engine profile (its `*-chrome-*` folder) with a debugging port and a crew agent in its script path. A Chrome that merely mentions nj-qa, your everyday Chrome and another tool's Chrome never get one, so without NJ-QA the skill draws nothing.
+`scripts/halo_keeper.js` redraws the halo from outside on the windows NJ-QA launched, so it comes back within about 2 seconds after a page loads. Which windows: only those in the registry NJ-QA's engine writes when it starts a Chrome (`<dir>/<pid>.json`: pid, port, profile, role, name; `<dir>` is `$NJQA_HALO_DIR`, else `njqa-halo` in the system temp folder). A Chrome that is not in the registry, such as your everyday Chrome or another tool's, never gets one, so without NJ-QA the skill draws nothing.
 
 NJ-QA's engine starts the keeper itself (`halo_keeper.js --ensure`); there is no machine hook. It ends by itself about 20 seconds after the last NJ-QA window is gone. Runs a person starts stay plain.
 
