@@ -542,7 +542,7 @@ footer a:hover{text-decoration:underline}
         <ol class="chips" data-l="ar"><li class="chip">حلّل</li><li class="chip">ابحث عن المهارة</li><li class="chip">خطّط</li><li class="chip">نفّذ</li><li class="chip g">افحص</li><li class="chip">راجع</li></ol>
         <ol class="log" data-l="en">
           <li class="ln"><span class="who">you</span><span>make the report as a PDF</span></li>
-          <li class="ln"><span class="who">skill</span><span>pdf-typography</span></li>
+          <li class="ln"><span class="who">skill</span><span>nj-pdf-typography</span></li>
           <li class="ln is-fail"><span class="who">gate</span><span>text is selectable</span><span class="res">FAIL</span></li>
           <li class="ln"><span class="who">fix</span><span>one change, then the gate runs again</span></li>
           <li class="ln is-pass"><span class="who">gate</span><span>text is selectable</span><span class="res"><svg class="check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg>PASS</span></li>
@@ -550,7 +550,7 @@ footer a:hover{text-decoration:underline}
         </ol>
         <ol class="log" data-l="ar">
           <li class="ln"><span class="who">أنت</span><span>حوّل التقرير إلى ملف <bdi dir="ltr">PDF</bdi></span></li>
-          <li class="ln"><span class="who">المهارة</span><span dir="ltr">pdf-typography</span></li>
+          <li class="ln"><span class="who">المهارة</span><span dir="ltr">nj-pdf-typography</span></li>
           <li class="ln is-fail"><span class="who">الفحص</span><span>النص قابل للتحديد</span><span class="res">FAIL</span></li>
           <li class="ln"><span class="who">إصلاح</span><span>تغيير واحد، ثم يُعاد الفحص</span></li>
           <li class="ln is-pass"><span class="who">الفحص</span><span>النص قابل للتحديد</span><span class="res"><svg class="check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg>PASS</span></li>
@@ -582,10 +582,10 @@ footer a:hover{text-decoration:underline}
       <div class="explorer">
         {SKILLS_UI}
         <div class="panel" role="tabpanel" id="p-b" aria-labelledby="tab-b" hidden>
-          <p class="note" data-l="en">Research, design and decks, plus third-party design skills and graphify. Among them:</p>
-          <p class="note" data-l="ar">البحث والتصميم والعروض، إضافة إلى مهارات تصميم من أطراف خارجية و<bdi dir="ltr">graphify</bdi>. منها:</p>
+          <p class="note" data-l="en">Research, design and decks, plus third-party design and code skills. Among them:</p>
+          <p class="note" data-l="ar">البحث والتصميم والعروض، إضافة إلى مهارات تصميم وشيفرة من أطراف خارجية. منها:</p>
           <ul class="chipset">
-            <li>nj-evidence</li><li>nj-knowledge-book</li><li>nj-researcher</li><li>nj-style-film</li><li>nj-multimedia</li><li>nj-motion-deck</li><li>nj-laya</li><li>nj-pinterest</li><li>srs-verifier</li><li>safe-delete</li><li>brandkit</li><li>design-taste-frontend</li><li>high-end-visual-design</li><li>minimalist-ui</li><li>redesign-existing-projects</li><li>hyperframes-studio</li><li>general-video</li><li>graphify</li>
+            <li>nj-evidence</li><li>nj-knowledge-book</li><li>nj-researcher</li><li>nj-style-film</li><li>nj-multimedia</li><li>nj-motion-deck</li><li>nj-laya</li><li>nj-pinterest</li><li>nj-doc-verifier</li><li>nj-safe-delete</li><li>nj-brandkit</li><li>nj-taste-frontend</li><li>nj-premium-design</li><li>nj-minimalist-ui</li><li>nj-redesign</li><li>nj-hyperframes-studio</li><li>nj-video</li><li>nj-codebase-graph</li><li>nj-untangle-codebase</li>
           </ul>
         </div>
         <p class="foot"><svg class="ic" aria-hidden="true"><use href="#i-circle-check-big"/></svg><span data-l="en">Every skill ends with a script gate: PASS or FAIL.</span><span data-l="ar">كل مهارة تنتهي ببوابة فحص من سكربت: <bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi>.</span></p>
