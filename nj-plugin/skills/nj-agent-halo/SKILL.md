@@ -1,6 +1,6 @@
 ---
 name: nj-agent-halo
-description: "Every browser window an agent opens carries a coloured border and the agent's type at the top, so a person can tell agent windows apart. Use whenever an agent opens a headed browser through Playwright, a script or the Playwright MCP. Cosmetic: no effect on clicks, page text or screenshots."
+description: "Every browser window the NJ-QA tool opens, and only those, carries a coloured border and the agent's type at the top, so a person can tell agent windows apart. Use whenever an NJ-QA agent opens a headed browser through Playwright, a script or the Playwright MCP; no other window gets one. Cosmetic: no effect on clicks, page text or screenshots."
 ---
 
 # Agent halo: which agent owns this window
@@ -12,7 +12,7 @@ description: "Every browser window an agent opens carries a coloured border and 
 | Leader | 🟢 green |
 | Director | 🔴 red |
 | Harvester | 🟣 purple (chosen, the owner did not assign one) |
-| Any other agent | ⚪ silver, with its name as shown in the agent map |
+| Any other NJ-QA agent | ⚪ silver, with its name as shown in the agent map |
 
 ## The text
 
@@ -20,11 +20,11 @@ description: "Every browser window an agent opens carries a coloured border and 
 
 ## It is automatic (the keeper)
 
-`scripts/halo_keeper.js` runs in the background and draws the halo from outside on every Chrome with a debugging port, however the agent launched it. A new window gets it within about 10 seconds, and it comes back within about 2 seconds after a page loads. It names the window from the script's path or the profile folder. Agents named `tester-*`, `t-*`, `scav*`, `harvest*`, `leader*` and `director*` get their colours, and any other folder name gets silver.
+`scripts/halo_keeper.js` runs in the background and draws the halo from outside on every Chrome the NJ-QA tool opened (its profile folder or launching script path contains `nj-qa`), however the agent launched it. Every other Chrome stays plain, agent or not. A new window gets it within about 10 seconds, and it comes back within about 2 seconds after a page loads. It names the window from the script's path or the profile folder. Agents named `tester-*`, `t-*`, `scav*`, `harvest*`, `leader*` and `director*` get their colours, and any other folder name gets silver.
 
-Start it with `node scripts/halo_keeper.js` (or from a hook of your own on Bash and PowerShell calls); it keeps running while agents have windows open, and it ends itself after 30 minutes with no agent window. Runs a person starts (the Playwright runner, your own menus) stay plain, and so does your everyday Chrome. A profile folder named for the agent gives the window its name, so agents should name theirs that way.
+Start it with `node scripts/halo_keeper.js` (or from a hook of your own on Bash and PowerShell calls); it keeps running while agents have windows open, and it ends itself after 30 minutes with no NJ-QA window, or after 2 minutes if none has appeared since it started. Runs a person starts (the Playwright runner, your own menus) stay plain, and so does your everyday Chrome. A profile folder named for the agent gives the window its name, so agents should name theirs that way.
 
-The Playwright MCP's browser has no debugging port, so it needs the manual call below.
+The Playwright MCP's browser has no debugging port, so inside an NJ-QA run it needs the manual call below; outside NJ-QA, don't add one.
 
 ## How to apply it by hand
 
@@ -35,7 +35,7 @@ const { installHalo } = require('<plugin>/skills/nj-agent-halo/scripts/halo.js')
 await installHalo(context, page, 'tester', 'tester-r1 PROJ-4285'); // type, agent-map name
 ```
 
-These can also come from the environment: `AGENT_ROLE=tester AGENT_NAME="tester-r1 PROJ-4285"`. Without a name it does nothing, so a person's own runs stay plain.
+These can also come from the environment: `NJ_QA_ROLE=tester AGENT_NAME="tester-r1 PROJ-4285"`. Without a name it does nothing, so a person's own runs stay plain.
 
 **The Playwright MCP:** call `browser_run_code_unsafe` once, right after the first navigation, with the code `printCode` prints:
 

@@ -117,6 +117,12 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
+## 🆕 What's new in 3.1.2
+
+Release: [v3.1.2 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.2).
+
+- 🟢 **Halo on NJ-QA windows only:** `nj-agent-halo` now draws its border only on browser windows the NJ-QA tool opens; every other window, agent or not, stays plain, and the keeper stops after 2 minutes when no NJ-QA window appears.
+
 ## 🆕 What's new in 3.1.1
 
 Release: [v3.1.1 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.1).
@@ -530,6 +536,7 @@ Details: [CONTRIBUTING.md](CONTRIBUTING.md).
 - 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
 - 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
 - 🎙️ **NJ-Narration** (ضمن الإضافة، `nj-narration`): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
+- 🆕 **جديد في 3.1.2** ([الإصدار v3.1.2 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.2)): صار `nj-agent-halo` يرسم الإطار الملوّن على نوافذ أداة NJ-QA فقط، وتبقى كل نافذة أخرى بلا إطار، ويتوقف المراقب بعد دقيقتين إن لم تظهر نافذة من NJ-QA.
 - 🆕 **جديد في 3.1.1** ([الإصدار v3.1.1 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.1)): يحمل ملف `nj-kit/manifest.json` فئات المهارات حسب الغرض، ويذكر `nj-kit/SKILL.md` قاعدة التسمية: كل مهارة جديدة تأخذ اسم `nj-<ما تفعله>` وفئة في التغيير نفسه.
 - 🆕 **جديد في 3.1.0** ([الإصدار v3.1.0 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.0)): مهارة جديدة `nj-ui-motion-laws` تجمع عشرين قانونًا لحركة الواجهة وتجربة المستخدم، لكل قانون قاعدة ومثال قبل وبعد وفحص برقم، ويفحص `motion_lint.py` ملفات CSS فيُفشل المدة الأطول من 300 ملي ثانية والحركة الخطية و`transition: all` وغياب قاعدة تقليل الحركة.
 - 🆕 **جديد في 3.0.0** ([الإصدار v3.0.0 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.0.0)): كل مهارة يحملها هذا المستودع صار اسمها `nj-<ما تفعله>` وتقع في مجموعة حسب الغرض، والجدول والموقع مجمّعان كذلك. **تغيير غير متوافق:** استعمل الأسماء الجديدة، مثل `devil` ← `nj-devil` و`session-handoff` ← `nj-handoff` و`pdf-typography` ← `nj-pdf-typography`. مهارة جديدة `nj-animation-direction` تُخرج الرسوم المتحركة قبل تحريكها: إيقاع المشاهد، والحركة على المسرح بالأرقام، وتمثيل الشخصيات، وأنيماتيك مضبوط ببوابة، ثم التسليم إلى GSAP أو Rive أو Theatre.js، على قاعدة معرفة من 312 مدخلًا. وتضيف الحزمة `nj-untangle-codebase` لإعادة هيكلة شيفرة متشابكة في تمريرة واحدة. تحتفظ مهارات الأطراف الخارجية التي يجلبها المثبّت بأسمائها الأصلية.

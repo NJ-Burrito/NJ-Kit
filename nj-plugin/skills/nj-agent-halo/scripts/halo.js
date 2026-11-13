@@ -80,7 +80,7 @@ function hideInShots(page) {
 }
 
 /** Cosmetic: a failure here never reaches the run. */
-async function installHalo(context, page, role = process.env.AGENT_ROLE || process.env.NJ_QA_ROLE, name = process.env.AGENT_NAME) {
+async function installHalo(context, page, role = process.env.NJ_QA_ROLE, name = process.env.AGENT_NAME) {
   const script = haloScript(role, name);
   if (!script) return;
   try {
