@@ -26,3 +26,4 @@
 - [Profile-Wrap](https://nj-burrito.github.io/Profile-Wrap/): open-source LinkedIn post manager
 - [QA-Wrap](https://nj-burrito.github.io/QA-Wrap/): browser extension that turns a test session into a bug report
 - [Business-Wrap](https://nj-burrito.github.io/Business-Wrap/): by the same author
+- [NJ-Whip](https://nj-burrito.github.io/NJ-Whip/): an on-screen whip that steers Claude Code
