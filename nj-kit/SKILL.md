@@ -462,6 +462,7 @@ binary; install it with `irm https://astral.sh/uv/install.ps1 | iex`.
 
 ## Changelog
 
+- 2026-11-19 (3.1.4): `nj-jira-to-automation` and `nj-qa-pipeline` gain the live Flowable check through the back-office «متابعة الطلبات» page (plugin 2.4.7).
 - 2026-11-13 (3.1.3): `nj-agent-halo` carries NJ-QA 3.0's halo: dusk ribbon with outline, crew faces, engine registry, no silver; only NJ-QA windows get one.
 - 2026-11-13 (3.1.2): `nj-agent-halo` draws only on windows the NJ-QA tool opens; the keeper ends after 2 minutes with no NJ-QA window.
 - 2026-11-13 (3.1.1): naming and category rule documented here; `manifest.json` gains `categories` and a `category` per skill.
