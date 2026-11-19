@@ -117,6 +117,12 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
+## 🆕 What's new in 3.1.4
+
+Release: [v3.1.4 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.4).
+
+- 🔎 **Live Flowable check:** `nj-jira-to-automation` and `nj-qa-pipeline` now say how to inspect a service's Flowable live on staging and QA through the back-office page «متابعة الطلبات» (process diagram per in-progress request, current task and assignee per row). Read only; it complements the workflow export and differences are recorded.
+
 ## 🆕 What's new in 3.1.3
 
 Release: [v3.1.3 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.3).
@@ -543,6 +549,7 @@ Details: [CONTRIBUTING.md](CONTRIBUTING.md).
 - 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
 - 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
 - 🎙️ **NJ-Narration** (ضمن الإضافة، `nj-narration`): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
+- 🆕 **جديد في 3.1.4** ([الإصدار v3.1.4 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.4)): صارت مهارتا `nj-jira-to-automation` و`nj-qa-pipeline` تشرحان فحص مسار العمل (Flowable) مباشرةً على بيئتي staging وQA عبر صفحة «متابعة الطلبات» في الواجهة الخلفية، للقراءة فقط، مكمِّلًا لتصدير المسار.
 - 🆕 **جديد في 3.1.3** ([الإصدار v3.1.3 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.3)): صار إطار `nj-agent-halo` شريطًا غسقيًا بحدّ فاتح وخط داكن مع وجه عضو الفريق ولونه (10 ألوان) بلا لون فضي، ولا تحمله إلا نوافذ NJ-QA.
 - 🆕 **جديد في 3.1.2** ([الإصدار v3.1.2 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.2)): صار `nj-agent-halo` يرسم الإطار الملوّن على نوافذ أداة NJ-QA فقط، وتبقى كل نافذة أخرى بلا إطار، ويتوقف المراقب بعد دقيقتين إن لم تظهر نافذة من NJ-QA.
 - 🆕 **جديد في 3.1.1** ([الإصدار v3.1.1 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.1)): يحمل ملف `nj-kit/manifest.json` فئات المهارات حسب الغرض، ويذكر `nj-kit/SKILL.md` قاعدة التسمية: كل مهارة جديدة تأخذ اسم `nj-<ما تفعله>` وفئة في التغيير نفسه.
