@@ -71,6 +71,22 @@ metric kills the whole list.
   (staggered reveal). Never more than two lines on screen at once.
 - The picture at that moment shows the thing the anchor names.
 
+## Store screenshots and launch sets (2026-11-23)
+
+From a teardown of Strava's App Store set. A screenshot set is one picture
+split into frames, not eight separate ads:
+
+- **Mental simulation:** one scene runs behind every frame (Strava: one dusk
+  coastline), so the viewer pictures themselves using it.
+- **Authority:** one award or endorsement from a name the viewer already trusts,
+  right under the logo, beats any claim the product makes about itself.
+- **Goal gradient:** one line (route, progress bar) runs through every frame and
+  ends on a finish mark, so each swipe feels like progress.
+- **Identity:** the hook is a phrase users already say ("If it's not on Strava,
+  it didn't happen"), not a feature.
+- **Aesthetic-usability:** one light source across all frames, shadows tinted
+  (navy, not black); care in the look reads as care in the product.
+
 ## Checklist before delivery
 
 1. Every line: bold anchor, separator, outcome — same shape throughout.

@@ -1,12 +1,13 @@
 ---
 name: nj-ui-motion-laws
-description: The 20 laws of UI motion and UX (Disney's animation principles applied to interfaces, plus Fitts, Hick, Miller, Doherty, Postel, Jakob and frequency of use) as build rules with numbers, a before/after for each, and motion_lint.py that fails slow, linear or unguarded CSS motion. Use when building or reviewing UI animation, micro-interactions, hover/press feedback, loading states, hit areas, menus or forms; "make it feel better", "polish the motion", "why does this feel slow", حركة الواجهة, تحسين التفاعل.
+description: The 26 laws of UI motion and UX (Disney's animation principles applied to interfaces, plus Fitts, Hick, Miller, Doherty, Postel, Jakob, Von Restorff, peak-end, origin awareness, staggering, rubber banding, interruptible motion and frequency of use) as build rules with numbers, a before/after for each, and motion_lint.py that fails slow, linear or unguarded CSS motion. Use when building or reviewing UI animation, micro-interactions, hover/press feedback, loading states, hit areas, menus or forms; "make it feel better", "polish the motion", "why does this feel slow", حركة الواجهة, تحسين التفاعل.
 ---
 
 # UI motion laws
 
-Twenty laws, each one a rule you can apply and check. Source: Charles Liu's reel
-"20 Principles of UX & Animation" (Instagram, 2026-11-12), read frame by frame,
+Twenty-six laws, each one a rule you can apply and check. Source: Charles Liu's reel
+"20 Principles of UX & Animation" (Instagram, 2026-11-12), read frame by frame;
+L21 to L26 from a second reel's 19-term list (Instagram, 2026-11-23),
 and the works it credits (NOTICE.md). For film or character animation use
 `nj-animation-direction`; for spring physics and gestures, `nj-apple-motion`.
 
@@ -16,11 +17,11 @@ and the works it credits (NOTICE.md). For film or character animation use
    comment (for example, "L9 snappy timing: 450ms on a toggle").
 2. **Gate:** `python scripts/motion_lint.py <files or folders>`. It prints one
    line per finding, then PASS or FAIL. Fix and run again; it is the only check.
-3. **What the lint cannot see** (staging, arcs, appeal, Hick, Miller, Jakob,
+3. **What the lint cannot see** (staging, arcs, appeal, Hick, Miller, Jakob, origin, stagger, interruptible, peak-end,
    Doherty under real load) is a review item: walk the "check" column by hand
    for the screens you touched and say which laws you checked.
 
-## The 20 laws
+## The 26 laws
 
 | # | Law | Rule | Before → after (the reel's demo) | Check |
 |---|---|---|---|---|
@@ -44,6 +45,12 @@ and the works it credits (NOTICE.md). For film or character animation use
 | L18 | Postel's law | Accept messy input, give back clean output | rejects a phone typed with spaces → accepts it and normalises | inputs strip spaces, dashes and case before validating |
 | L19 | Jakob's law | People expect your app to work like the apps they already use | cart bottom left → cart top right | standard placements: logo top-start, cart and account top-end |
 | L20 | Frequency of use | The more often something is used, the less it should animate | command palette animates every open → instant | actions used many times a day, or from the keyboard, have no motion |
+| L21 | Origin awareness | Things grow out of where they were clicked or tapped, not from the centre | menu scales from the screen centre → from the button that opened it | popovers and menus set `transform-origin` to the trigger's side |
+| L22 | Staggering | Bring a group in one after another, not all at once | ten cards pop together → each 30 to 50 ms after the last | stagger step 30 to 50 ms; whole group still done under 300 ms + 1 step per item, cap 8 staggered items |
+| L23 | Rubber banding | Pulling past the end stretches, then springs back on release | list stops dead at the top → overscroll stretches and returns | drag past a limit moves at a fraction (about 0.3 to 0.5) of the finger, and springs back |
+| L24 | Interruptible motion | People can change their mind mid-animation | menu must finish opening before it can close → reverses at once | a second click reverses from the current state; CSS transitions or springs, not chained timeouts |
+| L25 | Von Restorff effect | The one that looks different is remembered | four identical plan cards → the recommended one stands out | one emphasised item per group, never two |
+| L26 | Peak-end rule | People remember the best moment and the ending | form submits to a blank page → a clear success state | every flow ends on a visible confirmation (L10), and its peak moment gets the care |
 
 Always: honour `prefers-reduced-motion` (lint M4). Reduce motion to an opacity
 fade or nothing; never remove the feedback itself (L10, L17).
