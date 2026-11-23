@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.1.5 — 2026-11-23
+
+- `nj-method` § Execute: an agent loop ends on a deterministic validator that compares done against the expected set, never on a "don't stop" prompt.
+- `nj-ui-motion-laws`: L21 to L26 (origin awareness, staggering, rubber banding, interruptible motion, Von Restorff, peak-end); NOTICE credits the second reel.
+- `nj-security-review`: new section on AI-written code: slopsquatting, Supabase RLS, lockfile installs.
+- `nj-impact-copy`: store screenshots and launch sets (mental simulation, authority, goal gradient, identity, aesthetic-usability). Plugin 2.4.8.
+
 ## 3.1.4 — 2026-11-19
 
 - `nj-jira-to-automation` and `nj-qa-pipeline`: a short paragraph on inspecting a service's Flowable live on staging and QA through the back-office page «متابعة الطلبات» (process diagram per in-progress request, current task and assignee per row; read only, never reassign), as a complement to the workflow export. Plugin 2.4.7.

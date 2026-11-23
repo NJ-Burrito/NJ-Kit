@@ -117,6 +117,15 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
+## 🆕 What's new in 3.1.5
+
+Release: [v3.1.5 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.5).
+
+- 🔁 **`nj-method`: an agent loop ends on a validator, not a promise.** Countable work (5 files, 144 notes) writes its expected set first; a deterministic check compares done against it before the loop may exit, and a shortfall goes back in with the missing items named.
+- 🎛️ **`nj-ui-motion-laws`: 26 laws.** Six added: origin awareness, staggering, rubber banding, interruptible motion, Von Restorff, peak-end, each with a numeric check.
+- 🛡️ **`nj-security-review`: code an AI agent wrote.** Slopsquatting (hallucinated package names registered with malware) and Supabase tables with Row Level Security off: a three-point checklist before production.
+- 📱 **`nj-impact-copy`: store screenshots.** Five persuasion moves from a teardown of a top App Store set: one scene, one trusted award, one running line, the users' own phrase, one light.
+
 ## 🆕 What's new in 3.1.4
 
 Release: [v3.1.4 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.4).
@@ -281,7 +290,7 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 | [nj-music](nj-plugin/skills/nj-music) | Holds a bundled licence-cleared CC0 SFX library and music beds with cue presets, and sources from Openverse, Jamendo, Freesound, ccMixter, Wikimedia with licence, credit line and retrieval date per track |
 | [nj-director](nj-plugin/skills/nj-director) | Film direction (not agent delegation — see nj-delegate for that) |
 | [nj-animation-direction](nj-plugin/skills/nj-animation-direction) | Direct animation before anyone animates it: beat sheet with pressure arithmetic, blocking in numbers, shot list with character-acting briefs (objective, action, obstacle, thinking beat, end state), a gated animatic built from stills and scratch sound, review checklists, then hand-off rules for GSAP/HyperFrames, Rive state machines, Theatre.js and Remotion |
-| [nj-ui-motion-laws](nj-plugin/skills/nj-ui-motion-laws) | The 20 laws of UI motion and UX (Disney's animation principles applied to interfaces, plus Fitts, Hick, Miller, Doherty, Postel, Jakob and frequency of use) as build rules with numbers, a before/after for each, and motion_lint.py that fails slow, linear or unguarded CSS motion |
+| [nj-ui-motion-laws](nj-plugin/skills/nj-ui-motion-laws) | The 26 laws of UI motion and UX (Disney's animation principles applied to interfaces, plus Fitts, Hick, Miller, Doherty, Postel, Jakob, Von Restorff, peak-end, origin awareness, staggering, rubber banding, interruptible motion and frequency of use) as build rules with numbers, a before/after for each, and motion_lint.py that fails slow, linear or unguarded CSS motion |
 
 <!-- skills:end -->
 
@@ -549,6 +558,7 @@ Details: [CONTRIBUTING.md](CONTRIBUTING.md).
 - 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
 - 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
 - 🎙️ **NJ-Narration** (ضمن الإضافة، `nj-narration`): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
+- 🆕 **جديد في 3.1.5** ([الإصدار v3.1.5 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.5)): لا تنتهي حلقة الوكيل بوعدٍ بل بمدقّق يقارن المنجَز بالمطلوب (`nj-method`)، وصارت قوانين الحركة ستة وعشرين (`nj-ui-motion-laws`)، وقائمة فحص للكود الذي يكتبه الذكاء الاصطناعي: الحزم الوهمية (Slopsquatting) وجداول Supabase بلا RLS (`nj-security-review`)، وخمس حيل إقناع لصور متجر التطبيقات (`nj-impact-copy`).
 - 🆕 **جديد في 3.1.4** ([الإصدار v3.1.4 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.4)): صارت مهارتا `nj-jira-to-automation` و`nj-qa-pipeline` تشرحان فحص مسار العمل (Flowable) مباشرةً على بيئتي staging وQA عبر صفحة «متابعة الطلبات» في الواجهة الخلفية، للقراءة فقط، مكمِّلًا لتصدير المسار.
 - 🆕 **جديد في 3.1.3** ([الإصدار v3.1.3 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.3)): صار إطار `nj-agent-halo` شريطًا غسقيًا بحدّ فاتح وخط داكن مع وجه عضو الفريق ولونه (10 ألوان) بلا لون فضي، ولا تحمله إلا نوافذ NJ-QA.
 - 🆕 **جديد في 3.1.2** ([الإصدار v3.1.2 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.2)): صار `nj-agent-halo` يرسم الإطار الملوّن على نوافذ أداة NJ-QA فقط، وتبقى كل نافذة أخرى بلا إطار، ويتوقف المراقب بعد دقيقتين إن لم تظهر نافذة من NJ-QA.

@@ -108,6 +108,16 @@ steps cannot fail separately is not a plan.
 Follow the plan; deviate out loud when reality disagrees. Verify as you go — a
 build that "should work" has not been tested.
 
+**An agent loop ends on a validator, not on a promise** (2026-11-23). The model
+is probabilistic; the loop around it is code. "Don't stop until it's done" in a
+prompt is a wish. When work is countable (5 files, 144 notes, 12 services),
+write the expected set down before starting, and before the loop or run is
+allowed to exit, a deterministic check compares what was done with that set
+(files changed, rows written, tickets filed). A shortfall sends it back into the
+loop with the missing items named ("3 of 5 done, still missing: d.ts, e.ts");
+it never ends as "done". Same for subagents and workflows: the caller checks the
+count, not the summary.
+
 ## 5. Review against the request, not against the work
 
 Re-read what was asked and check each item off. Say plainly what was not done

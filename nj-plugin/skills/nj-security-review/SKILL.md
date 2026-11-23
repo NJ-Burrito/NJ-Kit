@@ -104,6 +104,23 @@ Said plainly, because a partial audit that feels complete is worse than none:
 - **It is not a substitute for reading a skill you are about to trust** with
   something sensitive.
 
+## Code an AI agent wrote (slopsquatting, 2026-11-23)
+
+Agents invent package names (`npm install fast-auth-ai-v2`); attackers watch
+for the hallucinated names, register them with malware, and the next agent that
+invents the same name installs it. Vibe-coded Supabase apps also ship with Row
+Level Security off to make errors go away, so the anon key in the browser reads
+every row. Before an AI-built project goes to production:
+
+1. **Every dependency an agent added exists and is the one you meant**: on the
+   registry, not first published in the last 90 days, real download numbers.
+   `npm view <pkg> time.created` / `pip index versions <pkg>`; a 404 means
+   hallucinated: remove it, never "create" it.
+2. **Supabase: RLS on every public table**, with policies.
+3. **Lockfile committed**, installs from the lockfile (`npm ci`, `uv sync --locked`).
+
+`nj-whitehat`'s code track runs 1 and 2 as a script (`scripts/ai_code.py`).
+
 ## Scanning a live web app we own
 
 Different job from auditing skills: this probes a running site. Owned or
@@ -113,7 +130,7 @@ authorised targets only; ask before anything not ours.
   `docker run --rm -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t <url> -J zap.json -r zap.html`,
   then quit Docker Desktop.
 - **Strix second**: `STRIX_TELEMETRY=0 STRIX_LLM=anthropic/<current sonnet id> strix -t <url>`.
-  Telemetry off every time; Claude only; no key is configured yet, so ask the owner
+  Telemetry off every time; Claude only; no key is configured yet, so ask Nader
   before the first run. It is an active agent: owned targets, never production
   data we cannot lose.
 - Treat findings as leads: reproduce each one before it goes in a report.
