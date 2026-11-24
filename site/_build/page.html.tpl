@@ -8,8 +8,8 @@
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0e1311" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#eef1ea" media="(prefers-color-scheme: light)">
-<title data-l="en">NJ-Kit by Nader Alzghoul: free Claude Code skills, PASS or FAIL</title>
-<title data-l="ar">NJ-Kit من نادر الزغول: مهارات Claude Code تنتهي بـ PASS أو FAIL</title>
+<title data-l="en">NJ-Kit: Claude Code plugin by Nader Alzghoul (NJ-Burrito)</title>
+<title data-l="ar">NJ-Kit: إضافة Claude Code من نادر الزغول (NJ-Burrito)</title>
 <meta data-l="en" name="description" content="NJ-Kit by Nader Alzghoul (NJ-Burrito): a free Claude Code plugin: a working method and {N_ALL} skills, each ending in a PASS or FAIL script. MIT, Arabic and English.">
 <meta data-l="ar" name="description" content="NJ-Kit من نادر الزغول (NJ-Burrito): إضافة مجانية ومفتوحة المصدر لـ Claude Code فيها منهج عمل و{N_ALL} مهارة، تنتهي كل منها بسكربت PASS أو FAIL. برخصة MIT.">
 <link rel="canonical" href="{SELF}">
@@ -19,7 +19,7 @@
 <meta name="author" content="Nader Alzghoul">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="NJ-Kit">
+<meta property="og:site_name" content="NJ-Burrito">
 <meta property="og:url" content="{SELF}">
 <meta data-l="en" property="og:title" content="NJ-Kit: Claude Code skills that end in PASS or FAIL">
 <meta data-l="ar" property="og:title" content="NJ-Kit: مهارات Claude Code تنتهي بـ PASS أو FAIL">
@@ -33,8 +33,8 @@
 <meta data-l="en" property="og:image:alt" content="NJ-Kit: a working method for Claude Code. {N_ALL} skills, each ending in a PASS or FAIL gate.">
 <meta data-l="ar" property="og:image:alt" content="NJ-Kit: منهج عمل لـ Claude Code. {N_ALL} مهارة، تنتهي كل منها بفحص PASS أو FAIL.">
 <meta data-l="en" property="og:locale" content="en_US">
-<meta data-l="en" property="og:locale:alternate" content="ar_AR">
-<meta data-l="ar" property="og:locale" content="ar_AR">
+<meta data-l="en" property="og:locale:alternate" content="ar_JO">
+<meta data-l="ar" property="og:locale" content="ar_JO">
 <meta data-l="ar" property="og:locale:alternate" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta data-l="en" name="twitter:title" content="NJ-Kit: Claude Code skills that end in PASS or FAIL">
@@ -47,8 +47,8 @@
 <script type="application/ld+json" data-l="en">
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebSite","@id":"https://nj-burrito.github.io/NJ-Kit/#website","name":"NJ-Kit","url":"https://nj-burrito.github.io/NJ-Kit/","inLanguage":["en","ar"],"publisher":{"@id":"https://nj-burrito.github.io/#person"}},
-{"@type":"Person","@id":"https://nj-burrito.github.io/#person","name":"Nader Alzghoul","alternateName":["NJ-Burrito","نادر الزغول"],"url":"https://nj-burrito.github.io/","sameAs":["https://www.linkedin.com/in/nader-alzghoul","https://github.com/NJ-Burrito","https://nj-burrito.github.io/","https://nj-burrito.github.io/Business-Wrap/","https://nj-burrito.github.io/QA-Wrap/","https://nj-burrito.github.io/Profile-Wrap/","https://nj-burrito.github.io/NJ-Kit/","https://nj-burrito.github.io/NJ-Whip/"]},
-{"@type":"SoftwareApplication","@id":"https://nj-burrito.github.io/NJ-Kit/#app","name":"NJ-Kit","alternateName":"NJ-Kit Claude Code skills","applicationCategory":"DeveloperApplication","applicationSubCategory":"Claude Code plugin","operatingSystem":"Windows, macOS, Linux","url":"https://nj-burrito.github.io/NJ-Kit/","downloadUrl":"https://github.com/NJ-Burrito/NJ-Kit","codeRepository":"https://github.com/NJ-Burrito/NJ-Kit","sameAs":["https://github.com/NJ-Burrito/NJ-Kit"],"license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":["en","ar"],"keywords":["Claude Code skills","Claude Code plugin","Agent Skills","SKILL.md","PASS or FAIL gate","Arabic"],"description":"A free, open-source Claude Code plugin: one working method and {N_ALL} skills. Every skill ends in a script gate that prints PASS or FAIL. Arabic and English first-class.","image":"https://nj-burrito.github.io/NJ-Kit/banner.png","screenshot":["https://nj-burrito.github.io/NJ-Kit/banner.png","https://nj-burrito.github.io/NJ-Kit/assets/banner.gif"],"featureList":["{N_ALL} skills for Claude Code, {N_PLUGIN} installed by the plugin","Every skill ends in a script gate that prints PASS or FAIL","Installs as a Claude Code plugin in two lines, or as plain SKILL.md folders for any agent","Arabic and English first-class, right-to-left included"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://nj-burrito.github.io/#person"}},
+{"@type":"Person","@id":"https://nj-burrito.github.io/#person","name":"Nader Alzghoul","alternateName":["نادر الزغول","NJ-Burrito","NJ Burrito","NJBurrito","NJ"],"jobTitle":"QA Automation Engineer","address":{"@type":"PostalAddress","addressLocality":"Amman","addressCountry":"JO"},"url":"https://nj-burrito.github.io/","sameAs":["https://github.com/NJ-Burrito","https://www.linkedin.com/in/nader-alzghoul","https://nj-burrito.github.io/","https://nj-burrito.github.io/QA-Wrap/","https://nj-burrito.github.io/Business-Wrap/","https://nj-burrito.github.io/NJ-Kit/","https://nj-burrito.github.io/NJ-Whip/","https://nj-burrito.github.io/NJ-Flush/","https://nj-burrito.github.io/Profile-Wrap/","https://github.com/NJ-Burrito/Story-Wrap"]},
+{"@type":"SoftwareApplication","@id":"https://nj-burrito.github.io/NJ-Kit/#app","name":"NJ-Kit","alternateName":["NJ Kit","nj-kit","nj_kit","NJ_Kit","NJKit","NJ-Kit Claude Code plugin","NJ-Kit Claude Code skills"],"applicationCategory":"DeveloperApplication","applicationSubCategory":"Claude Code plugin","operatingSystem":"Windows, macOS, Linux","url":"https://nj-burrito.github.io/NJ-Kit/","downloadUrl":"https://github.com/NJ-Burrito/NJ-Kit","codeRepository":"https://github.com/NJ-Burrito/NJ-Kit","sameAs":["https://github.com/NJ-Burrito/NJ-Kit"],"license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":["en","ar"],"keywords":["Claude Code skills","Claude Code plugin","Agent Skills","SKILL.md","PASS or FAIL gate","Arabic"],"description":"A free, open-source Claude Code plugin: one working method and {N_ALL} skills. Every skill ends in a script gate that prints PASS or FAIL. Arabic and English first-class.","image":"https://nj-burrito.github.io/NJ-Kit/banner.png","screenshot":["https://nj-burrito.github.io/NJ-Kit/banner.png","https://nj-burrito.github.io/NJ-Kit/assets/banner.gif"],"featureList":["{N_ALL} skills for Claude Code, {N_PLUGIN} installed by the plugin","Every skill ends in a script gate that prints PASS or FAIL","Installs as a Claude Code plugin in two lines, or as plain SKILL.md folders for any agent","Arabic and English first-class, right-to-left included"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://nj-burrito.github.io/#person"}},
 {"@type":"FAQPage","@id":"https://nj-burrito.github.io/NJ-Kit/#faq","inLanguage":"en","mainEntity":[
 {"@type":"Question","name":"What is NJ-Kit?","acceptedAnswer":{"@type":"Answer","text":"NJ-Kit is a free, open-source Claude Code plugin: one working method and {N_ALL} skills. Every skill ends in a script gate that prints PASS or FAIL. It is MIT licensed, by Nader Alzghoul."}},
 {"@type":"Question","name":"What are Claude Code skills?","acceptedAnswer":{"@type":"Answer","text":"A skill is a folder with a SKILL.md file of instructions, plus any scripts it needs. Claude Code reads each skill's description and loads the skill when a task matches it."}},
@@ -66,8 +66,8 @@
 <script type="application/ld+json" data-l="ar">
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebSite","@id":"https://nj-burrito.github.io/NJ-Kit/#website","name":"NJ-Kit","url":"https://nj-burrito.github.io/NJ-Kit/","inLanguage":["en","ar"],"publisher":{"@id":"https://nj-burrito.github.io/#person"}},
-{"@type":"Person","@id":"https://nj-burrito.github.io/#person","name":"Nader Alzghoul","alternateName":["NJ-Burrito","نادر الزغول"],"url":"https://nj-burrito.github.io/","sameAs":["https://www.linkedin.com/in/nader-alzghoul","https://github.com/NJ-Burrito","https://nj-burrito.github.io/","https://nj-burrito.github.io/Business-Wrap/","https://nj-burrito.github.io/QA-Wrap/","https://nj-burrito.github.io/Profile-Wrap/","https://nj-burrito.github.io/NJ-Kit/","https://nj-burrito.github.io/NJ-Whip/"]},
-{"@type":"SoftwareApplication","@id":"https://nj-burrito.github.io/NJ-Kit/#app","name":"NJ-Kit","applicationCategory":"DeveloperApplication","applicationSubCategory":"Claude Code plugin","operatingSystem":"Windows, macOS, Linux","url":"https://nj-burrito.github.io/NJ-Kit/ar/","downloadUrl":"https://github.com/NJ-Burrito/NJ-Kit","codeRepository":"https://github.com/NJ-Burrito/NJ-Kit","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":"ar","keywords":["مهارات Claude Code","إضافة Claude Code","مهارات الوكلاء","SKILL.md","العربية"],"description":"إضافة مجانية ومفتوحة المصدر لـ Claude Code: منهج عمل واحد و{N_ALL} مهارة، تنتهي كل منها بسكربت فحص يطبع PASS أو FAIL. العربية والإنجليزية بالمستوى نفسه.","image":"https://nj-burrito.github.io/NJ-Kit/og-ar.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://nj-burrito.github.io/#person"}},
+{"@type":"Person","@id":"https://nj-burrito.github.io/#person","name":"Nader Alzghoul","alternateName":["نادر الزغول","NJ-Burrito","NJ Burrito","NJBurrito","NJ"],"jobTitle":"QA Automation Engineer","address":{"@type":"PostalAddress","addressLocality":"Amman","addressCountry":"JO"},"url":"https://nj-burrito.github.io/","sameAs":["https://github.com/NJ-Burrito","https://www.linkedin.com/in/nader-alzghoul","https://nj-burrito.github.io/","https://nj-burrito.github.io/QA-Wrap/","https://nj-burrito.github.io/Business-Wrap/","https://nj-burrito.github.io/NJ-Kit/","https://nj-burrito.github.io/NJ-Whip/","https://nj-burrito.github.io/NJ-Flush/","https://nj-burrito.github.io/Profile-Wrap/","https://github.com/NJ-Burrito/Story-Wrap"]},
+{"@type":"SoftwareApplication","@id":"https://nj-burrito.github.io/NJ-Kit/#app","name":"NJ-Kit","alternateName":["NJ Kit","nj-kit","nj_kit","NJ_Kit","NJKit","NJ-Kit Claude Code plugin","NJ-Kit Claude Code skills"],"applicationCategory":"DeveloperApplication","applicationSubCategory":"Claude Code plugin","operatingSystem":"Windows, macOS, Linux","url":"https://nj-burrito.github.io/NJ-Kit/ar/","downloadUrl":"https://github.com/NJ-Burrito/NJ-Kit","codeRepository":"https://github.com/NJ-Burrito/NJ-Kit","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":"ar","keywords":["مهارات Claude Code","إضافة Claude Code","مهارات الوكلاء","SKILL.md","العربية"],"description":"إضافة مجانية ومفتوحة المصدر لـ Claude Code: منهج عمل واحد و{N_ALL} مهارة، تنتهي كل منها بسكربت فحص يطبع PASS أو FAIL. العربية والإنجليزية بالمستوى نفسه.","image":"https://nj-burrito.github.io/NJ-Kit/og-ar.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://nj-burrito.github.io/#person"}},
 {"@type":"FAQPage","@id":"https://nj-burrito.github.io/NJ-Kit/ar/#faq","inLanguage":"ar","mainEntity":[
 {"@type":"Question","name":"ما هي NJ-Kit؟","acceptedAnswer":{"@type":"Answer","text":"NJ-Kit إضافة مجانية ومفتوحة المصدر لـ Claude Code: منهج عمل واحد و{N_ALL} مهارة. تنتهي كل مهارة بسكربت فحص يطبع PASS أو FAIL. برخصة MIT، من صنع نادر الزغول."}},
 {"@type":"Question","name":"ما هي مهارات Claude Code؟","acceptedAnswer":{"@type":"Answer","text":"المهارة مجلد فيه ملف SKILL.md يضم التعليمات، ومعه أي سكربتات يحتاجها. يقرأ Claude Code وصف كل مهارة ويحمّلها حين تطابق المهمةُ وصفَها."}},
@@ -464,8 +464,8 @@ footer a:hover{text-decoration:underline}
   <section class="hero" id="top">
     <div class="wrap">
       <div>
-        <h1 data-l="en">Claude Code skills that end in <em>PASS or&nbsp;FAIL.</em></h1>
-        <h1 data-l="ar">مهارات لـ <bdi dir="ltr">Claude Code</bdi> تنتهي كلٌّ منها بـ <em><bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi></em>.</h1>
+        <h1 data-l="en"><span class="sr">NJ-Kit: </span>Claude Code skills that end in <em>PASS or&nbsp;FAIL.</em></h1>
+        <h1 data-l="ar"><span class="sr"><bdi dir="ltr">NJ-Kit</bdi>: </span>مهارات لـ <bdi dir="ltr">Claude Code</bdi> تنتهي كلٌّ منها بـ <em><bdi dir="ltr">PASS</bdi> أو <bdi dir="ltr">FAIL</bdi></em>.</h1>
         <p class="lede" data-l="en">NJ-Kit is a free working method and {N_ALL} skills for Claude Code. Every skill ends in a script that checks the result, so “done” means a check ran.</p>
         <p class="lede" data-l="ar"><bdi dir="ltr">NJ-Kit</bdi> منهج عمل مجاني و{N_ALL} مهارة لـ <bdi dir="ltr">Claude Code</bdi>. تنتهي كل مهارة بسكربت يفحص النتيجة، فتعني «تم» أن فحصًا جرى فعلًا.</p>
         <div class="start">
@@ -850,13 +850,17 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
 <footer>
   <div class="wrap">
     <p data-l="en">By Nader Alzghoul (NJ-Burrito). Free and open source under the MIT licence. Not affiliated with or endorsed by Anthropic.</p>
+    <p data-l="en">Also known as NJ Kit, nj-kit and nj_kit. Nader Alzghoul (نادر الزغول), also NJ Burrito, is a QA Automation Engineer in Amman, Jordan.</p>
     <p data-l="ar">من نادر الزغول (<bdi dir="ltr">NJ-Burrito</bdi>). مجانية ومفتوحة المصدر برخصة <bdi dir="ltr">MIT</bdi>. غير تابعة لشركة <bdi dir="ltr">Anthropic</bdi> ولا معتمدة منها.</p>
+    <p data-l="ar">تُعرف أيضًا باسم <bdi dir="ltr">NJ Kit</bdi> و<bdi dir="ltr">nj-kit</bdi> و<bdi dir="ltr">nj_kit</bdi>. نادر الزغول (<bdi dir="ltr">Nader Alzghoul</bdi>) مهندس أتمتة اختبارات الجودة في عمّان، الأردن.</p>
     <nav aria-label="Elsewhere">
       <a href="https://nj-burrito.github.io/"><span data-l="en">Portfolio</span><span data-l="ar">الموقع الشخصي</span></a>
       <a href="https://nj-burrito.github.io/QA-Wrap/">QA Wrap</a>
       <a href="https://nj-burrito.github.io/Business-Wrap/">Business-Wrap</a>
       <a href="https://nj-burrito.github.io/Profile-Wrap/">Profile-Wrap</a>
       <a href="https://nj-burrito.github.io/NJ-Whip/">NJ-Whip</a>
+      <a href="https://nj-burrito.github.io/NJ-Flush/">NJ-Flush</a>
+      <a href="https://github.com/NJ-Burrito/Story-Wrap" rel="noopener">Story-Wrap on GitHub</a>
       <a href="https://www.instagram.com/nj.story.ar/" rel="noopener">Story-Wrap</a>
       <a href="https://github.com/NJ-Burrito" rel="me noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener">LinkedIn</a>
