@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.6 — 2026-11-24
+
+- `nj-qa`: new section «Re-running an existing automation script»: missing test data is filed through the portal's own service with recent dates, per-environment values (`formByEnv`), desks that gain required fields, resuming a named request without filing a new one, a push guard that refuses to erase a change it never saw whoever made it, and the close-out (story comment and hand-back). Three lessons added. Plugin 2.4.9.
+
 ## 3.1.5 — 2026-11-23
 
 - `nj-method` § Execute: an agent loop ends on a deterministic validator that compares done against the expected set, never on a "don't stop" prompt.
