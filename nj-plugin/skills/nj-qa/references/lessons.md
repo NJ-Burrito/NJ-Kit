@@ -29,3 +29,8 @@ Leaders read this before planning. Each line came from a real wall. The director
 - **Suite hooks:** a suite hook's throw is swallowed and «إرسال» is still pressed, so to stop before sending, use the fill step and decide.
 - **Read-only workers:** stop as soon as `tracker-live.md` says no ticket was filed, rather than waiting out the deadline.
 - **Evidence names are Arabic, `<المشكلة>-<الخدمة>-<التاريخ>-<الوقت>` (owner, 2026-11-09):** issue, service, `YYYY-MM-DD`, `HH.MM` in 24 hours, ≤150 characters, `-2` for a repeat in the same minute. Generate it with `evidence_name.py` / `evidenceName()`, never by hand; `report-check` and `preview-check` refuse anything else. Forward only: existing files keep their names.
+
+**Re-running scripts (2026-11-24)**
+- A refusal like «expired» on a registered item is a test-data gap: create a valid item through the portal's own service with recent dates, then run again.
+- Before concluding a reference document can be used only once, retry it: a lookup that clears its fields can have another cause.
+- Never push a script from a copy older than the repository: take the repository's version first.

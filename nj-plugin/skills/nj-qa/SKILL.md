@@ -165,6 +165,17 @@ Other hub events the crew writes: `nj_qa.py phase`, `wave-start`, `wall-close`; 
 
 Every screenshot and video is named in Arabic only, `<المشكلة>-<الخدمة>-<التاريخ>-<الوقت>`: a short specific phrase for the defect or what is proven (never «لقطة»), the service's Arabic portal name, `YYYY-MM-DD`, then `HH.MM` in 24 hours (Windows has no `:`), e.g. `زر-الإرسال-لا-يستجيب-طلب-تسجيل-منتج-2026-11-09-14.35.png`. Hyphens between words, at most 150 characters (the service shortens first, never the issue), no English except a ticket code such as `PROJ-5494` after the issue, `-2` on a second shot of the same issue in the same minute. Never type one by hand: `scripts/evidence_name.py` (CLI and import), or `evidenceName(issue, service, when)` in your suite's `lib/shot.ts`. `report-check` and `preview-check` refuse any other picture or video name and print the file. A run imported from before the rule keeps its old names (`NJQA_LEGACY_EVIDENCE=1`, set by the importer); existing evidence files are never renamed.
 
+## Re-running an existing automation script (owner, 2026-11-24)
+
+A service whose script already lives in the shared test repository is re-run, never rebuilt. Copy the repository's current main into the run folder, run it on the test environment, and close all of it in the same turn:
+
+- **Missing test data is not a script fault.** When the form needs a record the test account lacks (an expired or missing registered item), file that record yourself through the portal's own service on the same environment, with recent dates. A record built on an old reference document can come out expired too. Reference documents may be reused; what a request needs is one valid record.
+- **Values that differ per environment** go in the route's `formByEnv.<env>` in the data file, laid over `form` by the shared loader. The values proven on the other environment never move.
+- **A desk that gains required fields** gets a small fix in that desk's hook, filled only when the desk shows them, proven by a fresh passed run before the push.
+- **Resuming one route on a named request** never files a new one: the filing stage is skipped, and desks the request already left are skipped.
+- **The push refuses to erase a change it never saw**, whoever made it. Every session pushes as the same git user, so an author check alone let one session's stale copy erase another session's proven fixes. A clone with someone else's uncommitted work is left untouched; the push runs from a temporary worktree.
+- **Close-out:** a comment on the service's story (script path, routes per environment with request and output numbers, commits, findings, what is still open), then hand the story back to the person the owner names; the owner's work log and Done task; a «not done» table in the report.
+
 ## Standing rules that still apply
 
 Screenshots are viewport only, with a red ring on the exact point; Jira evidence is unmasked; real-user triggers, keyboard first; triggered waits, no hard waits; filing never inside the Playwright runner; own Chrome profile and sign-ins one at a time; credentials never printed or copied; Thmanyah only; Arabic RTL; dummy data is never a defect.

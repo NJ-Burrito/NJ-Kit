@@ -117,14 +117,11 @@ python nj-kit/scripts/fetch_assets.py --all    # 📦 download NJ-Kit assets v1
 
 <a id="new"></a>
 
-## 🆕 What's new in 3.1.5
+## 🆕 What's new in 3.1.6
 
-Release: [v3.1.5 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.5).
+Release: [v3.1.6 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.6).
 
-- 🔁 **`nj-method`: an agent loop ends on a validator, not a promise.** Countable work (5 files, 144 notes) writes its expected set first; a deterministic check compares done against it before the loop may exit, and a shortfall goes back in with the missing items named.
-- 🎛️ **`nj-ui-motion-laws`: 26 laws.** Six added: origin awareness, staggering, rubber banding, interruptible motion, Von Restorff, peak-end, each with a numeric check.
-- 🛡️ **`nj-security-review`: code an AI agent wrote.** Slopsquatting (hallucinated package names registered with malware) and Supabase tables with Row Level Security off: a three-point checklist before production.
-- 📱 **`nj-impact-copy`: store screenshots.** Five persuasion moves from a teardown of a top App Store set: one scene, one trusted award, one running line, the users' own phrase, one light.
+- 🔁 **`nj-qa`: re-running an existing automation script.** Missing test data is filed through the portal's own service with recent dates; values that differ per environment go in `formByEnv`; resuming a named request never files a new one; the push refuses to erase a change it never saw, whoever made it; the run closes with a comment on the story and a hand-back.
 
 ## 🆕 What's new in 3.1.4
 
@@ -558,7 +555,7 @@ Details: [CONTRIBUTING.md](CONTRIBUTING.md).
 - 📂 **أي وكيل:** يقرأ ملفات `SKILL.md`؟ انسخ مجلد مهارة واحدة، بلا مثبّت.
 - 🌍 **العربية والإنجليزية** بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار ومدقق لغوي للنص العربي.
 - 🎙️ **NJ-Narration** (ضمن الإضافة، `nj-narration`): مهارة تختار صوت الراوي المناسب للشخصية، وتهندسه مرة واحدة من المصدر، وتعالج الضجيج قبل الجملة وبعدها دون قصّ الكلمات. لا تأتي بأي أصوات ولا بعينات صوتية. [مثال بالنص ↑](#narration)
-- 🆕 **جديد في 3.1.5** ([الإصدار v3.1.5 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.5)): لا تنتهي حلقة الوكيل بوعدٍ بل بمدقّق يقارن المنجَز بالمطلوب (`nj-method`)، وصارت قوانين الحركة ستة وعشرين (`nj-ui-motion-laws`)، وقائمة فحص للكود الذي يكتبه الذكاء الاصطناعي: الحزم الوهمية (Slopsquatting) وجداول Supabase بلا RLS (`nj-security-review`)، وخمس حيل إقناع لصور متجر التطبيقات (`nj-impact-copy`).
+- 🆕 **جديد في 3.1.6** ([الإصدار v3.1.6 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.6)): صار `nj-qa` يشرح إعادة تشغيل سكربت أتمتة موجود: بيانات الاختبار الناقصة تُنشأ عبر خدمة البوابة نفسها بتواريخ حديثة، والقيم التي تختلف بين البيئات في `formByEnv`، وإكمال طلب مسمّى لا يقدّم طلباً جديداً، والرفع يرفض محو تعديل لم تره النسخة أيّاً كان صاحبه، ثم تعليق على القصة وإعادتها.
 - 🆕 **جديد في 3.1.4** ([الإصدار v3.1.4 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.4)): صارت مهارتا `nj-jira-to-automation` و`nj-qa-pipeline` تشرحان فحص مسار العمل (Flowable) مباشرةً على بيئتي staging وQA عبر صفحة «متابعة الطلبات» في الواجهة الخلفية، للقراءة فقط، مكمِّلًا لتصدير المسار.
 - 🆕 **جديد في 3.1.3** ([الإصدار v3.1.3 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.3)): صار إطار `nj-agent-halo` شريطًا غسقيًا بحدّ فاتح وخط داكن مع وجه عضو الفريق ولونه (10 ألوان) بلا لون فضي، ولا تحمله إلا نوافذ NJ-QA.
 - 🆕 **جديد في 3.1.2** ([الإصدار v3.1.2 على GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.2)): صار `nj-agent-halo` يرسم الإطار الملوّن على نوافذ أداة NJ-QA فقط، وتبقى كل نافذة أخرى بلا إطار، ويتوقف المراقب بعد دقيقتين إن لم تظهر نافذة من NJ-QA.
