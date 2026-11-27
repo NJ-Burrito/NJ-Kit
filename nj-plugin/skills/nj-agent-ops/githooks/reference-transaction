@@ -1,0 +1,67 @@
+#!/bin/sh
+# NJ Governance v4 git hook: reference-transaction (installed by `gov4.py install-repo`).
+# Rejects updates of refs/heads/main|master, tags and remote-tracking refs unless the update runs inside a
+# gov4.py subprocess, which holds a short-lived token (NJ_GIT_TOKEN naming a file in <state>/git-tokens/).
+# --no-verify does not skip reference-transaction. Pure POSIX sh: a Python or Node wrapper around git hits it too.
+# Modes (read from <state>/mode): off = inert, audit (default) = log the would-deny and allow, enforce = reject.
+# SB-02 / D27: the state path is BAKED IN at install-repo time. This hook never reads NJ_HOME, NJ_MODE_OVERRIDE or any other
+# environment variable to find the mode, so a one-token env prefix cannot switch it off. (NJ_GIT_TOKEN is only a nonce; it
+# counts only when a file of that name exists in <state>/git-tokens/ and has not expired.)
+# It guards against mistakes and prompt injection, not a determined agent (spec section 9, D28).
+state="$1"
+if [ "$state" != "prepared" ]; then
+  cat >/dev/null 2>&1
+  exit 0
+fi
+
+NJ_STATE_DIR='@@NJ_STATE_DIR@@'
+case "$NJ_STATE_DIR" in '@@'*) NJ_STATE_DIR="$HOME/.claude/nj" ;; esac
+
+nj_mode() {
+  m=""
+  if [ -f "$NJ_STATE_DIR/mode" ]; then
+    m=$(head -n 1 "$NJ_STATE_DIR/mode" 2>/dev/null | tr -d '\r ')
+  fi
+  case "$m" in off|audit|enforce) ;; *) m=audit ;; esac
+  printf '%s' "$m"
+}
+
+nj_token_ok() {
+  t="${NJ_GIT_TOKEN:-}"
+  case "$t" in ""|*[!0-9a-f]*) return 1 ;; esac
+  f="$NJ_STATE_DIR/git-tokens/$t"
+  [ -f "$f" ] || return 1
+  exp=$(head -n 1 "$f" 2>/dev/null | tr -d '\r ')
+  case "$exp" in ""|*[!0-9]*) return 1 ;; esac
+  [ "$exp" -gt "$(date +%s)" ]
+}
+
+mode=$(nj_mode)
+if [ "$mode" = "off" ]; then
+  cat >/dev/null 2>&1
+  exit 0
+fi
+
+bad=""
+while read -r old new ref; do
+  case "$ref" in
+    refs/heads/main|refs/heads/master|refs/tags/*|refs/remotes/*) bad="$bad $ref" ;;
+  esac
+done
+
+[ -n "$bad" ] || exit 0
+if nj_token_ok; then
+  exit 0
+fi
+
+safe=$(printf '%s' "$bad" | tr -d '"\\')
+if [ "$mode" = "audit" ]; then
+  if [ -d "$NJ_STATE_DIR" ]; then
+    printf '{"hook":"reference-transaction","decision":"would-deny","mode":"audit","refs":"%s","ts":%s}\n' \
+      "$safe" "$(date +%s)" >> "$NJ_STATE_DIR/decisions.jsonl" 2>/dev/null
+  fi
+  exit 0
+fi
+
+echo "NJ governance: updating$bad needs the gov4.py ticket token (merge, checkpoint and push go through gov4.py; mode: $mode)." >&2
+exit 1

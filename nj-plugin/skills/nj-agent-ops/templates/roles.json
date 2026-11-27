@@ -1,0 +1,271 @@
+{
+  "_about": "Single source of the NJ Governance v4 permission matrix (spec section 2 and Roles matrix). Read by check_governance.py, relay.py (ledger role/model validation), gov4.py, gov4_hook.py, the agent-definition lint and the tests. Change it here and nowhere else; agent definitions, hooks and tests follow. Lead decisions D1-D13 (LEAD-DECISIONS.md) override the spec where they differ.",
+  "version": "nj-governance-v4",
+  "schema": 1,
+  "mode": "TREE",
+  "mode_note": "TREE because S0 passed on 2026-10-16 (a named sdlc-review agent spawned two Haiku 5.5 helpers; both replied). Smoke results S1-S9 do not exist yet: every clause that depends on them stays HABIT or LINT in clause-deps.json until smoke/RESULTS.md is attested. If S0 is ever disproved the design is the flat mode (spec section 3) and every tree clause is HABIT.",
+
+  "limits": {
+    "ceiling": 20,
+    "ceiling_note": "Platform ceiling (Nader's number): CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS=20. Sonnet + Haiku + running jobs, the Lead excluded.",
+    "default_wave": 10,
+    "wave_values": [5, 10, 20],
+    "wave_20_requires": {
+      "decision": "D4",
+      "clean_run_peak_at_least": 10,
+      "rate_limit_incidents": 0,
+      "evidence": "relay.py verify",
+      "golden_set_precondition": false,
+      "golden_set_note": "The golden-set comparison is NOT a precondition for wave 20 (D4). It stays the precondition for any cost or speed claim."
+    },
+    "plan_rule": "S + sum(HELPERS_i) <= wave",
+    "max_depth": 2,
+    "helpers_default": 3,
+    "helpers_hard_max": 4,
+    "helpers_writer_max": 2,
+    "writers": {"max": 6, "until_lead_tokens_per_merge_measured": 3},
+    "research": 4,
+    "reviewers": 6,
+    "browser_recorder_lanes": 2,
+    "brief_lines": 28,
+    "helper_brief_lines": 12,
+    "receipt_lines": 25,
+    "helper_result_lines": 10,
+    "helper_max_turns": 40,
+    "helper_tool_calls": 40,
+    "agent_rotate_tokens": 400000,
+    "lead_handoff_tokens": 120000,
+    "registry_lock_reclaim_s": 10,
+    "registry_stale_min": 15,
+    "ticket_ttl_s": 60,
+    "job_ttl_max_min": 240,
+    "unlock_ttl_min": 60
+  },
+
+  "models": {
+    "worker_allowed": ["sonnet", "haiku"],
+    "lead": "opus",
+    "denied": ["opus", "fable", "claude-opus-5-5", "claude-opus-5-5[1m]", "inherit"],
+    "by_role": {
+      "lead": ["opus"],
+      "agent": ["sonnet"],
+      "reviewer": ["sonnet"],
+      "helper": ["haiku"],
+      "job": ["sonnet"]
+    },
+    "effort_allowed": ["low", "medium", "high"],
+    "effort_denied": ["xhigh", "max"],
+    "lead_effort": "medium"
+  },
+
+  "permission_modes": {
+    "decision": "D2",
+    "expected": "default",
+    "doctor": {"default": "PASS", "bypassPermissions": "WARN", "acceptEdits": "WARN", "auto": "WARN"},
+    "doctor_never_fails_on_mode": true,
+    "note": "Nader runs bypass mode by choice (D2). doctor WARNs, never FAILs, on bypassPermissions, acceptEdits or auto. GATE tags are granted only for the permission mode S1 actually proved (recorded per result in smoke/RESULTS.md)."
+  },
+
+  "lead_entrypoints": ["claude-vscode", "cli"],
+  "lead_entrypoints_note": "claude-vscode is [V] (CLAUDE_CODE_ENTRYPOINT in this session's environment, 2026-10-16). cli is [A], falsified by: the S2 ingest showing a different value for a terminal session. S2 replaces this list.",
+  "lead_session_sources": ["startup", "resume", "clear"],
+
+  "env_required": {
+    "CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH": "2",
+    "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS": "20",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
+    "PYTHONUTF8": "1"
+  },
+  "env_forbidden": ["CLAUDE_CODE_EFFORT_LEVEL", "CLAUDE_CODE_SUBAGENT_MODEL_FORCE", "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS", "CLAUDE_CODE_DISABLE_BACKGROUND_TASKS"],
+
+  "builtin_allow": ["Explore", "Plan", "claude-code-guide"],
+  "builtin_models": {"Explore": "haiku", "Plan": "sonnet", "claude-code-guide": "haiku"},
+  "builtin_note": "Read-only built-in agent types that skills spawn. Allowed at PreToolUse(Agent), forced to the model named here. Anything else not listed under types or patterns is denied.",
+
+  "platform_removed_tools": ["AskUserQuestion", "Workflow", "EnterPlanMode", "ExitPlanMode", "ScheduleWakeup", "EndConversation"],
+
+  "lead": {
+    "role": "lead",
+    "model": "opus",
+    "effort": "medium",
+    "outside_ceiling": true,
+    "per_session": 1,
+    "may_spawn": ["agent", "reviewer"],
+    "may_not_spawn": ["helper"],
+    "tools": ["Read", "Grep", "Glob", "Agent", "SendMessage", "TaskStop", "AskUserQuestion", "Skill", "Bash", "PowerShell"],
+    "skills": ["nj-method", "nj-delegate", "session-handoff", "nj-learn", "code-review", "devil"],
+    "write_allow": ["handoff.md", "work/lead/**", "work/governance/**", "~/.claude/projects/*/memory/**"],
+    "write_deny_note": "Edit, Write and NotebookEdit outside write_allow are denied for a positively registered Lead (clause 0.20).",
+    "git": "gov4.py only, with a single-use ticket; read-only git directly",
+    "woken_by": ["team-agent completion", "flag file", "command exit", "Nader"],
+    "never_woken_by": ["helper", "polling"]
+  },
+  "lead_write_allow": ["handoff.md", "work/lead/**", "work/governance/**", "~/.claude/projects/*/memory/**"],
+
+  "protected_paths": [
+    ".git", ".git/**", "~/.claude/**", ".claude/settings*", ".claude/hooks/**", "~/.claude/nj/bin/**",
+    "CLAUDE.md", "**/CLAUDE.md", "nj-agent-ops/templates/roles.json", ".claude/agents/**", "~/.claude/agents/**", "~/.claude/nj/**"
+  ],
+  "protected_note": "For every agent, job and unregistered (unknown) session; the registered Lead is exempt. Opened only by a valid unlock.json (one hour, written after Nader approves through AskUserQuestion). gov4_hook.py reads protected_paths and method_trees from this file (CD-3), so editing the list changes what is protected. method_trees are protected after activation: a write under them needs the unlock.",
+  "method_trees": ["D:/projects/nj-plugin/skills"],
+  "residual_note": "Windows has no sandbox: an agent shell can write any user file, so HMAC or ACL on ~/.claude/nj is out of scope (D28). The hook denies commands that name ~/.claude/nj or .git/hooks and rejects a bin/CURRENT outside ~/.claude/nj/bin; a command assembled from pieces the scanner cannot read is a named residual risk.",
+  "secret_paths": ["~/.config/linkedin/**", "~/.claude/.credentials*", "~/.git-credentials"],
+  "outward_actions_denied_for": ["agent", "job", "unknown"],
+  "outward_actions": {
+    "scripts": ["li.py post", "li.py comment", "li.py like", "li.py due"],
+    "sibling_scripts": ["engage_daily.py", "comments_watch.py", "connect_weekly.py"],
+    "sibling_note": "D29: li.py itself stays untouched; the hook denies these posting scripts by name for agent, job and unknown callers unless --dry-run or --help is given, and inline code that imports li.",
+    "mcp_prefix": "mcp__linkedctl__",
+    "mcp_read_allow": ["*_get", "*_list", "stats_*", "whoami", "auth_status"],
+    "mcp_note": "D29: every mcp__linkedctl__* tool is denied for agent, job and unknown callers except the read tools in mcp_read_allow, so a write such as auth_revoke is covered without being listed.",
+    "mcp": ["mcp__linkedctl__post_create", "mcp__linkedctl__post_update", "mcp__linkedctl__post_delete", "mcp__linkedctl__comment_create", "mcp__linkedctl__comment_delete", "mcp__linkedctl__reaction_create", "mcp__linkedctl__reaction_delete", "mcp__linkedctl__document_upload", "mcp__linkedctl__auth_revoke"]
+  },
+
+  "git": {
+    "agent_allow": ["status", "diff", "log", "show", "add", "commit", "restore (own paths)", "stash (own)", "merge-tree (read-only)", "rev-parse"],
+    "agent_commit_trailers": ["Agent-Id", "Task-Id", "Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"],
+    "agent_branch_pattern": "worktree-<run>-<role>-<n>",
+    "branch_name_max": 20,
+    "reviewer_allow": ["status", "diff", "log", "show", "merge-tree", "rev-parse"],
+    "helper_allow": ["status", "diff", "log", "show"],
+    "deny": [
+      "push", "merge", "rebase", "reset --hard", "branch -D", "tag", "worktree add", "worktree remove", "update-ref",
+      "remote", "config", "fetch", "pull", "cherry-pick", "checkout (other branch)", "switch (other branch)",
+      "--no-verify", "git -c", "git -C <other>", "--git-dir", "--work-tree", "GIT_*", "core.hooksPath",
+      "gh pr merge", "gh pr create"
+    ],
+    "lead_only_via": "gov4.py",
+    "no_force_push": true,
+    "writers_commit_on_main": false
+  },
+
+  "isolation_policy": {
+    "values": ["call", "none"],
+    "note": "call = code writers (nj-agent, sdlc-build) in a git repo: the Lead sets isolation: worktree on the Agent call and they commit on their own worktree-* branch. none = reviewers, helpers and the document writers (sdlc-requirements, sdlc-design, researcher-*, sdlc-test, sdlc-release), which run in the main checkout as the single writer of their OWNED_PATHS and never commit: the Lead reviews with `gov4.py review --unstaged` and commits with `gov4.py checkpoint` (D23). No type carries an isolation key in frontmatter."
+  },
+
+  "roles": {
+    "lead": {"models": ["opus"], "ledger_role": true},
+    "agent": {"models": ["sonnet"], "ledger_role": true, "may_spawn": ["helper"]},
+    "reviewer": {"models": ["sonnet"], "ledger_role": true, "may_spawn": ["helper"], "writes": false},
+    "helper": {"models": ["haiku"], "ledger_role": true, "may_spawn": [], "writes": "enabled types only"},
+    "job": {"models": ["sonnet"], "ledger_role": true, "may_spawn": [], "env": {"NJ_ROLE": "job"}, "git_writes": false, "outward_actions": false}
+  },
+
+  "types": {
+    "nj-agent": {
+      "role": "agent", "model": "sonnet", "effort": "medium", "enabled": true,
+      "may_spawn": ["nj-helper-reader", "nj-helper-runner", "nj-helper-writer"], "max_helpers": 3,
+      "tools": ["Read", "Grep", "Glob", "Edit", "Write", "Bash", "PowerShell", "Agent", "Skill"],
+      "maxTurns": 300, "isolation": "call", "git": "own-branch", "writes": "OWNED_PATHS"
+    },
+    "sdlc-requirements": {
+      "role": "agent", "model": "sonnet", "effort": "medium", "enabled": true,
+      "may_spawn": ["nj-helper-reader", "nj-helper-runner"], "max_helpers": 3,
+      "tools": ["Read", "Grep", "Glob", "Edit", "Write", "Agent", "Skill"],
+      "denied_tools": ["Bash", "PowerShell"],
+      "maxTurns": 300, "isolation": "none", "single_writer_main_checkout": true, "git": "none", "writes": "OWNED_PATHS", "stage": "requirements"
+    },
+    "sdlc-design": {
+      "role": "agent", "model": "sonnet", "effort": "medium", "enabled": true,
+      "may_spawn": ["nj-helper-reader", "nj-helper-runner"], "max_helpers": 3,
+      "tools": ["Read", "Grep", "Glob", "Edit", "Write", "Agent", "Skill"],
+      "denied_tools": ["Bash", "PowerShell"],
+      "maxTurns": 300, "isolation": "none", "single_writer_main_checkout": true, "git": "none", "writes": "OWNED_PATHS", "stage": "design"
+    },
+    "sdlc-build": {
+      "role": "agent", "model": "sonnet", "effort": "high", "enabled": true,
+      "may_spawn": ["nj-helper-reader", "nj-helper-runner", "nj-helper-writer"], "max_helpers": 3,
+      "tools": ["Read", "Grep", "Glob", "Edit", "Write", "Bash", "PowerShell", "Agent", "Skill"],
+      "maxTurns": 300, "isolation": "call", "git": "own-branch", "writes": "OWNED_PATHS", "stage": "build"
+    },
+    "sdlc-test": {
+      "role": "agent", "model": "sonnet", "effort": "medium", "enabled": true,
+      "may_spawn": ["nj-helper-reader", "nj-helper-runner"], "max_helpers": 3,
+      "tools": ["Read", "Grep", "Glob", "Edit", "Write", "Bash", "PowerShell", "Agent", "Skill"],
+      "edit_scope": ["tests/**", "work/sdlc/test/**"],
+      "maxTurns": 300, "isolation": "none", "single_writer_main_checkout": true, "git": "none", "writes": "OWNED_PATHS", "stage": "test"
+    },
+    "sdlc-release": {
+      "role": "agent", "model": "sonnet", "effort": "medium", "enabled": true,
+      "may_spawn": ["nj-helper-reader", "nj-helper-runner"], "max_helpers": 3,
+      "tools": ["Read", "Grep", "Glob", "Edit", "Write", "Bash", "PowerShell", "Agent", "Skill"],
+      "edit_scope": ["release/**", "work/sdlc/release/**"],
+      "maxTurns": 300, "isolation": "none", "single_writer_main_checkout": true, "git": "none", "writes": "OWNED_PATHS", "stage": "release"
+    },
+    "nj-reviewer": {
+      "role": "reviewer", "model": "sonnet", "effort": "high", "enabled": true,
+      "may_spawn": ["nj-helper-reader", "nj-helper-runner"], "max_helpers": 3,
+      "tools": ["Read", "Grep", "Glob", "Bash", "PowerShell", "Agent"],
+      "denied_tools": ["Edit", "Write", "NotebookEdit", "SendMessage"],
+      "maxTurns": 150, "isolation": "none", "git": "read-only", "writes": "none"
+    },
+    "sdlc-review": {
+      "role": "reviewer", "model": "sonnet", "effort": "high", "enabled": true,
+      "may_spawn": ["nj-helper-reader", "nj-helper-runner"], "max_helpers": 3,
+      "tools": ["Read", "Grep", "Glob", "Bash", "PowerShell", "Agent"],
+      "denied_tools": ["Edit", "Write", "NotebookEdit", "SendMessage"],
+      "maxTurns": 150, "isolation": "none", "git": "read-only", "writes": "none", "stage": "review"
+    },
+    "nj-helper-reader": {
+      "role": "helper", "model": "haiku", "effort": "low", "enabled": true,
+      "may_spawn": [], "max_helpers": 0,
+      "tools": ["Read", "Grep", "Glob", "WebFetch", "WebSearch"],
+      "denied_tools": ["Bash", "PowerShell", "Edit", "Write", "Agent", "SendMessage"],
+      "omitClaudeMd": true, "maxTurns": 40, "isolation": "none", "git": "none", "writes": "none"
+    },
+    "nj-helper-runner": {
+      "role": "helper", "model": "haiku", "effort": "low", "enabled": true,
+      "may_spawn": [], "max_helpers": 0,
+      "tools": ["Read", "Grep", "Glob", "Bash", "PowerShell"],
+      "denied_tools": ["Edit", "Write", "Agent", "SendMessage"],
+      "commands": "limited to .nj/gates.json plus read-only git",
+      "omitClaudeMd": true, "maxTurns": 40, "isolation": "none", "git": "read-only", "writes": "none"
+    },
+    "nj-helper-writer": {
+      "role": "helper", "model": "haiku", "effort": "low", "enabled": true,
+      "enabled_by": "D24 (2026-10-16): S5 passed headless, a helper's cwd equals its parent's worktree",
+      "may_spawn": [], "max_helpers": 0, "max_per_parent": 2,
+      "tools": ["Read", "Grep", "Glob", "Edit", "Write"],
+      "denied_tools": ["Bash", "PowerShell", "Agent", "SendMessage"],
+      "omitClaudeMd": true, "maxTurns": 40, "isolation": "none", "git": "none",
+      "writes": "a sub-partition inside the parent's OWNED_PATHS named in its brief (checked at spawn and at merge)"
+    }
+  },
+
+  "patterns": [
+    {"match": "researcher-*", "role": "agent", "model": "sonnet", "effort": "medium", "enabled": true,
+     "may_spawn": ["nj-helper-reader", "nj-helper-runner"], "max_helpers": 3,
+     "tools": ["Read", "Grep", "Glob", "Edit", "Write", "WebSearch", "WebFetch", "Agent", "Skill"],
+     "denied_tools": ["NotebookEdit", "SendMessage"],
+     "maxTurns": 300, "isolation": "none", "single_writer_main_checkout": true, "git": "none", "writes": "OWNED_PATHS",
+     "note": "Research agents are document writers: they write inside their OWNED_PATHS (Linkedin: research/**) in the main checkout as the single writer of those paths and never commit; the Lead reviews with `gov4.py review --unstaged` and commits with `gov4.py checkpoint` (D23, 2026-10-16, replaces D16)."},
+    {"match": "council-*", "role": "reviewer", "model": "sonnet", "effort": "high", "enabled": true,
+     "may_spawn": [], "max_helpers": 0,
+     "tools": ["Read", "Grep", "Glob"],
+     "denied_tools": ["Edit", "Write", "NotebookEdit", "Agent", "SendMessage"],
+     "maxTurns": 150, "isolation": "none", "writes": "none", "note": "Lead-spawned leaf seats; no Agent tool."},
+    {"match": "crew-*", "role": "helper", "model": "haiku", "effort": "low", "enabled": true,
+     "maps_to": "nj-helper-writer", "may_spawn": [], "max_helpers": 0,
+     "omitClaudeMd": true, "maxTurns": 40, "isolation": "none", "writes": "as nj-helper-writer",
+     "note": "Project Haiku crew map onto the helper types and inherit enabled from nj-helper-writer (enabled by D24)."}
+  ],
+
+  "caps": {
+    "writers": 6,
+    "writers_until_measured": 3,
+    "research": 4,
+    "reviewers": 6,
+    "helpers_per_parent": 4,
+    "browser_recorder_lanes": 2,
+    "note": "Sub-limits inside the 20. Soft (advisory) until S3/S4 pass."
+  },
+
+  "waves": {
+    "default": 10,
+    "ceiling": 20,
+    "values": [5, 10, 20],
+    "spacing": {"batch_size": 5, "gap_s": 5},
+    "raise_to_20": "gov4.py wave 20 is allowed after one clean run at peak 10 or more with 0 rate-limit incidents in relay.py verify (D4)."
+  }
+}

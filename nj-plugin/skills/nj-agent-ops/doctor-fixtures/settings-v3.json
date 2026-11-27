@@ -1,0 +1,28 @@
+{
+  "_about": "Doctor fixture: the v3 settings (xhigh, no governance hooks, no deny rules) that gov4.py doctor --settings must FAIL.",
+  "syncClaudeAiSkills": false,
+  "syncClaudeAiPlugins": false,
+  "env": {
+    "CLAUDE_SECURITY_SCAN_TIP": "off"
+  },
+  "hooks": {
+    "SubagentStop": [
+      {
+        "matcher": "sdlc-.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"D:/projects/nj-plugin/skills/nj-agent-ops/scripts/sdlc.py\" hook",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  },
+  "disableRemoteControl": true,
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    }
+  }
+}
