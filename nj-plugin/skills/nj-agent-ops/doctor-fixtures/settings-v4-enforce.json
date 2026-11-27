@@ -1,0 +1,205 @@
+{
+  "_about": "Doctor fixture: the ENFORCE shape (what `gov4.py mode enforce` adds to the audit shape): the git-write and gh pr deny rules and onFailure: block on the Agent hook. gov4.py doctor --settings --mode enforce must pass it.",
+  "env": {
+    "CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH": "2",
+    "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS": "20",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
+    "PYTHONUTF8": "1",
+    "CLAUDE_SECURITY_SCAN_TIP": "off"
+  },
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "worktree": {
+    "baseRef": "head"
+  },
+  "permissions": {
+    "defaultMode": "default",
+    "deny": [
+      "Agent(model:opus)",
+      "Agent(model:fable)",
+      "Agent(model:claude-opus-5-5)",
+      "Agent(model:claude-opus-5-5[1m])",
+      "Read(~/.config/linkedin/**)",
+      "Bash(* ~/.config/linkedin/*)",
+      "Read(~/.claude/.credentials*)",
+      "Read(~/.git-credentials)",
+      "Bash(* ~/.git-credentials*)",
+      "Bash(git push *)",
+      "Bash(git merge *)",
+      "Bash(git rebase *)",
+      "Bash(git tag *)",
+      "Bash(git update-ref *)",
+      "Bash(git reset --hard *)",
+      "Bash(git branch -D *)",
+      "Bash(git worktree add *)",
+      "Bash(git worktree remove *)",
+      "PowerShell(git push *)",
+      "PowerShell(git merge *)",
+      "PowerShell(git rebase *)",
+      "PowerShell(git tag *)",
+      "PowerShell(git update-ref *)",
+      "PowerShell(git reset --hard *)",
+      "PowerShell(git branch -D *)",
+      "PowerShell(git worktree add *)",
+      "PowerShell(git worktree remove *)",
+      "Bash(gh pr merge *)",
+      "Bash(gh pr create *)",
+      "PowerShell(gh pr merge *)",
+      "PowerShell(gh pr create *)"
+    ],
+    "allow": [
+      "Bash(python * gov4.py status*)",
+      "Bash(python * gov4.py live*)",
+      "Bash(python * gov4.py review*)",
+      "Bash(python * gov4.py doctor*)",
+      "Bash(python * gov4.py preflight*)",
+      "Bash(python * gov4.py selftest*)",
+      "Bash(python * gov4.py merge *)"
+    ],
+    "ask": [
+      "Bash(python * gov4.py push *)",
+      "PowerShell(python * gov4.py push *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Agent|Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Python313/python.exe -I -X utf8 -c \"import os,sys,runpy;p='C:/Profiles/example/.claude/nj/gov4_launcher.py';sys.argv=[p,'agent'];os.path.isfile(p) and runpy.run_path(p,run_name='__main__')\"",
+            "shell": "bash",
+            "timeout": 20,
+            "onFailure": "block"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Python313/python.exe -I -X utf8 -c \"import os,sys,runpy;p='C:/Profiles/example/.claude/nj/gov4_launcher.py';sys.argv=[p,'bash'];os.path.isfile(p) and runpy.run_path(p,run_name='__main__')\"",
+            "shell": "bash",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Python313/python.exe -I -X utf8 -c \"import os,sys,runpy;p='C:/Profiles/example/.claude/nj/gov4_launcher.py';sys.argv=[p,'write'];os.path.isfile(p) and runpy.run_path(p,run_name='__main__')\"",
+            "shell": "bash",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__linkedctl__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Python313/python.exe -I -X utf8 -c \"import os,sys,runpy;p='C:/Profiles/example/.claude/nj/gov4_launcher.py';sys.argv=[p,'mcp'];os.path.isfile(p) and runpy.run_path(p,run_name='__main__')\"",
+            "shell": "bash",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Workflow",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Python313/python.exe -I -X utf8 -c \"import os,sys,runpy;p='C:/Profiles/example/.claude/nj/gov4_launcher.py';sys.argv=[p,'workflow'];os.path.isfile(p) and runpy.run_path(p,run_name='__main__')\"",
+            "shell": "bash",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Python313/python.exe -I -X utf8 -c \"import os,sys,runpy;p='C:/Profiles/example/.claude/nj/gov4_launcher.py';sys.argv=[p,'start'];os.path.isfile(p) and runpy.run_path(p,run_name='__main__')\"",
+            "shell": "bash",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "nj-agent|sdlc-.*|researcher-.*|nj-reviewer|council-.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Python313/python.exe -I -X utf8 -c \"import os,sys,runpy;p='C:/Profiles/example/.claude/nj/gov4_launcher.py';sys.argv=[p,'stop-team'];os.path.isfile(p) and runpy.run_path(p,run_name='__main__')\"",
+            "shell": "bash",
+            "timeout": 60
+          }
+        ]
+      },
+      {
+        "matcher": "nj-helper-.*|crew-.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Python313/python.exe -I -X utf8 -c \"import os,sys,runpy;p='C:/Profiles/example/.claude/nj/gov4_launcher.py';sys.argv=[p,'stop-helper'];os.path.isfile(p) and runpy.run_path(p,run_name='__main__')\"",
+            "shell": "bash",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "sdlc-.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"D:/projects/nj-plugin/skills/nj-agent-ops/scripts/sdlc.py\" hook",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Python313/python.exe -I -X utf8 -c \"import os,sys,runpy;p='C:/Profiles/example/.claude/nj/gov4_launcher.py';sys.argv=[p,'session-start'];os.path.isfile(p) and runpy.run_path(p,run_name='__main__')\"",
+            "shell": "bash",
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  },
+  "syncClaudeAiSkills": false,
+  "syncClaudeAiPlugins": false,
+  "disableRemoteControl": true,
+  "enabledPlugins": {
+    "nj-kit@nj-kit": true,
+    "remotion@claude-plugins-official": true,
+    "claude-security@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "nj-kit": {
+      "source": {
+        "source": "directory",
+        "path": "D:\\projects\\nj-plugin"
+      }
+    }
+  },
+  "crossSessionInbound": "refuse",
+  "isolatePeerMachines": true,
+  "autoUploadSessions": false,
+  "remoteControlAtStartup": false
+}

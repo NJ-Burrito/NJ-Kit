@@ -18,6 +18,9 @@ PYTHONUTF8=1 uv run --no-project --with openvino-genai --with sherpa-onnx --with
   python scripts/listen.py run <media> <out_dir> [--prompt "terms the meeting uses: Docker, sprint, payment gateway"] [--enroll enroll.json]
 ```
 
+With an NVIDIA card add `--with faster-whisper --with nvidia-cublas-cu12 --with "nvidia-cudnn-cu12<10"`; `--device auto` (the default)
+then runs Whisper on CUDA, else OpenVINO on an Intel iGPU, else the CPU. Set `BW_LISTEN_MODELS` to keep the models off the system drive.
+
 - `<out_dir>` gets one checkpoint per stage: `probe.json` → `track-<n>.wav` → `sweep.json` → `transcript.json` ∥ `speakers.json`
   → `named.json` (with `--enroll`) → `result.json`. A re-run resumes at the first missing checkpoint.
 - Progress is one JSON line per event on stdout. `touch <out_dir>/PAUSE` pauses, `<out_dir>/STOP` stops (exit 3).
@@ -31,11 +34,13 @@ PYTHONUTF8=1 uv run --no-project --with openvino-genai --with sherpa-onnx --with
 | Stage | Engine | Licence | Why this one (measured 2026-11-12, i5-1334U + Iris Xe, no GPU card) |
 |---|---|---|---|
 | Speech regions | Silero VAD (sherpa-onnx) | MIT | skips silence; 49.8 min in 31 s |
-| Speech-to-text | Whisper large-v3-turbo int8, OpenVINO GenAI, **Intel iGPU** | MIT / Apache-2.0 | RTF 0.42 on the iGPU vs 0.97 OpenVINO-CPU, 1.33 faster-whisper-CPU; keeps dialect. `medium` turned dialect into MSA and invented words |
-| Speakers | pyannote-segmentation-3.0 + CAM++ (sherpa-onnx) | MIT / Apache-2.0 | RTF 0.17; runs as **its own process** (sherpa holds the GIL; as a thread it serialised the whole run) |
-| Names | ERes2Net base voiceprints | Apache-2.0 | 15/15 on a labelled 3-person test (CAM++ 7/15, WeSpeaker 10/15); threshold 0.53 sits between other-person max 0.45 and same-person min 0.61 |
+| Speech-to-text | Whisper large-v3-turbo: faster-whisper on **NVIDIA CUDA**, else OpenVINO GenAI int8 on the **Intel iGPU**, else CPU | MIT / Apache-2.0 | CUDA (RTX 2060, 2026-11-13): RTF 0.078. iGPU RTF 0.42; OpenVINO-CPU 0.97 to ~4.5 by machine. Keeps dialect; `medium` turned dialect into MSA and invented words |
+| Chunks | VAD regions joined over pauses < 1.5 s (≤ 28 s) | | 0.6 s left 1-3 s fragments that came out as nonsense (~15 of 99 on a 10-min clip); 1.5 s gave 53 whole sentences. Stock hallucinations («اشتركوا في القناة», "thanks for watching") and silent segments are dropped; short or stretched chunks are flagged |
+| Speakers | pyannote-segmentation-3.0 (sherpa-onnx) segments, regrouped on **ERes2Net** voiceprints (average linkage 0.4) | MIT / Apache-2.0 | CAM++ clustering never kept a Gulf host apart from an Egyptian guest on one mix (0.5-0.8); ERes2Net regrouping gave exactly 2 voices. Runs as **its own process** (sherpa holds the GIL) |
+| Names | ERes2Net base voiceprints | Apache-2.0 | 15/15 on a labelled 3-person test (CAM++ 7/15, WeSpeaker 10/15); threshold 0.60 from an open-set test (2026-11-13): an un-enrolled voice scored at most 0.57, so none got a name, and 118/157 genuine segments kept theirs (0.53 named 4/157 strangers) |
 
-Whole pipeline: 49.8 min of Jordanian-dialect podcast in 18.8 min wall (RTF 0.38), so 2 h ≈ 45 min.
+Whole pipeline: 49.8 min of Jordanian-dialect podcast in 18.8 min wall on the iGPU (RTF 0.38); 10 min of an Egyptian/Gulf
+talk show in 1.2 min on an RTX 2060, so 2 h ≈ 15 min.
 
 ## What Claude does with `result.json`
 

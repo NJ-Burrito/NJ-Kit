@@ -1,0 +1,45 @@
+{
+  "_about": "Doctor fixture: the pre-v4 (live v3) settings.json shape used by `gov4.py doctor --settings --against` and install-settings tests. It holds every key the live file holds.",
+  "enabledPlugins": {
+    "nj-kit@nj-kit": true,
+    "remotion@claude-plugins-official": true,
+    "claude-security@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "nj-kit": {
+      "source": {
+        "source": "directory",
+        "path": "D:\\projects\\nj-plugin"
+      }
+    }
+  },
+  "crossSessionInbound": "refuse",
+  "isolatePeerMachines": true,
+  "autoUploadSessions": false,
+  "remoteControlAtStartup": false,
+  "disableRemoteControl": true,
+  "syncClaudeAiSkills": false,
+  "syncClaudeAiPlugins": false,
+  "env": {
+    "CLAUDE_SECURITY_SCAN_TIP": "off"
+  },
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    }
+  },
+  "hooks": {
+    "SubagentStop": [
+      {
+        "matcher": "sdlc-.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"D:/projects/nj-plugin/skills/nj-agent-ops/scripts/sdlc.py\" hook",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
