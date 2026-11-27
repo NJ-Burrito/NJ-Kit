@@ -117,8 +117,9 @@ html[lang=ar] h1,html[lang=ar] h2,html[lang=ar] h3{letter-spacing:0}
 h2{font-size:clamp(1.9rem,3.6vw,2.75rem);line-height:1.12}
 html[lang=ar] h2{line-height:1.35}
 .lede{color:var(--mute);max-width:60ch;margin:14px 0 0}
-section{padding:clamp(72px,10vw,128px) 0;scroll-margin-top:64px}
+section{padding:clamp(56px,7.5vw,96px) 0;scroll-margin-top:64px}
 .n{font-variant-numeric:tabular-nums}
+.nb{white-space:nowrap}
 
 /* buttons: press = scale .96 (make-interfaces-feel-better) */
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;gap:10px;padding:13px 18px;border-radius:var(--r);font:700 1rem/1 var(--sans);text-decoration:none;white-space:nowrap;border:1px solid transparent;cursor:pointer;transition-property:transform,background-color,border-color;transition-duration:var(--duration-quick);transition-timing-function:var(--ease)}
@@ -146,7 +147,7 @@ section{padding:clamp(72px,10vw,128px) 0;scroll-margin-top:64px}
 @media (max-width:420px){.nav .gh{display:none}}
 
 /* hero: what, why, start, all in the first screen */
-.hero{padding:clamp(36px,6vw,80px) 0 clamp(48px,7vw,88px)}
+.hero{padding:clamp(32px,5vw,64px) 0 clamp(8px,2vw,24px)}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,72px);align-items:center}
 .hero h1{font-size:clamp(2.4rem,5.6vw,4.4rem);line-height:1.03;letter-spacing:-.035em}
 html[lang=ar] .hero h1{line-height:1.3;letter-spacing:0}
@@ -248,8 +249,8 @@ html[lang=ar] .log{font-family:var(--sans);direction:rtl;text-align:right}
 .no-pill .tab[aria-selected=true]{background:var(--raise);box-shadow:inset 0 -2px 0 var(--acc)}
 .panel{padding:clamp(18px,3vw,32px)}
 .panel[hidden]{display:none}
-.skills{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 32px}
-.skills li{padding:14px 0;border-bottom:1px solid var(--line);display:grid;gap:4px}
+.skills{list-style:none;margin:0;padding:0;display:grid;align-content:start;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 32px}
+.skills li{padding:14px 0;border-bottom:1px solid var(--line);display:grid;align-content:start;gap:4px}
 .skills code{color:var(--acc-text);font-weight:700;font-size:.95rem;direction:ltr;unicode-bidi:isolate;justify-self:start}
 .skills span{color:var(--mute);font-size:.98rem}
 .chipset{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:18px 0 0;padding:0}
@@ -342,18 +343,19 @@ details[open]>summary .chev{transform:scaleY(-1)}
   .faq details[open]::details-content,.more-opts[open]::details-content{block-size:auto;opacity:1;filter:none}
 }
 
-/* more from nader */
-.more ul{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
-.more li{border-bottom:1px solid var(--line)}
-.more li:not(:nth-child(3n)){border-inline-end:1px solid var(--line)}
-.more a{display:flex;flex-direction:column;gap:6px;padding:26px 24px;text-decoration:none;height:100%;transition:background-color var(--duration-fast) var(--ease)}
-.more a:hover{background:var(--surface)}
-.more a .t{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:700;font-size:1.15rem}
-.more a .t .ic{color:var(--mute);transition:transform var(--duration-fast) var(--ease),color var(--duration-quick) var(--ease)}
-.more a:hover .t .ic{transform:translate(3px,-3px);color:var(--acc-text)}
-html[dir=rtl] .more a:hover .t .ic{transform:scaleX(-1) translate(3px,-3px)}
-.more a span.d{color:var(--mute);font-size:.98rem}
-@media (max-width:860px){.more ul{grid-template-columns:1fr}.more li{border-inline-end:0!important}}
+/* more from nader: one row per project, name | what it does | links */
+.projects{list-style:none;margin:36px 0 0;padding:0;border-top:1px solid var(--line)}
+.projects li{display:grid;grid-template-columns:11rem 1fr auto;gap:6px 28px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+.projects h3{font-size:1.1rem;justify-self:start}
+.projects p{margin:0;color:var(--mute)}
+.lk{display:flex;gap:0 20px;flex-wrap:wrap;justify-content:flex-end}
+.lk a,.elsewhere a{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--acc-text);font-weight:700;text-decoration:none}
+.lk a .ic,.elsewhere a .ic{width:1em;height:1em;transition:transform var(--duration-fast) var(--ease)}
+.lk a:hover,.elsewhere a:hover{text-decoration:underline}
+.lk a:hover .ic{transform:translate(2px,-2px)}
+html[dir=rtl] .lk a:hover .ic{transform:scaleX(-1) translate(2px,-2px)}
+.elsewhere{margin:18px 0 0;color:var(--mute);display:flex;flex-wrap:wrap;gap:0 22px;align-items:center}
+@media (max-width:860px){.projects li{grid-template-columns:1fr}.lk{justify-content:flex-start}}
 
 /* final: the banner film closes the page, still poster first */
 .final .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
@@ -366,6 +368,7 @@ html[dir=rtl] .more a:hover .t .ic{transform:scaleX(-1) translate(3px,-3px)}
 footer{padding:40px 0 56px;border-top:1px solid var(--line);color:var(--mute);font-size:.95rem}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 32px}
 footer p{margin:0}
+footer .wrap{flex-direction:column}
 footer nav{display:flex;gap:20px;flex-wrap:wrap}
 footer a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:var(--text)}
 footer a:hover{text-decoration:underline}
@@ -496,7 +499,7 @@ footer a:hover{text-decoration:underline}
     <div class="wrap">
       <h2>How it works: six steps, then a gate.</h2>
       
-      <p class="lede def">NJ-Kit is a free, open-source Claude Code plugin: one working method and 49 skills. Each skill ends in a script that prints PASS or FAIL. On FAIL, it makes one fix and runs the gate again.</p>
+      <p class="lede def">Each skill ends in a script that prints PASS or FAIL. On FAIL, it makes one fix and runs the gate again.</p>
       
       <figure class="run" data-run="static">
         <div class="bar"><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg><b>nj-method</b><span>one request, start to finish</span></div>
@@ -646,7 +649,7 @@ NEXT     the top 3 voices go to your ear. You decide.</code></pre></div>
       <dl class="gets">
         <div><dt><span class="big" dir="ltr">PASS</span>Gates, not guesses</dt><dd>A skill can't say PASS unless the check ran.</dd></div>
         <div><dt><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg>One method for every request</dt><dd>A tested skill first. Then a check against your request.</dd></div>
-        <div><dt><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg>Arabic and English, both first-class</dt><dd>Right-to-left included, with a proofreader for Arabic text.</dd></div>
+        <div><dt><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg>Arabic and English, both <span class="nb">first-class</span></dt><dd>Right-to-left included, with a proofreader for Arabic text.</dd></div>
         <div><dt><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>Agent teams with rules</dt><dd>A Lead decides, workers build, helpers do bounded work.</dd></div>
         <div><dt><svg class="ic" aria-hidden="true"><use href="#i-folder-tree"/></svg>Take one skill, or all of them</dt><dd>Copy one folder into <code translate="no" dir="ltr">~/.claude/skills/</code> and it works on its own.</dd></div>
         <div><dt><svg class="ic" aria-hidden="true"><use href="#i-monitor-cog"/></svg>Not tied to one machine</dt><dd>Set the variables a skill names, or keep the defaults.</dd></div>
@@ -740,9 +743,9 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
         </article>
         <article class="way">
           <div class="top"><h3><svg class="ic" aria-hidden="true"><use href="#i-type"/></svg><span dir="ltr">NJ-Font</span></h3></div>
-          <p>A typeface by Nader Alzghoul. Windows, macOS, Linux or web.</p>
+          <p>A typeface by Nader Alzghoul, coming soon. The folder holds only a README until the font files are published.</p>
           
-          <a class="t-learn" href="https://github.com/NJ-Burrito/NJ-Kit/tree/main/NJ-Font" rel="noopener"><span>Get NJ-Font on GitHub</span><span class="t-learn-chevron" aria-hidden="true"><svg viewBox="0 0 16 16"><path class="t-learn-arm t-learn-arm-top" d="M6 4l4 4"/><path class="t-learn-arm t-learn-arm-bot" d="M10 8l-4 4"/></svg></span></a>
+          <a class="t-learn" href="https://github.com/NJ-Burrito/NJ-Kit/tree/main/NJ-Font" rel="noopener"><span>See the NJ-Font folder</span><span class="t-learn-chevron" aria-hidden="true"><svg viewBox="0 0 16 16"><path class="t-learn-arm t-learn-arm-top" d="M6 4l4 4"/><path class="t-learn-arm t-learn-arm-bot" d="M10 8l-4 4"/></svg></span></a>
         </article>
       </div>
     </div>
@@ -750,20 +753,20 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
 
   <section class="faq" id="questions">
     <div class="wrap">
-      <h2>Questions about NJ-Kit and Claude Code skills</h2>
+      <h2>Questions about <span class="nb">NJ-Kit</span> and Claude Code skills</h2>
       
       <div>
-        <details><summary>What is NJ-Kit?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>NJ-Kit is a free, open-source Claude Code plugin: one working method and 49 skills. Every skill ends in a script gate that prints PASS or FAIL. It is MIT licensed, by Nader Alzghoul.</p></details>
-        <details><summary>What are Claude Code skills?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>A skill is a folder with a <code translate="no">SKILL.md</code> file of instructions, plus any scripts it needs. Claude Code reads each skill's description and loads the skill when a task matches it.</p></details>
-        <details><summary>What is a gate?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>A script at the end of a skill that checks the result and prints PASS or FAIL. On FAIL, the skill makes one fix and runs the gate again. <a href="#how">See one run</a>.</p></details>
-        <details><summary>How do I install NJ-Kit?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>In Claude Code, run <code translate="no" dir="ltr">/plugin marketplace add NJ-Burrito/NJ-Kit</code>, then <code translate="no" dir="ltr">/plugin install nj-kit@nj-kit</code>. That takes about a minute and gives you 30 skills. The <a href="#get">kit installer</a> adds the other 19.</p></details>
-        <details><summary>How is NJ-Kit different from Anthropic's skills repository?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Anthropic's repository is its public collection of Agent Skills. NJ-Kit is an independent kit built around one working method, and every one of its skills ends in a PASS or FAIL script. You can install both. <a href="#compare">Compare them</a>.</p></details>
-        <details><summary>Does it work with agents other than Claude Code?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Any agent that reads <code translate="no" dir="ltr">SKILL.md</code> files can use the skill folders directly, with no installer. The plugin route is for Claude Code.</p></details>
-        <details><summary>Is NJ-Kit made by Anthropic?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>No. NJ-Kit is an independent project by Nader Alzghoul, not affiliated with or endorsed by Anthropic.</p></details>
-        <details><summary>Is it free?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Yes. It is open source under the MIT licence.</p></details>
-        <details><summary>Do I need all of it?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>No. Copy one skill folder into <code translate="no" dir="ltr">~/.claude/skills/</code> and it works on its own.</p></details>
-        <details><summary>Does it work in Arabic?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Yes. Arabic and English are both first-class, right-to-left included. This page is also <a href="ar/" hreflang="ar">in Arabic</a>.</p></details>
-        <details><summary>Will paths work on my machine?<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Yes. Set the variables a skill names, like <code translate="no" dir="ltr">NJ_PLUGIN_ROOT</code>, or keep the defaults.</p></details>
+        <details><summary><span>What is NJ-Kit?</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>NJ-Kit is a free, open-source Claude Code plugin: one working method and 49 skills. Every skill ends in a script gate that prints PASS or FAIL. It is MIT licensed, by Nader Alzghoul.</p></details>
+        <details><summary><span>What are Claude Code skills?</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>A skill is a folder with a <code translate="no">SKILL.md</code> file of instructions, plus any scripts it needs. Claude Code reads each skill's description and loads the skill when a task matches it.</p></details>
+        <details><summary><span>What is a gate?</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>A script at the end of a skill that checks the result and prints PASS or FAIL. On FAIL, the skill makes one fix and runs the gate again. <a href="#how">See one run</a>.</p></details>
+        <details><summary><span>How do I install NJ-Kit?</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>In Claude Code, run <code translate="no" dir="ltr">/plugin marketplace add NJ-Burrito/NJ-Kit</code>, then <code translate="no" dir="ltr">/plugin install nj-kit@nj-kit</code>. That takes about a minute and gives you 30 skills. The <a href="#get">kit installer</a> adds the other 19.</p></details>
+        <details><summary><span>How is NJ-Kit different from Anthropic's skills repository?</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Anthropic's repository is its public collection of Agent Skills. NJ-Kit is an independent kit built around one working method, and every one of its skills ends in a PASS or FAIL script. You can install both. <a href="#compare">Compare them</a>.</p></details>
+        <details><summary><span>Does it work with agents other than Claude Code?</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Any agent that reads <code translate="no" dir="ltr">SKILL.md</code> files can use the skill folders directly, with no installer. The plugin route is for Claude Code.</p></details>
+        <details><summary><span>Is NJ-Kit made by Anthropic?</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>No. NJ-Kit is an independent project by Nader Alzghoul, not affiliated with or endorsed by Anthropic.</p></details>
+        <details><summary><span>Is it free?</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Yes. It is open source under the MIT licence.</p></details>
+        <details><summary><span>Do I need all of it?</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>No. Copy one skill folder into <code translate="no" dir="ltr">~/.claude/skills/</code> and it works on its own.</p></details>
+        <details><summary><span>Does it work in Arabic?</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Yes. Arabic and English are both first-class, right-to-left included. This page is also <a href="ar/" hreflang="ar">in Arabic</a>.</p></details>
+        <details><summary><span>Will paths work on my machine?</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>Yes. Set the variables a skill names, like <code translate="no" dir="ltr">NJ_PLUGIN_ROOT</code>, or keep the defaults.</p></details>
       </div>
       
     </div>
@@ -773,27 +776,21 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
     <div class="wrap">
       <h2>More from Nader.</h2>
       
-      <ul>
-        <li><a href="https://nj-burrito.github.io/"><span class="t"><span>Portfolio</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Nader's work.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/Profile-Wrap/"><span class="t"><span dir="ltr">Profile-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Your LinkedIn on autopilot, you stay the boss. Nothing goes out until you tap Allow.</span></span></a></li>
-        <li><a href="https://github.com/NJ-Burrito/Profile-Wrap" rel="noopener"><span class="t"><span>Profile-Wrap on GitHub</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>The source code.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/QA-Wrap/"><span class="t"><span dir="ltr">QA Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Test the page, get the bug report.</span></span></a></li>
-        <li><a href="https://github.com/NJ-Burrito/QA-Wrap" rel="noopener"><span class="t"><span>QA Wrap on GitHub</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>The source code.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/Business-Wrap/"><span class="t"><span dir="ltr">Business-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Evidence in, one document in two languages.</span></span></a></li>
-        <li><a href="https://github.com/NJ-Burrito/Business-Wrap" rel="noopener"><span class="t"><span>Business-Wrap on GitHub</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>The source code.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/NJ-Whip/"><span class="t"><span dir="ltr">NJ-Whip</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>An on-screen whip that steers Claude Code.</span></span></a></li>
-        <li><a href="https://github.com/NJ-Burrito/NJ-Whip" rel="noopener"><span class="t"><span>NJ-Whip on GitHub</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>The source code.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/NJ-Flush/"><span class="t"><span dir="ltr">NJ-Flush</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>A free Windows RAM cleaner.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/NJ-Sort/"><span class="t"><span dir="ltr">NJ-Sort</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Keeps Windows desktop icons where you put them, even after File Explorer restarts.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/story-wrap/"><span class="t"><span dir="ltr">Story-Wrap website</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>The Story-Wrap series site.</span></span></a></li>
-        <li><a href="https://www.instagram.com/nj.story.ar/" rel="noopener"><span class="t"><span dir="ltr">Story-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>The series «مكتب المفقودات».</span></span></a></li>
-        <li><a href="https://github.com/NJ-Burrito/NJ-Kit" rel="noopener"><span class="t"><span>NJ-Kit on GitHub</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Skills, installer, issues.</span></span></a></li>
-        <li><a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener"><span class="t">LinkedIn<svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Say hello or send a question.</span></span></a></li>
-        <li><a href="https://github.com/NJ-Burrito" rel="me noopener"><span class="t">GitHub<svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Every public repository.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/#contact"><span class="t">Contact<svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>Every way to reach Nader, on the portfolio.</span></span></a></li>
-        <li></li>
-        <li><a href="llms.txt"><span class="t"><span dir="ltr">llms.txt</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>NJ-Kit in plain text, for AI assistants.</span></span></a></li>
+      <ul class="projects">
+        <li><h3 dir="ltr">Profile-Wrap</h3><p><span>Your LinkedIn on autopilot, you stay the boss. Nothing goes out until you tap Allow.</span></p><span class="lk"><a href="https://nj-burrito.github.io/Profile-Wrap/"><span>Site</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a href="https://github.com/NJ-Burrito/Profile-Wrap" rel="noopener"><span>Source</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
+        <li><h3 dir="ltr">QA Wrap</h3><p><span>Test the page, get the bug report.</span></p><span class="lk"><a href="https://nj-burrito.github.io/QA-Wrap/"><span>Site</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a href="https://github.com/NJ-Burrito/QA-Wrap" rel="noopener"><span>Source</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
+        <li><h3 dir="ltr">Business-Wrap</h3><p><span>Evidence in, one document in two languages.</span></p><span class="lk"><a href="https://nj-burrito.github.io/Business-Wrap/"><span>Site</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a href="https://github.com/NJ-Burrito/Business-Wrap" rel="noopener"><span>Source</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
+        <li><h3 dir="ltr">NJ-Whip</h3><p><span>An on-screen whip that steers Claude Code.</span></p><span class="lk"><a href="https://nj-burrito.github.io/NJ-Whip/"><span>Site</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a href="https://github.com/NJ-Burrito/NJ-Whip" rel="noopener"><span>Source</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
+        <li><h3 dir="ltr">NJ-Flush</h3><p><span>A free Windows RAM cleaner.</span></p><span class="lk"><a href="https://nj-burrito.github.io/NJ-Flush/"><span>Site</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
+        <li><h3 dir="ltr">NJ-Sort</h3><p><span>Keeps Windows desktop icons where you put them, even after File Explorer restarts.</span></p><span class="lk"><a href="https://nj-burrito.github.io/NJ-Sort/"><span>Site</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
+        <li><h3 dir="ltr">Story-Wrap</h3><p><span>The series «مكتب المفقودات».</span></p><span class="lk"><a href="https://nj-burrito.github.io/story-wrap/"><span>Site</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a href="https://github.com/NJ-Burrito/Story-Wrap" rel="noopener"><span>Source</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a href="https://www.instagram.com/nj.story.ar/" rel="noopener"><span>Instagram</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
       </ul>
+      <p class="elsewhere"><span>Nader:</span>
+        <a href="https://nj-burrito.github.io/"><span>Portfolio</span></a>
+        <a href="https://nj-burrito.github.io/#contact">Contact</a>
+        <a href="https://github.com/NJ-Burrito" rel="me noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener">LinkedIn</a>
+        <a href="llms.txt"><span dir="ltr">llms.txt</span></a></p>
     </div>
   </section>
 
@@ -823,20 +820,6 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
     <p>Also known as NJ Kit, nj-kit and nj_kit. Nader Alzghoul (نادر الزغول), also NJ Burrito, is a QA Automation Engineer in Amman, Jordan.</p>
     
     
-    <nav aria-label="Elsewhere">
-      <a href="https://nj-burrito.github.io/"><span>Portfolio</span></a>
-      <a href="https://nj-burrito.github.io/QA-Wrap/">QA Wrap</a>
-      <a href="https://nj-burrito.github.io/Business-Wrap/">Business-Wrap</a>
-      <a href="https://nj-burrito.github.io/Profile-Wrap/">Profile-Wrap</a>
-      <a href="https://nj-burrito.github.io/NJ-Whip/">NJ-Whip</a>
-      <a href="https://nj-burrito.github.io/NJ-Flush/">NJ-Flush</a>
-      <a href="https://nj-burrito.github.io/NJ-Sort/">NJ-Sort</a>
-      <a href="https://nj-burrito.github.io/story-wrap/">Story-Wrap site</a>
-      <a href="https://github.com/NJ-Burrito/Story-Wrap" rel="noopener">Story-Wrap on GitHub</a>
-      <a href="https://www.instagram.com/nj.story.ar/" rel="noopener">Story-Wrap</a>
-      <a href="https://github.com/NJ-Burrito" rel="me noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener">LinkedIn</a>
-    </nav>
   </div>
 </footer>
 

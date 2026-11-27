@@ -117,8 +117,9 @@ html[lang=ar] h1,html[lang=ar] h2,html[lang=ar] h3{letter-spacing:0}
 h2{font-size:clamp(1.9rem,3.6vw,2.75rem);line-height:1.12}
 html[lang=ar] h2{line-height:1.35}
 .lede{color:var(--mute);max-width:60ch;margin:14px 0 0}
-section{padding:clamp(72px,10vw,128px) 0;scroll-margin-top:64px}
+section{padding:clamp(56px,7.5vw,96px) 0;scroll-margin-top:64px}
 .n{font-variant-numeric:tabular-nums}
+.nb{white-space:nowrap}
 
 /* buttons: press = scale .96 (make-interfaces-feel-better) */
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;gap:10px;padding:13px 18px;border-radius:var(--r);font:700 1rem/1 var(--sans);text-decoration:none;white-space:nowrap;border:1px solid transparent;cursor:pointer;transition-property:transform,background-color,border-color;transition-duration:var(--duration-quick);transition-timing-function:var(--ease)}
@@ -146,7 +147,7 @@ section{padding:clamp(72px,10vw,128px) 0;scroll-margin-top:64px}
 @media (max-width:420px){.nav .gh{display:none}}
 
 /* hero: what, why, start, all in the first screen */
-.hero{padding:clamp(36px,6vw,80px) 0 clamp(48px,7vw,88px)}
+.hero{padding:clamp(32px,5vw,64px) 0 clamp(8px,2vw,24px)}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,72px);align-items:center}
 .hero h1{font-size:clamp(2.4rem,5.6vw,4.4rem);line-height:1.03;letter-spacing:-.035em}
 html[lang=ar] .hero h1{line-height:1.3;letter-spacing:0}
@@ -248,8 +249,8 @@ html[lang=ar] .log{font-family:var(--sans);direction:rtl;text-align:right}
 .no-pill .tab[aria-selected=true]{background:var(--raise);box-shadow:inset 0 -2px 0 var(--acc)}
 .panel{padding:clamp(18px,3vw,32px)}
 .panel[hidden]{display:none}
-.skills{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 32px}
-.skills li{padding:14px 0;border-bottom:1px solid var(--line);display:grid;gap:4px}
+.skills{list-style:none;margin:0;padding:0;display:grid;align-content:start;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 32px}
+.skills li{padding:14px 0;border-bottom:1px solid var(--line);display:grid;align-content:start;gap:4px}
 .skills code{color:var(--acc-text);font-weight:700;font-size:.95rem;direction:ltr;unicode-bidi:isolate;justify-self:start}
 .skills span{color:var(--mute);font-size:.98rem}
 .chipset{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:18px 0 0;padding:0}
@@ -342,18 +343,19 @@ details[open]>summary .chev{transform:scaleY(-1)}
   .faq details[open]::details-content,.more-opts[open]::details-content{block-size:auto;opacity:1;filter:none}
 }
 
-/* more from nader */
-.more ul{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
-.more li{border-bottom:1px solid var(--line)}
-.more li:not(:nth-child(3n)){border-inline-end:1px solid var(--line)}
-.more a{display:flex;flex-direction:column;gap:6px;padding:26px 24px;text-decoration:none;height:100%;transition:background-color var(--duration-fast) var(--ease)}
-.more a:hover{background:var(--surface)}
-.more a .t{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:700;font-size:1.15rem}
-.more a .t .ic{color:var(--mute);transition:transform var(--duration-fast) var(--ease),color var(--duration-quick) var(--ease)}
-.more a:hover .t .ic{transform:translate(3px,-3px);color:var(--acc-text)}
-html[dir=rtl] .more a:hover .t .ic{transform:scaleX(-1) translate(3px,-3px)}
-.more a span.d{color:var(--mute);font-size:.98rem}
-@media (max-width:860px){.more ul{grid-template-columns:1fr}.more li{border-inline-end:0!important}}
+/* more from nader: one row per project, name | what it does | links */
+.projects{list-style:none;margin:36px 0 0;padding:0;border-top:1px solid var(--line)}
+.projects li{display:grid;grid-template-columns:11rem 1fr auto;gap:6px 28px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+.projects h3{font-size:1.1rem;justify-self:start}
+.projects p{margin:0;color:var(--mute)}
+.lk{display:flex;gap:0 20px;flex-wrap:wrap;justify-content:flex-end}
+.lk a,.elsewhere a{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--acc-text);font-weight:700;text-decoration:none}
+.lk a .ic,.elsewhere a .ic{width:1em;height:1em;transition:transform var(--duration-fast) var(--ease)}
+.lk a:hover,.elsewhere a:hover{text-decoration:underline}
+.lk a:hover .ic{transform:translate(2px,-2px)}
+html[dir=rtl] .lk a:hover .ic{transform:scaleX(-1) translate(2px,-2px)}
+.elsewhere{margin:18px 0 0;color:var(--mute);display:flex;flex-wrap:wrap;gap:0 22px;align-items:center}
+@media (max-width:860px){.projects li{grid-template-columns:1fr}.lk{justify-content:flex-start}}
 
 /* final: the banner film closes the page, still poster first */
 .final .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
@@ -366,6 +368,7 @@ html[dir=rtl] .more a:hover .t .ic{transform:scaleX(-1) translate(3px,-3px)}
 footer{padding:40px 0 56px;border-top:1px solid var(--line);color:var(--mute);font-size:.95rem}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 32px}
 footer p{margin:0}
+footer .wrap{flex-direction:column}
 footer nav{display:flex;gap:20px;flex-wrap:wrap}
 footer a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:var(--text)}
 footer a:hover{text-decoration:underline}
@@ -497,7 +500,7 @@ footer a:hover{text-decoration:underline}
       
       <h2>كيف تعمل: ست خطوات، ثم فحص.</h2>
       
-      <p class="lede def"><bdi translate="no" dir="ltr">NJ-Kit</bdi> إضافة مجانية ومفتوحة المصدر لـ <bdi translate="no" dir="ltr">Claude Code</bdi>: منهج عمل واحد و49 مهارة. تنتهي كل مهارة بسكربت يطبع <bdi translate="no" dir="ltr">PASS</bdi> أو <bdi translate="no" dir="ltr">FAIL</bdi>. وعند <bdi translate="no" dir="ltr">FAIL</bdi> تُجري إصلاحًا واحدًا ثم تعيد الفحص.</p>
+      <p class="lede def">تنتهي كل مهارة بسكربت يطبع <bdi translate="no" dir="ltr">PASS</bdi> أو <bdi translate="no" dir="ltr">FAIL</bdi>. وعند <bdi translate="no" dir="ltr">FAIL</bdi> تُجري إصلاحًا واحدًا ثم تعيد الفحص.</p>
       <figure class="run" data-run="static">
         <div class="bar"><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg><b>nj-method</b><span>طلب واحد من أوله إلى آخره</span></div>
         
@@ -741,8 +744,8 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
         <article class="way">
           <div class="top"><h3><svg class="ic" aria-hidden="true"><use href="#i-type"/></svg><span dir="ltr">NJ-Font</span></h3></div>
           
-          <p>خط من تصميم نادر الزغول. <bdi translate="no" dir="ltr">Windows</bdi> و<bdi translate="no" dir="ltr">macOS</bdi> و<bdi translate="no" dir="ltr">Linux</bdi> والويب.</p>
-          <a class="t-learn" href="https://github.com/NJ-Burrito/NJ-Kit/tree/main/NJ-Font" rel="noopener"><span>احصل على <bdi translate="no" dir="ltr">NJ-Font</bdi> من <bdi translate="no" dir="ltr">GitHub</bdi></span><span class="t-learn-chevron" aria-hidden="true"><svg viewBox="0 0 16 16"><path class="t-learn-arm t-learn-arm-top" d="M6 4l4 4"/><path class="t-learn-arm t-learn-arm-bot" d="M10 8l-4 4"/></svg></span></a>
+          <p>خط من تصميم نادر الزغول، وهو قادم قريبًا. لا يضم المجلد سوى ملف <bdi translate="no" dir="ltr">README</bdi> إلى أن تُنشر ملفات الخط.</p>
+          <a class="t-learn" href="https://github.com/NJ-Burrito/NJ-Kit/tree/main/NJ-Font" rel="noopener"><span>افتح مجلد <bdi translate="no" dir="ltr">NJ-Font</bdi></span><span class="t-learn-chevron" aria-hidden="true"><svg viewBox="0 0 16 16"><path class="t-learn-arm t-learn-arm-top" d="M6 4l4 4"/><path class="t-learn-arm t-learn-arm-bot" d="M10 8l-4 4"/></svg></span></a>
         </article>
       </div>
     </div>
@@ -754,17 +757,17 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
       <h2>أسئلة عن <bdi translate="no" dir="ltr">NJ-Kit</bdi> ومهارات <bdi translate="no" dir="ltr">Claude Code</bdi></h2>
       
       <div>
-        <details><summary>ما هي <bdi translate="no" dir="ltr">NJ-Kit</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><bdi translate="no" dir="ltr">NJ-Kit</bdi> إضافة مجانية ومفتوحة المصدر لـ <bdi translate="no" dir="ltr">Claude Code</bdi>: منهج عمل واحد و49 مهارة. تنتهي كل مهارة بسكربت فحص يطبع <bdi translate="no" dir="ltr">PASS</bdi> أو <bdi translate="no" dir="ltr">FAIL</bdi>. برخصة <bdi translate="no" dir="ltr">MIT</bdi>، من صنع نادر الزغول.</p></details>
-        <details><summary>ما هي مهارات <bdi translate="no" dir="ltr">Claude Code</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>المهارة مجلد فيه ملف <code translate="no" dir="ltr">SKILL.md</code> يضم التعليمات، ومعه أي سكربتات يحتاجها. يقرأ <bdi translate="no" dir="ltr">Claude Code</bdi> وصف كل مهارة ويحمّلها حين تطابق المهمةُ وصفَها.</p></details>
-        <details><summary>ما هو الفحص؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>سكربت في نهاية المهارة يفحص النتيجة ويطبع <bdi translate="no" dir="ltr">PASS</bdi> أو <bdi translate="no" dir="ltr">FAIL</bdi>. وعند <bdi translate="no" dir="ltr">FAIL</bdi> تُجري المهارة إصلاحًا واحدًا ثم تعيد الفحص. <a href="#how">شاهد مثالًا</a>.</p></details>
-        <details><summary>كيف أثبّت <bdi translate="no" dir="ltr">NJ-Kit</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>في <bdi translate="no" dir="ltr">Claude Code</bdi> نفّذ <code translate="no" dir="ltr">/plugin marketplace add NJ-Burrito/NJ-Kit</code> ثم <code translate="no" dir="ltr">/plugin install nj-kit@nj-kit</code>. يستغرق ذلك نحو دقيقة ويمنحك 30 مهارة، ويضيف <a href="#get">مثبّت الحزمة</a> الـ19 الباقية.</p></details>
-        <details><summary>ما الفرق بين <bdi translate="no" dir="ltr">NJ-Kit</bdi> ومستودع المهارات من <bdi translate="no" dir="ltr">Anthropic</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>مستودع <bdi translate="no" dir="ltr">Anthropic</bdi> هو مجموعتها العامة من مهارات الوكلاء. أما <bdi translate="no" dir="ltr">NJ-Kit</bdi> فحزمة مستقلة مبنية حول منهج عمل واحد، وتنتهي كل مهارة فيها بسكربت يطبع <bdi translate="no" dir="ltr">PASS</bdi> أو <bdi translate="no" dir="ltr">FAIL</bdi>. ويمكنك تثبيت الاثنين معًا. <a href="#compare">قارن بينها</a>.</p></details>
-        <details><summary>هل تعمل مع وكلاء غير <bdi translate="no" dir="ltr">Claude Code</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>يمكن لأي وكيل يقرأ ملفات <code translate="no" dir="ltr">SKILL.md</code> استخدام مجلدات المهارات مباشرة بلا مثبّت. أما مسار الإضافة فهو لـ <bdi translate="no" dir="ltr">Claude Code</bdi>.</p></details>
-        <details><summary>هل <bdi translate="no" dir="ltr">NJ-Kit</bdi> من <bdi translate="no" dir="ltr">Anthropic</bdi>؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>لا. <bdi translate="no" dir="ltr">NJ-Kit</bdi> مشروع مستقل من نادر الزغول، وغير تابع لشركة <bdi translate="no" dir="ltr">Anthropic</bdi> ولا معتمد منها.</p></details>
-        <details><summary>هل هي مجانية؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>نعم، مفتوحة المصدر برخصة <bdi translate="no" dir="ltr">MIT</bdi>.</p></details>
-        <details><summary>هل أحتاج إليها كلها؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>لا. انسخ مجلد مهارة واحدة إلى <code translate="no" dir="ltr">~/.claude/skills/</code> ويعمل وحده.</p></details>
-        <details><summary>هل تعمل بالعربية؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>نعم. العربية والإنجليزية بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار. وهذه الصفحة متاحة أيضًا <a href="../" hreflang="en">بالإنجليزية</a>.</p></details>
-        <details><summary>هل تعمل المسارات على جهازي؟<svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>نعم. اضبط المتغيرات التي تذكرها المهارة، مثل <code translate="no" dir="ltr">NJ_PLUGIN_ROOT</code>، أو أبقِ القيم الافتراضية.</p></details>
+        <details><summary><span>ما هي <bdi translate="no" dir="ltr">NJ-Kit</bdi>؟</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p><bdi translate="no" dir="ltr">NJ-Kit</bdi> إضافة مجانية ومفتوحة المصدر لـ <bdi translate="no" dir="ltr">Claude Code</bdi>: منهج عمل واحد و49 مهارة. تنتهي كل مهارة بسكربت فحص يطبع <bdi translate="no" dir="ltr">PASS</bdi> أو <bdi translate="no" dir="ltr">FAIL</bdi>. برخصة <bdi translate="no" dir="ltr">MIT</bdi>، من صنع نادر الزغول.</p></details>
+        <details><summary><span>ما هي مهارات <bdi translate="no" dir="ltr">Claude Code</bdi>؟</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>المهارة مجلد فيه ملف <code translate="no" dir="ltr">SKILL.md</code> يضم التعليمات، ومعه أي سكربتات يحتاجها. يقرأ <bdi translate="no" dir="ltr">Claude Code</bdi> وصف كل مهارة ويحمّلها حين تطابق المهمةُ وصفَها.</p></details>
+        <details><summary><span>ما هو الفحص؟</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>سكربت في نهاية المهارة يفحص النتيجة ويطبع <bdi translate="no" dir="ltr">PASS</bdi> أو <bdi translate="no" dir="ltr">FAIL</bdi>. وعند <bdi translate="no" dir="ltr">FAIL</bdi> تُجري المهارة إصلاحًا واحدًا ثم تعيد الفحص. <a href="#how">شاهد مثالًا</a>.</p></details>
+        <details><summary><span>كيف أثبّت <bdi translate="no" dir="ltr">NJ-Kit</bdi>؟</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>في <bdi translate="no" dir="ltr">Claude Code</bdi> نفّذ <code translate="no" dir="ltr">/plugin marketplace add NJ-Burrito/NJ-Kit</code> ثم <code translate="no" dir="ltr">/plugin install nj-kit@nj-kit</code>. يستغرق ذلك نحو دقيقة ويمنحك 30 مهارة، ويضيف <a href="#get">مثبّت الحزمة</a> الـ19 الباقية.</p></details>
+        <details><summary><span>ما الفرق بين <bdi translate="no" dir="ltr">NJ-Kit</bdi> ومستودع المهارات من <bdi translate="no" dir="ltr">Anthropic</bdi>؟</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>مستودع <bdi translate="no" dir="ltr">Anthropic</bdi> هو مجموعتها العامة من مهارات الوكلاء. أما <bdi translate="no" dir="ltr">NJ-Kit</bdi> فحزمة مستقلة مبنية حول منهج عمل واحد، وتنتهي كل مهارة فيها بسكربت يطبع <bdi translate="no" dir="ltr">PASS</bdi> أو <bdi translate="no" dir="ltr">FAIL</bdi>. ويمكنك تثبيت الاثنين معًا. <a href="#compare">قارن بينها</a>.</p></details>
+        <details><summary><span>هل تعمل مع وكلاء غير <bdi translate="no" dir="ltr">Claude Code</bdi>؟</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>يمكن لأي وكيل يقرأ ملفات <code translate="no" dir="ltr">SKILL.md</code> استخدام مجلدات المهارات مباشرة بلا مثبّت. أما مسار الإضافة فهو لـ <bdi translate="no" dir="ltr">Claude Code</bdi>.</p></details>
+        <details><summary><span>هل <bdi translate="no" dir="ltr">NJ-Kit</bdi> من <bdi translate="no" dir="ltr">Anthropic</bdi>؟</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>لا. <bdi translate="no" dir="ltr">NJ-Kit</bdi> مشروع مستقل من نادر الزغول، وغير تابع لشركة <bdi translate="no" dir="ltr">Anthropic</bdi> ولا معتمد منها.</p></details>
+        <details><summary><span>هل هي مجانية؟</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>نعم، مفتوحة المصدر برخصة <bdi translate="no" dir="ltr">MIT</bdi>.</p></details>
+        <details><summary><span>هل أحتاج إليها كلها؟</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>لا. انسخ مجلد مهارة واحدة إلى <code translate="no" dir="ltr">~/.claude/skills/</code> ويعمل وحده.</p></details>
+        <details><summary><span>هل تعمل بالعربية؟</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>نعم. العربية والإنجليزية بالمستوى نفسه، مع دعم الكتابة من اليمين إلى اليسار. وهذه الصفحة متاحة أيضًا <a href="../" hreflang="en">بالإنجليزية</a>.</p></details>
+        <details><summary><span>هل تعمل المسارات على جهازي؟</span><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary><p>نعم. اضبط المتغيرات التي تذكرها المهارة، مثل <code translate="no" dir="ltr">NJ_PLUGIN_ROOT</code>، أو أبقِ القيم الافتراضية.</p></details>
       </div>
     </div>
   </section>
@@ -773,27 +776,21 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
     <div class="wrap">
       
       <h2>المزيد من نادر.</h2>
-      <ul>
-        <li><a href="https://nj-burrito.github.io/"><span class="t"><span>الملف الشخصي</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>الموقع الشخصي.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/Profile-Wrap/"><span class="t"><span dir="ltr">Profile-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>مدير مجاني ومفتوح المصدر لمنشورات <bdi translate="no" dir="ltr">LinkedIn</bdi>، لا يُنشر شيء حتى تضغط «سماح».</span></span></a></li>
-        <li><a href="https://github.com/NJ-Burrito/Profile-Wrap" rel="noopener"><span class="t"><span><bdi translate="no" dir="ltr">Profile-Wrap</bdi> على <bdi translate="no" dir="ltr">GitHub</bdi></span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>الشيفرة المصدرية.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/QA-Wrap/"><span class="t"><span dir="ltr">QA Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>اختبر الصفحة، وخذ تقرير الخلل جاهزا.</span></span></a></li>
-        <li><a href="https://github.com/NJ-Burrito/QA-Wrap" rel="noopener"><span class="t"><span><bdi translate="no" dir="ltr">QA Wrap</bdi> على <bdi translate="no" dir="ltr">GitHub</bdi></span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>الشيفرة المصدرية.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/Business-Wrap/"><span class="t"><span dir="ltr">Business-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>أدلة تدخل، ووثيقة واحدة بلغتين.</span></span></a></li>
-        <li><a href="https://github.com/NJ-Burrito/Business-Wrap" rel="noopener"><span class="t"><span><bdi translate="no" dir="ltr">Business-Wrap</bdi> على <bdi translate="no" dir="ltr">GitHub</bdi></span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>الشيفرة المصدرية.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/NJ-Whip/"><span class="t"><span dir="ltr">NJ-Whip</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>سوط على الشاشة يوجه <bdi translate="no" dir="ltr">Claude Code</bdi>.</span></span></a></li>
-        <li><a href="https://github.com/NJ-Burrito/NJ-Whip" rel="noopener"><span class="t"><span><bdi translate="no" dir="ltr">NJ-Whip</bdi> على <bdi translate="no" dir="ltr">GitHub</bdi></span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>الشيفرة المصدرية.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/NJ-Flush/"><span class="t"><span dir="ltr">NJ-Flush</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>منظّف ذاكرة <bdi translate="no" dir="ltr">RAM</bdi> مجاني لنظام <bdi translate="no" dir="ltr">Windows</bdi>.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/NJ-Sort/"><span class="t"><span dir="ltr">NJ-Sort</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>يُبقي أيقونات سطح مكتب <bdi translate="no" dir="ltr">Windows</bdi> حيث وضعتها، حتى بعد إعادة تشغيل مستكشف الملفات.</span></span></a></li>
-        <li><a href="https://nj-burrito.github.io/story-wrap/"><span class="t"><span dir="ltr">Story-Wrap website</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>موقع سلسلة <bdi translate="no" dir="ltr">Story-Wrap</bdi>.</span></span></a></li>
-        <li><a href="https://www.instagram.com/nj.story.ar/" rel="noopener"><span class="t"><span dir="ltr">Story-Wrap</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>سلسلة «مكتب المفقودات».</span></span></a></li>
-        <li><a href="https://github.com/NJ-Burrito/NJ-Kit" rel="noopener"><span class="t"><span><bdi translate="no" dir="ltr">NJ-Kit</bdi> على <bdi translate="no" dir="ltr">GitHub</bdi></span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>المهارات والمثبّت والبلاغات.</span></span></a></li>
-        <li><a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener"><span class="t">LinkedIn<svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>تواصل معي أو أرسل سؤالك.</span></span></a></li>
-        <li><a href="https://github.com/NJ-Burrito" rel="me noopener"><span class="t">GitHub<svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>كل المستودعات العامة.</span></span></a></li>
-        <li></li>
-        <li><a href="https://nj-burrito.github.io/ar/#contact"><span class="t">تواصل<svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>كل طرق التواصل مع نادر، في الموقع الشخصي.</span></span></a></li>
-        <li><a href="../llms.txt"><span class="t"><span dir="ltr">llms.txt</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><span class="d"><span>NJ-Kit بنص عادي، للمساعدات الذكية.</span></span></a></li>
+      <ul class="projects">
+        <li><h3 dir="ltr">Profile-Wrap</h3><p><span>مدير مجاني ومفتوح المصدر لمنشورات <bdi translate="no" dir="ltr">LinkedIn</bdi>، لا يُنشر شيء حتى تضغط «سماح».</span></p><span class="lk"><a href="https://nj-burrito.github.io/Profile-Wrap/"><span>الموقع</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a href="https://github.com/NJ-Burrito/Profile-Wrap" rel="noopener"><span>الشيفرة</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
+        <li><h3 dir="ltr">QA Wrap</h3><p><span>اختبر الصفحة، وخذ تقرير الخلل جاهزا.</span></p><span class="lk"><a href="https://nj-burrito.github.io/QA-Wrap/"><span>الموقع</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a href="https://github.com/NJ-Burrito/QA-Wrap" rel="noopener"><span>الشيفرة</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
+        <li><h3 dir="ltr">Business-Wrap</h3><p><span>أدلة تدخل، ووثيقة واحدة بلغتين.</span></p><span class="lk"><a href="https://nj-burrito.github.io/Business-Wrap/"><span>الموقع</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a href="https://github.com/NJ-Burrito/Business-Wrap" rel="noopener"><span>الشيفرة</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
+        <li><h3 dir="ltr">NJ-Whip</h3><p><span>سوط على الشاشة يوجه <bdi translate="no" dir="ltr">Claude Code</bdi>.</span></p><span class="lk"><a href="https://nj-burrito.github.io/NJ-Whip/"><span>الموقع</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a href="https://github.com/NJ-Burrito/NJ-Whip" rel="noopener"><span>الشيفرة</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
+        <li><h3 dir="ltr">NJ-Flush</h3><p><span>منظّف ذاكرة <bdi translate="no" dir="ltr">RAM</bdi> مجاني لنظام <bdi translate="no" dir="ltr">Windows</bdi>.</span></p><span class="lk"><a href="https://nj-burrito.github.io/NJ-Flush/"><span>الموقع</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
+        <li><h3 dir="ltr">NJ-Sort</h3><p><span>يُبقي أيقونات سطح مكتب <bdi translate="no" dir="ltr">Windows</bdi> حيث وضعتها، حتى بعد إعادة تشغيل مستكشف الملفات.</span></p><span class="lk"><a href="https://nj-burrito.github.io/NJ-Sort/"><span>الموقع</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
+        <li><h3 dir="ltr">Story-Wrap</h3><p><span>سلسلة «مكتب المفقودات».</span></p><span class="lk"><a href="https://nj-burrito.github.io/story-wrap/"><span>الموقع</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a href="https://github.com/NJ-Burrito/Story-Wrap" rel="noopener"><span>الشيفرة</span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><a href="https://www.instagram.com/nj.story.ar/" rel="noopener"><span><bdi translate="no" dir="ltr">Instagram</bdi></span><svg class="ic flip" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></span></li>
       </ul>
+      <p class="elsewhere"><span>نادر:</span>
+        <a href="https://nj-burrito.github.io/"><span>الموقع الشخصي</span></a>
+        <a href="https://nj-burrito.github.io/ar/#contact">تواصل</a>
+        <a href="https://github.com/NJ-Burrito" rel="me noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener">LinkedIn</a>
+        <a href="../llms.txt"><span dir="ltr">llms.txt</span></a></p>
     </div>
   </section>
 
@@ -823,20 +820,6 @@ python nj-kit/scripts/fetch_assets.py --all <span class="c"># download NJ-Kit as
     
     <p>من نادر الزغول (<bdi translate="no" dir="ltr">NJ-Burrito</bdi>). مجانية ومفتوحة المصدر برخصة <bdi translate="no" dir="ltr">MIT</bdi>. غير تابعة لشركة <bdi translate="no" dir="ltr">Anthropic</bdi> ولا معتمدة منها.</p>
     <p>تُعرف أيضًا باسم <bdi translate="no" dir="ltr">NJ Kit</bdi> و<bdi translate="no" dir="ltr">nj-kit</bdi> و<bdi translate="no" dir="ltr">nj_kit</bdi>. نادر الزغول (<bdi translate="no" dir="ltr">Nader Alzghoul</bdi>) مهندس أتمتة اختبارات الجودة في عمّان، الأردن.</p>
-    <nav aria-label="Elsewhere">
-      <a href="https://nj-burrito.github.io/"><span>الموقع الشخصي</span></a>
-      <a href="https://nj-burrito.github.io/QA-Wrap/">QA Wrap</a>
-      <a href="https://nj-burrito.github.io/Business-Wrap/">Business-Wrap</a>
-      <a href="https://nj-burrito.github.io/Profile-Wrap/">Profile-Wrap</a>
-      <a href="https://nj-burrito.github.io/NJ-Whip/">NJ-Whip</a>
-      <a href="https://nj-burrito.github.io/NJ-Flush/">NJ-Flush</a>
-      <a href="https://nj-burrito.github.io/NJ-Sort/">NJ-Sort</a>
-      <a href="https://nj-burrito.github.io/story-wrap/">Story-Wrap site</a>
-      <a href="https://github.com/NJ-Burrito/Story-Wrap" rel="noopener">Story-Wrap on GitHub</a>
-      <a href="https://www.instagram.com/nj.story.ar/" rel="noopener">Story-Wrap</a>
-      <a href="https://github.com/NJ-Burrito" rel="me noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/nader-alzghoul" rel="me noopener">LinkedIn</a>
-    </nav>
   </div>
 </footer>
 
