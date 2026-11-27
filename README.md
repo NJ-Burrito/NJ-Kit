@@ -287,6 +287,7 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 | [nj-music](nj-plugin/skills/nj-music) | Holds a bundled licence-cleared CC0 SFX library and music beds with cue presets, and sources from Openverse, Jamendo, Freesound, ccMixter, Wikimedia with licence, credit line and retrieval date per track |
 | [nj-director](nj-plugin/skills/nj-director) | Film direction (not agent delegation — see nj-delegate for that) |
 | [nj-animation-direction](nj-plugin/skills/nj-animation-direction) | Direct animation before anyone animates it: beat sheet with pressure arithmetic, blocking in numbers, shot list with character-acting briefs (objective, action, obstacle, thinking beat, end state), a gated animatic built from stills and scratch sound, review checklists, then hand-off rules for GSAP/HyperFrames, Rive state machines, Theatre.js and Remotion |
+| [nj-art-crew](nj-plugin/skills/nj-art-crew) | Raise animations, illustrations and screens to a high visual bar by launching one design crew per piece |
 | [nj-ui-motion-laws](nj-plugin/skills/nj-ui-motion-laws) | The 26 laws of UI motion and UX (Disney's animation principles applied to interfaces, plus Fitts, Hick, Miller, Doherty, Postel, Jakob, Von Restorff, peak-end, origin awareness, staggering, rubber banding, interruptible motion and frequency of use) as build rules with numbers, a before/after for each, and motion_lint.py that fails slow, linear or unguarded CSS motion |
 
 <!-- skills:end -->
