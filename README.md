@@ -11,7 +11,7 @@
 [![Website](https://img.shields.io/badge/website-nj--burrito.github.io%2FNJ--Kit-c2ea4e?labelColor=0e1311)](https://nj-burrito.github.io/NJ-Kit/)
 [![CI](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml/badge.svg)](https://github.com/NJ-Burrito/NJ-Kit/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-c2ea4e?labelColor=0e1311)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-45-c2ea4e?labelColor=0e1311)](#whats-inside)
+[![Skills](https://img.shields.io/badge/skills-49-c2ea4e?labelColor=0e1311)](#whats-inside)
 
 <details>
 <summary>🏷️ More badges</summary>
