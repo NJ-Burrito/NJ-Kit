@@ -8,10 +8,10 @@
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0e1311" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#eef1ea" media="(prefers-color-scheme: light)">
-<title data-l="en">NJ-Kit: Claude Code plugin by Nader Alzghoul (NJ-Burrito)</title>
-<title data-l="ar">NJ-Kit: إضافة Claude Code من نادر الزغول (NJ-Burrito)</title>
+<title data-l="en">NJ-Kit: free Claude Code skills plugin by Nader Alzghoul</title>
+<title data-l="ar">NJ-Kit: مهارات وإضافة Claude Code (كلود كود) من نادر الزغول</title>
 <meta data-l="en" name="description" content="NJ-Kit by Nader Alzghoul (NJ-Burrito): a free Claude Code plugin: a working method and {N_ALL} skills, each ending in a PASS or FAIL script. MIT, Arabic and English.">
-<meta data-l="ar" name="description" content="NJ-Kit من نادر الزغول (NJ-Burrito): إضافة مجانية ومفتوحة المصدر لـ Claude Code فيها منهج عمل و{N_ALL} مهارة، تنتهي كل منها بسكربت PASS أو FAIL. برخصة MIT.">
+<meta data-l="ar" name="description" content="NJ-Kit من نادر الزغول (NJ-Burrito): إضافة مجانية ومفتوحة المصدر لـ Claude Code (كلود كود) فيها منهج عمل و{N_ALL} مهارة، تنتهي كل منها بسكربت PASS أو FAIL. برخصة MIT.">
 <link rel="canonical" href="{SELF}">
 <link rel="alternate" hreflang="en" href="https://nj-burrito.github.io/NJ-Kit/">
 <link rel="alternate" hreflang="ar" href="https://nj-burrito.github.io/NJ-Kit/ar/">
