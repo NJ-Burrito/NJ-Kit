@@ -1,4 +1,4 @@
-# Per-item tables: Group A, D, E, F
+# Per-item tables: Group A, D, E, F, G
 
 Open this for the full item-by-item tables (what to look for / how / done looks like) for Group A (A1-A7), Group D (D1-D8), Group E (L1-L10) and Group F (S1-S20). SKILL.md keeps the split/outcome summary and the rules; this file has the row-level detail. Referenced from SKILL.md.
 
@@ -66,3 +66,27 @@ Open this for the full item-by-item tables (what to look for / how / done looks 
 | S18 | secure cookies | **machine-checkable, narrowly** | **Only the unambiguous fault triggers a finding:** no `Secure` on an https page, or no `SameSite` attribute at all. HttpOnly is wrong for a cookie the page's own scripts must read, and `SameSite=None` with `Secure` is a legitimate cross-site cookie. Flagging all three turned a real news front page into "33 of 33", which is a row nobody reads twice. |
 | S19 | disable debug mode | **machine-checkable, opt-in** | Force an error and look for a stack trace, a framework debug page or a source map. |
 | S20 | check prod settings | **judgement, catch-all** | Reel 2's H20 in a different costume. It re-names S2, S3, S10, S12 and S19 as one umbrella; whatever is left is a person's read of a deployment. **Never ticked.** |
+
+## Group G — Search (SEO), item table (G1-G17)
+
+Run with `scripts/seo_audit.py`. Findings are errors or warnings (counted) or notes (not counted). These are conventions and search-engine guidance, never legal findings.
+
+| Item | What to look for | How | Done looks like |
+| --- | --- | --- | --- |
+| **G1. Indexing and verification** | Both forms of Google verification (file at host root, meta tag); index status itself. | `seo_audit.py` looks for a `google*.html` (sitemap, links, folder, or `--google-file`) containing `google-site-verification`, and the meta. Index status: Search Console only. | Verified by either form; Search Console checklist printed. Neither form found is a warn, never a flat 'not verified'. |
+| **G2. Title** | Present, 15-60 chars, unique across pages, brand first: `Brand: primary phrase, qualifier`. | Parsed from each crawled page. | No title finding on any page. |
+| **G3. Meta description** | 70-160 chars, unique, not a copy of the language twin, opens with the visitor's problem. | Parsed; compared across pages and with the /ar/ twin. | No description finding. |
+| **G4. Canonical** | Present, absolute, same host, equals the page's own URL, answers 200. | Parsed and fetched. | One correct canonical per page. |
+| **G5. hreflang and language twins** | en/ar/x-default, self-reference, reciprocal both ways; an /ar/ twin without hreflang is a gap. | Each alternate is fetched and must link back; twins auto-detected (`--lang-pairs`). | Every pair reciprocal. |
+| **G6. Open Graph / Twitter** | og:title/description/image/url/type, twitter:card, og:image exists and is 1200x630 (ratio about 1.91), og:image:alt, twitter:image:alt. | og:image fetched; PNG/JPEG/GIF/WebP size read from the header. | Image file present at 1200x630 with both alts. |
+| **G7. Structured data** | JSON-LD parses; `@id` of ItemList/FAQPage/WebPage not reused across languages; `Person.sameAs` lists every sibling site. | Parsed; ids compared across pages; siblings from `--family`. | No parse error, no reused id, sameAs complete. |
+| **G8. Headings** | One h1, no skipped level. | Parsed. | One h1, ordered. |
+| **G9. Images and heavy media** | img alt, width and height; GIF over 1 MB; video without poster. | Parsed; GIF length from the response. | No image finding; heavy GIF replaced by mp4/webm plus poster. |
+| **G10. 404 page** | `404.html` exists; a nonexistent path returns 404, not 200. | One probe request plus `404.html`. | Both hold. |
+| **G11. Sitemap and robots** | sitemap.xml or index parses, lists every crawled indexable page, every URL is 200; robots.txt exists, does not block all, names the sitemap. | Sitemaps from robots.txt, host root and site prefix. | All three hold. |
+| **G12. llms.txt** | If present, every same-host link answers 200; absent is only a note. | Fetched and links checked. | No dead link. |
+| **G13. noindex leaks** | try/demo/test pages carry noindex; a noindex page is not in the sitemap; the home is not noindex. | meta robots and X-Robots-Tag. | No leak. |
+| **G14. Family cross-links** | The home page (and /ar/) links to every sibling in `--family`. | Anchor hrefs compared with the configurable list. | Every sibling linked. |
+| **G15. Page basics** | `<html lang>` set (ar for /ar/), viewport meta. | Parsed. | Both present. |
+| **G16. Generated pages** | Notes (never counted) where a page looks generated or a build/sync script sits beside it. | generator meta, 'generated/do not edit' comments, build scripts in a local folder. | The fix was made in the generator, not the output. |
+| **G17. Live deploy** | The merged change is live: title over HTTP matches; latest Pages run succeeded. | `--expect-title`, `--pages-repo owner/repo` (uses `gh`). | Title matches and run is success. |

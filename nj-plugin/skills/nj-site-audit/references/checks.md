@@ -400,3 +400,40 @@ opposite direction.
 **Done looks like.** One row per contact detail: what it is · visible text ·
 href · match Y/N. Plus one row for the logo. GAP on an unlinked detail; GAP,
 flagged higher, on a mismatch.
+
+## Group G — Search (SEO), full detail
+
+Tools: `scripts/seo_audit.py` (G1-G17), `scripts/lighthouse_local.py`, `scripts/keyword_ideas.py`. All free, standard library, no key.
+
+### G1. Indexing and verification
+Google reads either a `google*.html` file at the **host root** or a `google-site-verification` meta. Check both; a project site on `github.io` verifies at the user-site root, so look there. Index status has no free API: print the checklist (submit sitemap, request indexing per page, read the Pages report). Only the portfolio home was indexed on 2026-11-27; titles earn nothing before indexing.
+
+### G2-G4, G15. Title, description, canonical, basics
+Title at most 60 (`Brand: primary phrase, qualifier`), description 70-160 opening with the visitor's own problem ("Desktop icons keep moving?"), absolute self canonical, `lang`, viewport. Arabic descriptions were truncated or copied from English; compare with the twin.
+
+### G5. hreflang
+en, ar and x-default, each page listing itself, each target linking back. The audit fetches every alternate.
+
+### G6. Social previews
+The og:image must be a real 1200x630 file, not a square logo; the audit reads pixel size from the file header (PNG, JPEG, GIF, WebP). Alt text on both og:image and twitter:image.
+
+### G7. JSON-LD
+Must parse. Give each language its own `@id` for ItemList/FAQPage. `Person.sameAs` lists every sibling site.
+
+### G8-G9. Headings and media
+One h1, ordered. img alt and width/height. A GIF over 1 MB becomes mp4/webm with a poster.
+
+### G10-G13. Technical files and leaks
+404.html and a true 404 status; sitemap lists every page and every URL is 200; robots.txt neither blocks nor omits the sitemap; llms.txt links resolve; `/try/` pages are noindex and out of the sitemap.
+
+### G14. Family
+Every sibling site links to all others. The list is `--family` (names, URLs, or a file).
+
+### G16. Generated pages
+Find the generator and edit it, never the output (portfolio `ar/index.html` by a sync script; NJ-Kit and Business-Wrap by build scripts).
+
+### G17. After the merge
+Pages can fail silently ("No artifacts named github-pages"). Fetch the live title and run `gh run list --workflow pages`.
+
+### Lighthouse and keywords
+Lighthouse locally via `npx lighthouse` with Chromium from `PLAYWRIGHT_BROWSERS_PATH`; summarise the four scores and top failed audits. Keywords from autocomplete (Google, Bing, DuckDuckGo suggest; alphabet and question-word expansion; dedupe; cluster by head term). Scores are relative signals, **not volumes**; search volume is not visits; measure in Search Console 4-8 weeks after indexing. OpenSEO is optional and needs the owner's explicit approval before any credit is spent.

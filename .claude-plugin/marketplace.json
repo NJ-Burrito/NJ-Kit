@@ -10,8 +10,8 @@
     {
       "name": "nj-kit",
       "source": "./nj-plugin",
-      "description": "A working method and 27 Claude Code skills that end in a script gate printing PASS or FAIL: delegation and agent ops, session handoff, QA and Jira, PDF and Arabic-English proofreading.",
-      "version": "3.1.6",
+      "description": "A working method and 31 Claude Code skills that end in a script gate printing PASS or FAIL: delegation and agent ops, session handoff, QA and Jira, PDF and Arabic-English proofreading.",
+      "version": "3.2.1",
       "strict": false,
       "skills": [
         "./skills/nj-agent-halo",
