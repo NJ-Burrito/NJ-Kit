@@ -87,6 +87,7 @@ picking silently.
 | Social media (Instagram, X, YouTube, TikTok, Reddit…) | `agent-reach doctor`, then that channel; logged-out only, never its `transcribe`; Instagram = yt-dlp + local faster-whisper (`nj-kit` manifest `house_style.social_media`) |
 | Library docs | `context7` MCP — current, not remembered |
 | Directing animation: shot brief, character acting, animatic, beat timing, Rive / Theatre.js direction | `nj-animation-direction` |
+| Raise animations, illustrations or screens to a high bar, "art crew", "a crew on each one", "high-quality assets" | `nj-art-crew`: one crew per piece in its own worktree, the liked piece as the bar, off-screen self-review up to 3 rounds, a lead check of every variant |
 | UI motion and UX laws: micro-interactions, hover/press feedback, timing, easing, hit areas, menus, reduced motion (حركة الواجهة) | `nj-ui-motion-laws` |
 | Casting or engineering a TTS voice for a story or character | `nj-narration` (within the one-model voice rule) |
 | Judging sound you cannot hear: pick SFX/music, check a mix or sync | `nj-sound-judge` |

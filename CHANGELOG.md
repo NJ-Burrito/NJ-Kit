@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.0 — 2026-11-28
+
+- New skill `nj-art-crew`: raises animations, illustrations and screens to a high visual bar with one design crew per piece, each in its own git worktree, working to a written bar set by the piece the owner already liked, under fixed constraints, rendering its own work off screen and reviewing it up to three rounds; the lead merges and checks every variant once. Ships `brief_gate.py` (fails a brief with unfilled fields or two crews on one file), renderer notes per stack, a quality-bar template and a failure-modes table. From the NJ-Flush 1.3 animations. `nj-method` routes "art crew" and "a crew on each one" to it.
+- `nj-agent-ops`: governance v4 scripts (`gov4*.py`, `sdlc.py`), githooks, roles and clause dependencies, doctor fixtures; `nj-delegate`: anti-slowness, history-v3 and team-topology references, brief fixtures and examples; `nj-listen`: updated SKILL.md and `listen.py`. Synced from the maintainer's copy after a secrets and privacy audit (gitleaks and detect-secrets clean; session data and machine-only tests left out).
+- Skill counts corrected: 31 plugin skills, 50 with the kit installer. Plugin 2.5.0.
+
 ## 3.1.6 — 2026-11-24
 
 - `nj-qa`: new section «Re-running an existing automation script»: missing test data is filed through the portal's own service with recent dates, per-environment values (`formByEnv`), desks that gain required fields, resuming a named request without filing a new one, a push guard that refuses to erase a change it never saw whoever made it, and the close-out (story comment and hand-back). Three lessons added. Plugin 2.4.9.

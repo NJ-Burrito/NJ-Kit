@@ -4,7 +4,7 @@
 
 # NJ-Kit: Claude Code skills that end in PASS or FAIL
 
-### ✅ One working method and 49 skills for Claude Code. Every skill ends in a script that checks the work.
+### ✅ One working method and 50 skills for Claude Code. Every skill ends in a script that checks the work.
 
 **NJ-Kit by [Nader Alzghoul](https://nj-burrito.github.io/) (NJ-Burrito)**: free, open-source Claude Code skills and plugin, in Arabic and English. [Website](https://nj-burrito.github.io/NJ-Kit/) · [LinkedIn](https://www.linkedin.com/in/nader-alzghoul)
 
@@ -26,7 +26,7 @@
 </div>
 
 > ### ⚡ In 10 seconds
-> 🧠 **What:** a free method and 49 skills for Claude Code.\
+> 🧠 **What:** a free method and 50 skills for Claude Code.\
 > ✅ **Why:** a script prints **PASS** or **FAIL**. No "should work".\
 > 🚀 **Start:** paste 2 lines into Claude Code. [Go ↓](#plugin)\
 > 🌐 **Website:** [nj-burrito.github.io/NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) · [بالعربية](https://nj-burrito.github.io/NJ-Kit/ar/)
@@ -149,7 +149,7 @@ Release: [v3.1.1 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3
 
 ## 🆕 What's new in 3.1.0
 
-Release: [v3.1.0 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.1.0). 30 plugin skills, 49 with the kit installer.
+Release: [v3.2.0 on GitHub](https://github.com/NJ-Burrito/NJ-Kit/releases/tag/v3.2.0). 31 plugin skills, 50 with the kit installer.
 
 - 🎛️ **New skill `nj-ui-motion-laws`:** the 20 laws of UI motion and UX (Disney's principles applied to interfaces, plus Fitts, Hick, Miller, Doherty, Postel, Jakob and frequency of use), each with a rule, a before and after, and a check with a number. `scripts/motion_lint.py` is the gate: it fails durations over 300 ms, `linear` easing, `transition: all`, and motion with no `prefers-reduced-motion` rule (11-case self-test). Built from Charles Liu's reel "20 Principles of UX & Animation" and the works it credits; see `NOTICE.md`.
 
@@ -319,7 +319,7 @@ You can combine them. NJ-Kit skills are plain `SKILL.md` folders, so they work n
 
 | Project | What it is | Reach for it when |
 |---|---|---|
-| ✅ **NJ-Kit** | A working method and 49 skills. Every skill ends in a PASS or FAIL script. Arabic and English | You want the agent to prove a task is done |
+| ✅ **NJ-Kit** | A working method and 50 skills. Every skill ends in a PASS or FAIL script. Arabic and English | You want the agent to prove a task is done |
 | [anthropics/skills](https://github.com/anthropics/skills) | Anthropic's public repository for Agent Skills | You want the skills Anthropic publishes itself |
 | [obra/superpowers](https://github.com/obra/superpowers) | An agentic skills framework and software development methodology | You want a software development methodology built from skills |
 | [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | A hand-picked list of Claude Code resources: skills, agents, plugins, tools | You want to browse what exists |
@@ -395,7 +395,7 @@ Get-ChildItem NJ-Font\ttf\*.ttf | ForEach-Object {
 
 <details><summary>🧠 What is NJ-Kit?</summary>
 
-A free, open-source Claude Code plugin: one working method and 49 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, by Nader Alzghoul.
+A free, open-source Claude Code plugin: one working method and 50 skills. Every skill ends in a script gate that prints PASS or FAIL. MIT licence, by Nader Alzghoul.
 </details>
 
 <details><summary>📂 What are Claude Code skills?</summary>
@@ -481,7 +481,7 @@ VOICE-EDGE-NOISE  PASS  speech samples identical
 NEXT     the top 3 voices go to your ear. You decide.
 ```
 
-**Install:** the same two lines as NJ-Kit ([Plugin ↑](#plugin)). `nj-narration` is one of the 30 plugin skills; after installing, say **"use nj-narration"**.
+**Install:** the same two lines as NJ-Kit ([Plugin ↑](#plugin)). `nj-narration` is one of the 31 plugin skills; after installing, say **"use nj-narration"**.
 
 Plugin only: `/plugin install nj-kit@nj-kit`. Any other agent that reads `SKILL.md`: copy the folder [`nj-plugin/skills/nj-narration`](nj-plugin/skills/nj-narration).
 
