@@ -536,7 +536,9 @@ Details: [CONTRIBUTING.md](CONTRIBUTING.md).
 | 📄 [**Business-Wrap**](https://nj-burrito.github.io/Business-Wrap/) | Evidence in, one document in two languages. [Source](https://github.com/NJ-Burrito/Business-Wrap) |
 | 🧾 [**Profile-Wrap**](https://nj-burrito.github.io/Profile-Wrap/) | Your LinkedIn on autopilot, you stay the boss. [Source](https://github.com/NJ-Burrito/Profile-Wrap) |
 | ⚡ [**NJ-Whip**](https://nj-burrito.github.io/NJ-Whip/) | An on-screen whip that steers Claude Code. [Source](https://github.com/NJ-Burrito/NJ-Whip) |
-| 🎬 [**Story-Wrap**](https://www.instagram.com/nj.story.ar/) | The series «مكتب المفقودات» |
+| 🧹 [**NJ-Flush**](https://nj-burrito.github.io/NJ-Flush/) | A free Windows RAM cleaner. |
+| 🗂️ [**NJ-Sort**](https://nj-burrito.github.io/NJ-Sort/) | Keeps Windows desktop icons where you put them, even after File Explorer restarts. |
+| 🎬 [**Story-Wrap**](https://nj-burrito.github.io/story-wrap/) | The series «مكتب المفقودات». [Source](https://github.com/NJ-Burrito/Story-Wrap) · [Instagram](https://www.instagram.com/nj.story.ar/) |
 | 🐙 [**GitHub**](https://github.com/NJ-Burrito) · 💼 [**LinkedIn**](https://www.linkedin.com/in/nader-alzghoul) · ✉️ [**Contact**](https://nj-burrito.github.io/#contact) | |
 | 🌐 **This kit's website** | [English](https://nj-burrito.github.io/NJ-Kit/) · [Arabic](https://nj-burrito.github.io/NJ-Kit/ar/) |
 
