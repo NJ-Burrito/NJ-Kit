@@ -67,6 +67,7 @@
     "nj-music",
     "nj-director",
     "nj-animation-direction",
+    "nj-art-crew",
     "nj-ui-motion-laws"
    ]
   }
@@ -185,6 +186,10 @@
   "nj-animation-direction": {
    "en": "Direct animation before anyone animates it: beats, blocking, character acting, a gated animatic, then Rive, Theatre.js or GSAP.",
    "ar": "أخرِج الرسوم المتحركة قبل تحريكها: الإيقاع والحركة على المسرح وتمثيل الشخصيات وأنيماتيك مضبوط، ثم Rive أو Theatre.js أو GSAP."
+  },
+  "nj-art-crew": {
+   "en": "Raise animations, illustrations and screens to a high bar: one crew per piece in its own worktree, a written quality bar, an off-screen renderer so each crew sees its own frames, then one lead check of every variant.",
+   "ar": "ارفع مستوى الرسوم المتحركة والرسومات والشاشات: طاقم لكل قطعة في نسخة عمل خاصة به، ومعيار جودة مكتوب، وعارض خارج الشاشة ليرى كل طاقم إطاراته، ثم فحص واحد من القائد لكل نسخة."
   },
   "nj-ui-motion-laws": {
    "en": "The 26 laws of UI motion and UX, each with a rule, a before and after, and a check; motion_lint.py fails slow, linear or unguarded CSS motion.",
