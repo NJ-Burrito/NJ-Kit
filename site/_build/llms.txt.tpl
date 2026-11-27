@@ -27,3 +27,6 @@
 - [QA-Wrap](https://nj-burrito.github.io/QA-Wrap/): browser extension that turns a test session into a bug report
 - [Business-Wrap](https://nj-burrito.github.io/Business-Wrap/): by the same author
 - [NJ-Whip](https://nj-burrito.github.io/NJ-Whip/): an on-screen whip that steers Claude Code
+- [NJ-Flush](https://nj-burrito.github.io/NJ-Flush/): a free Windows RAM cleaner
+- [NJ-Sort](https://nj-burrito.github.io/NJ-Sort/): keeps Windows desktop icons where you put them, even after File Explorer restarts
+- [Story-Wrap](https://nj-burrito.github.io/story-wrap/): the Story-Wrap series site (source: https://github.com/NJ-Burrito/Story-Wrap)
