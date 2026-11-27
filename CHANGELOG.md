@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.1 — 2026-11-28
+
+- **nj-site-audit: new Group G, Search (SEO)** — SEO without paid tools: `scripts/seo_audit.py` (live site or folder; titles, descriptions, 1200x630 social images by real pixel size, hreflang pairs, canonical, JSON-LD and reused @ids, headings, alt and image weight, 404, sitemap and robots, llms.txt, noindex leaks, both forms of Google verification, sibling-site cross-links; PASS/FAIL), `scripts/lighthouse_local.py` (Lighthouse run locally instead of a paid audit), `scripts/keyword_ideas.py` (free autocomplete keyword ideas, EN and AR, honest about not being search volumes), `scripts/test_seo.py` (20 tests: every check fails on a bad sample). Plus the rules learned from a real 9-site run: index first, fix generated pages at their source, verify the live page after merge, title and description formulas.
+- **nj-method:** SEO, keywords and indexing route to nj-site-audit Group G; OpenSEO only when the owner asks.
+- Plugin 2.5.1.
+
 ## 3.2.0 — 2026-11-28
 
 - New skill `nj-art-crew`: raises animations, illustrations and screens to a high visual bar with one design crew per piece, each in its own git worktree, working to a written bar set by the piece the owner already liked, under fixed constraints, rendering its own work off screen and reviewing it up to three rounds; the lead merges and checks every variant once. Ships `brief_gate.py` (fails a brief with unfilled fields or two crews on one file), renderer notes per stack, a quality-bar template and a failure-modes table. From the NJ-Flush 1.3 animations. `nj-method` routes "art crew" and "a crew on each one" to it.

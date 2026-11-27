@@ -230,6 +230,26 @@ at anybody. User permissions, input sanitising, XSS and injection all need
 active testing with written permission on dedicated tooling, and they are
 delegated in section ٥.
 
+
+## ٣د — البحث (SEO) · Search, Group G
+
+Source: `scripts/seo_audit.py --md` (paste its table), `scripts/lighthouse_local.py`, `scripts/keyword_ideas.py`. Nothing here is a legal matter.
+
+| الرمز · Code | الفحص · Check | النتيجة · Result | الأدلة · Evidence |
+| --- | --- | --- | --- |
+| G1 | التحقق والفهرسة · Verification and indexing (file and meta) | | |
+| G2-G4 | العنوان والوصف والقانوني · Title, description, canonical | | |
+| G5 | hreflang (متبادل · reciprocal) | | |
+| G6-G7 | المعاينة الاجتماعية وJSON-LD · Social preview, structured data | | |
+| G8-G9, G15 | العناوين والصور · Headings, images, basics | | |
+| G10-G13 | 404، الخريطة، robots، llms، noindex | | |
+| G14 | ترابط العائلة · Family cross-links | | |
+| G16-G17 | الصفحات المولّدة والنشر الحي · Generated pages, live deploy | | |
+
+**Lighthouse (محلي · local):** performance / accessibility / best-practices / SEO scores and the top failed audits, per URL.
+**الكلمات المفتاحية · Keywords:** primary phrase per page, noting that autocomplete scores are relative signals, not search volumes.
+**قائمة Search Console · Checklist:** submit the sitemap, request indexing per page, measure after 4-8 weeks (owner action).
+
 ## ٤ — إمكانية الوصول · Accessibility
 
 مُحال إلى تدقيق إمكانية الوصول · Delegated to the accessibility audit.

@@ -274,7 +274,7 @@ Also: `scripts/publish-check.py`, the gate every release now passes before it is
 | [nj-workflow-diagram](nj-plugin/skills/nj-workflow-diagram) | Draw or fix an SRS workflow figure «مخطط سير العمل» from evidence: one box per element the model walks, left-to-right, an «إجراء» decision after any multi-exit task |
 | [nj-writer](nj-plugin/skills/nj-writer) | Writes narration and script words: commercials, e-learning, walkthroughs, podcasts, event/recruitment/investor pieces, Arabic or English |
 | [nj-impact-copy](nj-plugin/skills/nj-impact-copy) | House style since 17 Sept 2026: impact-first, metric-driven copy for commercials, captions, brag docs, release notes |
-| [nj-site-audit](nj-plugin/skills/nj-site-audit) | Pre-ship site audit: privacy exposure, hygiene (broken links, overflow, favicon, titles, 404, copyright year), policy claims versus third parties contacted, page-observable security |
+| [nj-site-audit](nj-plugin/skills/nj-site-audit) | Pre-ship site audit: privacy exposure, hygiene (broken links, overflow, favicon, titles, 404, copyright year), policy claims versus third parties contacted, page-observable security, and Group G search (SEO): indexing, titles, descriptions, hreflang, structured data, sitemap, Lighthouse, free keyword ideas |
 | [nj-chart](nj-plugin/skills/nj-chart) | Charts, dashboards and metric reports that read at a glance, in Arabic or English, light or dark, built on the Flint chart engine (MCP server `flint`) |
 
 **Audio, video and animation**

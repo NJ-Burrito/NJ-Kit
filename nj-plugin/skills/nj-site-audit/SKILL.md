@@ -1,11 +1,11 @@
 ---
 name: nj-site-audit
-description: 'Pre-ship site audit: privacy exposure, hygiene (broken links, overflow, favicon, titles, 404, copyright year), policy claims versus third parties contacted, page-observable security. Triggers: privacy policy, cookie consent, GDPR check, compliance audit, broken links, API keys exposed, security headers, client handover.'
+description: 'Pre-ship site audit: privacy exposure, hygiene (broken links, overflow, favicon, titles, 404, copyright year), policy claims versus third parties contacted, page-observable security, and Group G search (SEO): indexing, titles, descriptions, hreflang, structured data, sitemap, Lighthouse, free keyword ideas. Triggers: privacy policy, cookie consent, GDPR check, compliance audit, broken links, API keys exposed, security headers, client handover, SEO, keywords, search console, indexing, sitemap, hreflang, structured data, audit a site for search.'
 ---
 
 # The fine print
 
-A launch checklist for the half of a website nobody tests. Four surfaces, kept
+A launch checklist for the half of a website nobody tests. Five surfaces (the fifth, Group G, is Search and has its own section below), kept
 apart because they fail differently, because they are answered by different
 people, and because confusing them costs the report its credibility:
 
@@ -335,6 +335,43 @@ Full S1–S20 item table: `references/item-catalogue.md`.
 | **S15, S17** Headers | What did the response actually carry? | `curl -I`, or the Network panel | Not captured by a request-only session. |
 | **S20** Production | Is this deployment actually configured as production? | a person, over the whole stack | A catch-all, not a check. |
 
+---
+
+## Group G — Search (SEO): G1–G17
+
+A fifth surface, kept apart from the legal and hygiene groups: it asks whether
+the site can be **found**, not whether it is lawful or finished. Nothing here is
+a legal matter. Everything runs free: standard-library scripts in `scripts/`, no
+API key, no paid tool.
+
+**When to run it:** the owner says SEO, keywords, search console, indexing,
+sitemap, hreflang, structured data, "audit this site for search", or a site is
+about to ship and nobody has looked at how Google sees it.
+
+### Workflow, in this order
+
+1. **Audit** — `python scripts/seo_audit.py <url-or-folder> --family qa-wrap,business-wrap,nj-kit,nj-whip,profile-wrap,nj-flush,nj-sort,story-wrap,portfolio --json out.json --md out.md`
+   (exit 0 `PASS`, exit 1 `FAIL (n findings)`; `--base URL` for a folder; `--google-file NAME`; `--pages-repo owner/repo`; `--expect-title "..."`).
+2. **Lighthouse, locally** — `python scripts/lighthouse_local.py <url> [...]`. Never pay for it: OpenSEO charged about 130 credits per audit.
+3. **Keywords, free** — `python scripts/keyword_ideas.py --seed "..." --lang en --country us --depth 1` (Arabic: `--lang ar --country sa` or `jo`).
+4. **Fix at the source** — rule 6 below; then commit on the repo's own branch.
+5. **Verify live** — after the merge, fetch the live title over HTTP and read the Pages run (`gh run list --workflow pages`); `--expect-title` and `--pages-repo` do both.
+6. **Search Console checklist** — the audit prints it; only the owner can do it (no free API for index status).
+
+### Rules learned on the 2026-11-27 run (nine sites)
+
+1. **Indexing first (G1).** Only the portfolio home was in Google; a better title earns nothing until the page is indexed. Check **both** verification forms, a `google*.html` file at the host root **and** a `google-site-verification` meta. A paid audit reported "not verified" by checking only the meta. Output the Search Console checklist: submit `sitemap.xml`, request indexing page by page, read the Pages report after a few days.
+2. **On-page gaps that mattered (G2–G9, G13, G15).** Title over 60; description outside 70–160 (Arabic ones truncated or duplicated from the English twin); og:image a square logo instead of a 1200x630 file (check it exists and its pixels); missing og:image:alt and twitter:image:alt; canonical missing or wrong; one h1 and ordered headings; img alt and width/height; a GIF over 1 MB (use mp4/webm plus poster); a `/try/` page that should be `noindex`.
+3. **Structured data and hreflang (G5, G7).** hreflang en/ar/x-default must be reciprocal and self-referencing; JSON-LD must parse; ItemList/FAQPage `@id` must not repeat across languages; `Person.sameAs` lists every sibling site.
+4. **Technical files (G10–G12).** 404.html exists and a nonexistent path returns 404; `sitemap.xml` (or an index) lists every page, every URL returns 200; `robots.txt` does not block the site and names the sitemap; `llms.txt` links resolve.
+5. **The family (G14).** Every site of the family links to every sibling (QA-Wrap, Business-Wrap, NJ-Kit, NJ-Whip, Profile-Wrap, NJ-Flush, NJ-Sort, story-wrap, portfolio at `https://nj-burrito.github.io/`). The list is configurable: names, URLs, or a file.
+6. **Generated pages (G16).** Some pages are written by a script (the portfolio's `ar/index.html` by a sync script; NJ-Kit and Business-Wrap by build scripts). **Find the generator or source and edit that, never the output**; a hand edit is overwritten on the next build.
+7. **Deploys fail silently (G17).** GitHub Pages can fail with "No artifacts named github-pages" after a merge. A merged change is not a live change: check the title over HTTP and the run conclusion.
+8. **Keywords without paid data.** Autocomplete is a relative signal, **not a search volume**. One primary phrase per page. Title formula `Brand: primary phrase, qualifier`, 60 characters at most. Description 155 at most, opening with the visitor's own problem wording ("Desktop icons keep moving?"). Search volume is not visits; low-competition niche phrases beat big head terms for a small site. Measure in Search Console 4–8 weeks after indexing.
+9. **Do not use paid SEO tools by default.** Never spend OpenSEO (or any) credits without the owner's explicit approval; OpenSEO stays optional and off the default path.
+
+Item tables: `references/item-catalogue.md` (Group G); prose: `references/checks.md`; report block: `references/report-template.md` (section ٣د). Proof that each check fails on a bad sample: `python scripts/test_seo.py`.
+
 ## The report
 
 One Markdown file, bilingual headings in the house SRS shape — Arabic heading,
@@ -357,7 +394,8 @@ signal the report has about its own completeness.
 Open these on demand — each is verbatim content moved out of this file so the
 spine stays short. None of it changed; only the location did.
 
-- `references/item-catalogue.md` — the full A1–A7, D1–D8, L1–L10 and S1–S20
+- `scripts/seo_audit.py`, `scripts/lighthouse_local.py`, `scripts/keyword_ideas.py`, `scripts/test_seo.py` — Group G tooling (standard library only).
+- `references/item-catalogue.md` — the full A1–A7, D1–D8, L1–L10, S1–S20 and G1–G17
   item tables (what to look for / how / done looks like). Open when actually
   running a check on a specific item.
 - `references/checks.md` — the full "in a browser / with tool 18" prose behind
