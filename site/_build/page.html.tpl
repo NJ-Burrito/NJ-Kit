@@ -43,7 +43,9 @@
 <meta data-l="ar" name="twitter:description" content="منهج عمل و{N_ALL} مهارة لـ Claude Code. تنتهي كل مهارة بسكربت يطبع PASS أو FAIL. مجانية، برخصة MIT.">
 <meta data-l="en" name="twitter:image" content="https://nj-burrito.github.io/NJ-Kit/banner.png">
 <meta data-l="ar" name="twitter:image" content="https://nj-burrito.github.io/NJ-Kit/og-ar.png">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230e1311'/%3E%3Crect x='3' y='3' width='26' height='26' rx='3' fill='%23c2ea4e'/%3E%3Cpath d='M9.5 16.5l4.5 4.5 8.5-9.5' fill='none' stroke='%230e1311' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="{R}assets/icons/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="{R}assets/icons/favicon.svg" sizes="any">
+<link rel="apple-touch-icon" href="{R}assets/icons/apple-touch-icon.png">
 <script type="application/ld+json" data-l="en">
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebSite","@id":"https://nj-burrito.github.io/NJ-Kit/#website","name":"NJ-Kit","url":"https://nj-burrito.github.io/NJ-Kit/","inLanguage":["en","ar"],"publisher":{"@id":"https://nj-burrito.github.io/#person"}},
@@ -87,8 +89,11 @@
 
 /* NJ-Kit identity: "gate readout". Cool ink neutrals, ONE accent (gate lime = PASS),
    one radius scale: --r 4px for every surface and control (machined, never pill).
-   Theme follows the system (dark first). Fonts: system stacks only, no font files are shipped or loaded.
+   Theme follows the system (dark first). Fonts: Thmanyah, self-hosted in assets/fonts (font-src self), system stacks only as the last fallback.
    Motion tokens: transitions.dev scale (durations, smooth-out ease, blur, distance). */
+@font-face{font-family:"Thmanyah Sans";font-style:normal;font-weight:400;font-display:swap;src:url("{R}assets/fonts/thmanyah-sans-400.woff2") format("woff2")}
+@font-face{font-family:"Thmanyah Sans";font-style:normal;font-weight:700;font-display:swap;src:url("{R}assets/fonts/thmanyah-sans-700.woff2") format("woff2")}
+@font-face{font-family:"Thmanyah Serif Display";font-style:normal;font-weight:700;font-display:swap;src:url("{R}assets/fonts/thmanyah-serif-display-700.woff2") format("woff2")}
 :root{
   --bg:#0e1311; --bg2:#121815; --surface:#161d1a; --raise:#1c2420;
   --line:rgba(214,232,222,.10); --line2:rgba(214,232,222,.20);
@@ -99,7 +104,7 @@
   --duration-quick:150ms; --duration-fast:250ms; --duration-slow:400ms; --duration-very-slow:500ms;
   --ease-smooth-out:cubic-bezier(.22,1,.36,1); --ease:var(--ease-smooth-out);
   --blur-small:2px; --distance-medium:12px;
-  --sans:system-ui,"Segoe UI","Noto Sans Arabic",sans-serif; --display:Georgia,"Noto Naskh Arabic",serif;
+  --sans:"Thmanyah Sans",system-ui,sans-serif; --display:"Thmanyah Serif Display","Thmanyah Sans",serif;
   --mono:ui-monospace,"Cascadia Mono",Consolas,monospace;
   --wrap:1200px;
   interpolate-size:allow-keywords;
